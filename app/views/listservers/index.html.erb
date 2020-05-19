@@ -1,0 +1,10 @@
+<h1>servers</h1>
+
+<ul class="list-group">
+<% @listservers.each do |server| %>
+<li class="list-group-item">
+<%= server.title %>
+<%= server.dateStart %>
+</li>
+<% end %>
+</ul>

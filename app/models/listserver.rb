@@ -1,0 +1,2 @@
+class Listserver < ApplicationRecord
+end
