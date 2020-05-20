@@ -1,5 +1,8 @@
 <h1><%= @server.title %></h1>
 
+<%= link_to 'Изменить', edit_listserver_path(@server) %>
+<%= link_to 'Удалить', listserver_path(@server), method: :delete, data: { confirm: 'Вы уверены?' } %>
+
 <p> <%= @server.urlServer %> </p>
 <p> <%= @server.dateStart %> </p>
 <p> <%= @server.rating %> </p>

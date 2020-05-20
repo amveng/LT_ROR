@@ -3,7 +3,7 @@
 <ul class="list-group">
 <% @listservers.each do |server| %>
 <li class="list-group-item">
-<%= server.title %>
+<%= link_to server.title, listserver_path(server) %>
 <%= server.dateStart %>
 </li>
 <% end %>
