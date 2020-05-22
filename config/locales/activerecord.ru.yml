@@ -1,0 +1,9 @@
+ru:
+  activerecord:
+    models:
+      listservers: 'Сервер'
+    attributes:
+      listserver:
+        title: 'Сервер'
+        urlServer: 'Адрес сервера'
+        dateStart: 'Дата старта'

@@ -15,7 +15,7 @@ class ListserversController < ApplicationController
   def create
     @server = Listserver.new(server_params)
     if @server.save
-      redirect_to @server
+      redirect_to listservers_path
     else
       render :new
     end
@@ -25,7 +25,7 @@ class ListserversController < ApplicationController
 
   def update
     if @server.update_attributes(server_params)
-      redirect_to @server
+      redirect_to listservers_path
     else
       render :edit
     end
