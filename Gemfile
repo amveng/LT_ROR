@@ -32,6 +32,8 @@ gem 'bootstrap', '~> 4.5.0'
 
 gem 'jquery-rails'
 
+gem 'devise'
+
 gem 'pg'
 
 group :development, :test do
