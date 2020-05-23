@@ -37,15 +37,36 @@
         <a class="nav-link disabled" href="#">Disabled</a>
       </li>
     </ul>
+    <ul class="navbar-nav ml-auto">
+         <% if user_signed_in? %>
+           <span class="navbar-text">
+           <%= current_user.email %>
+           </span>
+           <li class="nav-item">
+            <% current_user %>
+            <%= link_to "Выход", destroy_user_session_path, method: :delete, class: "nav-link" %>
+           </li>
+         <% else %>
+           <li class="nav-item">
+            <%= link_to "Вход", new_user_session_path, class: "nav-link" %>
+           </li>
+          <li class="nav-item">
+             <%= link_to "Регистрация", new_user_registration_path, class: "nav-link" %>
+           </li>
+        <% end %>
+    </ul>
   </div>
 </nav>
 </div>
-    <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
+    
 
     <%= link_to 'Добавить сервер', new_listserver_path %>
     <div class="container">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
     <%= yield %>
+
     </div>
   </body>
 </html>
