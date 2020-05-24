@@ -4,7 +4,7 @@ ActiveAdmin.setup do |config|
   # Set the title that is displayed on the main layout
   # for each of the active admin pages.
   #
-  config.site_title = ''
+  # config.site_title = ''
 
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
@@ -16,7 +16,7 @@ ActiveAdmin.setup do |config|
   #
   # Note: Aim for an image that's 21px high so it fits in the header.
   #
-  # config.site_title_image = "logo.png"
+  # config.site_title_image = "/public/brand_min.png"
 
   # == Default Namespace
   #
@@ -43,13 +43,14 @@ ActiveAdmin.setup do |config|
     admin.build_menu do |menu|
       menu.add label: 'LineageTop', url: '/', priority: 0
   
-      menu.add label: 'Сервера' do |sites|
-        sites.add label: 'Сервера',
-                  url: '/admin/listservers'
+      # menu.add label: 'Сервера' do |sites|
+      #   sites.add label: 'Сервера',
+      #             url: '/admin/listservers'
   
-        sites.add label: 'Хроники',
-                  url: '/admin/serverversions'
-      end
+      #   sites.add label: 'Хроники',
+      #             url: '/admin/serverversions'
+      
+      # end
     end
   end
   #
