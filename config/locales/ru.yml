@@ -5,9 +5,8 @@ ru:
   hello: "Привет"
   time:
     formats:
-      long: "%Y-%m-%d %H:%M:%S"
+      long: "%Y-%m-%d %H:%M"
   date:
     formats:
       long: "%Y-%m-%d"
-  active_admin:
-    listserver: "Пане"
+      
