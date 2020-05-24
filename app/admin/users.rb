@@ -1,50 +1,42 @@
-ActiveAdmin.register Listserver do
-  menu false
-  # menu label: 'Сервера'  
+# frozen_string_literal: true
+
+ActiveAdmin.register User do
+  menu label: 'Пользователи'
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  # permit_params :title, :urlServer, :dateStart, :rating, :publish
+  # permit_params :email, :encrypted_password, :reset_password_token, :reset_password_sent_at, :remember_created_at
   #
   # or
   #
   # permit_params do
-  #   permitted = [:title, :urlServer, :dateStart, :rating, :publish]
+  #   permitted = [:email, :encrypted_password, :reset_password_token, :reset_password_sent_at, :remember_created_at]
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  permit_params :title, :urlServer, :dateStart, :publish
+  permit_params :email, :password, :password_confirmation
 
   index do
     selectable_column
     # id_column
-    column :title
-    column :urlServer
-    column :dateStart
-    column :rating
-    column :publish
+    column :email
     column :created_at
     column :updated_at
     actions
   end
 
-  filter :title
-  filter :urlServer
-  filter :dateStart
+  filter :email
   filter :created_at
-  filter :publish
+  filter :updated_at
 
   form do |f|
     f.inputs do
-      f.input :title
-      f.input :urlServer
-      f.input :dateStart
-      f.input :publish
+      f.input :email
+      f.input :password
+      f.input :password_confirmation
     end
     f.actions
   end
-
-  
 end

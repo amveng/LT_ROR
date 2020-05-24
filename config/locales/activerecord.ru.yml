@@ -7,4 +7,7 @@ ru:
         title: 'Сервер'
         urlServer: 'Адрес сервера'
         dateStart: 'Дата старта'
-        rating: "Рейтинг"
+        rating: 'Рейтинг'
+        publish: 'Активен'
+        created_at: 'Добавлен'
+        updated_at: 'Изменён'

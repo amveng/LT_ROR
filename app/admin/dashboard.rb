@@ -2,12 +2,12 @@ ActiveAdmin.register_page "Dashboard" do
   menu priority: 1, label: proc { I18n.t("active_admin.dashboard") }
 
   content title: proc { I18n.t("active_admin.dashboard") } do
-    div class: "blank_slate_container", id: "dashboard_default_message" do
-      span class: "blank_slate" do
-        span I18n.t("active_admin.dashboard_welcome.welcome")
-        small I18n.t("active_admin.dashboard_welcome.call_to_action")
-      end
-    end
+    # div class: "blank_slate_container", id: "dashboard_default_message" do
+    #   span class: "blank_slate" do
+    #     span I18n.t("active_admin.dashboard_welcome.welcome")
+    #     small I18n.t("active_admin.dashboard_welcome.call_to_action")
+    #   end
+    # end
 
     # Here is an example of a simple dashboard with columns and panels.
     #
@@ -28,5 +28,15 @@ ActiveAdmin.register_page "Dashboard" do
     #     end
     #   end
     # end
+    section 'Последние измененные сервера' do
+      table_for Listserver.order('updated_at').limit(5) do
+        column :title do |listserver|
+          link_to listserver.title, admin_listserver_path(listserver)
+        end
+        column :updated_at
+        column :publish
+      end
+      strong { link_to 'Весь список серверов', admin_listservers_path }
+    end
   end # content
 end

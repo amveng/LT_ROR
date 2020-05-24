@@ -9,3 +9,5 @@ ru:
   date:
     formats:
       long: "%Y-%m-%d"
+  active_admin:
+    listserver: "Пане"

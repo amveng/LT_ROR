@@ -4,7 +4,7 @@ ActiveAdmin.setup do |config|
   # Set the title that is displayed on the main layout
   # for each of the active admin pages.
   #
-  config.site_title = "Lt Ror"
+  config.site_title = ''
 
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
@@ -39,9 +39,19 @@ ActiveAdmin.setup do |config|
   # a namespace block. For example, to change the site title
   # within a namespace:
   #
-  #   config.namespace :admin do |admin|
-  #     admin.site_title = "Custom Admin Title"
-  #   end
+  config.namespace :admin do |admin|
+    admin.build_menu do |menu|
+      menu.add label: 'LineageTop', url: '/', priority: 0
+  
+      menu.add label: 'Сервера' do |sites|
+        sites.add label: 'Сервера',
+                  url: '/admin/listservers'
+  
+        sites.add label: 'Хроники',
+                  url: '/admin/serverversions'
+      end
+    end
+  end
   #
   # This will ONLY change the title for the admin section. Other
   # namespaces will continue to use the main "site_title" configuration.
@@ -317,7 +327,7 @@ ActiveAdmin.setup do |config|
   # By default, the footer shows the current Active Admin version. You can
   # override the content of the footer here.
   #
-  # config.footer = 'my custom footer text'
+  config.footer = 'Good day to work'
 
   # == Sorting
   #

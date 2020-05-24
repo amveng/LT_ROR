@@ -1,0 +1,2 @@
+class Serverversion < ApplicationRecord
+end
