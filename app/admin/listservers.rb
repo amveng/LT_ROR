@@ -23,17 +23,17 @@ ActiveAdmin.register Listserver do
     column :title
     column :urlServer
     column :dateStart
-    column :rating
+    # column :rating
     column :publish
-    column :created_at
-    column :updated_at
+    column :serverversions_id
+    # column :updated_at
     actions
   end
 
   filter :title
   filter :urlServer
   filter :dateStart
-  filter :created_at
+  # filter :created_at
   filter :publish
 
   form do |f|
@@ -42,6 +42,7 @@ ActiveAdmin.register Listserver do
       f.input :urlServer
       f.input :dateStart
       f.input :publish
+      f.input :serverversions_id
     end
     f.actions
   end
