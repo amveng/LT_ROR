@@ -4,6 +4,7 @@ class ListserversController < ApplicationController
   before_action :set_server, only: %i[show edit update destroy]
   def index
     @listservers = Listserver.all
+    @serverversions = Serverversion.all
   end
 
   def show; end
