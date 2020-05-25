@@ -4,7 +4,7 @@ class ListserversController < ApplicationController
   before_action :set_server, only: %i[show edit update destroy]
   def index
     @listservers = Listserver.all
-    @serverversions = Serverversion.all
+    @serverversions = Serverversion.pluck 'hronicle'
   end
 
   def show; end
@@ -41,6 +41,7 @@ class ListserversController < ApplicationController
 
   def set_server
     @server = Listserver.find(params[:id])
+    # @serverversions = Serverversion.find(@server.id)
   end
 
   def server_params

@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register Listserver do
   # menu false
-  menu label: 'Сервера'  
+  menu label: 'Сервера'
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -25,7 +27,7 @@ ActiveAdmin.register Listserver do
     column :dateStart
     # column :rating
     column :publish
-    column :serverversions_id
+    # column :serverversion_id
     # column :updated_at
     actions
   end
@@ -33,7 +35,7 @@ ActiveAdmin.register Listserver do
   filter :title
   filter :urlServer
   filter :dateStart
-  # filter :created_at
+  # filter :serverversion_id
   filter :publish
 
   form do |f|
@@ -42,10 +44,8 @@ ActiveAdmin.register Listserver do
       f.input :urlServer
       f.input :dateStart
       f.input :publish
-      f.input :serverversions_id
+      # f.input :serverversion_id
     end
     f.actions
   end
-
-  
 end
