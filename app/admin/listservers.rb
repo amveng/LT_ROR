@@ -3,6 +3,8 @@
 ActiveAdmin.register Listserver do
   # menu false
   menu label: 'Сервера'
+  # belongs_to :serverversion
+
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -17,7 +19,7 @@ ActiveAdmin.register Listserver do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  permit_params :title, :urlServer, :dateStart, :publish
+  permit_params :title, :urlServer, :dateStart, :publish, :serverversion_id
 
   index do
     selectable_column
@@ -27,7 +29,7 @@ ActiveAdmin.register Listserver do
     column :dateStart
     # column :rating
     column :publish
-    # column :serverversion_id
+    column :serverversion_id
     # column :updated_at
     actions
   end
@@ -44,7 +46,7 @@ ActiveAdmin.register Listserver do
       f.input :urlServer
       f.input :dateStart
       f.input :publish
-      # f.input :serverversion_id
+      f.input :serverversion_id
     end
     f.actions
   end
