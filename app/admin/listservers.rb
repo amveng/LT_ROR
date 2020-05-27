@@ -19,7 +19,7 @@ ActiveAdmin.register Listserver do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  permit_params :title, :urlServer, :dateStart, :publish, :serverversion_id
+  permit_params :title, :urlServer, :dateStart, :publish, :version
 
   index do
     selectable_column
@@ -29,7 +29,7 @@ ActiveAdmin.register Listserver do
     column :dateStart
     # column :rating
     column :publish
-    column :serverversion_id
+    column :version
     # column :updated_at
     actions
   end
@@ -37,7 +37,7 @@ ActiveAdmin.register Listserver do
   filter :title
   filter :urlServer
   filter :dateStart
-  # filter :serverversion_id
+  filter :version, as: :select, collection: @versions
   filter :publish
 
   form do |f|
@@ -50,7 +50,7 @@ ActiveAdmin.register Listserver do
         max_date: "+3M +1D"
       }
       f.input :publish
-      f.input :serverversion_id
+      f.input :version, as: :select, collection: @versions
     end
     f.actions
   end

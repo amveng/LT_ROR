@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_27_021200) do
+ActiveRecord::Schema.define(version: 2020_05_27_084912) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,8 +49,7 @@ ActiveRecord::Schema.define(version: 2020_05_27_021200) do
     t.boolean "publish"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "serverversion_id", default: 1, null: false
-    t.index ["serverversion_id"], name: "index_listservers_on_serverversion_id"
+    t.string "version"
   end
 
   create_table "serverversions", force: :cascade do |t|
@@ -71,5 +70,4 @@ ActiveRecord::Schema.define(version: 2020_05_27_021200) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "listservers", "serverversions"
 end

@@ -2,9 +2,9 @@
 
 class ListserversController < ApplicationController
   before_action :set_server, only: %i[show edit update destroy]
+  @versions = Serverversion.pluck 'hronicle'
   def index
     @listservers = Listserver.all
-    @serverversions = Serverversion.pluck 'hronicle'
   end
 
   def show; end

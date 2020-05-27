@@ -11,3 +11,4 @@ ru:
         publish: 'Активен'
         created_at: 'Добавлен'
         updated_at: 'Изменён'
+        version: 'Хроники'
