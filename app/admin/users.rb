@@ -22,6 +22,8 @@ ActiveAdmin.register User do
     selectable_column
     # id_column
     column :email
+    column :email
+    column :reset_password_token
     column :created_at
     column :updated_at
     actions

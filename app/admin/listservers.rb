@@ -44,7 +44,11 @@ ActiveAdmin.register Listserver do
     f.inputs do
       f.input :title
       f.input :urlServer
-      f.input :dateStart
+      f.input :dateStart, as: :datepicker,
+      datepicker_options: {
+        min_date: 5.years.ago.to_date,
+        max_date: "+3M +1D"
+      }
       f.input :publish
       f.input :serverversion_id
     end
