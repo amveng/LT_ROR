@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class ListserversController < ApplicationController
+  before_action :set_version
   before_action :set_server, only: %i[show edit update destroy]
-  @versions = Serverversion.pluck 'hronicle'
   def index
     @listservers = Listserver.all
   end
@@ -39,12 +39,15 @@ class ListserversController < ApplicationController
 
   private
 
+  def set_version
+    @versions = Serverversion.pluck 'hronicle'
+  end
+
   def set_server
     @server = Listserver.find(params[:id])
-    # @serverversions = Serverversion.find(@server.id)
   end
 
   def server_params
-    params.require(:listserver).permit(:title, :urlServer, :dateStart)
+    params.require(:listserver).permit(:title, :urlServer, :dateStart, :version)
   end
 end

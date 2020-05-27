@@ -37,7 +37,7 @@ ActiveAdmin.register Listserver do
   filter :title
   filter :urlServer
   filter :dateStart
-  filter :version, as: :select, collection: @versions
+  filter :version, as: :select, collection: Serverversion.pluck('hronicle')
   filter :publish
 
   form do |f|
@@ -50,7 +50,7 @@ ActiveAdmin.register Listserver do
         max_date: "+3M +1D"
       }
       f.input :publish
-      f.input :version, as: :select, collection: @versions
+      f.input :version, as: :select, collection: Serverversion.pluck('hronicle')
     end
     f.actions
   end

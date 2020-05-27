@@ -1,4 +1,4 @@
-<%= form_with model: @server, class: "nifty_form" do |f| %>
+<%= form_with model: @server, class: "form-group" do |f| %>
 
 <div class="form-group">
     <%= f.label :title %>
@@ -11,8 +11,8 @@
 </div>
 
 <div class="form-group">
-    <%= f.label :serverversion_id %>
-    <%= f.number_field :serverversion_id, class: 'form-control' %>
+    <%= f.label :version %>
+    <%= f.select :version, @versions, class: 'form-control' %>
 </div>
 
 <div class="form-group">
@@ -25,12 +25,3 @@
 </div>
 
 <% end %>
-
-
-
-<select name="city_id" id="city_id">
-  <option value="1">Lisbon</option>
-  <option value="2">Madrid</option>
-  <option value="3">Berlin</option>
-</select>
-
