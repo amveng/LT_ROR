@@ -16,13 +16,13 @@ ActiveAdmin.register User do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  permit_params :email, :password, :password_confirmation
+  permit_params :email, :password, :password_confirmation, :locked_at
 
   index do
     selectable_column
     # id_column
     column :email
-    # column :email
+    column :locked_at
     column :created_at
     column :updated_at
     actions
@@ -34,9 +34,11 @@ ActiveAdmin.register User do
 
   form do |f|
     f.inputs do
-      f.input :email
-      f.input :password
-      f.input :password_confirmation
+      f.input :email      
+      # f.input :password
+      # f.input :password_confirmation
+      # f.input :locked_at
+      f.input :locked_at, as: :datepicker
     end
     f.actions
   end

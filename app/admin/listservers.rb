@@ -2,7 +2,7 @@
 
 ActiveAdmin.register Listserver do
   # menu false
-  menu label: 'Сервера'
+  # menu label: 'Сервера'
   # belongs_to :serverversion
 
   # See permitted parameters documentation:

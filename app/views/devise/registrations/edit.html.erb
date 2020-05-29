@@ -1,5 +1,5 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
+<h2 class="text-center m-5">Редактировать профиль</h2>
+<div class="col-8 offset-2 col-sm-6 offset-sm-3">
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -32,12 +32,13 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Update" %>
+    <%= f.submit "Сохранить" %>
   </div>
 <% end %>
+ <hr>
+<h3>Удалить учетную запись</h3>
 
-<h3>Cancel my account</h3>
+<p>Разочарованы? <%= button_to "Удалить учетную запись", registration_path(resource_name), data: { confirm: "Вы уверены?" }, method: :delete %></p>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+<%= link_to "Назад", :back %>
+</div>
