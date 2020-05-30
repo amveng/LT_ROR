@@ -15,6 +15,7 @@ class ListserversController < ApplicationController
 
   def create
     @server = Listserver.new(server_params)
+    @server.user_id = current_user.id
     if @server.save
       redirect_to listservers_path
     else
@@ -25,6 +26,7 @@ class ListserversController < ApplicationController
   def edit; end
 
   def update
+    @server.user_id = current_user.id
     if @server.update_attributes(server_params)
       redirect_to listservers_path
     else
