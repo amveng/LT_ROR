@@ -2,6 +2,7 @@
 
 class ListserversController < ApplicationController
   before_action :set_version
+  before_action :authenticate_user!, except: %i[index show]
   before_action :set_server, only: %i[show edit update destroy]
   def index
     @listservers = Listserver.all
@@ -10,6 +11,7 @@ class ListserversController < ApplicationController
   def show; end
 
   def new
+    # redirect_to new_user_session_path unless user_signed_in?
     @server = Listserver.new
   end
 
@@ -53,3 +55,7 @@ class ListserversController < ApplicationController
     params.require(:listserver).permit(:title, :urlServer, :dateStart, :version)
   end
 end
+
+# def check_login
+#   redirect_to new_user_session_path unless user_signed_in?
+# end

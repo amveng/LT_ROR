@@ -45,6 +45,22 @@
 </button>
 </p>
 <%= link_to "Назад", :back %>
+
+<hr>
+<% if @listservers_user.present? %>
+<h5 class="text-muted">Мои сервера</h5>
+<ul class="list-group">
+<% @listservers_user.each do |servers_user| %>
+<li class="list-group-item">
+<%= link_to servers_user.title, listserver_path(servers_user) %>
+<%= servers_user.dateStart %>
+<%= servers_user.version %>
+<%= link_to servers_user.urlServer, servers_user.urlServer %>
+</li>
+<% end %>
+</ul>
+<% end %>
+
 </div>
 
 
