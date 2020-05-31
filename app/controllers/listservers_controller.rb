@@ -2,7 +2,7 @@
 
 class ListserversController < ApplicationController
   before_action :set_version
-  before_action :authenticate_user!, except: %i[index show]
+  before_action :authenticate_user!, except: %i[index]
   before_action :set_server, only: %i[show edit update destroy]
   def index
     @listservers = Listserver.all
@@ -11,7 +11,6 @@ class ListserversController < ApplicationController
   def show; end
 
   def new
-    # redirect_to new_user_session_path unless user_signed_in?
     @server = Listserver.new
   end
 
@@ -30,8 +29,9 @@ class ListserversController < ApplicationController
   def update
     @server.user_id = current_user.id
     if @server.update_attributes(server_params)
-      redirect_to listservers_path
+      redirect_to @server, success: 'Сервер успешно изменён'
     else
+      flash.now[:danger] = 'Сервер не изменён'
       render :edit
     end
   end
@@ -47,15 +47,14 @@ class ListserversController < ApplicationController
     @versions = Serverversion.pluck 'hronicle'
   end
 
-  def set_server
+  def set_server    
     @server = Listserver.find(params[:id])
+    if @server.user_id != current_user.id
+      redirect_to listservers_path, danger: 'Доступ запрещен !!!'
+    end
   end
 
   def server_params
     params.require(:listserver).permit(:title, :urlServer, :dateStart, :version)
   end
 end
-
-# def check_login
-#   redirect_to new_user_session_path unless user_signed_in?
-# end

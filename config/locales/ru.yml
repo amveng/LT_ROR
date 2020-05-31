@@ -80,6 +80,7 @@ ru:
     failure:
       already_authenticated: Вы уже вошли в систему.
       inactive: Ваша учетная запись еще не активирована.
+      account_inactive: 'Your account is not active.'
       invalid: Неправильный %{authentication_keys} или пароль.
       last_attempt: У вас осталась последняя попытка ввода пароля до блокировки учетной записи.
       locked: Ваша учетная запись заблокирована.

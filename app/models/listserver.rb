@@ -5,5 +5,5 @@ class Listserver < ApplicationRecord
   scope :unpublish, lambda {
     where(publish: false)
   }
-  validates :title, presence: true
+  validates :title, :urlServer, :dateStart, :version, presence: true
 end

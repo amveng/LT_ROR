@@ -1,5 +1,13 @@
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<% if @server.errors.any? %>
+  <div class="alert alert-danger">
+    <h5><%= t('common.errors') %></h5>
+    <ul>
+      <% @server.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
 <%= form_with model: @server, class: "form-group" do |f| %>
 
