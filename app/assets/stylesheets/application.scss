@@ -19,3 +19,9 @@ select {
     border-radius: 0.25rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
+
+
+.btn-gradient{
+ background: linear-gradient(to bottom, rgb(226, 227, 252), rgb(255, 255, 255));
+ height: 2.5rem;
+}

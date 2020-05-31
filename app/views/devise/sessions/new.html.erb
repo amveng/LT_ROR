@@ -1,14 +1,14 @@
+<div class="shadow col-8 offset-2 col-sm-6 offset-sm-3 bg-light">
 <h2 class="text-center m-5"><%= t(".sign_in") %></h2>
-<div class="col-8 offset-2 col-sm-6 offset-sm-3">
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="field">
+     <div class="field">
       <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control m-2' %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control mb-2'%>
     </div>
-
+    
     <div class="field">
       <%= f.label :password %><br />
-      <%= f.password_field :password, autocomplete: "current-password", class: 'form-control m-2' %>
+      <%= f.password_field :password, autocomplete: "current-password", class: 'form-control mb-2' %>
     </div>
 
     <% if devise_mapping.rememberable? %>
@@ -19,7 +19,7 @@
     <% end %>
 
     <div class="actions">
-      <%= f.submit t(".sign_in"), class: 'btn btn-primary m-2' %>
+      <%= f.submit t(".sign_in"), class: 'btn-gradient w-25 rounded-3' %>
     </div>
   <% end %>
   <hr>
