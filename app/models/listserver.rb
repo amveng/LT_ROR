@@ -3,6 +3,7 @@
 class Listserver < ApplicationRecord
   belongs_to :user
   scope :unpublish, lambda {
-    where(publish: nil)
+    where(publish: false)
   }
+  validates :title, presence: true
 end

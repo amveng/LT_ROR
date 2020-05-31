@@ -20,7 +20,7 @@ ActiveAdmin.register Listserver do
   #   permitted
   # end
   permit_params :title, :urlServer, :dateStart, :publish, :version, :user_id
-  scope 'Новые сервера', :unpublish
+  scope 'Неактивные', :unpublish
   index do
     selectable_column
     # id_column

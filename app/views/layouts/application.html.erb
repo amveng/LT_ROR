@@ -54,8 +54,17 @@
 
     <%= link_to 'Добавить сервер', new_listserver_path %>
     <div class="container">
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+   
+    <div class="row">
+        <div class="col-md-12">
+          <% flash.each do |name, message| %>
+            <div class="alert <%= bootstrap_class_for(name) %>">
+              <button class="close" data-dismiss="alert">&times;</button>
+              <%= message %>
+            </div>
+          <% end %>
+        </div>
+      </div>
 
     <%= yield %>
 
