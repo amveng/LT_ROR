@@ -19,7 +19,10 @@ ActiveAdmin.register Listserver do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  permit_params :title, :urlServer, :dateStart, :publish, :version, :user_id
+  permit_params :title, :user_id,
+                :status, :urlServer, 
+                :publish, :version,
+                :dateStart
   scope 'Неактивные', :unpublish
   index do
     selectable_column
@@ -27,7 +30,7 @@ ActiveAdmin.register Listserver do
     column :title
     column :urlServer
     column :dateStart
-    # column :rating
+    column :status
     column :publish
     column :version
     column :user_id
@@ -51,6 +54,7 @@ ActiveAdmin.register Listserver do
       }
       f.input :user_id
       f.input :publish
+      f.input :status, as: :select, collection: %i[normal VIP TOP]
       f.input :version, as: :select, collection: Serverversion.pluck('hronicle')
     end
     f.actions

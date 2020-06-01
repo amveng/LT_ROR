@@ -1,15 +1,10 @@
 <h1><%= @server.title %></h1>
 
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#exampleModal">
-  Удалить
-</button>
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#delete">
-  Изменить
-</button>
+<%= link_to 'Изменить', edit_listserver_path(@server), class: 'btn btn-outline-primary btn-sm' %>
+<%= link_to 'Удалить', listserver_path(@server), class: 'btn btn-outline-danger btn-sm', method: :delete, data: { confirm: 'Вы уверены?' } %>
+
 
 
 <p> <%= @server.urlServer %> </p>
@@ -18,47 +13,4 @@
 <p> <%= @server.publish %> </p>
 <p> <%= @server.created_at %> </p>
 <p> <%= @server.updated_at %> </p>
-
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Удалить сервер</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <h4>Вы уверены?</h4>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-       <%= link_to 'Удалить', listserver_path(@server),  class: 'btn btn-danger', method: :delete %>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!-- Modal -->
-<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="edit">Редактировать сервер</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <%= render 'form' %>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
-      </div>
-    </div>
-  </div>
-</div>
 
