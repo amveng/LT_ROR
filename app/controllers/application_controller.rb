@@ -5,10 +5,6 @@ class ApplicationController < ActionController::Base
   add_flash_types :success, :danger, :info, :warning
   before_action :set_user_servers
 
-  # def after_sign_in_path_for(_resource)
-  #   redirect_to request.referer
-  # end
- 
   private
 
   def set_user_servers

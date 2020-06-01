@@ -13,4 +13,5 @@ class User < ApplicationRecord
          :validatable,
          :trackable,
          :lockable
+  
 end

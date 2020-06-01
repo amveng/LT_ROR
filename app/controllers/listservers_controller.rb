@@ -47,11 +47,13 @@ class ListserversController < ApplicationController
     @versions = Serverversion.pluck 'hronicle'
   end
 
-  def set_server    
+  def set_server
     @server = Listserver.find(params[:id])
-    if @server.user_id != current_user.id
-      redirect_to listservers_path, danger: 'Доступ запрещен !!!'
-    end
+    acces_close unless @server.user_id == current_user.id
+  end
+
+  def acces_close
+    redirect_to listservers_path, danger: 'Доступ запрещен !!!'
   end
 
   def server_params

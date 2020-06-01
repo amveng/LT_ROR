@@ -1,4 +1,9 @@
 ru:
+  common:
+    errors: 'При заполнении формы возникли ошибки'
+    back: 'Назад'
+    create: 'Создать'
+    edit: 'Изменить'
   hello: "Привет"
   time:
     formats:
