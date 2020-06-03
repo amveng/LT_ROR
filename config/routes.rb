@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   root 'listservers#index'
   resources :listservers
-  resources :users
+  # resources :users
 end

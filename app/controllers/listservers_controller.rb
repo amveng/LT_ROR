@@ -2,7 +2,7 @@
 
 class ListserversController < ApplicationController
   before_action :set_version
-  before_action :authenticate_user!, except: %i[index]
+  # before_action :authenticate_user!, except: %i[index]
   before_action :set_server, only: %i[show edit update destroy]
   def index
     @listservers = Listserver.all
@@ -20,6 +20,7 @@ class ListserversController < ApplicationController
     if @server.save
       redirect_to listservers_path
     else
+      flash.now[:danger] = 'Статья не создана'
       render :new
     end
   end

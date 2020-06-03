@@ -16,13 +16,14 @@ ActiveAdmin.register User do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
+  # has_many :listservers
   permit_params :email, :password, :password_confirmation, :locked_at, :baned
 
   index do
     selectable_column
     # id_column
     column :email
-    # column :locked_at
+    column :locked_at
     column :baned
     column :created_at
     column :updated_at
@@ -39,7 +40,7 @@ ActiveAdmin.register User do
       # f.input :password
       # f.input :password_confirmation
       f.input :baned
-      # f.input :locked_at, as: :datepicker
+      f.input :locked_at, as: :datepicker
     end
     f.actions
   end

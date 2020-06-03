@@ -2,8 +2,11 @@
 
 class Listserver < ApplicationRecord
   belongs_to :user
-  scope :unpublish, lambda {
-    where(publish: false)
-  }
-  validates :title, :status, :urlServer, :dateStart, :version, presence: true
+  
+  validates :title, :urlServer, :dateStart, presence: true
+
+
+  # scope :unpublish, lambda {
+  #   where(publish: false)
+  # }  
 end

@@ -4,6 +4,7 @@ ActiveAdmin.register Listserver do
   # menu false
   # menu label: 'Сервера'
   # belongs_to :serverversion
+  # belongs_to :user
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -20,10 +21,10 @@ ActiveAdmin.register Listserver do
   #   permitted
   # end
   permit_params :title, :user_id,
-                :status, :urlServer, 
+                :status, :urlServer,
                 :publish, :version,
                 :dateStart
-  scope 'Неактивные', :unpublish
+  # scope 'Неактивные', :unpublish
   index do
     selectable_column
     # id_column
