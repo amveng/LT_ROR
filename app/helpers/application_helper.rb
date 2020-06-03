@@ -5,8 +5,8 @@ module ApplicationHelper
     { success: 'alert-success',
       error: 'alert-danger',
       info: 'alert-info',
-      danger: 'alert-warning',
-      alert: 'alert-dark',
+      danger: 'alert-danger',
+      warning: 'alert-warning',
       notice: 'alert-primary' }[name.to_sym] || name
   end
 end

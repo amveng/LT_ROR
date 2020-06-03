@@ -20,7 +20,7 @@ class ListserversController < ApplicationController
     if @server.save
       redirect_to listservers_path, success: 'Сервер успешно создан'
     else
-      flash.now[:info] = 'Сервер не создан'
+      flash.now[:warning] = 'Сервер не создан'
       render :new
     end
   end
@@ -32,14 +32,14 @@ class ListserversController < ApplicationController
     if @server.update_attributes(server_params)
       redirect_to @server, success: 'Сервер успешно изменён'
     else
-      flash.now[:info] = 'Сервер не изменён'
+      flash.now[:warning] = 'Сервер не изменён'
       render :edit
     end
   end
 
   def destroy
     @server.destroy
-    redirect_to @server, alert: 'Сервер успешно удален'
+    redirect_to @server, info: 'Сервер успешно удален'
   end
 
   private
@@ -54,7 +54,7 @@ class ListserversController < ApplicationController
   end
 
   def acces_close
-    redirect_to listservers_path, error: 'Доступ запрещен !!!'
+    redirect_to listservers_path, danger: 'Доступ запрещен !!!'
   end
 
   def server_params
