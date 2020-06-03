@@ -1,22 +1,15 @@
-
 <% if @server.errors.any? %>
-  <div>
-      
-      <h2>SSSSSSSSSSSSSSSSSSSSSS</h2>  
+  <div class="alert alert-danger">
+    <h5><%= t('common.errors') %></h5>
     <ul>
       <% @server.errors.full_messages.each do |message| %>
         <li><%= message %></li>
-        
       <% end %>
     </ul>
   </div>
-<% end %> 
+<% end %>
 
-<%= @server.errors.any? %>
-
-<%= form_with model: @server, class: "form-group" do |f| %>
-<% puts @server.errors.full_messages %>
-<%= @server.errors.any? %>
+<%= form_for @server, html: { multipart: true } do |f| %>
 <div class="form-group">
     <%= f.label :title %>
     <%= f.text_field :title, autofocus: true, class: 'form-control', placeholder: 'Название сервера' %>
