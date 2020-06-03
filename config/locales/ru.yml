@@ -85,10 +85,10 @@ ru:
     failure:
       already_authenticated: Вы уже вошли в систему.
       inactive: Ваша учетная запись еще не активирована.
-      account_inactive: 'Your account is not active.'
+      account_inactive: Ваш акаунт заблокирован администацией.
       invalid: Неправильный %{authentication_keys} или пароль.
       last_attempt: У вас осталась последняя попытка ввода пароля до блокировки учетной записи.
-      locked: Ваша учетная запись заблокирована.
+      locked: Ваша учетная запись заблокирована на 10 минут.
       not_found_in_database: Неправильный %{authentication_keys} или пароль.
       timeout: Ваш сеанс закончился. Пожалуйста, войдите в систему снова.
       unauthenticated: Вам необходимо войти в систему или зарегистрироваться.
