@@ -7,6 +7,7 @@ module ApplicationHelper
       info: 'alert-info',
       danger: 'alert-danger',
       warning: 'alert-warning',
+      alert: 'alert-warning',
       notice: 'alert-primary' }[name.to_sym] || name
   end
 

@@ -23,7 +23,7 @@ ActiveAdmin.register User do
     selectable_column
     # id_column
     column :email
-    column :locked_at
+    column 'БТ', :locked_at
     column :baned
     column :created_at
     column :updated_at
