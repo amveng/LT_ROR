@@ -31,6 +31,12 @@
     </ul>
     <ul class="navbar-nav ml-auto">
          <% if user_signed_in? %>
+          <% if acces_new_server? %>
+          <li class="nav-item">
+            <%= link_to 'Добавить сервер', new_listserver_path, class: "btn btn-secondary" %>
+          </li>
+          <% end %>
+
            <span class="navbar-text">           
            <%= link_to current_user.email, edit_user_registration_path %>
            </span>
@@ -51,8 +57,7 @@
 </nav>
 </div>
     
-
-    <%= link_to 'Добавить сервер', new_listserver_path %>
+    
     <div class="container">
    
     <div class="row">

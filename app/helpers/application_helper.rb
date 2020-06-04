@@ -9,4 +9,8 @@ module ApplicationHelper
       warning: 'alert-warning',
       notice: 'alert-primary' }[name.to_sym] || name
   end
+
+  def acces_new_server?
+    !@listservers_user.pluck('publish').include? false
+  end
 end
