@@ -25,14 +25,4 @@ class Users::SessionsController < Devise::SessionsController
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
 
-  def active_for_authentication?
-    # Uncomment the below debug statement to view the properties of the returned self model values.
-    # logger.debug self.to_yaml
-
-    super && account_active?
-  end
-
-  def inactive_message
-    account_active? ? super : :account_inactive
-  end
 end

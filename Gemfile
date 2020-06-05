@@ -36,6 +36,10 @@ gem 'jquery-rails'
 
 gem 'devise'
 
+gem 'omniauth'
+
+gem 'omniauth-vkontakte'
+
 gem 'pg'
 
 gem 'activeadmin'

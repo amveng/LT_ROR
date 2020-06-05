@@ -23,8 +23,8 @@ ActiveAdmin.register User do
     selectable_column
     # id_column
     column :email
-    column 'БТ', :locked_at
-    column :baned
+    # column 'БТ', :locked_at
+    # column :baned
     column :created_at
     column :updated_at
     actions
@@ -33,14 +33,16 @@ ActiveAdmin.register User do
   filter :email
   filter :created_at
   filter :updated_at
+  filter :baned
+  # filter :locked_at
 
   form do |f|
     f.inputs do
-      # f.input :email      
+      f.input :email      
       # f.input :password
       # f.input :password_confirmation
       f.input :baned
-      f.input :locked_at, as: :datepicker
+      # f.input :locked_at, as: :datepicker
     end
     f.actions
   end
