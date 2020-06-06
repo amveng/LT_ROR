@@ -40,6 +40,8 @@ gem 'omniauth'
 
 gem 'omniauth-vkontakte'
 
+gem 'omniauth-facebook'
+
 gem 'pg'
 
 gem 'activeadmin'
