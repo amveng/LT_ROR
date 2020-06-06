@@ -1,4 +1,6 @@
-# chto to 
+# frozen_string_literal: true
+
+# chto to
 class User < ApplicationRecord
   has_many :listservers
   # Include default devise modules. Others available are:
@@ -20,6 +22,4 @@ class User < ApplicationRecord
   def inactive_message
     account_active? ? super : :account_inactive
   end
-
-
 end
