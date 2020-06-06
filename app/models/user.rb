@@ -1,7 +1,5 @@
 # chto to 
 class User < ApplicationRecord
-  TEMP_EMAIL_PREFIX = 'change@me'
-  TEMP_EMAIL_REGEX = /\Achange@me/
   has_many :listservers
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -9,12 +7,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :confirmable,
          :validatable, :trackable, :lockable,
          :omniauthable
-
-
-  # Setup accessible (or protected) attributes for your model
-  # attr_accessible :email, :password, :password_confirmation, :remember_me
-  # attr_accessible :nickname, :provider, :url, :username
-
 
   # Проверка не забанен ли пользователь
   def account_active?
