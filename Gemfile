@@ -34,13 +34,17 @@ gem 'bootstrap-datepicker-rails'
 
 gem 'jquery-rails'
 
+# gem 'activerecord-session_store'
+
 gem 'devise'
 
 gem 'omniauth'
 
-gem 'omniauth-vkontakte'
+gem 'omniauth-github'
 
-gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+
+gem 'omniauth-vkontakte'
 
 gem 'pg'
 
