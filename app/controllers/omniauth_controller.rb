@@ -32,7 +32,7 @@ class OmniauthController < ApplicationController
   end
 
   def failure
-    flash[:error] = 'There was a problem signing you in. Please register or try signing in later.'
+    flash[:error] = 'При входе произошла ошибка. Пожалуйста, зарегистрируйтесь или попробуйте войти позже.'
     redirect_to new_user_registration_url
   end
 end

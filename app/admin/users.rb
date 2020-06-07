@@ -24,13 +24,14 @@ ActiveAdmin.register User do
     # id_column
     column :email
     # column 'БТ', :locked_at
-    # column :baned
+    column :username
     column :provider
     column :uid
     actions
   end
 
   filter :email
+  filter :username
   filter :created_at
   filter :updated_at
   filter :baned

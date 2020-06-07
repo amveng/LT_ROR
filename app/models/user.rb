@@ -25,7 +25,7 @@ class User < ApplicationRecord
                      provider_data.info.email
                    end
       user.password = Devise.friendly_token[0, 20]
-      user.u
+      user.username = provider_data.info.name
       user.skip_confirmation!
     end
   end 
