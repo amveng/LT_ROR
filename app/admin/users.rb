@@ -34,7 +34,8 @@ ActiveAdmin.register User do
   filter :created_at
   filter :updated_at
   filter :baned
-  # filter :locked_at
+  # filter :provider, as: :select, collection: User.pluck('provider')
+  # filter :provider, as: :select, collection: User.pluck('provider').reject(&:blank?) 
 
   form do |f|
     f.inputs do

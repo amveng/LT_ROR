@@ -267,7 +267,7 @@ Devise.setup do |config|
   # config.omniauth :vkontakte, KEY SECRET
 
   config.omniauth :vkontakte, Rails.application.credentials.dig(:vkontakte, :vkontakte_client_id),
-                  Rails.application.credentials.dig(:vkontakte, :vkontakte_client_secret)
+                  Rails.application.credentials.dig(:vkontakte, :vkontakte_client_secret), scope: 'email'
   config.omniauth :github, Rails.application.credentials.dig(:github, :github_client_id),
                   Rails.application.credentials.dig(:github, :github_client_secret), scope: 'user,public_repo'
   config.omniauth :google_oauth2, Rails.application.credentials.dig(:google, :google_client_id),
