@@ -10,7 +10,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :confirmable,
          :validatable, :trackable, :lockable,
-         :omniauthable, omniauth_providers: %i[vkontakte github google_oauth2]
+         :omniauthable,
+         omniauth_providers: %i[vkontakte github google_oauth2]
 
   def self.create_from_provider_data(provider_data)
     puts '-----------------------------------------------------------'
@@ -28,7 +29,7 @@ class User < ApplicationRecord
       user.username = provider_data.info.name
       user.skip_confirmation!
     end
-  end 
+  end
 
   # Проверка не забанен ли пользователь
   def account_active?
@@ -41,5 +42,16 @@ class User < ApplicationRecord
 
   def inactive_message
     account_active? ? super : :account_inactive
+  end
+
+  # bypasses Devise requirement to re-enter current password to edit
+  def update_with_password(params = {})
+    if params[:password].blank?
+      params.delete(:password)
+      if params[:password_confirmation].blank?
+        params.delete(:password_confirmation)
+      end
+    end
+    update_attributes(params)
   end
 end

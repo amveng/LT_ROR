@@ -27,12 +27,7 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control m-2' %>
   </div>
-   <hr>
-  <div class="field">
-    <%= f.label :current_password %> <i>(необходим ваш текущий пароль для подтверждения изменений)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password", class: 'form-control m-2' %>
-  </div>
-
+   
   <div class="actions">
     <%= f.submit "Сохранить", class: 'btn btn-primary m-2' %>
   </div>
@@ -88,3 +83,4 @@
     </div>
   </div>
 </div>
+
