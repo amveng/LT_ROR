@@ -1,53 +1,30 @@
 # frozen_string_literal: true
 
 class OmniauthController < ApplicationController
-  def vkontakte
-    @user = User.create_from_provider_data(request.env['omniauth.auth'])
-    if @user.persisted?
-      sign_in_and_redirect @user
-    else      
-      flash[:error] = 'There was a problem signing you in through Vkontakte. Please register or try signing in later.'
-      redirect_to new_user_registration_url
-    end
-  end
+  before_action :all_in, except: %i[failure]
 
-  def github
-    @user = User.create_from_provider_data(request.env['omniauth.auth'])
-    if @user.persisted?
-      sign_in_and_redirect @user
-    else
-      flash[:error] = 'There was a problem signing you in through Github. Please register or try signing in later.'
-      redirect_to new_user_registration_url
-    end
-  end
+  def vkontakte; end
 
-  def google_oauth2
-    @user = User.create_from_provider_data(request.env['omniauth.auth'])
-    if @user.persisted?
-      sign_in_and_redirect @user
-    else
-      flash[:error] = 'There was a problem signing you in through Google. Please register or try signing in later.'
-      redirect_to new_user_registration_url
-    end
-  end
+  def github; end
 
-  def facebook
-    @user = User.create_from_provider_data(request.env['omniauth.auth'])
-    if @user.persisted?
-      sign_in_and_redirect @user
-    else
-      flash[:error] = 'There was a problem signing you in through Facebook. Please register or try signing in later.'
-      redirect_to new_user_registration_url
-    end
-  end
+  def google_oauth2; end
+
+  def facebook; end
 
   def failure
     flash[:error] = 'При входе произошла ошибка. Пожалуйста, зарегистрируйтесь или попробуйте войти позже.'
     redirect_to new_user_registration_url
   end
 
-  def err_email
-    flash[:error] = 'При входе произошла ошибка. SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS'
-    redirect_to new_user_registration_url  
+  private
+
+  def all_in
+    @user = User.create_from_provider_data(request.env['omniauth.auth'])
+    if @user.persisted?
+      sign_in_and_redirect @user
+    else
+      flash[:error] = 'При входе через сервис произошла ошибка. Пожалуйста, зарегистрируйтесь или попробуйте другой способ.'
+      redirect_to new_user_registration_url
+    end
   end
 end
