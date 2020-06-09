@@ -3,8 +3,7 @@
 # chto to
 class User < ApplicationRecord
   has_many :listservers
-
-  TEMP_EMAIL_PREFIX = 'change@me'
+  
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -21,7 +20,7 @@ class User < ApplicationRecord
       puts provider_data.info
       # user.uid = provider_data.uid
       user.email = if provider_data.info.email.nil?
-                     "#{TEMP_EMAIL_PREFIX}-#{provider_data.uid}-#{provider_data.provider}.com"
+                     "change@me-#{provider_data.uid}-#{provider_data.provider}.com"
                    else
                      provider_data.info.email
                    end
