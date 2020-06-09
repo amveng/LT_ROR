@@ -10,7 +10,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :confirmable,
          :validatable, :trackable, :lockable,
          :omniauthable,
-         omniauth_providers: %i[vkontakte github google_oauth2]
+         omniauth_providers: %i[vkontakte github google_oauth2 facebook]
 
   def self.create_from_provider_data(provider_data)
     puts '-----------------------------------------------------------'
@@ -19,11 +19,13 @@ class User < ApplicationRecord
       puts '-----------------------------------------------------------'
       puts provider_data.info
       # user.uid = provider_data.uid
-      user.email = if provider_data.info.email.nil?
-                     "change@me-#{provider_data.uid}-#{provider_data.provider}.com"
-                   else
-                     provider_data.info.email
-                   end
+      # if User.find_by(email: provider_data.info.email)
+      #   puts 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
+      # else
+      #   puts 'OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO'
+        
+      # end
+      user.email = provider_data.info.email || "change@me-#{provider_data.uid}-#{provider_data.provider}.com"
       user.password = Devise.friendly_token[0, 20]
       user.username = provider_data.info.name
       user.skip_confirmation!

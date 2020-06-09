@@ -4,6 +4,7 @@
 @import "bootstrap-datepicker";
 
 
+
 select {
     display: block;
     width: 100%;
@@ -24,4 +25,23 @@ select {
 .btn-gradient{
  background: linear-gradient(to bottom, rgb(226, 227, 252), rgb(255, 255, 255));
  height: 2.5rem;
+}
+
+.btn-success {
+    color: 
+#fff;
+background-color:
+#28a745;
+background-image: linear-gradient(-180deg,
+#34d058,
+    #28a745 90%);
+}
+
+body {
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
+    font-size: 16px;
+    line-height: 1.5;
+    color: 
+#24292e;
+background-color: #f9f9f9;
 }

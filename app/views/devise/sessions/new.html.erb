@@ -1,4 +1,4 @@
-<div class="shadow col-8 offset-2 col-sm-6 offset-sm-3 bg-light">
+<div class="shadow col-sm-4 bg-white">
 <h2 class="text-center m-5"><%= t(".sign_in") %></h2>
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
      <div class="field">
@@ -6,22 +6,27 @@
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control mb-2'%>
     </div>
     
-    <div class="field">
-      <%= f.label :password %><br />
+    <div class="field mt-4">
+      <%= f.label :password %>
+      <%= link_to 'Забыли пароль?', new_password_path(resource_name), class: 'float-right' %><br />
       <%= f.password_field :password, autocomplete: "current-password", class: 'form-control mb-2' %>
     </div>
 
     <% if devise_mapping.rememberable? %>
       <div class="field">
-        <%= f.check_box :remember_me, class: 'm-2' %>
+        <%= f.check_box :remember_me, class: 'my-2' %>
         <%= f.label :remember_me %>
       </div>
     <% end %>
 
     <div class="actions">
-      <%= f.submit t(".sign_in"), class: 'btn-gradient w-25 rounded-3' %>
+      <%= f.submit t(".sign_in"), class: 'btn btn-block btn-success' %>
     </div>
   <% end %>
   <hr>
-  <%= render "devise/shared/links" %>
+  <p>Или войдите с помощью других сервисов</p>
+  
+  <%= render "devise/shared/omniauth" %>
+  <hr>
+   <p>Ещё нет аккаунта?<%= link_to 'Зарегестрируйтесь', new_registration_path(resource_name), class: 'float-right' %></p>
 </div>
