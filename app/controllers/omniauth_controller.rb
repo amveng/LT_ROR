@@ -19,6 +19,10 @@ class OmniauthController < ApplicationController
   private
 
   def all_in
+    if user_signed_in?
+      flash[:info] = 'Вы уже вощли в систему.'
+      return redirect_to listservers_path 
+    end
     @user = User.create_from_provider_data(request.env['omniauth.auth'])
     if @user.persisted?
       sign_in_and_redirect @user
