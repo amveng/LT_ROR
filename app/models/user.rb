@@ -14,10 +14,10 @@ class User < ApplicationRecord
 
   def self.create_from_provider_data(provider_data)
     # puts '-----------------------------------------------------------'
-    puts provider_data.info
+    # puts provider_data.info
     where(provider: provider_data.provider, uid: provider_data.uid).first_or_create do |user|
       # puts '-----------------------------------------------------------'
-      puts provider_data.info
+      # puts provider_data.info
       # user.uid = provider_data.uid
       # if User.find_by(email: provider_data.info.email)
       #   puts 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
