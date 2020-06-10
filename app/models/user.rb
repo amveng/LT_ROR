@@ -10,10 +10,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :confirmable,
          :validatable, :trackable, :lockable,
          :omniauthable,
-         omniauth_providers: %i[vkontakte github google_oauth2 facebook]
+         omniauth_providers: %i[vkontakte github google_oauth2 facebook email]
 
   def self.create_from_provider_data(provider_data)
     # puts '-----------------------------------------------------------'
+    # puts omniauth_providers
     # puts provider_data.info
     where(provider: provider_data.provider, uid: provider_data.uid).first_or_create do |user|
       # puts '-----------------------------------------------------------'
@@ -22,7 +23,7 @@ class User < ApplicationRecord
       # if User.find_by(email: provider_data.info.email)
       #   puts 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
       # else
-      #   puts 'OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO'
+      
         
       # end
       user.email = provider_data.info.email || "change@me-#{provider_data.uid}-#{provider_data.provider}.com"
@@ -36,11 +37,9 @@ class User < ApplicationRecord
   def account_active?
     !baned?
   end
-
   def active_for_authentication?
     super && account_active?
   end
-
   def inactive_message
     account_active? ? super : :account_inactive
   end

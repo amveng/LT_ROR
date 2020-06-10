@@ -1,6 +1,5 @@
 # frozen_string_literal: true
-
-ActiveAdmin.register User do
+ActiveAdmin.register User do  
   # menu label: 'Пользователи'
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -17,7 +16,7 @@ ActiveAdmin.register User do
   #   permitted
   # end
   # has_many :listservers
-  permit_params :email, :password, :confirmed_at, :locked_at, :baned
+  permit_params :email, :password, :confirmed_at, :locked_at, :provider, :baned
 
   index do
     selectable_column
@@ -25,8 +24,8 @@ ActiveAdmin.register User do
     column :email
     # column 'БТ', :locked_at
     column :username
-    column :provider
-    column :uid
+    column 'Вход через:', :provider
+    # column :uid
     actions
   end
 
@@ -35,14 +34,14 @@ ActiveAdmin.register User do
   filter :created_at
   filter :updated_at
   filter :baned
-  # filter :provider, as: :select, collection: User.pluck('provider')
+  filter :provider, as: :select, collection: User.omniauth_providers
   # filter :provider, as: :select, collection: User.pluck('provider').reject(&:blank?) 
 
   form do |f|
     f.inputs do
       f.input :email
       f.input :confirmed_at
-      # f.input :password_confirmation
+      f.input :provider, as: :select, collection: User.omniauth_providers 
       f.input :baned
       # f.input :locked_at, as: :datepicker
     end

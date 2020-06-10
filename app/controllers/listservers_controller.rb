@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ListserversController < ApplicationController
+  # layout false
   before_action :set_version
   before_action :authenticate_user!, except: %i[index]
   before_action :set_server, only: %i[show edit update destroy]
