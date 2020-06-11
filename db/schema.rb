@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_10_173725) do
+ActiveRecord::Schema.define(version: 2020_06_10_224032) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,12 +46,12 @@ ActiveRecord::Schema.define(version: 2020_06_10_173725) do
     t.boolean "publish", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_id"
     t.string "status", default: "normal", null: false
     t.string "version"
     t.string "title"
     t.string "urlServer"
     t.date "dateStart"
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_listservers_on_user_id"
   end
 
@@ -91,5 +91,4 @@ ActiveRecord::Schema.define(version: 2020_06_10_173725) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
-  add_foreign_key "listservers", "users"
 end

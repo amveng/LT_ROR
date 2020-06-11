@@ -27,5 +27,11 @@ test:
   database: db/test.sqlite3
 
 production:
-  <<: *default
-  database: db/production.sqlite3
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  database: rorbase
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: roruser
+  password: pass315
+  timeout: 5000

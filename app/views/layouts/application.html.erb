@@ -65,7 +65,7 @@
     
     <div class="container">
    
-    <div class="row">
+      <div class="row">
         <div class="col-md-12">
           <% flash.each do |name, message| %>
             <div class="alert <%= bootstrap_class_for(name) %>">
@@ -75,9 +75,7 @@
           <% end %>
         </div>
       </div>
-    <div class="row justify-content-md-center">
-    <%= yield %>
-    </div>
+      <%= yield %>
     </div>
   </body>
 </html>
