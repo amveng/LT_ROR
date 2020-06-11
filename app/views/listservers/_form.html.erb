@@ -9,7 +9,7 @@
   </div>
 <% end %>
 
-<%= form_for @server, html: { multipart: true } do |f| %>
+<%= form_for @server do |f| %>
 <div class="form-group">
     <%= f.label :title %>
     <%= f.text_field :title, autofocus: true, class: 'form-control', placeholder: 'Название сервера' %>
