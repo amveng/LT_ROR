@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
   add_flash_types :success, :danger, :info, :warning
   before_action :set_user_servers
 
+  rescue_from ActiveRecordRecordNotFoun::d do |_exception|
+    redirect_to root_path, alert: 'Record not found'
+  end
+
   private
 
   def set_user_servers
