@@ -25,7 +25,7 @@ ActiveAdmin.register User do
     # column 'БТ', :locked_at
     column :username
     column 'Вход через:', :provider
-    # column :uid
+    # column 'test', as: Listserver.where(user_id: 3).pluck('title')
     actions
   end
 

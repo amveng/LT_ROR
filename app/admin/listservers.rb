@@ -32,9 +32,9 @@ ActiveAdmin.register Listserver do
     column :urlServer
     column :dateStart
     column :status
-    column :publish
+    column :publish 
     column :version
-    column :user_id
+    # column :user_id, as: User.find_by(id: 3).email
     actions
   end
 
