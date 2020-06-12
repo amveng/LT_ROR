@@ -45,10 +45,11 @@ ru:
         unlock_token: Токен разблокировки
         updated_at: Дата обновления        
       listserver:
-        title: 'Сервер'
+        title: 'Название сервера'
         urlServer: 'Адрес сервера'
         dateStart: 'Дата старта'
         rating: 'Рейтинг'
+        status: Статус
         publish: 'Активен'
         created_at: 'Добавлен'
         updated_at: 'Изменён'
