@@ -39,9 +39,9 @@
 
            <span class="navbar-text"> 
            <% if current_user.username.blank? %>
-             <%= link_to current_user.email , edit_user_registration_path %>
+             <%= link_to truncate(current_user.email.html_safe, length:15) , edit_user_registration_path %>
            <% else %>
-             <%= link_to current_user.username , edit_user_registration_path %>
+             <%= link_to truncate(current_user.username.html_safe, length:15) , edit_user_registration_path %>
            <% end %>          
            
            </span>

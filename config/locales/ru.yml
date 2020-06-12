@@ -73,6 +73,7 @@ ru:
       messages:
         blank: не может быть пустым          
         too_short: "должен быть минимум %{count} знаков" 
+        too_long: "должно быть максимум %{count} знака"
         confirmation: необходимо 
         taken: занят  
         invalid: недествителен 
