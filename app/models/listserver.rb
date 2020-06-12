@@ -2,14 +2,14 @@
 
 class Listserver < ApplicationRecord
   belongs_to :user
-  
-  validates :dateStart, :version, presence: true
-  validates :title, :urlServer, length: { in: 4..42 }
-  validates :title, uniqueness: true
- 
 
+  auto_strip_attributes :title, squish: true
+
+  validates :dateStart, :version, presence: true 
+  validates :title, uniqueness: true, length: { in: 4..42 }
+  validates :urlServer, format: { with: /https/ }
 
   # scope :unpublish, lambda {
   #   where(publish: false)
-  # }  
+  # }
 end

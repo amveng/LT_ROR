@@ -4,6 +4,8 @@
 class User < ApplicationRecord
   has_many :listservers
 
+  auto_strip_attributes :username, squish: true
+
   validates :username, length: { in: 4..42 }
   validates :email, length: { in: 6..65 }
 
