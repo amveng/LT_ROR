@@ -22,7 +22,7 @@ class ListserversController < ApplicationController
     if @server.save
       redirect_to listservers_path, success: 'Сервер успешно создан'
     else
-      flash.now[:danger] = 'Сервер не создан'
+      # flash.now[:danger] = 'Сервер не создан'
       render :new
     end
   end
@@ -34,7 +34,7 @@ class ListserversController < ApplicationController
     if @server.update_attributes(server_params)
       redirect_to @server, success: 'Сервер успешно изменён'
     else
-      flash.now[:danger] = 'Сервер не изменён'
+      # flash.now[:danger] = 'Сервер не изменён'
       render :edit
     end
   end
