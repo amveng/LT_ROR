@@ -25,7 +25,8 @@ ActiveAdmin.register User do
     # column 'БТ', :locked_at
     column :username
     column 'Вход через:', :provider
-    # column 'test', as: Listserver.where(user_id: 3).pluck('title')
+    column :listservers
+   
     actions
   end
 
@@ -41,7 +42,7 @@ ActiveAdmin.register User do
     f.inputs do
       f.input :email
       f.input :confirmed_at
-      f.input :provider, as: :select, collection: User.omniauth_providers 
+      f.input :provider, as: :select, collection: User.omniauth_providers
       f.input :baned
       # f.input :locked_at, as: :datepicker
     end

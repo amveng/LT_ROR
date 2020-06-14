@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Listserver do
+  batch_action :publish do |ids|
+    batch_action_collection.find(ids).each do |listserver|
+      listserver.publish
+    end
+    redirect_to collection_path, alert: "The posts have been flagged."
+  end
   # menu false
   # menu label: 'Сервера'
   # belongs_to :serverversion
@@ -32,9 +38,11 @@ ActiveAdmin.register Listserver do
     column :urlServer
     column :dateStart
     column :status
-    column :publish 
+    column :publish
     column :version
-    # column :user_id, as: User.find_by(id: 3).email
+    column :user
+    puts Listserver.where(user_id: 3).pluck('title')
+    # column :user_id, collection: User.where(id: :iser_id).email
     actions
   end
 
@@ -43,6 +51,7 @@ ActiveAdmin.register Listserver do
   filter :dateStart
   filter :version, as: :select, collection: Serverversion.pluck('hronicle')
   filter :publish
+  filter :user
 
   form do |f|
     f.inputs do
