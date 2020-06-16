@@ -16,16 +16,16 @@ ActiveAdmin.register User do
   #   permitted
   # end
   # has_many :listservers
-  permit_params :email, :password, :confirmed_at, :locked_at, :provider, :baned
+  permit_params :email, :password, :confirmed_at, :locked_at, :provider, :baned, :username
 
   index do
     selectable_column
     # id_column
     column :email
-    # column 'БТ', :locked_at
+    column :locked_at
     column :username
     column 'Вход через:', :provider
-    column :listservers
+    column 'Сервера', :listservers
    
     actions
   end
@@ -44,6 +44,7 @@ ActiveAdmin.register User do
       f.input :confirmed_at
       f.input :provider, as: :select, collection: User.omniauth_providers
       f.input :baned
+      f.input :username
       # f.input :locked_at, as: :datepicker
     end
     f.actions

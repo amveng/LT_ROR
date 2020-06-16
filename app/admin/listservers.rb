@@ -1,12 +1,19 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Listserver do
-  batch_action :publish do |ids|
-    batch_action_collection.find(ids).each do |listserver|
-      listserver.publish
-    end
-    redirect_to collection_path, alert: "The posts have been flagged."
-  end
+  # batch_action :publish do |ids|
+  #   batch_action_collection.find(ids).each do |listserver|
+  #     listserver.publish
+  #   end
+  #   redirect_to collection_path, alert: "The posts have been flagged."
+  # end
+  # batch_action :flag, form: {
+  #   type: %w[Offensive Spam Other],
+  #   publish:   :checkbox
+  # } do |ids, inputs|
+  #   # inputs is a hash of all the form fields you requested
+  #   redirect_to collection_path, notice: [ids, inputs].to_s
+  # end
   # menu false
   # menu label: 'Сервера'
   # belongs_to :serverversion
@@ -41,7 +48,6 @@ ActiveAdmin.register Listserver do
     column :publish
     column :version
     column :user
-    puts Listserver.where(user_id: 3).pluck('title')
     # column :user_id, collection: User.where(id: :iser_id).email
     actions
   end
@@ -51,7 +57,7 @@ ActiveAdmin.register Listserver do
   filter :dateStart
   filter :version, as: :select, collection: Serverversion.pluck('hronicle')
   filter :publish
-  filter :user
+  # filter :user
 
   form do |f|
     f.inputs do
@@ -62,7 +68,7 @@ ActiveAdmin.register Listserver do
         min_date: 5.years.ago.to_date,
         max_date: "+3M +1D"
       }
-      f.input :user_id
+      f.input :user
       f.input :publish
       f.input :status, as: :select, collection: %i[normal VIP TOP]
       f.input :version, as: :select, collection: Serverversion.pluck('hronicle')
