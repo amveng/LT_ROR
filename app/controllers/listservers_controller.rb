@@ -3,14 +3,16 @@
 class ListserversController < ApplicationController
   # layout false
   before_action :set_version
-  before_action :authenticate_user!, except: %i[index]
+  before_action :authenticate_user!, except: %i[index show]
   before_action :set_server, only: %i[show edit update destroy]
   before_action :check_new_server, only: %i[new]
   def index
     @listservers = Listserver.all
   end
 
-  def show; end
+  def show
+    @vote = Poll.find_or_create_by(listserver_id: @server.id, date: Date.today)
+  end
 
   def new
     @server = Listserver.new
@@ -27,7 +29,9 @@ class ListserversController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    acces_close unless @server.user_id == current_user.id
+  end
 
   def update
     # @server.user_id = current_user.id
@@ -40,8 +44,13 @@ class ListserversController < ApplicationController
   end
 
   def destroy
-    @server.destroy
-    redirect_to @server, info: 'Сервер успешно удален'
+    if @server.user_id == current_user.id
+      @server.destroy
+      redirect_to @server, info: 'Сервер успешно удален'
+    else
+      acces_close
+    end
+
   end
 
   private
@@ -56,7 +65,7 @@ class ListserversController < ApplicationController
 
   def set_server
     @server = Listserver.find(params[:id])
-    acces_close unless @server.user_id == current_user.id
+    # acces_close unless @server.user_id == current_user.id
   end
 
   def acces_close
