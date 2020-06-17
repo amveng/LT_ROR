@@ -8,7 +8,7 @@ end
 
 class Listserver < ApplicationRecord
   belongs_to :user
-  has_many :polls, dependent: :destroy
+  has_many :votes, dependent: :destroy
 
   auto_strip_attributes :title, squish: true, force_capitalize: true
 

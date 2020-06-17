@@ -4,7 +4,6 @@
 class User < ApplicationRecord
   has_many :listservers
   has_many :votes
-  has_many :polls, through: :votes
 
   auto_strip_attributes :username, squish: true
 

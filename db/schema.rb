@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_16_222337) do
+ActiveRecord::Schema.define(version: 2020_06_17_024116) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,15 +56,6 @@ ActiveRecord::Schema.define(version: 2020_06_16_222337) do
     t.index ["user_id"], name: "index_listservers_on_user_id"
   end
 
-  create_table "polls", force: :cascade do |t|
-    t.bigint "listserver_id"
-    t.integer "votecount", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.date "date"
-    t.index ["listserver_id"], name: "index_polls_on_listserver_id"
-  end
-
   create_table "serverversions", force: :cascade do |t|
     t.string "hronicle"
     t.datetime "created_at", precision: 6, null: false
@@ -102,11 +93,12 @@ ActiveRecord::Schema.define(version: 2020_06_16_222337) do
   end
 
   create_table "votes", force: :cascade do |t|
-    t.bigint "poll_id"
+    t.bigint "listserver_id"
     t.bigint "user_id"
+    t.date "date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["poll_id"], name: "index_votes_on_poll_id"
+    t.index ["listserver_id"], name: "index_votes_on_listserver_id"
     t.index ["user_id"], name: "index_votes_on_user_id"
   end
 

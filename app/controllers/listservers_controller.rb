@@ -10,9 +10,7 @@ class ListserversController < ApplicationController
     @listservers = Listserver.all
   end
 
-  def show
-    @vote = Poll.find_or_create_by(listserver_id: @server.id, date: Date.today)
-  end
+  def show; end
 
   def new
     @server = Listserver.new
@@ -50,7 +48,6 @@ class ListserversController < ApplicationController
     else
       acces_close
     end
-
   end
 
   private

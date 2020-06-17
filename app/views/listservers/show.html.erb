@@ -14,3 +14,5 @@
 <p> <%= @server.created_at %> </p>
 <p> <%= @server.updated_at %> </p>
 
+<%= link_to 'vote', votes_path(id: @server.id), method: :post  %>
+

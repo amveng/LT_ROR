@@ -1,4 +1,4 @@
 class Vote < ApplicationRecord
-  belongs_to :poll
+  belongs_to :listserver
   belongs_to :user
 end

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   resources :listservers
+  resources :votes, only: [:create]
   root 'listservers#index'
   get '/users', to: 'listservers#index'
   # get '/users' => 'users/registrations'
