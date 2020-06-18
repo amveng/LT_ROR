@@ -54,6 +54,12 @@ ru:
         created_at: 'Добавлен'
         updated_at: 'Изменён'
         version: 'Хроники'
+      vote:
+        listserver: 'Название сервера'
+        user : Пользователь
+        date: Дата голосования
+        created_at: 'Добавлен'
+        updated_at: 'Изменён'
     models:
       user:
         few: Пользователя
@@ -70,6 +76,12 @@ ru:
         many: Серверов
         one: Сервер
         other: Сервера 
+      vote:
+        few: Голоса
+        many: Голосов
+        one: Голосование
+        other: Голоса
+
     errors:
       messages:
         blank: не может быть пустым          

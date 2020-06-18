@@ -4,9 +4,9 @@ ActiveAdmin.register Vote do
 
   index do
     selectable_column
-    column 'Пользователь', :user
-    column 'Сервер', :listserver
-    column 'Дата голосования', :date
+    column :user
+    column :listserver
+    column :date
     actions
   end
 
