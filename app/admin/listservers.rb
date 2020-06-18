@@ -48,6 +48,7 @@ ActiveAdmin.register Listserver do
     column :publish
     column :version
     column :user
+    column :rating
     # column :user_id, collection: User.where(id: :iser_id).email
     actions
   end
