@@ -10,6 +10,7 @@ ru:
       long: "%Y-%m-%d %H:%M"
   date:
     formats:
+      default: "%Y-%m-%d"
       long: "%Y-%m-%d"
   listservers:
     index:
