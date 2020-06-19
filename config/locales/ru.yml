@@ -17,8 +17,43 @@ ru:
       sign_in: Войти
   users:
     sign_in: Войти
+  views:
+    pagination:
+        first: Первая
+        previous: "Пред."
+        next: "След."
+        last: Последняя
+  active_admin:  
+    details: "%{model} Details"
+
+
   activerecord:
     attributes:
+      admin_user:
+        confirmation_sent_at: Дата отправки подтверждения
+        confirmation_token: Токен подтверждения
+        confirmed_at: Дата подтверждения
+        created_at: Дата создания
+        current_password: Текущий пароль
+        current_sign_in_at: Дата текущего входа
+        current_sign_in_ip: IP текущего входа
+        email: Email
+        username: Имя
+        encrypted_password: Зашифрованный пароль
+        failed_attempts: Неудачные попытки
+        last_sign_in_at: Дата последнего входа
+        last_sign_in_ip: IP последнего входа
+        locked_at: Дата блокировки
+        password: Пароль
+        password_confirmation: Подтверждение пароля          
+        remember_created_at: Дата создания запоминания
+        remember_me: Запомнить меня
+        reset_password_sent_at: Дата отправки сброса пароля
+        reset_password_token: Токен сброса пароля
+        sign_in_count: Количество входов
+        unconfirmed_email: Неподтвержденный email
+        unlock_token: Токен разблокировки
+        updated_at: Дата обновления
       user:
         confirmation_sent_at: Дата отправки подтверждения
         confirmation_token: Токен подтверждения
@@ -60,7 +95,25 @@ ru:
         date: Дата голосования
         created_at: 'Добавлен'
         updated_at: 'Изменён'
+      active_admin/comment:
+        author_type: "Author type"
+        body: "Body"
+        created_at: "Created"
+        namespace: "Namespace"
+        resource_type: "Resource type"
+        updated_at: "Updated"
     models:
+      comment:
+        one: "Коментарий"
+        other: "Коментарии"
+      active_admin/comment:
+        one: "Коментарий"
+        other: "Коментарии"      
+      admin_user:
+        few: Админа
+        many: Админов
+        one: Админа
+        other: Админы        
       user:
         few: Пользователя
         many: Пользователей

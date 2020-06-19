@@ -24,8 +24,8 @@ ActiveAdmin.register User do
     column :email
     column :locked_at
     column :username
-    column 'Вход через:', :provider
-    column 'Сервера', :listservers
+    column :provider
+    column :listservers
    
     actions
   end
