@@ -19,3 +19,19 @@ require("channels")
 import 'bootstrap'
 
 import 'bootstrap-datepicker'
+
+// import 'jquery'
+
+// import * as $ from 'jquery';
+
+$(document).on("turbolinks:load", function(){
+    $('.datepicker').datepicker({
+        language: "ru",
+        format: "yyyy-mm-dd",
+        weekStart: 1,
+        todayBtn: "linked",        
+        todayHighlight: true,       
+        autoclose: true,
+    });
+    // console.log('datepiker load')
+});
