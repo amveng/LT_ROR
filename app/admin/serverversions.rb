@@ -21,7 +21,7 @@ ActiveAdmin.register Serverversion do
   index do
     selectable_column
     id_column
-    column 'Хроники', :hronicle
+    column :hronicle
     column :created_at
     column :updated_at
     actions

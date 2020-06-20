@@ -19,6 +19,7 @@ require("channels")
 import 'bootstrap'
 
 import 'bootstrap-datepicker'
+
 // import 'jquery'
 
 // import * as $ from 'jquery';

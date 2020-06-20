@@ -65,6 +65,11 @@ ru:
         current_sign_in_ip: IP текущего входа
         email: Email
         username: Имя
+        votetime: Время голосования
+        baned: Забанен
+        uid: идентификатор в соц сети
+        provider: Провайдер
+        listservers: Сервера
         encrypted_password: Зашифрованный пароль
         failed_attempts: Неудачные попытки
         last_sign_in_at: Дата последнего входа

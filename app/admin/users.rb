@@ -16,13 +16,13 @@ ActiveAdmin.register User do
   #   permitted
   # end
   # has_many :listservers
-  permit_params :email, :password, :confirmed_at, :locked_at, :provider, :baned, :username
+  permit_params :email, :votetime, :confirmed_at, :locked_at, :provider, :baned, :username
 
   index do
     selectable_column
     # id_column
     column :email
-    column :locked_at
+    column :votetime
     column :username
     column :provider
     column :listservers
@@ -34,18 +34,18 @@ ActiveAdmin.register User do
   filter :username
   filter :created_at
   filter :updated_at
+  filter :votetime
   filter :baned
   filter :provider, as: :select, collection: User.omniauth_providers
-  # filter :provider, as: :select, collection: User.pluck('provider').reject(&:blank?) 
 
   form do |f|
     f.inputs do
       f.input :email
-      f.input :confirmed_at
+      f.input :votetime, as: :string
       f.input :provider, as: :select, collection: User.omniauth_providers
       f.input :baned
       f.input :username
-      # f.input :locked_at, as: :datepicker
+      f.input :locked_at, as: :datepicker
     end
     f.actions
   end

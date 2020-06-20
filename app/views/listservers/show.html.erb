@@ -14,5 +14,37 @@
 <p> <%= @server.created_at %> </p>
 <p> <%= @server.updated_at %> </p>
 
-<%= link_to 'Проголосовать за сервер', votes_path(id: @server.id), class: 'btn btn-success', method: :post  %>
+
+
+<% unless user_signed_in? %>
+    <div class="alert alert-info">    
+    <p>  Необходимо <%= link_to "Войти", new_user_session_path %> для голосования </p>
+    </div>
+<% else %>
+    <% if current_user.votetime > date_time_now = DateTime.now %>
+        <% disabled = 'disabled'  %>
+        <div class="alert alert-info">
+        <% th = ((current_user.votetime - date_time_now)/60/60).to_i %>
+        <% tm = ((current_user.votetime - date_time_now)/60).to_i - th * 60 %>
+        Вы сможете проголосовать через
+        <% if th > 0 %>
+            <%= th %>
+            часов   
+        <% end %>
+        <% if tm > 0 %>
+            <%= tm %>
+            минут          
+        <% end %>        
+        <% if tm == 0 %>
+            <%= ((current_user.votetime - date_time_now)).to_i - tm * 60 if tm == 0 %>
+            секунд          
+        <% end %>        
+        </div>
+    <% else %>
+        <%= link_to 'Проголосовать за сервер', votes_path(id: @server.id), class: "btn btn-success", method: :post  %>
+    <% end %>     
+<% end %>
+
+
+
 

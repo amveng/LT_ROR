@@ -9,6 +9,7 @@ class User < ApplicationRecord
 
   validates :username, length: { in: 4..42 }
   validates :email, length: { in: 6..65 }
+  validates :votetime, presence: true
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
