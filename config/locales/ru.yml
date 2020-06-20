@@ -90,6 +90,8 @@ ru:
         urlServer: 'Адрес сервера'
         dateStart: 'Дата старта'
         rating: 'Рейтинг'
+        rate: Рейты сервера
+        user: Пользователь
         status: Статус
         publish: 'Активен'
         created_at: 'Добавлен'

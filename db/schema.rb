@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_20_010741) do
+ActiveRecord::Schema.define(version: 2020_06_20_160533) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 2020_06_20_010741) do
     t.string "urlServer"
     t.date "dateStart"
     t.bigint "user_id"
+    t.integer "rate", default: 1, null: false
     t.index ["title"], name: "index_listservers_on_title", unique: true
     t.index ["user_id"], name: "index_listservers_on_user_id"
   end

@@ -24,6 +24,11 @@
     <%= f.label :version %>
     <%= f.select :version, @versions, class: 'form-control' %>
 </div>
+
+<div class="form-group">
+    <%= f.label :rate %>
+    <%= f.number_field :rate, class: 'form-control' %>
+</div>
  
 <div class="form-group">
     <%= f.label :dateStart %>    

@@ -70,6 +70,6 @@ class ListserversController < ApplicationController
   end
 
   def server_params
-    params.require(:listserver).permit(:title, :urlServer, :dateStart, :version)
+    params.require(:listserver).permit(:title, :rate, :urlServer, :dateStart, :version)
   end
 end
