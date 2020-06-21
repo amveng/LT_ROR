@@ -4,6 +4,10 @@
 class User < ApplicationRecord
   has_many :listservers
   has_many :votes
+  has_one :profile, dependent: :destroy
+
+  before_create :build_profile
+  accepts_nested_attributes_for :profile
 
   auto_strip_attributes :username, squish: true
 
