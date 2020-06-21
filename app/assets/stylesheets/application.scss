@@ -66,3 +66,14 @@ background-color: #f9f9f9;
         border: 1px solid #dc3545;    
     }   
 }
+.navbar .dropdown-menu {
+    background-color: #21262b;
+  }
+.navbar .dropdown.show a {
+    background-color: #21262b;
+    color: #8a8d8f;
+}
+.navbar .dropdown.show a:hover {
+    color: #fff; /* Цвет ссылки при наведении на нее курсора мыши */  
+    background: #21262b; /* Цвет фона */
+}

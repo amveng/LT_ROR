@@ -8,58 +8,65 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+<body>
+<%# Шапка---------------------------------------------------- %>
+ 
+<div>
+  <img src="/images/k42.jpg" class="d-block w-100" alt="...">
+</div>
 
-  <body>
-  <div class="container">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="<%= listservers_path %>">Home</a>
-      </li>
+
+<%# Навбаер меню---------------------------------------------- %>
+<div class="sticky-top" style="background-color: #21262b;">
+<div class="container">
+    <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #21262b;">
+    <a class="navbar-brand" href="<%= listservers_path %>">LineageTop</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="#">ueugzu</a>             
+          <a class="nav-link" href="<%= listservers_path %>">Home</a>
         </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">dfjgjdgf;i</a>
-      </li>
-    </ul>
-    <ul class="navbar-nav ml-auto">
-         <% if user_signed_in? %>
-          <% if acces_new_server? %>
           <li class="nav-item">
-            <%= link_to 'Добавить сервер', new_listserver_path, class: "btn btn-secondary" %>
+            <a class="nav-link" href="#">ueugzu</a>             
           </li>
+        <li class="nav-item">
+          <%= link_to 'Добавить сервер', new_listserver_path, class: "btn btn-outline-info" %>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+          <% if user_signed_in? %>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <% if current_user.username.blank? %>
+              <%= truncate(current_user.email.html_safe, length:18) %>
+            <% else %>
+              <%= truncate(current_user.username.html_safe, length:18) %>
+            <% end %>     
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <%= link_to "кабинет", edit_user_registration_path, class: "dropdown-item" %>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <%= link_to "Выход", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+              </div>
+            </li>       
+          <% else %>
+            <li class="nav-item">
+              <%= link_to "Вход", new_user_session_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Регистрация", new_user_registration_path, class: "nav-link" %>
+            </li>
           <% end %>
-
-           <span class="navbar-text"> 
-           <% if current_user.username.blank? %>
-             <%= link_to truncate(current_user.email.html_safe, length:15) , edit_user_registration_path %>
-           <% else %>
-             <%= link_to truncate(current_user.username.html_safe, length:15) , edit_user_registration_path %>
-           <% end %>          
-           
-           </span>
-           <li class="nav-item">
-            <% current_user %>
-            <%= link_to "Выход", destroy_user_session_path, method: :delete, class: "nav-link" %>
-           </li>
-         <% else %>
-           <li class="nav-item">
-            <%= link_to "Вход", new_user_session_path, class: "nav-link" %>
-           </li>
-          <li class="nav-item">
-             <%= link_to "Регистрация", new_user_registration_path, class: "nav-link" %>
-           </li>
-        <% end %>
-    </ul>
-  </div>
-</nav>
+        </ul>
+      </div>
+    </nav>
+</div>
 </div>
     
     
@@ -75,7 +82,22 @@
           <% end %>
         </div>
       </div>
-      <%= yield %>         
+      <%= yield %>  
+
+  
+      <div class="shadow bg-light my-5">
+        <h5 class="card-header">Новые сервера л2</h5>
+        <div class="card-body">
+            <h5 class="card-title">Анонсы серверов Lineage 2</h5>
+          <p class="card-text">
+          Найди новый сервер благодаря нашим анонсам новых Lineage 2 серверов. 
+          Мы стараемся максимально точно и в полном объеме собрать всю информацию об уже открытых и новых игровых проектах. 
+          Для посетителей нашего анонса серверов Lineage 2 доступна возможность оставить отзыв и оценку серверу, 
+          что поможет другим игрокам сделать правильный выбор.
+          </p>
+          
+        </div>
+      </div>      
        
     </div>
   </body>

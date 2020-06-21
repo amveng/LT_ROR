@@ -5,7 +5,7 @@ class ListserversController < ApplicationController
   before_action :set_version
   before_action :authenticate_user!, except: %i[index show]
   before_action :set_server, only: %i[show edit update destroy]
-  before_action :check_new_server, only: %i[new]
+  # before_action :check_new_server, only: %i[new]
   def index
     @listservers = Listserver.all
   end
@@ -52,9 +52,9 @@ class ListserversController < ApplicationController
 
   private
 
-  def check_new_server
-    acces_close if @listservers_user.pluck('publish').include? false
-  end
+  # def check_new_server
+  #   acces_close if @listservers_user.pluck('publish').include? false
+  # end
 
   def set_version
     @versions = Serverversion.pluck 'hronicle'
