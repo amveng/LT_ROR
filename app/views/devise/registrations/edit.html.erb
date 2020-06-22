@@ -1,78 +1,79 @@
-<h2 class="text-center m-5">Редактировать профиль</h2>
-<div class="col-8 offset-2 col-sm-6 offset-sm-3">
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-    <%= devise_error_messages! %>
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div>В настоящее время ожидает подтверждения для: <%= resource.unconfirmed_email %></div>
-    <% end %>
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control m-2' %>
-    </div>
-    <div class="field">
-      <%= f.label :username %><br />
-      <%= f.text_field :username, class: 'form-control m-2'  %>
-    </div>
-    <hr>
-    <div class="field">
-      <%= f.label :password %> <i>(оставьте поле пустым, если не хотите его менять)</i><br />
-      <%= f.password_field :password, autocomplete: "new-password", class: 'form-control m-2' %>
-      <% if @minimum_password_length %>
-        <br />
-        <em><%= @minimum_password_length %> знаков минимум</em>
-      <% end %>
-    </div>
-    <div class="field">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control m-2' %>
-    </div>
-    <div class="actions">
-      <%= f.submit "Сохранить", class: 'btn btn-primary m-2' %>
-    </div>
-  <% end %>
-  <hr>
-  <h5 class="text-muted">Удалить учетную запись</h5>
-  <p class="text-muted">Разочарованы?</p>
-  <p>
-    <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#DeleteModal1">
-      Удалить учетную запись
-    </button>
-  </p>
-  <%= link_to "Назад", :back %>
-  <hr>
-  <% if @listservers_user.present? %>
-    <h5 class="text-muted">Мои сервера</h5>
-    <ul class="list-group">
-      <% @listservers_user.each do |servers_user| %>
-        <li class="list-group-item">
-          <%= link_to servers_user.title, listserver_path(servers_user) %>
-          <%= servers_user.dateStart %>
-          <%= servers_user.version %>
-          <%= link_to servers_user.urlServer, servers_user.urlServer %>
-        </li>
-      <% end %>
-    </ul>
-  <% end %>
+<div class="col col-3">
+  <%= render '/profiles/left' %>
 </div>
-<!-- Modal -->
-<div class="modal fade" id="DeleteModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Удалить учетную запись</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+<div class="col col-9">
+  <div class="shadow bg-light my-5">
+    <h5 class="card-header">Редактировать аккаунт</h5>
+    <div class="card-body">
+      <p class="card-text">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+          <%= devise_error_messages! %>
+          <div class="field">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control m-2' %>
+          </div>
+          <div class="field">
+            <%= f.label :username %><br />
+            <%= f.text_field :username, class: 'form-control m-2'  %>
+          </div>
+          <hr>
+          <div class="field">
+            <%= f.label :password %> <i>(оставьте поле пустым, если не хотите его менять)</i><br />
+            <%= f.password_field :password, autocomplete: "new-password", class: 'form-control m-2' %>
+            <% if @minimum_password_length %>
+              <br />
+              <em><%= @minimum_password_length %> знаков минимум</em>
+            <% end %>
+          </div>
+          <div class="field">
+            <%= f.label :password_confirmation %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control m-2' %>
+          </div>
+          <div class="actions">
+            <%= f.submit "Сохранить", class: 'btn btn-success m-2 w-25' %>
+          </div>
+        <% end %>
+        <hr>
+        <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#DeleteModal1">
+          Удалить учетную запись
         </button>
-      </div>
-      <div class="modal-body">
-        <p class="text-danger bg-light">Все потеряете доступ ко всем 
-          зарегестрированным вами серверам</p>
-        <h4>Вы уверены?</h4>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <%= link_to 'Удалить', registration_path(resource_name),  class: 'btn btn-danger', method: :delete %>
+        <%= link_to "Назад", :back, class: 'float-right' %>
+        <hr>
+        <% if @listservers_user.present? %>
+          <h5 class="text-muted">Мои сервера</h5>
+          <ul class="list-group">
+            <% @listservers_user.each do |servers_user| %>
+              <li class="list-group-item">
+                <%= link_to servers_user.title, listserver_path(servers_user) %>
+                <%= servers_user.dateStart %>
+                <%= servers_user.version %>
+                <%= link_to servers_user.urlServer, servers_user.urlServer %>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
+        <!-- Modal -->
+        <div class="modal fade" id="DeleteModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Удалить учетную запись</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p class="text-danger bg-light">Все потеряете доступ ко всем 
+                  зарегестрированным вами серверам</p>
+                <h4>Вы уверены?</h4>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <%= link_to 'Удалить', registration_path(resource_name),  class: 'btn btn-danger', method: :delete %>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>

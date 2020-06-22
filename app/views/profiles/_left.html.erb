@@ -1,15 +1,15 @@
 <div class="sticky-menu">
-<div class="shadow bg-light my-5">
+  <div class="shadow bg-light my-5">
     <h5 class="card-header">Профиль</h5>
     <div class="card-body">
-    <nav class="nav flex-column">
-<a class="nav-menu" href="#">Общее</a>
-<%= link_to "Поменять пароль", edit_user_registration_path, class: "nav-menu" %>
-<a class="nav-menu" href="#">Мои сервера</a>
-<a class="nav-menu" href="#">Мои банеры</a>
-<a class="nav-menu" href="#">Disabled</a>
-<a class="nav-menu" href="#">Disabled</a>
-    </nav>
+      <nav class="nav flex-column">
+        <%= link_to "Общее", info_profiles_path, class: "nav-menu" %>
+        <%= link_to "Редактировать аккаунт", edit_user_registration_path, class: "nav-menu" %>
+        <%= link_to "Мои сервера", servers_profiles_path, class: "nav-menu" %>
+        <a class="nav-menu" href="#">Мои банеры</a>
+        <a class="nav-menu" href="#">Disabled</a>
+        <a class="nav-menu" href="#">Disabled</a>
+      </nav>
     </div>
+  </div>
 </div>
-</div>   

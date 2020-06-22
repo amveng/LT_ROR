@@ -27,10 +27,9 @@
                   <%= truncate(current_user.username.html_safe, length:18) %>
                 <% end %>
               </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <%= link_to "кабинет", edit_user_registration_path, class: "dropdown-item" %>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">                
                 <a class="dropdown-item" href="#">Another action</a>
-                <%= link_to "profile", info_profiles_path, class: "dropdown-item" %>
+                <%= link_to "Профиль", info_profiles_path, class: "dropdown-item" %>
                 <div class="dropdown-divider"></div>
                 <%= link_to "Выход", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
               </div>

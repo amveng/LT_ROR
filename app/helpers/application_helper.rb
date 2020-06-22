@@ -12,6 +12,6 @@ module ApplicationHelper
   end
 
   def acces_new_server?
-    !@listservers_user.pluck('publish').include? false
+    !current_user.listservers.find_by(publish: false)
   end
 end
