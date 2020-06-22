@@ -8,38 +8,28 @@
     </ul>
   </div>
 <% end %>
-
 <%= form_for @server do |f| %>
-<div class="form-group">
+  <div class="form-group">
     <%= f.label :title %>
     <%= f.text_field :title, autofocus: true, class: 'form-control', placeholder: 'Название сервера' %>
-</div>
-
-<div class="form-group">
+  </div>
+  <div class="form-group">
     <%= f.label :urlServer %>
     <%= f.url_field :urlServer, class: 'form-control' %>
-</div>
-
-<div class="form-group">
+  </div>
+  <div class="form-group">
     <%= f.label :version %>
     <%= f.select :version, @versions, class: 'form-control' %>
-</div>
-
-<div class="form-group">
+  </div>
+  <div class="form-group">
     <%= f.label :rate %>
     <%= f.number_field :rate, class: 'form-control' %>
-</div>
- 
-<div class="form-group">
-    <%= f.label :dateStart %>    
+  </div>
+  <div class="form-group">
+    <%= f.label :dateStart %>
     <%= f.text_field :dateStart, class: 'form-control datepicker', 'placeholder': "yyyy-mm-dd", 'autocomplete': "off" %>
-</div>
-
-<div class="form-group">
+  </div>
+  <div class="form-group">
     <%= f.submit 'Сохранить', class: 'btn btn-success' %>
-</div>
-
-
+  </div>
 <% end %>
-
-

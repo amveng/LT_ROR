@@ -1,21 +1,18 @@
- <div class="shadow col-md-4 offset-md-4 bg-white my-5">
-    <h2 class="text-center m-4">Забыли пароль?</h2>
-    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
-
-      <div class="field">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control mb-3' %>
-      </div>      
-      <div class="actions">
-        <%= f.submit "Выслать мне инструкции по сбросу пароля", class: 'btn btn-block btn-success'  %>
-      </div>
-    <% end %>
-    <hr>
-    <p>
+<div class="shadow col-md-4 offset-md-4 bg-white my-5">
+  <h2 class="text-center m-4">Забыли пароль?</h2>
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control mb-3' %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Выслать мне инструкции по сбросу пароля", class: 'btn btn-block btn-success'  %>
+    </div>
+  <% end %>
+  <hr>
+  <p>
     <%= link_to 'Войти', new_session_path(resource_name) %>
     <%= link_to 'Зарегистрироваться', new_registration_path(resource_name), class: 'float-right' %>
-    </p>
-  </div>
-
-
+  </p>
+</div>

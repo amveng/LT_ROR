@@ -1,27 +1,19 @@
-
-<%# <h2 class="text-center m-5">Новый сервер</h2> %>
-<%# <div class="col-8 offset-2 col-sm-9 offset-sm-3"> %>
 <div class="col col-3">
-      <%= render '/profiles/left' %>
+  <%= render '/profiles/left' %>
 </div>
 <div class="col col-9">
-
-<div class="shadow bg-light my-5">
-  <h4 class="card-header">Новый сервер</h4>
-  <div class="card-body">
-  <% if acces_new_server? %>
-    <%= render 'form' %>
-    <% else %>
-    <h5 class="card-title">Регистрация нового сервера недоступна</h5>
-    <p class="card-text">
-    При добавлении нового сервера вы не сможете добавить
-     еще один пока не будет опубликован предыдущий
-    </p>
-    <% end %>
+  <div class="shadow bg-light my-5">
+    <h4 class="card-header">Новый сервер</h4>
+    <div class="card-body">
+      <% if acces_new_server? %>
+        <%= render 'form' %>
+      <% else %>
+        <h5 class="card-title">Регистрация нового сервера недоступна</h5>
+        <p class="card-text">
+          При добавлении нового сервера вы не сможете добавить
+          еще один пока не будет опубликован предыдущий
+        </p>
+      <% end %>
+    </div>
   </div>
 </div>
-</div>
-
-
-
-<%# </div> %>

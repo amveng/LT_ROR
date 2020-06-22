@@ -4,29 +4,25 @@
     <title>LTRor</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-<body>
-<%# Шапка--------------------------------------------------------- %> 
-<div>
-  <img src="/images/k42.jpg" class="d-block w-100" alt="">
-</div>
-<%# Навбаер меню-------------------------------------------------- %>
-<%= render '/layouts/navbar' %>
-    
-    <div class="container">
-<%# Флеш сообщения------------------------------------------------ %>  
-<%= render '/layouts/msg' %>     
-<%# Контент------------------------------------------------------- %>
-        <div class="row">
-        <%= yield %>  
-        </div>
-<%# Подвал-------------------------------------------------------- %>
-<%= render '/layouts/footer' %>     
-      
+  <body>
+    <%# Шапка--------------------------------------------------------- %>
+    <div>
+      <img src="/images/k42.jpg" class="d-block w-100" alt="">
     </div>
-
+    <%# Навбаер меню-------------------------------------------------- %>
+    <%= render '/layouts/navbar' %>
+    <div class="container">
+      <%# Флеш сообщения------------------------------------------------ %>
+      <%= render '/layouts/msg' %>
+      <%# Контент------------------------------------------------------- %>
+      <div class="row">
+        <%= yield %>
+      </div>
+      <%# Подвал-------------------------------------------------------- %>
+      <%= render '/layouts/footer' %>
+    </div>
   </body>
 </html>

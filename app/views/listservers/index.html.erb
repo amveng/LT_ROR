@@ -1,27 +1,22 @@
 <div class="col col-3">
-      <%= render '/layouts/left' %>
+  <%= render '/layouts/left' %>
 </div>
-
 <div class="col col-9">
-
-<div class="shadow bg-light my-5">
+  <div class="shadow bg-light my-5">
     <h5 class="card-header"><%= t('.title') %></h5>
-    <div class="card-body">        
-        <p class="card-text">
-
+    <div class="card-body">
+      <p class="card-text">
         <ul class="list-group">
-        <% @listservers.each do |server| %>
-        <li class="list-group-item">
-        <%= link_to server.title, listserver_path(server) %>
-        <%= server.dateStart %>
-        <%= server.version %>
-        <%= link_to server.urlServer, server.urlServer %>
-        </li>
-        <% end %>
-        </ul> 
-               
-        </p>          
+          <% @listservers.each do |server| %>
+            <li class="list-group-item">
+              <%= link_to server.title, listserver_path(server) %>
+              <%= server.dateStart %>
+              <%= server.version %>
+              <%= link_to server.urlServer, server.urlServer %>
+            </li>
+          <% end %>
+        </ul>
+      </p>
     </div>
-</div>  
-
+  </div>
 </div>
