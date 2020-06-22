@@ -1,23 +1,10 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
  *= require bootstrap-datepicker
  */
 
 @import "bootstrap";
 
 @import "bootstrap-datepicker";
-
-
 
 select {
     display: block;
@@ -34,7 +21,6 @@ select {
     border-radius: 0.25rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
-
 
 .btn-gradient{
  background: linear-gradient(to bottom, rgb(226, 227, 252), rgb(255, 255, 255));
@@ -66,14 +52,35 @@ background-color: #f9f9f9;
         border: 1px solid #dc3545;    
     }   
 }
+
 .navbar .dropdown-menu {
     background-color: #21262b;
   }
+
 .navbar .dropdown.show a {
     background-color: #21262b;
     color: #8a8d8f;
 }
+
 .navbar .dropdown.show a:hover {
-    color: #fff; /* Цвет ссылки при наведении на нее курсора мыши */  
-    background: #21262b; /* Цвет фона */
+    color: #fff;  
+    background: #21262b; 
+}
+
+a.nav-menu {
+    display: block;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color: #495057;
+    background-color: transparent;
+}
+
+a.nav-menu:hover {
+    color: #15171a;  
+    background: #f0f1f2;    
+}
+
+.sticky-menu {
+    position: sticky;
+    top: 4em;        
 }
