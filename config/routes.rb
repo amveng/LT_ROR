@@ -9,8 +9,15 @@ Rails.application.routes.draw do
   resources :listservers
   resources :votes, only: [:create]
   root 'listservers#index'
-  get '/users', to: 'listservers#index'
+  get '/users', to: 'listservers#index'  
   # get '/users' => 'users/registrations'
   # match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
   # resources :users
+  # resources :profiles
+  resources :profiles do
+    collection do
+      get 'info'
+      get 'servers'
+    end
+  end
 end

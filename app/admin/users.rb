@@ -23,6 +23,7 @@ ActiveAdmin.register User do
     # id_column
     column :email
     column :votetime
+    column :profile
     column :username
     column :provider
     column :listservers
