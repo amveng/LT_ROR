@@ -8,7 +8,7 @@
     </ul>
   </div>
 <% end %>
-<%= form_for @server do |f| %>
+<%= simple_form_for @server do |f| %>
   <div class="form-group">
     <%= f.label :title %>
     <%= f.text_field :title, autofocus: true, class: 'form-control', placeholder: 'Название сервера' %>
@@ -17,9 +17,8 @@
     <%= f.label :urlServer %>
     <%= f.url_field :urlServer, class: 'form-control' %>
   </div>
-  <div class="form-group">
-    <%= f.label :version %>
-    <%= f.select :version, @versions, class: 'form-control' %>
+  <div class="form-group">    
+    <%= f.association :serverversion, class: 'form-control' %>
   </div>
   <div class="form-group">
     <%= f.label :rate %>

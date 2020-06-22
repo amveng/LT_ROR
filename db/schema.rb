@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_21_155747) do
+ActiveRecord::Schema.define(version: 2020_06_22_205406) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,12 +47,13 @@ ActiveRecord::Schema.define(version: 2020_06_21_155747) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "status", default: "normal", null: false
-    t.string "version"
     t.string "title", limit: 42
     t.string "urlServer"
     t.date "dateStart"
     t.bigint "user_id"
     t.integer "rate", default: 1, null: false
+    t.bigint "serverversion_id", default: 1, null: false
+    t.index ["serverversion_id"], name: "index_listservers_on_serverversion_id"
     t.index ["title"], name: "index_listservers_on_title", unique: true
     t.index ["user_id"], name: "index_listservers_on_user_id"
   end
@@ -65,9 +66,9 @@ ActiveRecord::Schema.define(version: 2020_06_21_155747) do
   end
 
   create_table "serverversions", force: :cascade do |t|
-    t.string "hronicle"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
   end
 
   create_table "users", force: :cascade do |t|

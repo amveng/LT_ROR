@@ -3,7 +3,7 @@
 ActiveAdmin.register Listserver do
   permit_params :title, :user_id,
                 :status, :urlServer,
-                :publish, :version,
+                :publish, :serverversion_id,
                 :dateStart
   # scope 'Неактивные', :unpublish
   index do
@@ -14,7 +14,7 @@ ActiveAdmin.register Listserver do
     column :dateStart
     column :status
     column :publish
-    column :version
+    column :serverversion
     column :user
     column :rating
     actions
@@ -23,7 +23,7 @@ ActiveAdmin.register Listserver do
   filter :title
   filter :urlServer
   filter :dateStart
-  filter :version, as: :select, collection: Serverversion.pluck('hronicle')
+  filter :serverversion
   filter :publish
   # filter :user
 
@@ -31,15 +31,11 @@ ActiveAdmin.register Listserver do
     f.inputs do
       f.input :title
       f.input :urlServer
-      f.input :dateStart, as: :datepicker,
-      datepicker_options: {
-        min_date: 5.years.ago.to_date,
-        max_date: "+3M +1D"
-      }
+      f.input :dateStart, as: :datepicker
       f.input :user
       f.input :publish
       f.input :status, as: :select, collection: %i[normal VIP TOP]
-      f.input :version, as: :select, collection: Serverversion.pluck('hronicle')
+      f.input :serverversion
     end
     f.actions
   end

@@ -36,6 +36,8 @@ gem 'jquery-rails'
 
 gem 'bootstrap-datepicker-rails'
 
+gem 'simple_form'
+
 # gem 'activerecord-session_store'
 
 gem 'auto_strip_attributes', '~> 2.6'

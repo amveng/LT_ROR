@@ -8,11 +8,12 @@ end
 
 class Listserver < ApplicationRecord
   belongs_to :user
+  belongs_to :serverversion
   has_many :votes, dependent: :destroy
 
   auto_strip_attributes :title, squish: true, force_capitalize: true
 
-  validates :dateStart, :version, :rate, presence: true
+  validates :dateStart, :rate, presence: true
   validates :rate, numericality: { only_integer: true }
   validates :title, uniqueness: true, length: { in: 4..42 }
   validates :urlServer, format: { with: /https/, message: 'Должен начинатся с "https"' }

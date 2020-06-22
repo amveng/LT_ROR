@@ -2,7 +2,7 @@
 
 class ListserversController < ApplicationController
   # layout false
-  before_action :set_version
+  # before_action :set_version
   before_action :authenticate_user!, except: %i[index show]
   before_action :set_server, only: %i[show edit update destroy]
   # before_action :check_new_server, only: %i[new]
@@ -56,9 +56,9 @@ class ListserversController < ApplicationController
   #   acces_close if @listservers_user.pluck('publish').include? false
   # end
 
-  def set_version
-    @versions = Serverversion.pluck 'hronicle'
-  end
+  # def set_version
+  #   @versions = Serverversion.pluck 'hronicle'
+  # end
 
   def set_server
     @server = Listserver.find(params[:id])
@@ -70,6 +70,6 @@ class ListserversController < ApplicationController
   end
 
   def server_params
-    params.require(:listserver).permit(:title, :rate, :urlServer, :dateStart, :version)
+    params.require(:listserver).permit(:title, :rate, :urlServer, :dateStart, :serverversion_id)
   end
 end

@@ -11,7 +11,7 @@
             <li class="list-group-item">
               <%= link_to server.title, listserver_path(server) %>
               <%= server.dateStart %>
-              <%= server.version %>
+              <%= server.serverversion.name %>
               <%= link_to server.urlServer, server.urlServer %>
             </li>
           <% end %>
