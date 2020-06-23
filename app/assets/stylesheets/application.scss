@@ -84,3 +84,16 @@ a.nav-menu:hover {
     position: sticky;
     top: 4em;        
 }
+
+a.link-1 {
+    display: block;    
+    text-decoration: none;
+    color: #495057;
+    background-color: transparent;
+}
+
+a.link-1:hover {
+    color: #15171a;  
+    background: #f0f1f2;    
+}
+

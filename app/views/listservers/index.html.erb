@@ -10,12 +10,14 @@
         <tbody>
           <% @listservers.each do |server| %>
             <tr>
-              <th scope="row">1</th>
-              <td><%= link_to server.title, server.urlServer %></td>
-              <td>Mark</td>
-              <td><%= server.dateStart %></td>
+              <th scope="row"><%= server.status %></th>
+              <td><%= link_to truncate(server.title.html_safe, length:18), server.urlServer, class: "link-server" %></td>
+              <td>x<%= server.rate %></td>
+              <td>dfgdfg</td>
+              <td><%= server.dateStart.strftime("%d.%m.%Y") %></td>
               <td><%= server.serverversion.name %></td>
-              <td><%= server.rating %></td>
+              <td>рейтинг: <%= server.rating %></td>
+              <td><%= link_to ' Info', listserver_path(server), class: 'btn btn-sm btn-info p-0 w-100' %></td>
             </tr>
           <% end %>
         </tbody>

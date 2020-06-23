@@ -7,7 +7,7 @@ class ListserversController < ApplicationController
   before_action :set_server, only: %i[show edit update destroy]
   # before_action :check_new_server, only: %i[new]
   def index
-    @listservers = Listserver.all
+    @listservers = Listserver.order('status')
   end
 
   def show; end
@@ -70,6 +70,6 @@ class ListserversController < ApplicationController
   end
 
   def server_params
-    params.require(:listserver).permit(:title, :rate, :urlServer, :dateStart, :serverversion_id)
+    params.require(:listserver).permit(:title, :rate, :urlServer, :datestart, :serverversion_id)
   end
 end

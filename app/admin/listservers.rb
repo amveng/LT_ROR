@@ -2,16 +2,16 @@
 
 ActiveAdmin.register Listserver do
   permit_params :title, :user_id,
-                :status, :urlServer,
+                :status, :urlserver,
                 :publish, :serverversion_id,
-                :dateStart
+                :datestart
   # scope 'Неактивные', :unpublish
   index do
     selectable_column
     # id_column
     column :title
-    # column :urlServer
-    column :dateStart
+    # column :urlserver
+    column :datestart
     # column :status
     # column :publish
     column :serverversion
@@ -21,9 +21,9 @@ ActiveAdmin.register Listserver do
   end
 
   filter :title
-  # filter :urlServer
-  filter :status, as: :select, collection: %i[normal VIP TOP]
-  filter :dateStart
+  # filter :urlserver
+  filter :status
+  filter :datestart
   filter :serverversion
   filter :publish
   # filter :user
@@ -31,11 +31,11 @@ ActiveAdmin.register Listserver do
   form do |f|
     f.inputs do
       f.input :title
-      f.input :urlServer
-      f.input :dateStart
+      f.input :urlserver
+      f.input :datestart
       f.input :user
       f.input :publish
-      f.input :status, as: :select, collection: %i[normal VIP TOP]
+      f.input :status
       f.input :serverversion
     end
     f.actions
