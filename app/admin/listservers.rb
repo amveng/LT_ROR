@@ -31,7 +31,7 @@ ActiveAdmin.register Listserver do
     f.inputs do
       f.input :title
       f.input :urlServer
-      f.input :dateStart, as: :datepicker
+      f.input :dateStart
       f.input :user
       f.input :publish
       f.input :status, as: :select, collection: %i[normal VIP TOP]

@@ -12,6 +12,18 @@ ru:
     formats:
       default: "%Y-%m-%d"
       long: "%Y-%m-%d"
+      short: "%b %d"
+    order:
+      - :day
+      - :month
+      - :year
+    day_names: [Воскресенье, Понедельник, Вторник, Среда, Четверг, Пятница, Суббота]
+    abbr_day_names: [Вос, Пон, Вт, Ср, Чет, Пят, Суб]
+
+    month_names: [~, Январь, Февраль, Март, Апрель, Маи, Июнь, Июль, Август, Сентябрь, Октябрь, Ноябрь, Декабрь]
+    abbr_month_names: [~, Янв, Фев, Мар, Апр, Маи, Июн, Июл, Авг, Сен, Окт, Ноя, Дек]
+    
+      
   listservers:
     index:
       title: Сервера
@@ -89,6 +101,7 @@ ru:
         title: 'Название сервера'
         urlServer: 'Адрес сервера'
         dateStart: 'Дата старта'
+        datestart: 'Дата старта'
         rating: 'Рейтинг'
         rate: Рейты сервера
         user: Пользователь
@@ -96,7 +109,7 @@ ru:
         publish: 'Активен'
         created_at: 'Добавлен'
         updated_at: 'Изменён'
-        version: 'Хроники'
+        serverversion: 'Хроники'
       vote:
         listserver: 'Название сервера'
         user : Пользователь
@@ -151,6 +164,7 @@ ru:
         confirmation: необходимо 
         taken: занят  
         invalid: недествителен 
+        required: необходимо выбрать
   devise:
     confirmations:
       confirmed: Ваш адрес эл. почты успешно подтвержден.

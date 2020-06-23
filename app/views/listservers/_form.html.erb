@@ -1,34 +1,25 @@
 <% if @server.errors.any? %>
-  <div class="alert alert-danger">
-    <h5><%= t('common.errors') %></h5>
-    <ul>
-      <% @server.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
+  <p class="text-danger"><%= t('common.errors') %></p>
 <% end %>
 <%= simple_form_for @server do |f| %>
   <div class="form-group">
-    <%= f.label :title %>
-    <%= f.text_field :title, autofocus: true, class: 'form-control', placeholder: 'Название сервера' %>
+    <%= f.input :title, class: 'form-control' %>
   </div>
   <div class="form-group">
-    <%= f.label :urlServer %>
-    <%= f.url_field :urlServer, class: 'form-control' %>
+    <%= f.input :urlServer, class: 'form-control' %>
   </div>
-  <div class="form-group">    
+  <div class="form-group">
     <%= f.association :serverversion, class: 'form-control' %>
   </div>
   <div class="form-group">
-    <%= f.label :rate %>
-    <%= f.number_field :rate, class: 'form-control' %>
+    <%= f.input :rate, class: 'form-control' %>
   </div>
   <div class="form-group">
-    <%= f.label :dateStart %>
-    <%= f.text_field :dateStart, class: 'form-control datepicker', 'placeholder': "yyyy-mm-dd", 'autocomplete': "off" %>
+    <%# <%= f.label :dateStart  %>
+    <%= f.input :dateStart, class: 'form-control' %>
   </div>
+  <hr>
   <div class="form-group">
-    <%= f.submit 'Сохранить', class: 'btn btn-success' %>
+    <%= f.submit 'Сохранить', class: 'btn btn-success w-25' %>
   </div>
 <% end %>
