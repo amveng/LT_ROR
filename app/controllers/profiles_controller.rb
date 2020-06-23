@@ -4,7 +4,7 @@ class ProfilesController < ApplicationController
   before_action :authenticate_user!
 
 
-  def info    
+  def info
     @info = current_user.profile
   end
 

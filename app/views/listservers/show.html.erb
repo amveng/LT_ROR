@@ -1,37 +1,50 @@
-<h1><%= @server.title %></h1>
-<%= link_to 'Изменить', edit_listserver_path(@server), class: 'btn btn-outline-primary btn-sm' %>
-<%= link_to 'Удалить', listserver_path(@server), class: 'btn btn-outline-danger btn-sm', method: :delete, data: { confirm: 'Вы уверены?' } %>
-<p> <%= @server.urlServer %> </p>
-<p> <%= @server.dateStart %> </p>
-<p> <%= @server.serverversion.name %> </p>
-<p> <%= @server.publish %> </p>
-<p> <%= @server.created_at %> </p>
-<p> <%= @server.updated_at %> </p>
-<% unless user_signed_in? %>
-  <div class="alert alert-info">
-    <p>  Необходимо <%= link_to "Войти", new_user_session_path %> для голосования </p>
-  </div>
-<% else %>
-  <% if current_user.votetime > date_time_now = DateTime.now %>
-    <% disabled = 'disabled'  %>
-    <div class="alert alert-info">
-      <% th = ((current_user.votetime - date_time_now)/60/60).to_i %>
-      <% tm = ((current_user.votetime - date_time_now)/60).to_i - th * 60 %>
-      Вы сможете проголосовать через
-      <% if th > 0 %>
-        <%= th %>
-        часов   
-      <% end %>
-      <% if tm > 0 %>
-        <%= tm %>
-        минут          
-      <% end %>
-      <% if tm == 0 %>
-        <%= ((current_user.votetime - date_time_now)).to_i - tm * 60 if tm == 0 %>
-        секунд          
+<div class="col col-3">
+  <%= render '/layouts/left' %>
+</div>
+<div class="col col-9">
+  <div class="shadow bg-light my-5">
+    <h4 class="card-header">Новый сервер</h4>
+    <div class="card-body">
+      <h1><%= @server.title %></h1>
+      <%= link_to 'Изменить', edit_listserver_path(@server), class: 'btn btn-outline-primary btn-sm' %>
+      <%= link_to 'Удалить', listserver_path(@server), class: 'btn btn-outline-danger btn-sm', method: :delete, data: { confirm: 'Вы уверены?' } %>
+      <p> <%= @server.urlServer %> </p>
+      <p> <%= @server.dateStart %> </p>
+      <p> <%= @server.serverversion.name %> </p>
+      <p> <%= @server.publish %> </p>
+      <p> <%= @server.created_at %> </p>
+      <p> <%= @server.updated_at %> </p>
+      <p>Всего голосов: <%= @server.votes.all.count %></p>
+      <p>Голосов сегодня: <%= @server.votes.where(date: 0.days.ago).count %> </p>
+
+      <% unless user_signed_in? %>
+        <div class="alert alert-info">
+          <p>  Необходимо <%= link_to "Войти", new_user_session_path %> для голосования </p>
+        </div>
+      <% else %>
+        <% if current_user.votetime > date_time_now = DateTime.now %>
+          <% disabled = 'disabled'  %>
+          <div class="alert alert-info">
+            <% th = ((current_user.votetime - date_time_now)/60/60).to_i %>
+            <% tm = ((current_user.votetime - date_time_now)/60).to_i - th * 60 %>
+            Вы сможете проголосовать через
+            <% if th > 0 %>
+              <%= th %>
+              часов   
+            <% end %>
+            <% if tm > 0 %>
+              <%= tm %>
+              минут          
+            <% end %>
+            <% if tm == 0 %>
+              <%= ((current_user.votetime - date_time_now)).to_i - tm * 60 if tm == 0 %>
+              секунд          
+            <% end %>
+          </div>
+        <% else %>
+          <%= link_to 'Проголосовать за сервер', votes_path(id: @server.id), class: "btn btn-success", method: :post  %>
+        <% end %>
       <% end %>
     </div>
-  <% else %>
-    <%= link_to 'Проголосовать за сервер', votes_path(id: @server.id), class: "btn btn-success", method: :post  %>
-  <% end %>
-<% end %>
+  </div>
+</div>

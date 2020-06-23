@@ -10,10 +10,10 @@ ActiveAdmin.register Listserver do
     selectable_column
     # id_column
     column :title
-    column :urlServer
+    # column :urlServer
     column :dateStart
-    column :status
-    column :publish
+    # column :status
+    # column :publish
     column :serverversion
     column :user
     column :rating
@@ -21,7 +21,8 @@ ActiveAdmin.register Listserver do
   end
 
   filter :title
-  filter :urlServer
+  # filter :urlServer
+  filter :status, as: :select, collection: %i[normal VIP TOP]
   filter :dateStart
   filter :serverversion
   filter :publish

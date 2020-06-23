@@ -100,8 +100,7 @@ ru:
       listserver:
         title: 'Название сервера'
         urlServer: 'Адрес сервера'
-        dateStart: 'Дата старта'
-        datestart: 'Дата старта'
+        dateStart: 'Дата и время старта'        
         rating: 'Рейтинг'
         rate: Рейты сервера
         user: Пользователь

@@ -2,7 +2,7 @@
 
 AutoStripAttributes::Config.setup do
   set_filter(capitalize: false) do |value|
-    !value.blank? && value.respond_to?(:capitalize) ? value.capitalize! : value
+    !value.blank? && value.respond_to?(:capitalize) ? value.capitalize : value
   end
 end
 

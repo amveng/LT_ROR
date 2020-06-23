@@ -28,8 +28,8 @@ ActiveAdmin.register_page "Dashboard" do
     #     end
     #   end
     # end
-    section 'Последние измененные сервера' do
-      table_for Listserver.order('updated_at').limit(5) do
+    panel 'Сервера ждущие публикации' do
+      table_for Listserver.where(publish: false).limit(5) do
         column :title do |listserver|
           link_to listserver.title, admin_listserver_path(listserver)
         end
@@ -38,5 +38,5 @@ ActiveAdmin.register_page "Dashboard" do
       end
       strong { link_to 'Весь список серверов', admin_listservers_path }
     end
-  end # content
+  end
 end
