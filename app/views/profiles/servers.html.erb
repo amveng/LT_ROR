@@ -8,9 +8,9 @@
       <% @servers.each do |server| %>
         <li class="list-group-item">
           <%= link_to server.title, listserver_path(server) %>
-          <%= server.dateStart %>
+          <%= server.datestart %>
           <%= server.serverversion.name %>
-          <%= link_to server.urlServer, server.urlServer %>
+          <%= link_to server.urlserver, server.urlserver %>
         </li>
       <% end %>
     </div>

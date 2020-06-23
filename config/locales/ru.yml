@@ -99,8 +99,8 @@ ru:
         updated_at: Дата обновления        
       listserver:
         title: 'Название сервера'
-        urlServer: 'Адрес сервера'
-        dateStart: 'Дата и время старта'        
+        urlserver: 'Адрес сервера'
+        datestart: 'Дата и время старта'        
         rating: 'Рейтинг'
         rate: Рейты сервера
         user: Пользователь

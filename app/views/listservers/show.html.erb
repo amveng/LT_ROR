@@ -8,8 +8,8 @@
       <h1><%= @server.title %></h1>
       <%= link_to 'Изменить', edit_listserver_path(@server), class: 'btn btn-outline-primary btn-sm' %>
       <%= link_to 'Удалить', listserver_path(@server), class: 'btn btn-outline-danger btn-sm', method: :delete, data: { confirm: 'Вы уверены?' } %>
-      <p> <%= @server.urlServer %> </p>
-      <p> <%= @server.dateStart %> </p>
+      <p> <%= @server.urlserver %> </p>
+      <p> <%= @server.datestart %> </p>
       <p> <%= @server.serverversion.name %> </p>
       <p> <%= @server.publish %> </p>
       <p> <%= @server.created_at %> </p>
