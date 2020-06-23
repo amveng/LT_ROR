@@ -11,9 +11,7 @@ class User < ApplicationRecord
 
   auto_strip_attributes :username, squish: true
 
-  validates :username, length: { in: 4..42 }
-  validates :email, length: { in: 6..65 }
-  validates :votetime, presence: true
+  validates :username, :email, presence: true, length: { in: 4..42 }
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

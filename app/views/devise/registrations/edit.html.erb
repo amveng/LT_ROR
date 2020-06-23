@@ -6,28 +6,19 @@
     <h5 class="card-header">Редактировать аккаунт</h5>
     <div class="card-body">
       <p class="card-text">
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
           <%= devise_error_messages! %>
           <div class="field">
-            <%= f.label :email %><br />
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control m-2' %>
+            <%= f.input :email, autocomplete: "email", class: 'form-control m-2' %>
           </div>
           <div class="field">
-            <%= f.label :username %><br />
-            <%= f.text_field :username, class: 'form-control m-2'  %>
-          </div>
-          <hr>
-          <div class="field">
-            <%= f.label :password %> <i>(оставьте поле пустым, если не хотите его менять)</i><br />
-            <%= f.password_field :password, autocomplete: "new-password", class: 'form-control m-2' %>
-            <% if @minimum_password_length %>
-              <br />
-              <em><%= @minimum_password_length %> знаков минимум</em>
-            <% end %>
+            <%= f.input :username, class: 'form-control m-2'  %>
           </div>
           <div class="field">
-            <%= f.label :password_confirmation %><br />
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control m-2' %>
+            <%= f.input :password, autocomplete: "new-password",placeholder: 'оставьте поле пустым, если не хотите его менять', class: 'form-control m-2' %>
+          </div>
+          <div class="field">
+            <%= f.input :password_confirmation, autocomplete: "new-password", class: 'form-control m-2' %>
           </div>
           <div class="actions">
             <%= f.submit "Сохранить", class: 'btn btn-success m-2 w-25' %>
@@ -38,7 +29,6 @@
           Удалить учетную запись
         </button>
         <%= link_to "Назад", :back, class: 'float-right' %>
-        <hr>
         <% if @listservers_user.present? %>
           <h5 class="text-muted">Мои сервера</h5>
           <ul class="list-group">

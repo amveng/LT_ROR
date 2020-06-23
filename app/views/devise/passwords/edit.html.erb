@@ -1,18 +1,16 @@
 <div class="shadow col-md-4 offset-md-4 bg-white my-5">
   <h2 class="text-center m-4">Изменить пароль</h2>
-  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+  <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
     <%= f.hidden_field :reset_password_token %>
     <div class="field">
-      <%= f.label :password, "Новый пароль" %><br />
-      <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> <%= t('.characters minimum') %>)</em><br />
-      <% end %>
-      <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: 'form-control mb-3' %>
+      
+     
+      <%= f.input :password, autofocus: true ,placeholder: 'Новый пароль', class: 'form-control mb-3' %>
     </div>
     <div class="field">
-      <%= f.label :password_confirmation, "Повторите новый пароль" %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control mb-3' %>
+      
+      <%= f.input :password_confirmation, class: 'form-control mb-3' %>
     </div>
     <div class="actions">
       <%= f.submit "Изменить", class: 'btn btn-block btn-success' %>
