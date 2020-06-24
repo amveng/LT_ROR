@@ -1,26 +1,27 @@
 /*
  *= require bootstrap-datepicker
+ *= require material_icons
  */
 
 @import "bootstrap";
 
 @import "bootstrap-datepicker";
 
-select {
-    display: block;
-    width: 100%;
-    height: calc(1.5em + 0.75rem + 2px);
-    padding: 0.375rem 0.75rem;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #495057;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
+// select {
+//     display: block;
+//     width: 100%;
+//     height: calc(1.5em + 0.75rem + 2px);
+//     padding: 0.375rem 0.75rem;
+//     font-size: 1rem;
+//     font-weight: 400;
+//     line-height: 1.5;
+//     color: #495057;
+//     background-color: #fff;
+//     background-clip: padding-box;
+//     border: 1px solid #ced4da;
+//     border-radius: 0.25rem;
+//     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+// }
 
 .btn-gradient{
  background: linear-gradient(to bottom, rgb(226, 227, 252), rgb(255, 255, 255));
@@ -86,14 +87,50 @@ a.nav-menu:hover {
 }
 
 a.link-1 {
+    display: block; 
+    font: 1.1em sans-serif;
+    font-weight: bold;   
+    text-decoration: none;
+    color: #d00;    
+}
+
+a.link-1:hover {
+    color: #d00;            
+}
+
+a.link-2 {
     display: block;    
+    text-decoration: none;
+    color: #007bff;
+    background-color: transparent;
+}
+
+a.link-2:hover {
+    color: #0c50b6;        
+}
+
+a.link-3 {
+    display: block;
+    font-size: small;    
     text-decoration: none;
     color: #495057;
     background-color: transparent;
 }
 
-a.link-1:hover {
-    color: #15171a;  
-    background: #f0f1f2;    
+a.link-3:hover {
+    color: #495057;       
 }
 
+.table th, .table td {
+    padding: 0.3rem;
+    vertical-align: middle;
+    border-top: 1px solid #dee2e6;
+}
+
+.material-icons, .mi {    
+    vertical-align: middle;  
+}
+
+.mi.vip1 { color: #d00; }
+.mi.vip2 { color: #007bff; }
+.mi.vip3 { color: #495057; }

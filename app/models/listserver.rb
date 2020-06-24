@@ -13,7 +13,7 @@ class Listserver < ApplicationRecord
 
   auto_strip_attributes :title, squish: true, capitalize: true
 
-  validates :datestart, :urlserver, :rate, :title, presence: true
+  validates :datestart, :status, :publish, :urlserver, :rate, :title, presence: true
   validates :rate, numericality: { only_integer: true }
   validates :title, uniqueness: true, length: { in: 4..42 }
   validates :urlserver, format: { with: /https/, message: 'Должен начинатся с "https"' }

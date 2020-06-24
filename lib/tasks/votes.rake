@@ -5,13 +5,11 @@ namespace :votes do
   task calc: :environment do
     puts 'Start task'
     list_id = Listserver.ids
-    status = %w[normal VIP TOP]
-
     list_id.each do |f|
       server = Listserver.find(f)
       votes_weekly_count = Vote.where(listserver_id: f, date: 7.days.ago..0.days.ago).count
       votes_weekly_average = votes_weekly_count.to_f / 7
-      rating = status.index(server.status) + 1
+      rating = 4 - server.status
 
       print "#{f} - v w c: #{votes_weekly_count} | "
       print " v w a: #{votes_weekly_average} | "

@@ -105,7 +105,7 @@ ru:
         rate: Рейты сервера
         user: Пользователь
         status: Статус
-        publish: 'Активен'
+        publish: 'Стадия'
         created_at: 'Добавлен'
         updated_at: 'Изменён'
         serverversion: 'Хроники'
@@ -164,6 +164,7 @@ ru:
         taken: занят  
         invalid: недествителен 
         required: необходимо выбрать
+        not_an_integer: число должно быть целым
   devise:
     confirmations:
       confirmed: Ваш адрес эл. почты успешно подтвержден.

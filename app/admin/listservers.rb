@@ -13,7 +13,7 @@ ActiveAdmin.register Listserver do
     # column :urlserver
     column :datestart
     # column :status
-    # column :publish
+    column :publish
     column :serverversion
     column :user
     column :rating
@@ -22,10 +22,10 @@ ActiveAdmin.register Listserver do
 
   filter :title
   # filter :urlserver
-  filter :status
+  filter :status, as: :select, collection: %i[1 2 3]
   filter :datestart
   filter :serverversion
-  filter :publish
+  filter :publish, as: :select, collection: %i[create unverified failed published]
   # filter :user
 
   form do |f|
@@ -34,8 +34,8 @@ ActiveAdmin.register Listserver do
       f.input :urlserver
       f.input :datestart
       f.input :user
-      f.input :publish
-      f.input :status
+      f.input :publish, as: :select, collection: %i[create unverified failed published]
+      f.input :status, as: :select, collection: %i[1 2 3]
       f.input :serverversion
     end
     f.actions

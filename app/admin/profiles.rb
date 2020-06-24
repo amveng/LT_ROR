@@ -1,6 +1,6 @@
-ActiveAdmin.register Profile do
+# frozen_string_literal: true
 
-    
+ActiveAdmin.register Profile do
   permit_params :user_id
 
   index do
@@ -12,7 +12,6 @@ ActiveAdmin.register Profile do
     actions
   end
 
-
   filter :user
 
   form do |f|
@@ -21,7 +20,4 @@ ActiveAdmin.register Profile do
     end
     f.actions
   end
-
-
-
 end

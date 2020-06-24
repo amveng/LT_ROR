@@ -2,53 +2,6 @@
   <%= render '/layouts/left' %>
 </div>
 <div class="col col-9">
-  <div class="shadow bg-light my-5">
-    <h5 class="card-header"><%= t('.title') %></h5>
-    <div class="card-body">
-      <table class="table table-hover table-bordered table-sm">
-   
-        <tbody>
-          <% @listservers.each do |server| %>
-            <tr>
-              <th scope="row"><%= server.status %></th>
-              <td><%= link_to truncate(server.title.html_safe, length:18), server.urlserver, class: "link-server" %></td>
-              <td>x<%= server.rate %></td>
-              <td>dfgdfg</td>
-              <td><%= server.datestart.strftime("%d.%m.%Y") %></td>
-              <td><%= server.serverversion.name %></td>
-              <td>рейтинг: <%= server.rating %></td>
-              <td><%= link_to ' Info', listserver_path(server), class: 'btn btn-sm btn-info p-0 w-100' %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <div class="shadow bg-light my-5">
-    <h5 class="card-header"><%= t('.title') %></h5>
-    <div class="card-body">
-      <table class="table table-hover table-bordered table-sm">
-        <thead>
-          <tr>
-            <th scope="col">&&</th>
-            <th scope="col">Имя</th>
-            <th scope="col">Имя</th>
-            <th scope="col">Фамилия</th>
-            <th scope="col">Username</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @listservers.each do |server| %>
-            <tr>
-              <th scope="row">1</th>
-              <td><%= link_to server.title, server.urlserver %></td>
-              <td>Mark</td>
-              <td><%= server.datestart %></td>
-              <td><%= server.serverversion.name %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-  </div>
+  <%= render '/listservers/premium_servers' %>
+  <%= render '/listservers/rating_servers' %>
 </div>

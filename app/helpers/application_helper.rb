@@ -12,6 +12,6 @@ module ApplicationHelper
   end
 
   def acces_new_server?
-    !current_user.listservers.find_by(publish: false)
+    !current_user.listservers.find_by(publish: 'create')
   end
 end

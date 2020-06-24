@@ -7,7 +7,11 @@ class ListserversController < ApplicationController
   before_action :set_server, only: %i[show edit update destroy]
   # before_action :check_new_server, only: %i[new]
   def index
-    @listservers = Listserver.order('status')
+    @pub = Listserver.where(publish: 'published')
+    @pub = @pub.includes(:serverversion)
+    @ratingservers = @pub.order(:rating).reverse
+    @topservers = @pub.where(status: 1).order(:datestart).reverse
+    @vipservers = @pub.where(status: 2).order(:datestart).reverse
   end
 
   def show; end
