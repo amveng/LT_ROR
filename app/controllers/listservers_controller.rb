@@ -6,12 +6,9 @@ class ListserversController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
   before_action :set_server, only: %i[show edit update destroy]
   # before_action :check_new_server, only: %i[new]
-  def index
-    @pub = Listserver.where(publish: 'published')
-    @pub = @pub.includes(:serverversion)
-    @ratingservers = @pub.order(:rating).reverse
-    @topservers = @pub.where(status: 1).order(:datestart).reverse
-    @vipservers = @pub.where(status: 2).order(:datestart).reverse
+  def index  
+    @listserver = Listserver.all.includes(:serverversion)
+    # .includes(:serverversion)
   end
 
   def show; end
