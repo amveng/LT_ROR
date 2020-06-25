@@ -19,8 +19,8 @@ class Listserver < ApplicationRecord
   validates :urlserver, format: { with: /https/, message: 'Должен начинатся с "https"' }
 
   scope :published, -> { where(publish: 'published') }
-  scope :vip, -> { where(publish: 'published', status: 1..2).order('datestart').reverse }
-  scope :rating, -> { where(publish: 'published').order('rating').reverse }
+  scope :vip, -> { where(publish: 'published', status: 1..2).order(:status, datestart: :desc) }
+  scope :rating, -> { where(publish: 'published').order(rating: :desc) }
   # scope :unpublish, lambda {
   #   where(publish: false)
   # }
