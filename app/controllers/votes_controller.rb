@@ -10,7 +10,7 @@ class VotesController < ApplicationController
     @vote.date = Date.today
     if current_user.votetime < DateTime.now
       current_user.votetime = DateTime.now
-      #  + 12.hours
+      # + 12.hours
       # -------
       f = @vote.listserver_id
       server = Listserver.find(f)
@@ -26,8 +26,7 @@ class VotesController < ApplicationController
       rating += 1 if votes_days_count > 1000
       rating += 1 if votes_days_count > 3000
       rating = rating.round(2)
-      server.rating = rating
-      server.save
+      server.update_attributes(rating: rating)
       # ----------------
       if @vote.save && current_user.save
         redirect_to listservers_path, success: 'Вы проголосовали'

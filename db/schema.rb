@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_24_001350) do
+ActiveRecord::Schema.define(version: 2020_06_26_014240) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,7 +41,14 @@ ActiveRecord::Schema.define(version: 2020_06_24_001350) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
-  create_table "listservers", force: :cascade do |t|
+  create_table "profiles", force: :cascade do |t|
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
+  create_table "servers", force: :cascade do |t|
     t.decimal "rating", precision: 3, scale: 2, default: "1.0"
     t.string "publish", default: "create", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -53,16 +60,9 @@ ActiveRecord::Schema.define(version: 2020_06_24_001350) do
     t.integer "rate", default: 1, null: false
     t.bigint "serverversion_id", default: 1, null: false
     t.integer "status", default: 3, null: false
-    t.index ["serverversion_id"], name: "index_listservers_on_serverversion_id"
-    t.index ["title"], name: "index_listservers_on_title", unique: true
-    t.index ["user_id"], name: "index_listservers_on_user_id"
-  end
-
-  create_table "profiles", force: :cascade do |t|
-    t.bigint "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_profiles_on_user_id"
+    t.index ["serverversion_id"], name: "index_servers_on_serverversion_id"
+    t.index ["title"], name: "index_servers_on_title", unique: true
+    t.index ["user_id"], name: "index_servers_on_user_id"
   end
 
   create_table "serverversions", force: :cascade do |t|
