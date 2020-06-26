@@ -6,11 +6,45 @@
     <h5 class="card-header">Мои сервера</h5>
     <div class="card-body">
       <% @servers.each do |server| %>
-        <li class="list-group-item">
-          <%= link_to server.title, server_path(server) %>
-          <%= server.datestart %>
-          <%= server.serverversion.name %>
-          <%= link_to server.urlserver, server.urlserver %>
+        <li class="list-group-item mb-4">
+          <div class="media">
+            <img src="/images/servers/lineage-2-200x120.jpg" class="mr-3" alt="...">
+            <div class="media-body">
+              Cras sit amet nibh libero, in gravida nulla.
+              Nulla vel metus scelerisque ante sollicitudin.
+              Cras purus odio, vestibulum in vulputate at,
+              tempus viverra turpis.
+              Fusce condimentum nunc ac nisi vulputate fringilla.
+              Donec lacinia congue felis in faucibus.
+            </div>
+          </div>
+          <table class="table-sm">
+            <tbody>
+              <tr>
+                <th class="w-25" scope="row">Название сервера:</th>
+                <td class="w-50"><%= server.title %></td>
+              </tr>
+              <tr>
+                <th class="w-25" scope="row">Адрес сервера:</th>
+                <td><%= link_to server.urlserver, server.urlserver, target: "_blank" %></td>
+              </tr>
+              <tr>
+                <th class="w-25" scope="row">Дата и время старта:</th>
+                <td><%= server.datestart.strftime("%d-%m-%Y в %H-%M") %></td>
+              </tr>
+              <tr>
+                <th class="w-25" scope="row">Хроники:</th>
+                <td> <%= server.serverversion.name %></td>
+              </tr>
+              <tr>
+                <th class="w-25" scope="row">Рейты:</th>
+                <td> x<%= server.rate %></td>
+              </tr>
+            </tbody>
+          </table>
+          <br>
+          <%= link_to 'Изменить', edit_server_path(server), class: 'btn btn-outline-primary btn-sm w-25' %>
+          <%= link_to 'Удалить', server_path(server), class: 'btn btn-outline-dark btn-sm w-25 float-right', method: :delete, data: { confirm: 'Вы уверены?' } %>
         </li>
       <% end %>
     </div>

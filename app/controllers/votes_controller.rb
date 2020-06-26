@@ -9,7 +9,7 @@ class VotesController < ApplicationController
     @vote.user_id = current_user.id
     @vote.date = Date.today
     if current_user.votetime < DateTime.now
-      current_user.votetime = DateTime.now
+      current_user.votetime = DateTime.now + 0.3.minute
       # + 12.hours
       # -------
       f = @vote.server_id
@@ -29,7 +29,7 @@ class VotesController < ApplicationController
       server.update_attributes(rating: rating)
       # ----------------
       if @vote.save && current_user.save
-        redirect_to servers_path, success: 'Вы проголосовали'
+        redirect_to server_path(server), success: 'Вы проголосовали'
       else
         voting_failed
       end

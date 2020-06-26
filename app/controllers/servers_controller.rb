@@ -23,7 +23,7 @@ class ServersController < ApplicationController
     if @server.save
       redirect_to servers_path, success: 'Сервер успешно создан'
     else
-      # flash.now[:danger] = 'Сервер не создан'
+      flash.now[:danger] = 'Сервер не создан'
       render :new
     end
   end
@@ -33,11 +33,10 @@ class ServersController < ApplicationController
   end
 
   def update
-    # @server.user_id = current_user.id
     if @server.update_attributes(server_params)
-      redirect_to @server, success: 'Сервер успешно изменён'
+      redirect_to servers_profiles_url, success: 'Сервер успешно изменён'
     else
-      # flash.now[:danger] = 'Сервер не изменён'
+      flash.now[:danger] = 'Сервер не изменён'
       render :edit
     end
   end

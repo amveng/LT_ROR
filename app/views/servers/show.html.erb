@@ -3,27 +3,63 @@
 </div>
 <div class="col col-9">
   <div class="shadow bg-light my-5">
-    <h4 class="card-header">Новый сервер</h4>
+    <h4 class="card-header">Сервер - <%= @server.title %></h4>
     <div class="card-body">
-      <h1><%= @server.title %></h1>
-      <%= link_to 'Изменить', edit_server_path(@server), class: 'btn btn-outline-primary btn-sm' %>
-      <%= link_to 'Удалить', server_path(@server), class: 'btn btn-outline-danger btn-sm', method: :delete, data: { confirm: 'Вы уверены?' } %>
-      <p> <%= @server.urlserver %> </p>
-      <p> <%= @server.datestart %> </p>
-      <p> <%= @server.serverversion.name %> </p>
-      <p> <%= @server.publish %> </p>
-      <p> <%= @server.created_at %> </p>
-      <p> <%= @server.updated_at %> </p>
-      <p>Всего голосов: <%= @server.votes.all.count %></p>
-      <p>Голосов сегодня: <%= @server.votes.where(date: 0.days.ago).count %> </p>
-
+      <div class="media">
+        <img src="/images/servers/lineage-2-200x120.jpg" class="mr-3" alt="...">
+        <div class="media-body">
+          Cras sit amet nibh libero, in gravida nulla.
+          Nulla vel metus scelerisque ante sollicitudin.
+          Cras purus odio, vestibulum in vulputate at,
+          tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla.
+          Donec lacinia congue felis in faucibus.
+          Cras sit amet nibh libero, in gravida nulla.
+          Nulla vel metus scelerisque ante sollicitudin.
+          Cras purus odio, vestibulum in vulputate at,
+        </div>
+      </div>
+      <table class="table-sm">
+        <tbody>
+          <tr>
+            <th class="w-25" scope="row">Название сервера:</th>
+            <td class="w-50"><%= @server.title %></td>
+          </tr>
+          <tr>
+            <th class="w-25" scope="row">Адрес сервера:</th>
+            <td><%= link_to @server.urlserver, @server.urlserver, target: "_blank" %></td>
+          </tr>
+          <tr>
+            <th class="w-25" scope="row">Дата и время старта:</th>
+            <td><%= @server.datestart.strftime("%d-%m-%Y в %H-%M") %></td>
+          </tr>
+          <tr>
+            <th class="w-25" scope="row">Хроники:</th>
+            <td> <%= @server.serverversion.name %></td>
+          </tr>
+          <tr>
+            <th class="w-25" scope="row">Рейты:</th>
+            <td> x<%= @server.rate %></td>
+          </tr>
+        </tbody>
+      </table>
+      <hr>
+      <h5>Проголосовать за сервер</h5>
+    
+      <p>
+      <h5>Рейтинг: <span class="badge badge-light"><%= @server.rating %></span></h5>
+      Всего голосов: <span class="badge badge-light"><%= @server.votes.all.count %></span>      
+      Голосов сегодня: <span class="badge badge-light"><%= @server.votes.where(date: 0.days.ago).count %></span>
+      
+      
+      </p>
+      
       <% unless user_signed_in? %>
         <div class="alert alert-info">
-          <p>  Необходимо <%= link_to "Войти", new_user_session_path %> для голосования </p>
+           Необходимо <%= link_to "Войти", new_user_session_path %> для голосования
         </div>
       <% else %>
-        <% if current_user.votetime > date_time_now = DateTime.now %>
-          <% disabled = 'disabled'  %>
+        <% if current_user.votetime > date_time_now = DateTime.now %>         
+         
           <div class="alert alert-info">
             <% th = ((current_user.votetime - date_time_now)/60/60).to_i %>
             <% tm = ((current_user.votetime - date_time_now)/60).to_i - th * 60 %>
@@ -31,7 +67,7 @@
             <% if th > 0 %>
               <%= th %>
               часов   
-            <% end %>
+            <% end %> 
             <% if tm > 0 %>
               <%= tm %>
               минут          
@@ -42,7 +78,7 @@
             <% end %>
           </div>
         <% else %>
-          <%= link_to 'Проголосовать за сервер', votes_path(id: @server.id), class: "btn btn-success", method: :post  %>
+          <%= link_to 'Проголосовать', votes_path(id: @server.id), class: "btn btn-success w-25", method: :post  %>
         <% end %>
       <% end %>
     </div>
