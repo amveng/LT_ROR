@@ -1,8 +1,8 @@
 class ChangeColumns2 < ActiveRecord::Migration[6.0]
   def change
-    change_column :listservers, :version, :string
-    change_column :listservers, :title, :string
-    change_column :listservers, :urlserver, :string
-    change_column :listservers, :datestart, :date
+    change_column :servers, :version, :string
+    change_column :servers, :title, :string
+    change_column :servers, :urlserver, :string
+    change_column :servers, :datestart, :date
   end
 end

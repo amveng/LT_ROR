@@ -1,5 +1,5 @@
-class ChangeColumnListserversPublish < ActiveRecord::Migration[6.0]
+class ChangeColumnserversPublish < ActiveRecord::Migration[6.0]
   def change
-    change_column :listservers, :publish, :string, default: 'create', null: false
+    change_column :servers, :publish, :string, default: 'create', null: false
   end
 end

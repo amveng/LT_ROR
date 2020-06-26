@@ -1,3 +1,3 @@
 class Serverversion < ApplicationRecord
-  has_many :listservers
+  has_many :servers
 end

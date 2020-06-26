@@ -6,7 +6,7 @@ AutoStripAttributes::Config.setup do
   end
 end
 
-class Listserver < ApplicationRecord
+class Server < ApplicationRecord
   belongs_to :user
   belongs_to :serverversion
   has_many :votes, dependent: :destroy

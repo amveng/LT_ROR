@@ -45,7 +45,7 @@ ActiveAdmin.setup do |config|
   
       # menu.add label: 'Сервера' do |sites|
       #   sites.add label: 'Сервера',
-      #             url: '/admin/listservers'
+      #             url: '/admin/servers'
   
       #   sites.add label: 'Хроники',
       #             url: '/admin/serverversions'

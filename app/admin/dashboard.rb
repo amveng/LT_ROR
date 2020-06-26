@@ -32,27 +32,27 @@ ActiveAdmin.register_page 'Dashboard' do
     # end
     # ------------------------------------------
     panel 'Сервера ждущие проверки' do
-      table_for Listserver.where(publish: 'unverified').limit(5) do
-        column :title do |listserver|
-          link_to listserver.title, admin_listserver_path(listserver)
+      table_for Server.where(publish: 'unverified').limit(5) do
+        column :title do |server|
+          link_to server.title, admin_server_path(server)
         end
         column :updated_at
         column :publish
         column :user
       end
-      strong { link_to 'Весь список серверов', admin_listservers_path }
+      strong { link_to 'Весь список серверов', admin_servers_path }
     end
 
     panel 'Последние зарегестрированые сервера' do
-      table_for Listserver.where(publish: 'create').limit(5) do
-        column :title do |listserver|
-          link_to listserver.title, admin_listserver_path(listserver)
+      table_for Server.where(publish: 'create').limit(5) do
+        column :title do |server|
+          link_to server.title, admin_server_path(server)
         end
         column :created_at
         column :publish
         column :user
       end
-      strong { link_to 'Весь список серверов', admin_listservers_path }
+      strong { link_to 'Весь список серверов', admin_servers_path }
     end
     # ----------------------------------------------------------
   end

@@ -6,10 +6,10 @@ Rails.application.routes.draw do
   # devise_for :users, controllers: {registrations: 'users/registrations'}
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  resources :listservers
+  resources :servers
   resources :votes, only: [:create]
-  root 'listservers#index'
-  get '/users', to: 'listservers#index'  
+  root 'servers#index'
+  get '/users', to: 'servers#index'  
   # get '/users' => 'users/registrations'
   # match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
   # resources :users

@@ -1,5 +1,5 @@
-class AddIndexForListservers < ActiveRecord::Migration[6.0]
+class AddIndexForservers < ActiveRecord::Migration[6.0]
   def change
-    add_index :listservers, :title, unique: true
+    add_index :servers, :title, unique: true
   end
 end

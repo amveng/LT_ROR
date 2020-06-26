@@ -2,7 +2,7 @@
 
 # chto to
 class User < ApplicationRecord
-  has_many :listservers
+  has_many :servers
   has_many :votes
   has_one :profile, dependent: :destroy
 

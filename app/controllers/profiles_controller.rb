@@ -9,6 +9,6 @@ class ProfilesController < ApplicationController
   end
 
   def servers
-    @servers = current_user.listservers.includes(:serverversion)
+    @servers = current_user.servers.includes(:serverversion)
   end
 end

@@ -7,7 +7,7 @@
     <div class="card-body">
       <% @servers.each do |server| %>
         <li class="list-group-item">
-          <%= link_to server.title, listserver_path(server) %>
+          <%= link_to server.title, server_path(server) %>
           <%= server.datestart %>
           <%= server.serverversion.name %>
           <%= link_to server.urlserver, server.urlserver %>

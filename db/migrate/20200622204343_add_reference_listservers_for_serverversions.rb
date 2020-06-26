@@ -1,6 +1,6 @@
-class AddReferenceListserversForServerversions < ActiveRecord::Migration[6.0]
+class AddReferenceserversForServerversions < ActiveRecord::Migration[6.0]
   def change
-    add_reference :listservers, :serverversion, null: false, default: 1
-    remove_column :listservers, :version
+    add_reference :servers, :serverversion, null: false, default: 1
+    remove_column :servers, :version
   end
 end

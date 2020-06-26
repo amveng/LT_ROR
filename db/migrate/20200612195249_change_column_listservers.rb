@@ -1,7 +1,7 @@
-class ChangeColumnListservers < ActiveRecord::Migration[6.0]
+class ChangeColumnservers < ActiveRecord::Migration[6.0]
   def change
-    change_column :listservers, :title, :string, limit: 42
+    change_column :servers, :title, :string, limit: 42
 
-    # add_index :listservers, :title, unique: true
+    # add_index :servers, :title, unique: true
   end
 end

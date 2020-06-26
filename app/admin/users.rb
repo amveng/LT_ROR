@@ -15,7 +15,7 @@ ActiveAdmin.register User do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  # has_many :listservers
+  # has_many :servers
   permit_params :email, :votetime, :confirmed_at, :locked_at, :provider, :baned, :username
 
   index do
@@ -26,7 +26,7 @@ ActiveAdmin.register User do
     column :profile
     column :username
     column :provider
-    column :listservers
+    column :servers
    
     actions
   end

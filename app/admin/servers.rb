@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-ActiveAdmin.register Listserver do
+ActiveAdmin.register Server do
   permit_params :title, :user_id,
                 :status, :urlserver,
                 :publish, :serverversion_id,

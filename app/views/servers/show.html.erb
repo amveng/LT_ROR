@@ -6,8 +6,8 @@
     <h4 class="card-header">Новый сервер</h4>
     <div class="card-body">
       <h1><%= @server.title %></h1>
-      <%= link_to 'Изменить', edit_listserver_path(@server), class: 'btn btn-outline-primary btn-sm' %>
-      <%= link_to 'Удалить', listserver_path(@server), class: 'btn btn-outline-danger btn-sm', method: :delete, data: { confirm: 'Вы уверены?' } %>
+      <%= link_to 'Изменить', edit_server_path(@server), class: 'btn btn-outline-primary btn-sm' %>
+      <%= link_to 'Удалить', server_path(@server), class: 'btn btn-outline-danger btn-sm', method: :delete, data: { confirm: 'Вы уверены?' } %>
       <p> <%= @server.urlserver %> </p>
       <p> <%= @server.datestart %> </p>
       <p> <%= @server.serverversion.name %> </p>

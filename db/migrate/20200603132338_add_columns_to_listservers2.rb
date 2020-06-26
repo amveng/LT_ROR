@@ -1,8 +1,8 @@
-class AddColumnsToListservers2 < ActiveRecord::Migration[6.0]
+class AddColumnsToservers2 < ActiveRecord::Migration[6.0]
   def change
-    add_column :listservers, :version, :string
-    add_column :listservers, :title, :string
-    add_column :listservers, :urlserver, :string
-    add_column :listservers, :datestart, :date
+    add_column :servers, :version, :string
+    add_column :servers, :title, :string
+    add_column :servers, :urlserver, :string
+    add_column :servers, :datestart, :date
   end
 end

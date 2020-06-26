@@ -24,7 +24,7 @@ ru:
     abbr_month_names: [~, Янв, Фев, Мар, Апр, Маи, Июн, Июл, Авг, Сен, Окт, Ноя, Дек]
     
       
-  listservers:
+  servers:
     index:
       title: Сервера
       sign_in: Войти
@@ -81,7 +81,7 @@ ru:
         baned: Забанен
         uid: идентификатор в соц сети
         provider: Провайдер
-        listservers: Сервера
+        servers: Сервера
         encrypted_password: Зашифрованный пароль
         failed_attempts: Неудачные попытки
         last_sign_in_at: Дата последнего входа
@@ -97,7 +97,7 @@ ru:
         unconfirmed_email: Неподтвержденный email
         unlock_token: Токен разблокировки
         updated_at: Дата обновления        
-      listserver:
+      server:
         title: 'Название сервера'
         urlserver: 'Адрес сервера'
         datestart: 'Дата и время старта'        
@@ -110,7 +110,7 @@ ru:
         updated_at: 'Изменён'
         serverversion: 'Хроники'
       vote:
-        listserver: 'Название сервера'
+        server: 'Название сервера'
         user : Пользователь
         date: Дата голосования
         created_at: 'Добавлен'
@@ -144,7 +144,7 @@ ru:
         many: Хроник
         one: Хроники
         other: Хроники
-      listserver:
+      server:
         few: Сервера
         many: Серверов
         one: Сервер
