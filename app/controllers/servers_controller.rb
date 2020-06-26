@@ -21,7 +21,7 @@ class ServersController < ApplicationController
     @server = Server.new(server_params)
     @server.user_id = current_user.id
     if @server.save
-      redirect_to servers_path, success: 'Сервер успешно создан'
+      redirect_to servers_profiles_url, success: 'Сервер успешно создан'
     else
       flash.now[:danger] = 'Сервер не создан'
       render :new
@@ -44,7 +44,7 @@ class ServersController < ApplicationController
   def destroy
     if @server.user_id == current_user.id
       @server.destroy
-      redirect_to @server, info: 'Сервер успешно удален'
+      redirect_to servers_profiles_url, info: 'Сервер успешно удален'
     else
       acces_close
     end
@@ -70,6 +70,6 @@ class ServersController < ApplicationController
   end
 
   def server_params
-    params.require(:server).permit(:title, :rate, :urlserver, :datestart, :serverversion_id)
+    params.require(:server).permit(:title, :rate, :urlserver, :imageserver, :datestart, :serverversion_id)
   end
 end

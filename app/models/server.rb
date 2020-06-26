@@ -7,6 +7,7 @@ AutoStripAttributes::Config.setup do
 end
 
 class Server < ApplicationRecord
+  mount_uploader :imageserver, ImageserverUploader
   belongs_to :user
   belongs_to :serverversion
   has_many :votes, dependent: :destroy

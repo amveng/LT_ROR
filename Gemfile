@@ -40,6 +40,10 @@ gem 'bootstrap-datepicker-rails'
 
 gem 'simple_form'
 
+gem 'carrierwave', '>= 1.0.0.beta', '< 2.0'
+
+gem "mini_magick"
+
 # gem 'activerecord-session_store'
 
 gem 'auto_strip_attributes', '~> 2.6'

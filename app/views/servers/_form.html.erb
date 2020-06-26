@@ -1,7 +1,7 @@
 <% if @server.errors.any? %>
   <p class="text-danger"><%= t('common.errors') %></p>
 <% end %>
-<%= simple_form_for @server do |f| %>
+<%= simple_form_for @server, html: { multipart: true }  do |f| %>
   <div class="form-group">
     <%= f.input :title, class: 'form-control' %>
   </div>
@@ -18,8 +18,10 @@
     <%# <%= f.label :datestart  %>
     <%= f.input :datestart, class: 'form-control' %>
   </div>
-  <hr>
+  <div class="form-group">  
+    <%= f.input :imageserver, class: 'form-control' %>   
+  </div>   
   <div class="form-group">
-    <%= f.submit 'Сохранить', class: 'btn btn-success w-25' %>
+    <%= f.submit 'Сохранить', class: 'btn btn-success w-25 mt-5' %>
   </div>
 <% end %>

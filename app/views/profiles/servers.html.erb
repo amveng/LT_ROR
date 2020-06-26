@@ -8,7 +8,11 @@
       <% @servers.each do |server| %>
         <li class="list-group-item mb-4">
           <div class="media">
-            <img src="/images/servers/lineage-2-200x120.jpg" class="mr-3" alt="...">
+            <% if server.imageserver? %>
+              <%= image_tag server.imageserver.url, class: "mr-3"%>
+            <% else %>
+              <img src="/images/servers/lineage-2-200x120.jpg" class="mr-3">
+            <% end %>
             <div class="media-body">
               Cras sit amet nibh libero, in gravida nulla.
               Nulla vel metus scelerisque ante sollicitudin.

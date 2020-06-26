@@ -109,6 +109,7 @@ ru:
         created_at: 'Добавлен'
         updated_at: 'Изменён'
         serverversion: 'Хроники'
+        imageserver: Картинка для сервера
       vote:
         server: 'Название сервера'
         user : Пользователь
@@ -165,6 +166,7 @@ ru:
         invalid: недествителен 
         required: необходимо выбрать
         not_an_integer: число должно быть целым
+        
   devise:
     confirmations:
       confirmed: Ваш адрес эл. почты успешно подтвержден.
@@ -287,3 +289,4 @@ ru:
         many: "%{resource}: сохранение не удалось из-за ошибок:"
         one: "%{resource}: сохранение не удалось из-за ошибки:"
         other: "%{resource}: сохранение не удалось из-за ошибок:"
+      extension_whitelist_error: "может быть только формата: jpg, jpeg, png"
