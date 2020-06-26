@@ -136,17 +136,6 @@ a.link-3:hover {
 .mi.vip3 { color: #495057; }
 
 
-// .form-control-file, .form-control-range {
-//     display: flex;
-//     width: 100%;
-//     align-items: center;
-//     line-height: 1.5;
-//     margin-bottom: 0;
-//     font-size: 1rem;
-//     font-weight: 400; 
-//     white-space: nowrap; 
-//     text-align: center;  
-//     border: 1px solid #ced4da;
-//     border-radius: 0.25rem;
-//     background-color: white;
-// }
+textarea.form-control {
+    height: 7rem;
+}

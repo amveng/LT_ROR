@@ -70,6 +70,6 @@ class ServersController < ApplicationController
   end
 
   def server_params
-    params.require(:server).permit(:title, :rate, :urlserver, :imageserver, :datestart, :serverversion_id)
+    params.require(:server).permit(:title, :rate, :description, :urlserver, :imageserver, :datestart, :serverversion_id)
   end
 end

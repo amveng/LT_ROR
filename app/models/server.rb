@@ -18,6 +18,7 @@ class Server < ApplicationRecord
   validates :rate, numericality: { only_integer: true }
   validates :title, uniqueness: true, length: { in: 4..42 }
   validates :urlserver, format: { with: /https/, message: 'Должен начинатся с "https"' }
+  validates :description, length: { maximum: 350 }
 
   scope :published, -> { where(publish: 'published') }
   scope :vip, -> { where(publish: 'published', status: 1..2).order(:status, datestart: :desc) }

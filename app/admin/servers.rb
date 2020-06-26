@@ -4,7 +4,8 @@ ActiveAdmin.register Server do
   permit_params :title, :user_id,
                 :status, :urlserver,
                 :publish, :serverversion_id,
-                :datestart
+                :datestart, :description,
+                :imageserver
   # scope 'Неактивные', :unpublish
   index do
     selectable_column
@@ -14,7 +15,7 @@ ActiveAdmin.register Server do
     column :datestart
     # column :status
     column :publish
-    column :serverversion
+    # column :serverversion
     column :user
     column :rating
     actions
@@ -37,6 +38,8 @@ ActiveAdmin.register Server do
       f.input :publish, as: :select, collection: %i[create unverified failed published]
       f.input :status, as: :select, collection: %i[1 2 3]
       f.input :serverversion
+      f.input :imageserver
+      f.input :description
     end
     f.actions
   end

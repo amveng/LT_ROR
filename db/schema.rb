@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_26_104254) do
+ActiveRecord::Schema.define(version: 2020_06_26_155012) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 2020_06_26_104254) do
     t.bigint "serverversion_id", default: 1, null: false
     t.integer "status", default: 3, null: false
     t.string "imageserver"
+    t.text "description"
     t.index ["serverversion_id"], name: "index_servers_on_serverversion_id"
     t.index ["title"], name: "index_servers_on_title", unique: true
     t.index ["user_id"], name: "index_servers_on_user_id"

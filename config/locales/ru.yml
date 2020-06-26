@@ -110,6 +110,7 @@ ru:
         updated_at: 'Изменён'
         serverversion: 'Хроники'
         imageserver: Картинка для сервера
+        description: Краткая информация
       vote:
         server: 'Название сервера'
         user : Пользователь
@@ -159,8 +160,8 @@ ru:
     errors:
       messages:
         blank: не может быть пустым          
-        too_short: "должен быть минимум %{count} знаков" 
-        too_long: "должно быть максимум %{count} знака"
+        too_short: "допускается минимум %{count} знаков" 
+        too_long: "допускается максимум %{count} знаков"
         confirmation: необходимо 
         taken: занят  
         invalid: недествителен 
