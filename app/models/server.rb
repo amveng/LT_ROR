@@ -23,6 +23,7 @@ class Server < ApplicationRecord
   scope :published, -> { where(publish: 'published') }
   scope :vip, -> { where(publish: 'published', status: 1..2).order(:status, datestart: :desc) }
   scope :rating, -> { where(publish: 'published').order(rating: :desc) }
+  scope :profile, -> { order(datestart: :desc) }
   # scope :unpublish, lambda {
   #   where(publish: false)
   # }
