@@ -1,0 +1,17 @@
+<div class="col col-3">
+  <%= render '/layouts/left' %>
+</div>
+<div class="col col-9">
+  <% content = content('about') %>
+  <% if content.present? %>
+    <div class="shadow bg-light my-5">
+      <h5 class="card-header"><%= content.header %></h5>
+      <div class="card-body">
+        <h5 class="card-title"><%= content.subheader %></h5>
+        <p class="card-text">
+          <%= content.body %>
+        </p>
+      </div>
+    </div>
+  <% end %>
+</div>

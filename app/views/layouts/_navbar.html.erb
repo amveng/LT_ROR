@@ -6,12 +6,15 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto">          
           <li class="nav-item">
-            <a class="nav-link" href="<%= servers_path %>">Home</a>
+            <%= link_to 'На главную', servers_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">ueugzu</a>
+            <%= link_to 'Реклама', advertising_contents_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'О сайте', about_contents_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
             <%= link_to 'Добавить сервер', new_server_path, class: "btn btn-outline-info" %>
@@ -27,7 +30,7 @@
                   <%= truncate(current_user.username.html_safe, length:18) %>
                 <% end %>
               </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">                
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="#">Another action</a>
                 <%= link_to "Профиль", info_profiles_path, class: "dropdown-item" %>
                 <div class="dropdown-divider"></div>

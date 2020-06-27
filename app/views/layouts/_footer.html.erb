@@ -1,4 +1,5 @@
 <% content = content('footer') %>
+<% if content.present? %>
 <div class="shadow bg-light my-5">
   <h5 class="card-header"><%= content.header %></h5>
   <div class="card-body">
@@ -8,3 +9,4 @@
     </p>
   </div>
 </div>
+<% end %>

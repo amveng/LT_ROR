@@ -6,12 +6,30 @@
     <h5 class="card-header">Общая информация</h5>
     <div class="card-body">
       <% if @info.user.unconfirmed_email.present? %>
-      <div class="alert alert-warning">
-        <div>В настоящее время ожидает подтверждения email для: <%= @info.user.unconfirmed_email %></div>
-      </div>  
+        <div class="alert alert-warning">
+          <div>В настоящее время ожидает подтверждения email для: <%= @info.user.unconfirmed_email %></div>
+        </div>
       <% end %>
-      <%= @info.user.username %>
-      <%= @info.user.email %>
+      <table class="table-sm">
+        <tbody>
+          <tr>
+            <th class="w-25" scope="row">Имя:</th>
+            <td class="w-50"><%= @info.user.username %></td>
+          </tr>
+          <tr>
+            <th scope="row">Вход через:</th>
+            <td><%= @info.user.provider %></td>
+          </tr>
+          <tr>
+            <th scope="row">email:</th>
+            <td><%= @info.user.email %></td>
+          </tr>
+          <tr>
+            <th scope="row">Дата регистрации:</th>
+            <td><%= @info.user.created_at.strftime("%d-%m-%Y в %H-%M") %></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

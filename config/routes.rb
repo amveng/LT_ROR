@@ -21,4 +21,13 @@ Rails.application.routes.draw do
       post 'safedelete'
     end
   end
+  resources :contents do
+    collection do
+      # Content.pluck('title').each do |f|
+      #   get f
+      # end
+      get 'about'
+      get 'advertising'
+    end
+  end
 end

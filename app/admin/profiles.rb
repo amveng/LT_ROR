@@ -5,7 +5,7 @@ ActiveAdmin.register Profile do
 
   index do
     selectable_column
-    column :user_id
+    # column :user_id
     column :user
     column :created_at
     column :updated_at
@@ -13,10 +13,13 @@ ActiveAdmin.register Profile do
   end
 
   filter :user
+  filter :safedelete
+
 
   form do |f|
     f.inputs do
       f.input :user
+      f.input :safedelete, as: :datepicker
     end
     f.actions
   end

@@ -117,6 +117,20 @@ ru:
         date: Дата голосования
         created_at: 'Добавлен'
         updated_at: 'Изменён'
+      content:
+        title: Ресурс
+        header: Заголовок
+        subheader: Подзаголовок
+        body: Текст
+        created_at: 'Добавлен'
+        updated_at: 'Изменён'
+      profile:
+        user: Пользователь
+        user_id: id Пользователя
+        safedelete: Дата блокировки
+        created_at: 'Добавлен'
+        updated_at: 'Изменён'
+
       active_admin/comment:
         author_type: "Author type"
         body: "Body"
@@ -156,6 +170,17 @@ ru:
         many: Голосов
         one: Голосование
         other: Голоса
+      content:
+        few: Контент
+        many: Контент
+        one: Контент
+        other: Контент
+      profile:
+        few: Профили
+        many: Профилей
+        one: Профиль
+        other: Профиль      
+
 
     errors:
       messages:
