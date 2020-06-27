@@ -14,4 +14,8 @@ module ApplicationHelper
   def acces_new_server?
     !current_user.servers.find_by(publish: 'create')
   end
+
+  def content(title)
+    Content.find_by(title: title)
+  end
 end
