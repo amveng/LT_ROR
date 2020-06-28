@@ -118,7 +118,7 @@ ru:
         created_at: 'Добавлен'
         updated_at: 'Изменён'
       content:
-        title: Ресурс
+        name: Ресурс
         header: Заголовок
         subheader: Подзаголовок
         body: Текст

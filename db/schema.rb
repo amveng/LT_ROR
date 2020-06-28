@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 2020_06_27_050409) do
   end
 
   create_table "contents", force: :cascade do |t|
-    t.string "title"
+    t.string "name"
     t.string "header"
     t.string "subheader"
     t.text "body"

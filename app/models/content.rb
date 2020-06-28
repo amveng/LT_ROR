@@ -1,5 +1,5 @@
 class Content < ApplicationRecord
 
-  auto_strip_attributes :title, delete_whitespaces: true
+  auto_strip_attributes :name, delete_whitespaces: true
 
 end

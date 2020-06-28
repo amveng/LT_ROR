@@ -15,7 +15,7 @@ module ApplicationHelper
     !current_user.servers.find_by(publish: 'create')
   end
 
-  def content(title)
-    Content.find_by(title: title)
+  def content(name)
+    Content.find_by(name: name)
   end
 end

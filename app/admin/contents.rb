@@ -1,9 +1,8 @@
 ActiveAdmin.register Content do
-  permit_params :title, :body, :header, :subheader
+  permit_params :name, :body, :header, :subheader
 
   index do
-    selectable_column
-    column :title
+    column :name
     column :header
     column :subheader
     column :created_at
@@ -11,7 +10,7 @@ ActiveAdmin.register Content do
     actions
   end
 
-  filter :title
+  filter :name
   filter :header
   filter :subheader
   filter :created_at
@@ -19,7 +18,7 @@ ActiveAdmin.register Content do
 
   form do |f|
     f.inputs do
-      f.input :title
+      f.input :name
       f.input :header
       f.input :subheader
       f.input :body
