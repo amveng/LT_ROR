@@ -134,8 +134,10 @@ a.link-3:hover {
 .mi.vip1 { color: #d00; }
 .mi.vip2 { color: #007bff; }
 .mi.vip3 { color: #495057; }
+.mi.rating { color: mediumseagreen; }
 
 
 textarea.form-control {
-    height: 7rem;
+    max-height: 7rem;
+    min-height: 7rem;
 }

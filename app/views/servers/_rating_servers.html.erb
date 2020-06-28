@@ -11,7 +11,7 @@
             <td><%= server.serverversion.name %></td>
             <td>x<%= server.rate %></td>
             <td><%= server.datestart.strftime("%d.%m.%Y") %></td>
-            <td>рейтинг: <%= server.rating %></td>
+            <td><i class="mi rating">insert_chart</i> <%= server.rating %></td>
             <td><%= link_to ' Info', server_path(server), class: 'btn btn-sm btn-info p-0 w-100' %></td>
           </tr>
         <% end %>

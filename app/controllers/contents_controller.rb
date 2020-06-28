@@ -4,4 +4,6 @@ class ContentsController < ApplicationController
   def about; end
 
   def advertising; end
+
+  def contact; end
 end

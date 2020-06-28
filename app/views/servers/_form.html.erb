@@ -18,12 +18,23 @@
     <%# <%= f.label :datestart  %>
     <%= f.input :datestart, class: 'form-control' %>
   </div>
-    <div class="form-group">
+  <div class="form-group">
     <%= f.input :description, as: :text, class: 'form-control' %>
+    <span class="badge badge-light">максимум 400 символов</span>
   </div>
-  <div class="form-group">  
-    <%= f.input :imageserver, class: 'form-control' %>   
-  </div>   
+  <div class="media">
+    <div class="media-body">      
+      <div class="form-group">
+        <%= f.input :imageserver, class: 'form-control' %>
+      </div>
+      <span class="badge badge-light">размер картинки преобразуется в 240х120</span>
+    </div>
+    <% if @server.imageserver? %>
+      <%= image_tag @server.imageserver.url, class: "ml-3"%>
+    <% else %>
+      <img src="/images/servers/50.jpg" class="ml-3">
+    <% end %>
+  </div>
   <div class="form-group">
     <%= f.submit 'Сохранить', class: 'btn btn-success w-25 mt-5' %>
   </div>

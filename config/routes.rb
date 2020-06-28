@@ -28,6 +28,7 @@ Rails.application.routes.draw do
       # end
       get 'about'
       get 'advertising'
+      get 'contact'
     end
   end
 end

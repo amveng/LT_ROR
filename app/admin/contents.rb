@@ -5,7 +5,7 @@ ActiveAdmin.register Content do
     selectable_column
     column :title
     column :header
-    column :subheader    
+    column :subheader
     column :created_at
     column :updated_at
     actions
