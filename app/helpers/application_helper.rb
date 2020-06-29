@@ -18,4 +18,12 @@ module ApplicationHelper
   def content(name)
     Content.find_by(name: name)
   end
+
+  def all_versions_servers
+    Serverversion.pluck('name')
+  end
+
+  def all_rates_servers
+    Server.pluck('rate').uniq.sort
+  end
 end

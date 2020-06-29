@@ -13,12 +13,15 @@ class ServersController < ApplicationController
 
   def search
     @server = Server.all
-    if params[:serverversion].present?
+    if params[:serverversion] != 'Хроники'
       @server = @server.includes(:serverversion).where(
         serverversions: { name: params[:serverversion] }
       )
     end
-    @server = @server.where(rate: params[:rate]) if params[:rate].present?
+    @server = @server.where(rate: params[:rate]) if params[:rate] != 'Рейты'
+    @server = @server.today if params[:datestart] == 'today'
+    @server = @server.tomorrow if params[:datestart] == 'tomorrow'
+    @server = @server.yesterday if params[:datestart] == 'yesterday'
     render :index
   end
 
