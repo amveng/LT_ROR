@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   # devise_for :users, controllers: {registrations: 'users/registrations'}
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  resources :servers
+  resources :servers do
+    collection do
+      get 'search'
+    end
+  end
   resources :votes, only: [:create]
   root 'servers#index'
   get '/users', to: 'servers#index'

@@ -10,12 +10,11 @@
             <td><%= link_to truncate(server.title.html_safe, length:18), server.urlserver, class: "link-#{server.status}", target: "_blank" %></td>
             <td><%= server.serverversion.name %></td>
             <td>x<%= server.rate %></td>
-            <td><%= server.datestart.strftime("%d.%m.%Y") %></td>
-            <td><i class="mi rating">insert_chart</i> <%= server.rating %></td>
+            <td><%= server.datestart.strftime("%d.%m.%Y в %H:%M") %></td>
             <td><%= link_to ' Info', server_path(server), class: 'btn btn-sm btn-info p-0 w-100' %></td>
           </tr>
         <% end %>
       </tbody>
-    </table>    
+    </table>
   </div>
 </div>

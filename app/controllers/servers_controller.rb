@@ -6,9 +6,21 @@ class ServersController < ApplicationController
 
   def index
     @server = Server.all.includes(:serverversion)
+    # @server = Server.where(rate: params[:rate])
   end
 
   def show; end
+
+  def search
+    @server = Server.all
+    if params[:serverversion].present?
+      @server = @server.includes(:serverversion).where(
+        serverversions: { name: params[:serverversion] }
+      )
+    end
+    @server = @server.where(rate: params[:rate]) if params[:rate].present?
+    render :index
+  end
 
   def new
     @server = Server.new

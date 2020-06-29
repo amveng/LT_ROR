@@ -5,6 +5,23 @@
     <div class="text-center">
       Найди новый сервер  
     </div>
+    <form action="/servers/search" method="GET">
+      <select  class="form-control" type="text" name="serverversion">
+        <option></option>
+        <% (Serverversion.pluck('name').uniq).each do |name| %>
+          <option><%= name %></option>
+        <% end %>
+      </select>
+      <select  class="form-control" type="text" name="rate">
+        <% all_rates = Server.pluck('rate').uniq %>
+        <option></option>
+        <% all_rates.each do |rate| %>
+          <option><%= rate %></option>
+        <% end %>
+      </select>
+      <%# <input  class="form-control" type="text" name="rate"> %>
+      <input class="btn" type="submit">
+    </form>
     <ul class="list-unstyled">
       <li class="media pt-1">
         <a class="m-auto" href="#">
@@ -22,5 +39,6 @@
         </a>
       </li>
     </ul>
+    <%= link_to 'AAAAAAAAAA', search_servers_path(serverversion: 'C4'), class: "btn btn-success", method: :get  %>
   </div>
 </div>
