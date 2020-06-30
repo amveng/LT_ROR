@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ServersController < ApplicationController
-  before_action :authenticate_user!, except: %i[index show]
+  before_action :authenticate_user!, except: %i[index show search]
   before_action :set_server, only: %i[show edit update destroy]
 
   def index

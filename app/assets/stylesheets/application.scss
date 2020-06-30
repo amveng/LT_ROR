@@ -1,11 +1,14 @@
 /*
  *= require bootstrap-datepicker
  *= require material_icons
+ *= require "trix"
  */
 
 @import "bootstrap";
 
 @import "bootstrap-datepicker";
+
+@import "trix";
 
 // select {
 //     display: block;
