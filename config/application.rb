@@ -1,12 +1,16 @@
+# frozen_string_literal: true
+
 require_relative 'boot'
 
 require 'rails/all'
+
+require 'action_text/engine'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module LTRor
+module LineageTop
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0

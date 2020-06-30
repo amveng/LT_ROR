@@ -4,6 +4,7 @@
 //= require bootstrap
 //= require bootstrap-datepicker
 //= require turbolinks
+//= require trix
 //= require_tree .
 
 
