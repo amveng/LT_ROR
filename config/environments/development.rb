@@ -65,24 +65,8 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'lineagetop.com', from: 'admin@lineagetop.com' }
   config.action_mailer.perform_deliveries = true
   # config.action_mailer.raise_delivery_errors = true
-  # config.action_mailer.delivery_method = :smtp
-  config.action_mailer.delivery_method = :letter_opener
-  config.app_domain = 'localhost:3000'
-  # config.action_mailer.smtp_settings = {
-  #   address: 'smtp.gmail.com',
-  #   port: 587,
-  #   domain: 'localhost:3000',
-  #   user_name: 'amveng315@gmail.com',
-  #   password: 't34pro11',
-  #   authentication: 'plain',
-  #   enable_starttls_auto: true
-  # }
-  config.action_mailer.smtp_settings = {
-    address: 'smtp.yandex.ru',
-    port: 587,
-    domain: 'lineagetop.com',
-    authentication: :plain,
-    user_name: 'admin@lineagetop.com',
-    password: 't34pro11'
-  }
+  config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.delivery_method = :letter_opener
+  config.app_domain = 'localhost:3000' 
+  config.action_mailer.smtp_settings = Rails.application.credentials.mail
 end
