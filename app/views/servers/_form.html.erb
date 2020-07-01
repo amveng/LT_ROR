@@ -19,16 +19,16 @@
     <%= f.input :datestart, class: 'form-control' %>
   </div>
   <div class="form-group">
-    <%= f.input :description, as: :text, class: 'form-control' %>
-    <span class="badge badge-light">максимум 400 символов</span>
+    <%= f.input :description, as: :text, placeholder: 'максимум 400 символов', class: 'form-control' %>
   </div>
   <div class="media">
-    <div class="media-body">      
+    <div class="media-body">
       <div class="form-group">
-        <%= f.input :imageserver, class: 'form-control' %>
+        <%= f.input :imageserver,  class: 'form-control' %>
       </div>
       <span class="badge badge-light">размер картинки преобразуется в 240х120</span>
     </div>
+    
     <% if @server.imageserver? %>
       <%= image_tag @server.imageserver.url, class: "ml-3"%>
     <% else %>
