@@ -44,8 +44,6 @@ gem 'carrierwave', '>= 1.0.0.beta', '< 2.0'
 
 gem 'mini_magick'
 
-gem 'trix'
-
 # gem 'activerecord-session_store'
 
 gem 'auto_strip_attributes', '~> 2.6'
