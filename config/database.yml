@@ -30,8 +30,8 @@ production:
   adapter: postgresql
   encoding: unicode
   host: localhost
-  database: rorbase
+  database: ltbase
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: roruser
-  password: pass315
+  username: <%= Rails.application.credentials.dig(:production, :postgres_username) %>
+  password: <%= Rails.application.credentials.dig(:production, :postgres_password) %>
   timeout: 5000

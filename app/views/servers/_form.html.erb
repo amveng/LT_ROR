@@ -3,10 +3,10 @@
 <% end %>
 <%= simple_form_for @server, html: { multipart: true }  do |f| %>
   <div class="form-group">
-    <%= f.input :title, class: 'form-control' %>
+    <%= f.input :title, placeholder: 'Myservername', class: 'form-control' %>
   </div>
   <div class="form-group">
-    <%= f.input :urlserver, class: 'form-control' %>
+    <%= f.input :urlserver, placeholder: 'https://myadress.ru', class: 'form-control' %>
   </div>
   <div class="form-group">
     <%= f.association :serverversion, class: 'form-control' %>
