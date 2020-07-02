@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     end
   end
   resources :votes, only: [:create]
-  root 'servers#index'
+  # root 'servers#index'
   get '/users', to: 'servers#index'
   resources :profiles do
     collection do
