@@ -68,5 +68,5 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   # config.action_mailer.delivery_method = :letter_opener
   config.app_domain = 'localhost:3000' 
-  config.action_mailer.smtp_settings = Rails.application.credentials.mail
+  config.action_mailer.smtp_settings = Rails.application.credentials.mail_development
 end
