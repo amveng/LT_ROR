@@ -47,6 +47,7 @@ ActiveAdmin.register User do
       f.input :baned
       f.input :username
       f.input :locked_at, as: :datepicker
+      f.input :confirmed_at, as: :datepicker
     end
     f.actions
   end
