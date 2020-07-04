@@ -60,7 +60,7 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "LT_ROR_production"
 
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.perform_caching = false
 
@@ -115,7 +115,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'lineagetop.com', from: 'admin@lineagetop.com' }
   config.action_mailer.perform_deliveries = true
   # config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :file
+  config.action_mailer.delivery_method = :smtp
   # config.action_mailer.delivery_method = :letter_opener
   config.app_domain = 'lineagetop.com' 
   config.action_mailer.smtp_settings = Rails.application.credentials.mail_production
