@@ -9,7 +9,7 @@ class VotesController < ApplicationController
     @vote.user_id = current_user.id
     @vote.date = Date.today
     if current_user.votetime < DateTime.now
-      current_user.votetime = DateTime.now + 0.3.minute
+      current_user.votetime = DateTime.now + 12.hours
       # + 12.hours
       # -------
       f = @vote.server_id
