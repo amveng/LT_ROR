@@ -19,8 +19,8 @@ module ApplicationHelper
     Content.find_by(name: name)
   end
 
-  def all_versions_servers
-    Serverversion.pluck('name')
+  def all_versions_servers    
+    Serverversion.where(id: (Server.pluck('serverversion_id').uniq)).pluck('name')
   end
 
   def all_rates_servers
