@@ -13,11 +13,13 @@
           <li class="nav-item">
             <%= link_to 'Реклама', advertising_contents_path, class: "nav-link" %>
           </li>
-          <li class="nav-item">
-            <%= link_to 'О сайте', about_contents_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Контакты', contact_contents_path, class: "nav-link" %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Информация</a>
+            <div class="dropdown-menu">
+              <%= link_to 'О сайте', about_contents_path, class: "dropdown-item" %>
+              <%= link_to 'Контакты', contact_contents_path, class: "dropdown-item" %>
+              <%= link_to 'Конфиденциальность', privacy_contents_path, class: "dropdown-item" %>
+            </div>
           </li>
           <li class="nav-item">
             <%= link_to 'Добавить сервер', new_server_path, class: "btn btn-outline-info" %>
