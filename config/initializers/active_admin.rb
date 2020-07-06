@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ActiveAdmin.setup do |config|
   # == Site Title
   #
@@ -16,7 +18,7 @@ ActiveAdmin.setup do |config|
   #
   # Note: Aim for an image that's 21px high so it fits in the header.
   #
-  # config.site_title_image = "/public/brand_min.png"
+  config.site_title_image = '/images/logo_navbar.png'
 
   # == Default Namespace
   #
@@ -42,14 +44,14 @@ ActiveAdmin.setup do |config|
   config.namespace :admin do |admin|
     admin.build_menu do |menu|
       menu.add label: 'LineageTop', url: '/', priority: 0
-  
+
       # menu.add label: 'Сервера' do |sites|
       #   sites.add label: 'Сервера',
       #             url: '/admin/servers'
-  
+
       #   sites.add label: 'Хроники',
       #             url: '/admin/serverversions'
-      
+
       # end
     end
   end
@@ -168,7 +170,7 @@ ActiveAdmin.setup do |config|
   # You can exclude possibly sensitive model attributes from being displayed,
   # added to forms, or exported by default by ActiveAdmin
   #
-  config.filter_attributes = [:encrypted_password, :password, :password_confirmation]
+  config.filter_attributes = %i[encrypted_password password password_confirmation]
 
   # == Localize Date/Time Format
   #
@@ -210,7 +212,7 @@ ActiveAdmin.setup do |config|
   # Create another checkbox is disabled by default. You can customize it for individual
   # resources or you can enable them globally from here.
   #
-  # config.create_another = true
+  config.create_another = true
 
   # == Register Stylesheets & Javascripts
   #
@@ -282,7 +284,7 @@ ActiveAdmin.setup do |config|
   # Pagination is enabled by default for all resources.
   # You can control the default per page count for all resources here.
   #
-  # config.default_per_page = 30
+  config.default_per_page = 20
   #
   # You can control the max per page count too.
   #
@@ -305,15 +307,15 @@ ActiveAdmin.setup do |config|
   # config.include_default_association_filters = true
 
   # config.maximum_association_filter_arity = 256 # default value of :unlimited will change to 256 in a future version
-  # config.filter_columns_for_large_association, [
-  #    :display_name,
-  #    :full_name,
-  #    :name,
-  #    :username,
-  #    :login,
-  #    :title,
-  #    :email,
-  #  ]
+  config.filter_columns_for_large_association %i[
+    display_name
+    full_name
+    name
+    username
+    login
+    title
+    email
+  ]
   # config.filter_method_for_large_association, '_starts_with'
 
   # == Head
