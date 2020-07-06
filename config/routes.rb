@@ -30,6 +30,7 @@ Rails.application.routes.draw do
       get 'advertising'
       get 'contact'
       get 'privacy'
+      get 'terms_of_use'
     end
   end
 end
