@@ -34,25 +34,25 @@ ActiveAdmin.register_page 'Dashboard' do
     panel 'Сервера ждущие проверки' do
       table_for Server.where(publish: 'unverified').limit(5) do
         column :title do |server|
-          link_to server.title, admin_server_path(server)
+          link_to server.title, adm315_server_path(server)
         end
         column :updated_at
         column :publish
         column :user
       end
-      strong { link_to 'Весь список серверов', admin_servers_path }
+      strong { link_to 'Весь список серверов', adm315_servers_path }
     end
 
     panel 'Последние зарегестрированые сервера' do
       table_for Server.where(publish: 'create').limit(5) do
         column :title do |server|
-          link_to server.title, admin_server_path(server)
+          link_to server.title, adm315_server_path(server)
         end
         column :created_at
         column :publish
         column :user
       end
-      strong { link_to 'Весь список серверов', admin_servers_path }
+      strong { link_to 'Весь список серверов', adm315_servers_path }
     end
     # ----------------------------------------------------------
   end

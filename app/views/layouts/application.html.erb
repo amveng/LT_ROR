@@ -6,23 +6,29 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <meta name="description" content="Анонсы серверов lineage 2 | Рейтинг серверов lineage 2 | Мы предоставляем возможность быстро найти качественный сервер lineage 2 по вашим критериям выбора. Так же мы предлагаем вам зарегистрировать ваш сервер в нашем уникальном рейтинге."/>
   </head>
   <body>
-    <%# Шапка--------------------------------------------------------- %>
-    <div>
-      <img src="/images/127734.jpg" class="d-block w-100" alt="">
-    </div>
-    <%# Навбаер меню-------------------------------------------------- %>
-    <%= render '/layouts/navbar' %>
-    <div class="container">
-      <%# Флеш сообщения------------------------------------------------ %>
-      <%= render '/layouts/msg' %>
-      <%# Контент------------------------------------------------------- %>
-      <div class="row">
-        <%= yield %>
+    <% if server_not_work? %>
+      <%= render '/layouts/default' %>
+    <% else %>
+      <%# Шапка--------------------------------------------------------- %>
+      <div>
+        <img src="/images/127734.jpg" class="d-block w-100" alt="">
       </div>
-      <%# Подвал-------------------------------------------------------- %>
-      <%= render '/layouts/footer' %>
-    </div>
+      <%# Навбаер меню-------------------------------------------------- %>
+      <%= render '/layouts/navbar' %>
+      <div class="container">
+        <%# Флеш сообщения------------------------------------------------ %>
+        <%= render '/layouts/msg' %>
+        <%# Контент------------------------------------------------------- %>
+        <div class="row">
+          <%= yield %>
+        </div>
+        <%# Подвал-------------------------------------------------------- %>
+        <%= render '/layouts/footer' %>
+      </div>
+    <% end %>
   </body>
 </html>

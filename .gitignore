@@ -35,7 +35,7 @@
 
 /config/unicorn_init.sh
 
-/public/uploads
+/public/uploads/*
 /public/packs
 /public/packs-test
 /node_modules
