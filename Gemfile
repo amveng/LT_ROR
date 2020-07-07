@@ -51,6 +51,7 @@ gem 'mini_magick'
 gem 'auto_strip_attributes', '~> 2.6'
 
 gem 'devise'
+gem 'devise-async'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-github'

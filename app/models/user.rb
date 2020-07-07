@@ -18,7 +18,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :confirmable,
          :validatable, :trackable, :lockable,
-         :omniauthable,
+         :omniauthable, :async,
          omniauth_providers: %i[vkontakte github google_oauth2 facebook email]
 
   def self.create_from_provider_data(provider_data)

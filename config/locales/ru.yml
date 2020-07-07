@@ -82,6 +82,7 @@ ru:
         uid: идентификатор в соц сети
         provider: Провайдер
         servers: Сервера
+        profile: Профиль
         encrypted_password: Зашифрованный пароль
         failed_attempts: Неудачные попытки
         last_sign_in_at: Дата последнего входа

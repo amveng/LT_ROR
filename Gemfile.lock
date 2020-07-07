@@ -108,6 +108,9 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise-async (1.0.0)
+      activejob (>= 5.0)
+      devise (>= 4.0)
     erubi (1.9.0)
     execjs (2.7.0)
     faraday (1.0.1)
@@ -331,6 +334,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   carrierwave (>= 1.0.0.beta, < 2.0)
   devise
+  devise-async
   jbuilder (~> 2.7)
   jquery-rails
   letter_opener
