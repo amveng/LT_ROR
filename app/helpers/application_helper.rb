@@ -11,6 +11,10 @@ module ApplicationHelper
       notice: 'alert-primary' }[name.to_sym] || name
   end
 
+  def server_not_work?
+    Content.find_by(name: 'index').header.blank?
+  end
+
   def acces_new_server?
     !current_user.servers.find_by(publish: 'create')
   end
