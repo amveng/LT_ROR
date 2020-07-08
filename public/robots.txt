@@ -1,2 +1,4 @@
 User-agent: *
-Disallow:
+Allow: /
+Sitemap: https://lineagetop.com/sitemap.xml
+Host: https://lineagetop.com
