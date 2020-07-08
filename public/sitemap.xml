@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+		<!--	created with www.mysitemapgenerator.com	-->
+		<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+	<loc>https://lineagetop.com/</loc>
+	<lastmod>2020-07-08T12:14:47+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://lineagetop.com/servers</loc>
+	<lastmod>2020-07-08T12:14:48+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://lineagetop.com/contents/advertising</loc>
+	<lastmod>2020-07-08T12:14:51+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://lineagetop.com/contents/about</loc>
+	<lastmod>2020-07-08T12:14:51+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://lineagetop.com/contents/contact</loc>
+	<lastmod>2020-07-08T12:14:52+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://lineagetop.com/contents/terms_of_use</loc>
+	<lastmod>2020-07-08T12:14:54+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://lineagetop.com/contents/privacy</loc>
+	<lastmod>2020-07-08T12:14:52+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+</urlset>
