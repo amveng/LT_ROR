@@ -1,6 +1,16 @@
 # frozen_string_literal: true
 
 class Users::PasswordsController < Devise::PasswordsController
+  def create
+    recaptcha_valid = verify_recaptcha(action: 'password', minimum_score: 0.8)
+    if recaptcha_valid
+      super
+    else
+      flash.delete :recaptcha_error
+      redirect_to new_user_password_path, danger: 'К сожалению гугл считает что вы бот.
+       Пожалуйста, попробуйте еще раз.'
+    end
+  end
   # GET /resource/password/new
   # def new
   #   super
@@ -31,5 +41,4 @@ class Users::PasswordsController < Devise::PasswordsController
   # def after_sending_reset_password_instructions_path_for(resource_name)
   #   super(resource_name)
   # end
-  
 end
