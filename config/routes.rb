@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :servers do
     collection do
       get 'search'
+      post 'publish'
     end
   end
   resources :votes, only: [:create]

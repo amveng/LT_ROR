@@ -4,6 +4,11 @@ ru:
     back: 'Назад'
     create: 'Создать'
     edit: 'Изменить'
+  publish:
+    create: Сервер создан но не опубликован
+    published: Опубликовано
+    unverified: Проверяется
+    failed: Отказано в публикации
   hello: "Привет"
   time:
     formats:

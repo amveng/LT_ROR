@@ -23,7 +23,7 @@ class Server < ApplicationRecord
   scope :published, -> { where(publish: 'published') }
   scope :vip, -> { where(publish: 'published', status: 1..2).order(:status, datestart: :desc) }
   scope :rating, -> { where(publish: 'published').order(rating: :desc) }
-  scope :profile, -> { order(datestart: :desc) }
+  scope :profile, -> { order(updated_at: :desc) }
   scope :today, -> { where(datestart: Date.today.midnight..(Date.today.midnight + 1.day)) }
   scope :tomorrow, -> { where(datestart: (Date.today.midnight + 1.day)..(Date.today.midnight + 2.day)) }
   scope :yesterday, -> { where(datestart: (Date.today.midnight - 1.day)..Date.today.midnight) }

@@ -4,6 +4,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
 
+
+  def create
+    recaptcha_valid = verify_recaptcha(action: 'registration', minimum_score: 0.8)
+    if recaptcha_valid
+      super
+    else
+      build_resource(sign_up_params)
+      clean_up_passwords(resource)
+      flash.now[:alert] = "К сожалению гугл считает что вы бот. Пожалуйста, попробуйте еще раз."
+      flash.delete :recaptcha_error
+      render :new
+    end
+  end
+
   # GET /resource/sign_up
   # def new
   #   super

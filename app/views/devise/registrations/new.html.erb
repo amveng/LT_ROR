@@ -18,6 +18,9 @@
      
       <%= f.input :password_confirmation, autocomplete: "new-password", class: 'form-control mb-4'  %>
     </div>
+    <div>
+    <%= recaptcha_v3(action: 'registration', turbolinks: true) %>
+    </div>
     <div class="actions">
       <%= f.submit "Зарегистрироваться", class: 'btn btn-block btn-success' %>
     </div>

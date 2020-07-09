@@ -58,6 +58,8 @@ gem 'omniauth-github'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-vkontakte'
 
+gem 'recaptcha'
+
 gem 'pg'
 
 gem 'activeadmin'
