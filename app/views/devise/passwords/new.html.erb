@@ -5,6 +5,9 @@
     <div class="field">      
       <%= f.input :email, autofocus: true, autocomplete: "email", class: 'form-control mb-3' %>
     </div>
+    <div>
+    <%= recaptcha_v3(action: 'password', turbolinks: true) %>
+    </div>
     <div class="actions">
       <%= f.submit "Выслать мне инструкции по сбросу пароля", class: 'btn btn-block btn-success'  %>
     </div>
