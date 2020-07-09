@@ -2,7 +2,7 @@
 
 class ServersController < ApplicationController
   before_action :authenticate_user!, except: %i[index show search]
-  before_action :set_server, only: %i[show edit update destroy]
+  before_action :set_server, only: %i[show edit update destroy publish]
 
   def index
     @server = Server.all.includes(:serverversion)
@@ -10,6 +10,18 @@ class ServersController < ApplicationController
   end
 
   def show; end
+
+  def publish
+    if server_belong_user?
+      if @server.update_attributes(publish: 'unverified')
+        redirect_to servers_profiles_path, info: 'Заявка на публикацию принята в обработку'
+      else
+        redirect_to servers_profiles_path, danger: 'Ошибка при запросе публикации'
+      end
+    else
+      acces_close
+    end
+  end
 
   def search
     @server = Server.all
@@ -34,7 +46,8 @@ class ServersController < ApplicationController
     @server = Server.new(server_params)
     @server.user_id = current_user.id
     if @server.save
-      redirect_to servers_profiles_path, success: 'Сервер успешно создан'
+      redirect_to servers_profiles_path, success: 'Сервер успешно создан.
+       Проверьте данные м нажмите кнопу опубликовать'
     else
       flash.now[:danger] = 'Сервер не создан'
       render :new
@@ -46,6 +59,7 @@ class ServersController < ApplicationController
   end
 
   def update
+    @server.publish = 'unverified'
     if @server.update_attributes(server_params)
       redirect_to servers_profiles_path, success: 'Сервер успешно изменён'
     else

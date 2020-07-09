@@ -43,6 +43,20 @@
           <br>
           <%= link_to 'Изменить', edit_server_path(server), class: 'btn btn-outline-primary btn-sm w-25' %>
           <%= link_to 'Удалить', server_path(server), class: 'btn btn-outline-dark btn-sm w-25 float-right', method: :delete, data: { confirm: 'Вы уверены?' } %>
+          <hr>
+          <div>
+            Статус публикации: <span class="badge badge-<%= publish_color(server.publish) %>"><%= t("publish.#{server.publish}") %> </span>
+            <% if server.publish == 'create' %>
+              <br>
+              <%= link_to 'Опубликовать', publish_servers_path(id: server.id), class: 'btn btn-outline-success btn-sm w-50 mt-3', method: :post %>
+            <% end %>
+            <% if server.publish == 'failed' %>
+              <div class="font-weight-bold text-center text-white bg-danger my-3">
+                Cервер не прошел проверку. Проверьте правильнось заполнения и измените данные
+                 согласно требованиям перед повторной проверкой
+              </div>
+            <% end %>
+          </div>
         </li>
       <% end %>
     </div>

@@ -5,8 +5,10 @@
   <div class="shadow bg-light my-5">
     <h5 class="card-header">Редактировать сервер</h5>
     <div class="card-body">
-               <%= render 'form' %>
+      <div class="font-weight-bold text-center text-white bg-danger mb-3">
+        При редактировании сервера публикация отменяется и отправляется на проверку
+      </div>
+      <%= render 'form' %>
     </div>
   </div>
 </div>
-

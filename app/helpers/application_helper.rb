@@ -11,20 +11,27 @@ module ApplicationHelper
       notice: 'alert-primary' }[name.to_sym] || name
   end
 
+  def publish_color(name)
+    { published: 'success',
+      failed: 'danger',
+      unverified: 'info',
+      create: 'primary' }[name.to_sym] || name
+  end
+
   def server_not_work?
     Content.find_by(name: 'index').header.blank?
   end
 
   def acces_new_server?
-    !current_user.servers.find_by(publish: 'create')
+    !current_user.servers.find_by(publish: %w[create unverified])
   end
 
   def content(name)
     Content.find_by(name: name)
   end
 
-  def all_versions_servers    
-    Serverversion.where(id: (Server.pluck('serverversion_id').uniq)).pluck('name')
+  def all_versions_servers
+    Serverversion.where(id: Server.pluck('serverversion_id').uniq).pluck('name')
   end
 
   def all_rates_servers
