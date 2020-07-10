@@ -11,7 +11,10 @@
             <% if server.imageserver? %>
               <%= image_tag server.imageserver.url, class: "mr-3"%>
             <% else %>
-              <img src="/images/servers/50.jpg" class="mr-3">
+              <svg class="bd-placeholder-img mr-3" width="240" height="120">
+                <title>Место для картинки сервера</title><rect width="100%" height="100%" fill="#868e96" />
+                <text x="24%" y="54%" fill="#dee2e6" >Нет изображения</text>
+              </svg>
             <% end %>
             <div class="media-body"><%= server.description %></div>
           </div>
@@ -53,7 +56,7 @@
             <% if server.publish == 'failed' %>
               <div class="font-weight-bold text-center text-white bg-danger my-3">
                 Cервер не прошел проверку. Проверьте правильнось заполнения и измените данные
-                 согласно требованиям перед повторной проверкой
+                согласно требованиям перед повторной проверкой
               </div>
             <% end %>
           </div>

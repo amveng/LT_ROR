@@ -6,8 +6,8 @@
     <h5 class="card-header">Общая информация</h5>
     <div class="card-body">
       <% if @info.user.unconfirmed_email.present? %>
-        <div class="alert alert-warning">
-          <div>В настоящее время ожидает подтверждения email для: <%= @info.user.unconfirmed_email %></div>
+        <div class="badge badge-warning mb-3">
+          В настоящее время ожидает подтверждения email для: <%= @info.user.unconfirmed_email %>
         </div>
       <% end %>
       <table class="table-sm">
@@ -22,7 +22,11 @@
           </tr>
           <tr>
             <th scope="row">email:</th>
-            <td><%= @info.user.email %></td>
+            <td><%= @info.user.email %>
+              <% if @info.user.email[0] == '*' %>
+                <%= link_to "Измените на действительный email", edit_user_registration_path, class: "badge badge-danger" %>
+              <% end  %>
+            </td>
           </tr>
           <tr>
             <th scope="row">Дата регистрации:</th>
