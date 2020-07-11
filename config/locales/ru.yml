@@ -102,7 +102,9 @@ ru:
         sign_in_count: Количество входов
         unconfirmed_email: Неподтвержденный email
         unlock_token: Токен разблокировки
-        updated_at: Дата обновления        
+        updated_at: Дата обновления
+        ltc: Баланс
+        safedelete: Дата запроса удаления        
       server:
         title: 'Название сервера'
         urlserver: 'Адрес сервера'
@@ -133,9 +135,10 @@ ru:
       profile:
         user: Пользователь
         user_id: id Пользователя
-        safedelete: Дата блокировки
+        safedelete: Дата запроса удаления
         created_at: 'Добавлен'
         updated_at: 'Изменён'
+        ltc: Баланс
 
       active_admin/comment:
         author_type: "Author type"

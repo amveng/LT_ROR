@@ -7,6 +7,12 @@ ActiveAdmin.register Server do
                 :datestart, :description,
                 :imageserver
   # scope 'Неактивные', :unpublish
+  controller do
+    def scoped_collection
+      super.includes :user
+    end
+  end
+
   index do
     selectable_column
     # id_column
