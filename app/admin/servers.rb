@@ -1,11 +1,10 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Server do
-  permit_params :title, :user_id,
-                :status, :urlserver,
+  permit_params :title, :user_id, :status_expires,
+                :status, :urlserver, :imageserver,
                 :publish, :serverversion_id,
-                :datestart, :description,
-                :imageserver
+                :datestart, :description                
   # scope 'Неактивные', :unpublish
   controller do
     def scoped_collection
@@ -43,6 +42,7 @@ ActiveAdmin.register Server do
       f.input :user
       f.input :publish, as: :select, collection: %i[create unverified failed published]
       f.input :status, as: :select, collection: %i[1 2 3]
+      f.input :status_expires, as: :datepicker
       f.input :serverversion
       f.input :imageserver
       f.input :description

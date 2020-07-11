@@ -17,7 +17,7 @@ ActiveAdmin.register User do
       row :provider
       row :ltc do |profile|
         profile.profile.ltc
-      end
+      end      
       row :uid
       row :baned
       row :unconfirmed_email
@@ -42,7 +42,7 @@ ActiveAdmin.register User do
     column :email
     column :ltc do |profile|
       profile.profile.ltc
-    end    
+    end
     column :username
     column :provider
     column :servers
@@ -61,7 +61,7 @@ ActiveAdmin.register User do
   form do |f|
     f.inputs do
       f.input :email
-      f.input :votetime, as: :string      
+      f.input :votetime, as: :string
       f.input :baned
       f.input :username
       f.input :locked_at, as: :datepicker

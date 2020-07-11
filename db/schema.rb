@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_10_202645) do
+ActiveRecord::Schema.define(version: 2020_07_11_134033) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,16 @@ ActiveRecord::Schema.define(version: 2020_07_10_202645) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "ltc_billings", force: :cascade do |t|
+    t.bigint "user_id"
+    t.decimal "amount"
+    t.string "description"
+    t.string "product_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_ltc_billings_on_user_id"
+  end
+
   create_table "profiles", force: :cascade do |t|
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
@@ -73,6 +83,7 @@ ActiveRecord::Schema.define(version: 2020_07_10_202645) do
     t.integer "status", default: 3, null: false
     t.string "imageserver"
     t.text "description"
+    t.date "status_expires", default: "2020-01-01", null: false
     t.index ["serverversion_id"], name: "index_servers_on_serverversion_id"
     t.index ["title"], name: "index_servers_on_title", unique: true
     t.index ["user_id"], name: "index_servers_on_user_id"

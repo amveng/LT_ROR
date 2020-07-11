@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     collection do
       get 'search'
       post 'publish'
+      post 'vip'
+      post 'top'
     end
   end
 

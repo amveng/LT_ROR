@@ -18,6 +18,12 @@ module ApplicationHelper
       create: 'primary' }[name.to_sym] || name
   end
 
+  def status_color(name)
+    { '1': 'danger',
+      '2': 'primary',
+      '3': 'secondary' }[name.to_sym] || name
+  end
+
   def server_not_work?
     Content.find_by(name: 'index').header.blank?
   end
