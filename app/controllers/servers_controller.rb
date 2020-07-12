@@ -30,8 +30,8 @@ class ServersController < ApplicationController
   def vip
     if server_belong_user?
       if current_user.profile.ltc >= 20
-        current_user.profile.update_attributes(ltc: (current_user.profile.ltc - 20))
-        @server.update_attributes(status: 2, status_expires: (Date.today + 30.days))
+        current_user.profile.update(ltc: (current_user.profile.ltc - 20))
+        @server.update(status: 2, status_expires: (Date.today + 30.days),publish: 'published')
         LtcBilling.create(
           user_id: current_user.id,
           amount: -20,
@@ -50,8 +50,8 @@ class ServersController < ApplicationController
   def top
     if server_belong_user?
       if current_user.profile.ltc >= 50
-        current_user.profile.update_attributes(ltc: (current_user.profile.ltc - 50))
-        @server.update_attributes(status: 1, status_expires: (Date.today + 30.days))
+        current_user.profile.update(ltc: (current_user.profile.ltc - 50))
+        @server.update(status: 1, status_expires: (Date.today + 30.days),publish: 'published')
         LtcBilling.create(
           user_id: current_user.id,
           amount: -50,

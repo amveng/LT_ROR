@@ -18,6 +18,12 @@ module ApplicationHelper
       create: 'primary' }[name.to_sym] || name
   end
 
+  def status_icon(name)
+    { '1': '★',
+      '2': '☆',
+      '3': '–' }[name.to_sym] || name
+  end
+
   def status_color(name)
     { '1': 'danger',
       '2': 'primary',

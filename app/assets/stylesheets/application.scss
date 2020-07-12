@@ -87,8 +87,8 @@ a.nav-menu:hover {
 }
 
 a.link-1 {
-    display: block; 
-    font: 1.1em sans-serif;
+    display: block;     
+    font: 1.3em sans-serif;
     font-weight: bold;   
     text-decoration: none;
     color: #d00;    
@@ -127,15 +127,9 @@ a.link-3:hover {
     border-top: 1px solid #dee2e6;
 }
 
-.material-icons, .mi {    
-    vertical-align: middle;  
-}
-
-.mi.vip1 { color: #d00; }
-.mi.vip2 { color: #007bff; }
-.mi.vip3 { color: #495057; }
-.mi.rating { color: mediumseagreen; }
-
+.vip1 { color: #d00; }
+.vip2 { color: #007bff; }
+.vip3 { color: #495057; }
 
 textarea.form-control {
     max-height: 7rem;
