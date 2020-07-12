@@ -5,8 +5,15 @@
   <div class="shadow bg-light my-5">
     <h5 class="card-header">Мои сервера</h5>
     <div class="card-body">
-      <% @servers.profile.each do |server| %>
-        <li class="list-group-item mb-4">
+      <% if current_user.servers.blank? %>
+        <div class="alert alert-secondary font-weight-bold text-center">
+          У вас не зарегистрировано не одного сервера.
+          <br>
+          <%= link_to 'Добавить сервер', new_server_path, class: "badge badge-primary mt-3" %>
+        </div>
+      <% end %>
+      <% current_user.servers.each do |server| %>
+        <li class="list-group-item border-secondary">
           <div class="media">
             <% if server.imageserver? %>
               <%= image_tag server.imageserver.url, class: "mr-3"%>
@@ -65,7 +72,6 @@
               согласно требованиям перед повторной проверкой
             </div>
           <% end %>
-          
           <hr>
           <div>
             <% if server.status == 3 %>
@@ -74,18 +80,19 @@
             <% end %>
           </div>
           <p>
-            <div>
-              <% if server.status > 1 %>
+            <% if server.status > 1 %>
+              <div>
                 <%= link_to 'Подключить  премиум статус TOP на 30 дней за 50 LTC', top_servers_path(id: server.id), class: 'btn btn-outline-danger font-weight-bold btn-sm w-25', method: :post, data: { confirm: 'Подключить  премиум статус TOP за 50 LTC?' } %>
                 <%= link_to "Узнать больше о премиум статусе TOP", advertising_contents_path, class: "ml-3" %>
-              <% end %>
-            </div>
-            <hr>
+              </div>
+              <hr>
+            <% end %>
             <div class="my-5">
               <%= link_to 'Изменить', edit_server_path(server), class: 'btn btn-outline-primary btn-sm w-25' %>
               <%= link_to 'Удалить', server_path(server), class: 'btn btn-outline-dark btn-sm w-25 float-right', method: :delete, data: { confirm: 'Вы уверены?' } %>
             </div>
           </li>
+          <br>
         <% end %>
       </div>
     </div>

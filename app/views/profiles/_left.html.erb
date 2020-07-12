@@ -1,13 +1,13 @@
 <div class="sticky-menu">
   <div class="shadow bg-light my-5">
-    <h5 class="card-header">Профиль</h5>
-    <div class="card-body">
-      <nav class="nav flex-column">
-        <%= link_to "Общее", info_profiles_path, class: "nav-menu" %>
-        <%= link_to "Редактировать аккаунт", edit_user_registration_path, class: "nav-menu" %>
-        <%= link_to "Мои сервера", servers_profiles_path, class: "nav-menu" %>
-        <a class="nav-menu" href="#">Мои банеры</a>
-      </nav>
+    <h5 class="card-header  text-truncate">Профиль</h5>
+    <div class="card-body px-0">
+      <%= link_to "Общая информация", info_profiles_path, class: "btn btn-sm btn-light w-100 text-truncate" %>
+      <%= link_to "Редактировать аккаунт", edit_user_registration_path, class: "btn btn-sm btn-light w-100 text-truncate" %>
+      <%= link_to "Мои сервера", servers_profiles_path, class: "btn btn-sm btn-light w-100 text-truncate" %>
+      <%= link_to "Баланс LTC", balance_profiles_path, class: "btn btn-sm btn-light w-100 text-truncate" %>
+      <%= link_to "Голосование", vote_button_profiles_path, class: "btn btn-sm btn-light w-100 text-truncate" %>
+      <a class="btn btn-sm btn-light w-100 text-truncate" href="#">Мои банеры</a>
     </div>
   </div>
 </div>

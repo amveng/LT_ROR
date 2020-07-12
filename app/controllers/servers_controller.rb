@@ -6,18 +6,17 @@ class ServersController < ApplicationController
 
   def index
     @server = Server.all.includes(:serverversion)
-    @servers_expires = Server.where(status_expires: ..Date.today, status: 1..2)
+    @servers_expires = Server.where(status_expires: ..Date.yesterday, status: 1..2)
     if @servers_expires.present?
       servers_update_status
     end
-    # @server = Server.where(rate: params[:rate])
   end
 
   def show; end
 
   def publish
     if server_belong_user?
-      if @server.update_attributes(publish: 'unverified')
+      if @server.update(publish: 'unverified')
         redirect_to servers_profiles_path, info: 'Заявка на публикацию принята в обработку'
       else
         redirect_to servers_profiles_path, danger: 'Ошибка при запросе публикации'
@@ -103,8 +102,10 @@ class ServersController < ApplicationController
   end
 
   def update
-    @server.publish = 'unverified'
-    if @server.update_attributes(server_params)
+    if @server.status == 3 || @server.publish == 'failed'
+      @server.publish = 'unverified'
+    end
+    if @server.update(server_params)
       redirect_to servers_profiles_path, success: 'Сервер успешно изменён'
     else
       flash.now[:danger] = 'Сервер не изменён'

@@ -50,7 +50,7 @@
       </p>
       <% unless user_signed_in? %>
         <div class="alert alert-info">
-          Необходимо <%= link_to "Войти", new_user_session_path %> для голосования
+          Необходимо <%= link_to "Войти", new_user_session_path, class: "alert-link" %> для голосования
         </div>
       <% else %>
         <% if current_user.votetime > date_time_now = DateTime.now %>

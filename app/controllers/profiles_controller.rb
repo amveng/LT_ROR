@@ -3,15 +3,6 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!
 
-
-  def info
-    @info = current_user.profile
-  end
-
-  def servers
-    @servers = current_user.servers.includes(:serverversion)
-  end
-
   def safedelete
     current_user.update_attributes(baned: true)
     current_user.profile.update_attributes(safedelete: DateTime.now)
