@@ -10,6 +10,7 @@ ru:
     published: Опубликовано
     unverified: Проверяется
     failed: Отказано в публикации
+    arhiv: В архиве
   status:
     1: Премиум TOP
     2: Премиум
@@ -125,6 +126,7 @@ ru:
         imageserver: Картинка для сервера
         description: Краткая информация
         status_expires: Премиум до
+        failed: Сообщение о неудачной проверке
       vote:
         server: 'Название сервера'
         user : Пользователь

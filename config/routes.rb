@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       post 'publish'
       post 'vip'
       post 'top'
+      post 'arhiv'
     end
   end  
 

@@ -34,5 +34,7 @@
 }
 
 form textarea {   
-    font-size: 1.4em;    
+    font-size: 1.4em;
+    max-height: 5rem;
+    min-height: 5rem;    
 }

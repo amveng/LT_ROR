@@ -2,67 +2,60 @@
 
 class ServersController < ApplicationController
   before_action :authenticate_user!, except: %i[index show search]
-  before_action :set_server, only: %i[show edit update destroy publish vip top]
+  before_action :server_belong_user, only: %i[edit update destroy publish vip top arhiv]
 
   def index
     @server = Server.all.includes(:serverversion)
     @servers_expires = Server.where(status_expires: ..Date.yesterday, status: 1..2)
-    if @servers_expires.present?
-      servers_update_status
-    end
+    servers_update_status if @servers_expires.present?
   end
 
-  def show; end
+  def show
+    set_server
+  end
+
+  def arhiv
+    @server.update(publish: 'arhiv')
+    redirect_to servers_profiles_path, info: 'Статус публикации изменен на архивный'
+  end
 
   def publish
-    if server_belong_user?
-      if @server.update(publish: 'unverified')
-        redirect_to servers_profiles_path, info: 'Заявка на публикацию принята в обработку'
-      else
-        redirect_to servers_profiles_path, danger: 'Ошибка при запросе публикации'
-      end
+    if @server.update(publish: 'unverified')
+      redirect_to servers_profiles_path, info: 'Заявка на публикацию принята в обработку'
     else
-      acces_close
+      redirect_to servers_profiles_path, danger: 'Ошибка при запросе публикации'
     end
   end
 
   def vip
-    if server_belong_user?
-      if current_user.profile.ltc >= 20
-        current_user.profile.update(ltc: (current_user.profile.ltc - 20))
-        @server.update(status: 2, status_expires: (Date.today + 30.days),publish: 'published')
-        LtcBilling.create(
-          user_id: current_user.id,
-          amount: -20,
-          description: 'Покупка премиум на сервер',
-          product_name: @server.title
-        )
-        redirect_to servers_profiles_path, success: 'Премиум активирован'
-      else
-        redirect_to servers_profiles_path, danger: 'Недостаточно средств на счете'
-      end
+    if current_user.profile.ltc >= 20
+      current_user.profile.update(ltc: (current_user.profile.ltc - 20))
+      @server.update(status: 2, status_expires: (Date.today + 30.days), publish: 'published')
+      LtcBilling.create(
+        user_id: current_user.id,
+        amount: -20,
+        description: 'Покупка премиум на сервер',
+        product_name: @server.title
+      )
+      redirect_to servers_profiles_path, success: 'Премиум активирован'
     else
-      acces_close
+      redirect_to servers_profiles_path, danger: 'Недостаточно средств на счете'
     end
   end
 
   def top
-    if server_belong_user?
-      if current_user.profile.ltc >= 50
-        current_user.profile.update(ltc: (current_user.profile.ltc - 50))
-        @server.update(status: 1, status_expires: (Date.today + 30.days),publish: 'published')
-        LtcBilling.create(
-          user_id: current_user.id,
-          amount: -50,
-          description: 'Покупка премиум ТОП на сервер',
-          product_name: @server.title
-        )
-        redirect_to servers_profiles_path, success: 'Премиум ТОП активирован'
-      else
-        redirect_to servers_profiles_path, danger: 'Недостаточно средств на счете'
-      end
+    if current_user.profile.ltc >= 50
+      current_user.profile.update(ltc: (current_user.profile.ltc - 50))
+      @server.update(status: 1, status_expires: (Date.today + 30.days), publish: 'published')
+      LtcBilling.create(
+        user_id: current_user.id,
+        amount: -50,
+        description: 'Покупка премиум ТОП на сервер',
+        product_name: @server.title
+      )
+      redirect_to servers_profiles_path, success: 'Премиум ТОП активирован'
     else
-      acces_close
+      redirect_to servers_profiles_path, danger: 'Недостаточно средств на счете'
     end
   end
 
@@ -97,13 +90,12 @@ class ServersController < ApplicationController
     end
   end
 
-  def edit
-    acces_close unless server_belong_user?
-  end
+  def edit; end
 
   def update
     if @server.status == 3 || @server.publish == 'failed'
       @server.publish = 'unverified'
+      @server.failed = ''
     end
     if @server.update(server_params)
       redirect_to servers_profiles_path, success: 'Сервер успешно изменён'
@@ -114,12 +106,8 @@ class ServersController < ApplicationController
   end
 
   def destroy
-    if server_belong_user?
-      @server.destroy
-      redirect_to servers_profiles_path, info: 'Сервер успешно удален'
-    else
-      acces_close
-    end
+    @server.destroy
+    redirect_to servers_profiles_path, info: 'Сервер успешно удален'
   end
 
   private
@@ -130,8 +118,9 @@ class ServersController < ApplicationController
     end
   end
 
-  def server_belong_user?
-    @server.user_id == current_user.id
+  def server_belong_user
+    set_server
+    acces_close unless @server.user_id == current_user.id
   end
 
   def set_server

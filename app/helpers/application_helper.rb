@@ -15,6 +15,7 @@ module ApplicationHelper
     { published: 'success',
       failed: 'danger',
       unverified: 'info',
+      arhiv: 'secondary',
       create: 'primary' }[name.to_sym] || name
   end
 

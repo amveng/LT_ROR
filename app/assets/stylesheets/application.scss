@@ -54,33 +54,6 @@ background-color: #f9f9f9;
     }   
 }
 
-.navbar .dropdown-menu {
-    background-color: #21262b;
-  }
-
-.navbar .dropdown.show a {
-    background-color: #21262b;
-    color: #8a8d8f;
-}
-
-.navbar .dropdown.show a:hover {
-    color: #fff;  
-    background: #21262b; 
-}
-
-a.nav-menu {
-    display: block;
-    padding: 0.5rem 1rem;
-    text-decoration: none;
-    color: #495057;
-    background-color: transparent;
-}
-
-a.nav-menu:hover {
-    color: #15171a;  
-    background: #f0f1f2;    
-}
-
 .sticky-menu {
     position: sticky;
     top: 4em;        
