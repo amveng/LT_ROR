@@ -13,14 +13,8 @@
           <li class="nav-item">
             <%= link_to 'Реклама', advertising_contents_path, class: "nav-link" %>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Информация</a>
-            <div class="dropdown-menu">
-              <%= link_to 'О сайте', about_contents_path, class: "dropdown-item" %>
-              <%= link_to 'Контакты', contact_contents_path, class: "dropdown-item" %>
-              <%= link_to 'Пользовательское соглашение', terms_of_use_contents_path, class: "dropdown-item" %>
-              <%= link_to 'Конфиденциальность', privacy_contents_path, class: "dropdown-item" %>
-            </div>
+          <li class="nav-item">
+            <%= link_to 'Информация', about_contents_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
             <%= link_to 'Добавить сервер', new_server_path, class: "btn btn-outline-info" %>
@@ -28,19 +22,15 @@
         </ul>
         <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <% if current_user.username.blank? %>
-                  <%= truncate(current_user.email.html_safe, length:18) %>
-                <% else %>
-                  <%= truncate(current_user.username.html_safe, length:18) %>
-                <% end %>
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <%= link_to "Профиль", info_profiles_path, class: "dropdown-item" %>
-                <div class="dropdown-divider"></div>
-                <%= link_to "Выход", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-              </div>
+            <li class="nav-item">
+              <% if current_user.username.blank? %>
+                <%= link_to current_user.email, info_profiles_path, class: "nav-link" %>
+              <% else %>
+                <%= link_to current_user.username, info_profiles_path, class: "nav-link" %>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Выход", destroy_user_session_path, method: :delete, class: "nav-link" %>
             </li>
           <% else %>
             <li class="nav-item">

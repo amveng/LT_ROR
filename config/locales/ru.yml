@@ -4,11 +4,17 @@ ru:
     back: 'Назад'
     create: 'Создать'
     edit: 'Изменить'
+    status_expires: 'Действителен до:'
   publish:
     create: Сервер создан но не опубликован
     published: Опубликовано
     unverified: Проверяется
     failed: Отказано в публикации
+    arhiv: В архиве
+  status:
+    1: Премиум TOP
+    2: Премиум
+    3: Отсутствует
   hello: "Привет"
   time:
     formats:
@@ -102,7 +108,9 @@ ru:
         sign_in_count: Количество входов
         unconfirmed_email: Неподтвержденный email
         unlock_token: Токен разблокировки
-        updated_at: Дата обновления        
+        updated_at: Дата обновления
+        ltc: Баланс
+        safedelete: Дата запроса удаления        
       server:
         title: 'Название сервера'
         urlserver: 'Адрес сервера'
@@ -117,6 +125,8 @@ ru:
         serverversion: 'Хроники'
         imageserver: Картинка для сервера
         description: Краткая информация
+        status_expires: Премиум до
+        failed: Сообщение о неудачной проверке
       vote:
         server: 'Название сервера'
         user : Пользователь
@@ -133,10 +143,17 @@ ru:
       profile:
         user: Пользователь
         user_id: id Пользователя
-        safedelete: Дата блокировки
+        safedelete: Дата запроса удаления
         created_at: 'Добавлен'
         updated_at: 'Изменён'
-
+        ltc: Баланс
+      ltc_billing:
+        user: Пользователь
+        created_at: Дата счета
+        amount: Количество монет
+        description: Описание
+        product_name: Ресурс
+        
       active_admin/comment:
         author_type: "Author type"
         body: "Body"
@@ -185,7 +202,12 @@ ru:
         few: Профили
         many: Профилей
         one: Профиль
-        other: Профиль      
+        other: Профиль
+      ltc_billing:
+        few: Биллинг
+        many: Биллинг
+        one: Биллинг
+        other: Биллинг        
 
 
     errors:

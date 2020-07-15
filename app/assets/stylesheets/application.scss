@@ -54,41 +54,14 @@ background-color: #f9f9f9;
     }   
 }
 
-.navbar .dropdown-menu {
-    background-color: #21262b;
-  }
-
-.navbar .dropdown.show a {
-    background-color: #21262b;
-    color: #8a8d8f;
-}
-
-.navbar .dropdown.show a:hover {
-    color: #fff;  
-    background: #21262b; 
-}
-
-a.nav-menu {
-    display: block;
-    padding: 0.5rem 1rem;
-    text-decoration: none;
-    color: #495057;
-    background-color: transparent;
-}
-
-a.nav-menu:hover {
-    color: #15171a;  
-    background: #f0f1f2;    
-}
-
 .sticky-menu {
     position: sticky;
     top: 4em;        
 }
 
 a.link-1 {
-    display: block; 
-    font: 1.1em sans-serif;
+    display: block;     
+    font: 1.3em sans-serif;
     font-weight: bold;   
     text-decoration: none;
     color: #d00;    
@@ -127,15 +100,9 @@ a.link-3:hover {
     border-top: 1px solid #dee2e6;
 }
 
-.material-icons, .mi {    
-    vertical-align: middle;  
-}
-
-.mi.vip1 { color: #d00; }
-.mi.vip2 { color: #007bff; }
-.mi.vip3 { color: #495057; }
-.mi.rating { color: mediumseagreen; }
-
+.vip1 { color: #d00; }
+.vip2 { color: #007bff; }
+.vip3 { color: #495057; }
 
 textarea.form-control {
     max-height: 7rem;

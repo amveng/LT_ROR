@@ -3,15 +3,19 @@
   <div class="card-body">
     <table class="table table-hover table-sm">
       <tbody>
-        <% vip = %w[star star_outline crop_7_5] %>
         <% @server.rating.each do |server| %>
           <tr>
-            <td><i class="mi vip<%= server.status %>"> <%= vip[server.status - 1] %> </i></td>
-            <td><%= link_to truncate(server.title.html_safe, length:18), server.urlserver, class: "link-#{server.status}", target: "_blank" %></td>
+            <td class="text-<%= status_color(server.status.to_s) %> p-0 m-0" style="font-size:20px"> <%= status_icon(server.status.to_s) %> </td>
+            <td><%= link_to truncate(server.title.html_safe, length:20), server.urlserver, class: "link-#{server.status}", target: "_blank" %></td>
             <td><%= server.serverversion.name %></td>
             <td>x<%= server.rate %></td>
             <td><%= server.datestart.strftime("%d.%m.%Y") %></td>
-            <td><i class="mi rating">insert_chart</i> <%= server.rating %></td>
+            <td>
+              <svg class="mr-1" width="18" height="18" viewBox="0 0 1000 1000">
+                
+                <g><path d="M796.3,10H990v980H796.3V10z"/><path d="M533.3,538.2h193.3V990H533.3V538.2z"/><path d="M268,266.2h200V990H268V266.2z"/><path d="M10,727h190.6v263H10V727z"/></g>
+              </svg>
+              <%= server.rating %></td>
             <td><%= link_to ' Info', server_path(server), class: 'btn btn-sm btn-info p-0 w-100' %></td>
           </tr>
         <% end %>

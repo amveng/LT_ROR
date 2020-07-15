@@ -1,0 +1,22 @@
+<div class="col col-3">
+  <%= render '/profiles/left' %>
+</div>
+<div class="col col-9">
+  <div class="shadow bg-light my-5">
+    <h5 class="card-header">Баланс LTC</h5>
+    <div class="card-body">
+      <h5>&#128178; LTC - LineageTopCoin</h5>
+      <div class="">
+        Монеты за которые можно подключить различные услуги на нашем сервере.
+        <br>
+        На данный момент получение монет недоступно.    
+      </div>
+      <span class="font-weight-bold">Монет в наличии:</span>
+      <% if current_user.profile.ltc > 0 %>
+        <span class="font-weight-bold text-primary"><%= current_user.profile.ltc %></span>
+      <% else %>
+        <span class="font-weight-bold text-danger"><%= current_user.profile.ltc %></span>
+      <% end %>
+    </div>
+  </div>
+</div>

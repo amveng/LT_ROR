@@ -2,12 +2,11 @@
   <h5 class="card-header">Премиум сервера</h5>
   <div class="card-body">
     <table class="table table-hover table-sm">
-      <tbody>
-        <% vip = %w[star star_outline crop_7_5] %>
+      <tbody>       
         <% @server.vip.each do |server| %>
           <tr>
-            <td><i class="mi vip<%= server.status %>"> <%= vip[server.status - 1] %> </i></td>
-            <td><%= link_to truncate(server.title.html_safe, length:18), server.urlserver, class: "link-#{server.status}", target: "_blank" %></td>
+            <td class="text-<%= status_color(server.status.to_s) %> p-0 m-0" style="font-size:20px"> <%= status_icon(server.status.to_s) %> </td>
+            <td><%= link_to truncate(server.title.html_safe, length:20), server.urlserver, class: "link-#{server.status}", target: "_blank" %></td>
             <td><%= server.serverversion.name %></td>
             <td>x<%= server.rate %></td>
             <td><%= server.datestart.strftime("%d.%m.%Y в %H:%M") %></td>

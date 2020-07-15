@@ -5,28 +5,32 @@
   <div class="shadow bg-light my-5">
     <h5 class="card-header">Общая информация</h5>
     <div class="card-body">
-      <% if @info.user.unconfirmed_email.present? %>
-        <div class="alert alert-warning">
-          <div>В настоящее время ожидает подтверждения email для: <%= @info.user.unconfirmed_email %></div>
+      <% if current_user.unconfirmed_email.present? %>
+        <div class="badge badge-warning mb-3">
+          В настоящее время ожидает подтверждения email для: <%= current_user.unconfirmed_email %>
         </div>
       <% end %>
       <table class="table-sm">
         <tbody>
           <tr>
             <th class="w-25" scope="row">Имя:</th>
-            <td class="w-50"><%= @info.user.username %></td>
+            <td class="w-50"><%= current_user.username %></td>
           </tr>
           <tr>
             <th scope="row">Вход через:</th>
-            <td><%= @info.user.provider %></td>
+            <td><%= current_user.provider %></td>
           </tr>
           <tr>
             <th scope="row">email:</th>
-            <td><%= @info.user.email %></td>
+            <td><%= current_user.email %>
+              <% if current_user.email[0] == '*' %>
+                <%= link_to "Измените на действительный email", edit_user_registration_path, class: "badge badge-danger" %>
+              <% end  %>
+            </td>
           </tr>
           <tr>
             <th scope="row">Дата регистрации:</th>
-            <td><%= @info.user.created_at.strftime("%d-%m-%Y в %H-%M") %></td>
+            <td><%= current_user.created_at.strftime("%d-%m-%Y в %H-%M") %></td>
           </tr>
         </tbody>
       </table>

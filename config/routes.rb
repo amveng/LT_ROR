@@ -10,20 +10,29 @@ Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+
+  root 'servers#index'
+
+  get '/users', to: 'servers#index'
+
+  resources :votes, only: [:create]
+
   resources :servers do
     collection do
       get 'search'
       post 'publish'
+      post 'vip'
+      post 'top'
+      post 'arhiv'
     end
-  end
+  end  
 
-  resources :votes, only: [:create]
-  root 'servers#index'
-  get '/users', to: 'servers#index'
   resources :profiles do
     collection do
       get 'info'
       get 'servers'
+      get 'balance'
+      get 'vote_button'
       post 'safedelete'
     end
   end

@@ -5,13 +5,23 @@
   <div class="shadow bg-light my-5">
     <h5 class="card-header">Мои сервера</h5>
     <div class="card-body">
-      <% @servers.profile.each do |server| %>
-        <li class="list-group-item mb-4">
+      <% if current_user.servers.blank? %>
+        <div class="alert alert-secondary font-weight-bold text-center">
+          У вас не зарегистрировано не одного сервера.
+          <br>
+          <%= link_to 'Добавить сервер', new_server_path, class: "badge badge-primary mt-3" %>
+        </div>
+      <% end %>
+      <% current_user.servers.each do |server| %>
+        <li class="list-group-item border-secondary">
           <div class="media">
             <% if server.imageserver? %>
               <%= image_tag server.imageserver.url, class: "mr-3"%>
             <% else %>
-              <img src="/images/servers/50.jpg" class="mr-3">
+              <svg class="bd-placeholder-img mr-3" width="240" height="120">
+                <title>Место для картинки сервера</title><rect width="100%" height="100%" fill="#868e96" />
+                <text x="24%" y="54%" fill="#dee2e6" >Нет изображения</text>
+              </svg>
             <% end %>
             <div class="media-body"><%= server.description %></div>
           </div>
@@ -38,27 +48,63 @@
                 <th class="w-25" scope="row">Рейты:</th>
                 <td> x<%= server.rate %></td>
               </tr>
+              <tr>
+                <th class="w-25" scope="row">Премиум статус:</th>
+                <td> <span class="badge badge-<%= status_color(server.status.to_s) %>"><%= t("status.#{server.status.to_s}") %></span>
+                  <% if server.status < 3  %>
+                    <span class="ml-3"><%= t("common.status_expires") %> <%=  server.status_expires %></span>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <th class="w-25" scope="row">Статус публикации:</th>
+                <td><span class="badge badge-<%= publish_color(server.publish) %>"><%= t("publish.#{server.publish}") %> </span>
+                  <% if server.publish == 'create' || server.publish == 'arhiv' %>
+                    <%= link_to 'Опубликовать', publish_servers_path(id: server.id), class: 'btn btn-outline-primary btn-sm w-25 p-0 ml-3', method: :post %>
+                  <% end %>
+                </td>
+              </tr>
             </tbody>
           </table>
-          <br>
-          <%= link_to 'Изменить', edit_server_path(server), class: 'btn btn-outline-primary btn-sm w-25' %>
-          <%= link_to 'Удалить', server_path(server), class: 'btn btn-outline-dark btn-sm w-25 float-right', method: :delete, data: { confirm: 'Вы уверены?' } %>
-          <hr>
-          <div>
-            Статус публикации: <span class="badge badge-<%= publish_color(server.publish) %>"><%= t("publish.#{server.publish}") %> </span>
-            <% if server.publish == 'create' %>
-              <br>
-              <%= link_to 'Опубликовать', publish_servers_path(id: server.id), class: 'btn btn-outline-success btn-sm w-50 mt-3', method: :post %>
-            <% end %>
-            <% if server.publish == 'failed' %>
-              <div class="font-weight-bold text-center text-white bg-danger my-3">
+          <% if server.publish == 'failed' %>
+            <% if server.failed.blank? %>
+              <div class="font-weight-bold text-center text-white bg-danger my-2">
                 Cервер не прошел проверку. Проверьте правильнось заполнения и измените данные
-                 согласно требованиям перед повторной проверкой
+                согласно требованиям перед повторной проверкой
+              </div>
+            <% else %>
+              <div class="font-weight-bold text-center text-white bg-danger my-2">
+                <%= server.failed %>
               </div>
             <% end %>
+          <% end %>
+          <hr>
+          <div>
+            <% if server.status == 3 %>
+              <%= link_to 'Подключить  премиум на 30 дней за 20 LTC ', vip_servers_path(id: server.id), class: 'btn btn-outline-primary btn-sm w-25', method: :post, data: { confirm: 'Подключить  премиум за 20 LTC?' } %>
+              <%= link_to "Узнать больше о премиум статусе", advertising_contents_path, class: "ml-3" %>
+            <% end %>
           </div>
-        </li>
-      <% end %>
+          <p>
+            <% if server.status > 1 %>
+              <div>
+                <%= link_to 'Подключить  премиум статус TOP на 30 дней за 50 LTC', top_servers_path(id: server.id), class: 'btn btn-outline-danger font-weight-bold btn-sm w-25', method: :post, data: { confirm: 'Подключить  премиум статус TOP за 50 LTC?' } %>
+                <%= link_to "Узнать больше о премиум статусе TOP", advertising_contents_path, class: "ml-3" %>
+              </div>
+              <hr>
+            <% end %>
+            <div class="my-5">
+              <div class="row justify-content-between mx-2">
+                <%= link_to 'Изменить', edit_server_path(server), class: 'btn btn-outline-primary btn-sm w-25' %>
+                <% if server.publish == 'published' %>
+                  <%= link_to 'Убрать в архив', arhiv_servers_path(id: server.id), class: 'btn btn-outline-dark btn-sm w-25', method: :post %>
+                <% end %>
+                <%= link_to 'Удалить', server_path(server), class: 'btn btn-outline-dark btn-sm w-25', method: :delete, data: { confirm: 'Вы уверены?' } %>
+              </div>
+            </div>
+          </li>
+          <br>
+        <% end %>
+      </div>
     </div>
   </div>
-</div>

@@ -1,0 +1,46 @@
+<div class="col col-3">
+  <%= render '/profiles/left' %>
+</div>
+<div class="col col-9">
+  <div class="shadow bg-light my-5">
+    <h5 class="card-header">Голосование</h5>
+    <div class="card-body">
+      <h5 class="pb-3">Настройки для голосования за ваш сервер</h5>
+      <% current_user.servers.each do |server| %>
+        <li class="list-group-item border-secondary">
+          <div class="">
+            Сервер: 
+            <%= server.title %>
+          </div>
+          <p>
+            <div class="card mb-3">
+              <div class="row no-gutters">
+                <div class="my-auto">
+                  <a href="<%= server_path(server) %>" target="_blank" 
+                title="Проголосовать за сервер"><img src="https://lineagetop.com/logo-black.png" /></a>
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Код кнопки для голосования за ваш сервер</h5>
+                    <p class="card-text user-select-all">
+                      &lt;a href=&quot;<%= server_url(server) %>&quot;
+                      style=&quot;z-index:99999;&quot; target=&quot;_blank&quot;
+                      title=&quot;Проголосовать за сервер&quot;&gt;
+                      &lt;img src=&quot;https://lineagetop.com/logo-black.png&quot;
+                      /&gt;&lt;/a&gt;
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+             <div class="py-3">
+          <h6>Настройки для доступа к апи</h6>
+          <p class="badge">В разработке</p>
+          </div>
+          </li>
+         
+          <br>
+        <% end %>
+      </div>
+    </div>
+  </div>
