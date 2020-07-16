@@ -43,6 +43,10 @@ module ApplicationHelper
     Content.find_by(name: name)
   end
 
+  def baner_random
+    Server.where(publish: 'published', status: 1).shuffle
+  end
+
   def all_versions_servers
     Serverversion.where(id: Server.pluck('serverversion_id').uniq).pluck('name')
   end
