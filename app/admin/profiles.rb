@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Profile do
-  belongs_to :user
-  permit_params :user_id, :ltc
+  # belongs_to :user
+  
+  permit_params :user_id, :ltc,
+                :baner_top_date_start, :baner_top_status,
+                :baner_top_date_end, :baner_top_img, :baner_top_url
 
   controller do
     def scoped_collection
@@ -25,8 +28,15 @@ ActiveAdmin.register Profile do
   filter :safedelete
 
   form do |f|
-    f.inputs do      
+    f.inputs do
       f.input :ltc
+      f.input :user_id
+      f.input :baner_top_date_start, as: :datepicker
+      f.input :baner_top_date_end, as: :datepicker
+      f.input :baner_top_img
+      # f.input :servers, as: :select
+      f.input :baner_top_url, as: :select, collection: Server.where(user_id: profile.user_id).pluck('urlserver')
+      f.input :baner_top_status
     end
     f.actions
   end

@@ -17,13 +17,14 @@ ActiveAdmin.register User do
       row :provider
       row :ltc do |profile|
         profile.profile.ltc
-      end      
+      end
       row :uid
       row :baned
       row :unconfirmed_email
       row :created_at
       row :updated_at
       row :servers
+      row :profile
       row :last_sign_in_ip
       row :last_sign_in_at
       row :current_sign_in_ip

@@ -15,9 +15,17 @@
       <%= render '/layouts/default' %>
     <% else %>
       <%# Шапка--------------------------------------------------------- %>
-      <div>
-        <img src="/images/127734.jpg" class="d-block w-100" alt="">
-      </div>
+      <% if baner_top.blank? %>
+        <div>
+          <img src="/images/127734.jpg" class="d-block w-100" alt="">
+        </div>
+      <% else %>
+        <div>
+          <a href="<%= baner_top.baner_top_url %>" target="_blank">
+            <%= image_tag baner_top.baner_top_img.url, class: "d-block w-100" %>
+          </a>
+        </div>
+      <% end %>
       <%# Навбаер меню-------------------------------------------------- %>
       <%= render '/layouts/navbar' %>
       <div class="container">

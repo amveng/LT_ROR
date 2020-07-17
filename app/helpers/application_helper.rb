@@ -47,6 +47,10 @@ module ApplicationHelper
     Server.where(publish: 'published', status: 1).shuffle
   end
 
+  def baner_top
+    Profile.find_by(baner_top_date_start: ..Date.today, baner_top_date_end: Date.today..)
+  end
+
   def all_versions_servers
     Serverversion.where(id: Server.pluck('serverversion_id').uniq).pluck('name')
   end
