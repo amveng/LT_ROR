@@ -35,7 +35,7 @@ ActiveAdmin.register Profile do
       f.input :baner_top_date_end, as: :datepicker
       f.input :baner_top_img
       f.input :baner_top_url, as: :select, collection: Server.where(user_id: profile.user_id).pluck('urlserver')
-      f.input :baner_top_status
+      f.input :baner_top_status, as: :select, collection: %i[undefined unverified failed published arhiv]
     end
     f.actions
   end

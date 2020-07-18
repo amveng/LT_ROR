@@ -12,7 +12,7 @@
           <%= link_to 'Добавить сервер', new_server_path, class: "badge badge-primary mt-3" %>
         </div>
       <% end %>
-      <% current_user.servers.each do |server| %>
+      <% current_user.servers.profile.each do |server| %>
         <li class="list-group-item border-secondary">
           <div class="media">
             <% if server.imageserver? %>

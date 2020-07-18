@@ -34,8 +34,6 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'bootstrap', '~> 4.5.0'
 
-gem 'material_icons'
-
 gem 'jquery-rails'
 
 gem 'bootstrap-datepicker-rails'

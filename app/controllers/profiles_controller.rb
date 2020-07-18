@@ -2,8 +2,10 @@
 
 class ProfilesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_profile, only: %i[edit update top15]
-  before_action :check_baner, only: %i[top15]
+  before_action :set_profile, only: %i[
+    edit update top15 top30 publish_top arhiv_top
+  ]
+  before_action :check_baner, only: %i[top15 top30]
 
   def safedelete
     current_user.update_attributes(baned: true)
@@ -25,18 +27,54 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def publish_top
+    if @profile.update(baner_top_status: 'unverified')
+      redirect_to info_profiles_path, info: 'Заявка на публикацию принята в обработку'
+    else
+      redirect_to info_profiles_path, danger: 'Ошибка при запросе публикации'
+    end
+  end
+
+  def arhiv_top
+    if @profile.update(baner_top_status: 'arhiv')
+      redirect_to info_profiles_path, info: 'Банер снят с публикации'
+    else
+      redirect_to info_profiles_path, danger: 'Ошибка при запросе'
+    end
+  end
+
   def top15
     if current_user.profile.ltc >= 50
       current_user.profile.update(ltc: current_user.profile.ltc - 50)
       @profile.update(
         baner_top_date_start: Date.today,
         baner_top_date_end: Date.today + 15.days,
-        baner_top_status: 'publish'
+        baner_top_status: 'published'
       )
       LtcBilling.create(
         user_id: current_user.id,
         amount: -50,
         description: 'Покупка банера 1920x600 на 15 дней',
+        product_name: @profile.baner_top_url
+      )
+      redirect_to balance_profiles_path, success: 'Банер опубликован'
+    else
+      redirect_to balance_profiles_path, danger: 'Недостаточно средств на счете'
+    end
+  end
+
+  def top30
+    if current_user.profile.ltc >= 100
+      current_user.profile.update(ltc: current_user.profile.ltc - 100)
+      @profile.update(
+        baner_top_date_start: Date.today,
+        baner_top_date_end: Date.today + 30.days,
+        baner_top_status: 'published'
+      )
+      LtcBilling.create(
+        user_id: current_user.id,
+        amount: -50,
+        description: 'Покупка банера 1920x600 на 30 дней',
         product_name: @profile.baner_top_url
       )
       redirect_to balance_profiles_path, success: 'Банер опубликован'

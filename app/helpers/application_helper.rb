@@ -16,6 +16,7 @@ module ApplicationHelper
       failed: 'danger',
       unverified: 'info',
       arhiv: 'secondary',
+      undefined: 'dark',
       create: 'primary' }[name.to_sym] || name
   end
 
@@ -48,6 +49,10 @@ module ApplicationHelper
   end
 
   def baner_top
+    Profile.find_by(baner_top_status: 'published', baner_top_date_start: ..Date.today, baner_top_date_end: Date.today..)
+  end
+
+  def baner_top_free
     Profile.find_by(baner_top_date_start: ..Date.today, baner_top_date_end: Date.today..)
   end
 

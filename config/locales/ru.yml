@@ -11,6 +11,7 @@ ru:
     unverified: Проверяется
     failed: Отказано в публикации
     arhiv: В архиве
+    undefined: Не определено
   status:
     1: Премиум TOP
     2: Премиум

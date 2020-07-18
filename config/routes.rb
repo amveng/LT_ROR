@@ -36,6 +36,12 @@ Rails.application.routes.draw do
       post 'safedelete'
       post 'top15'
       post 'top30'
+      post 'publish_top'
+      post 'arhiv_top'
+      post 'menu15'
+      post 'menu30'
+      post 'publish_menu'
+      post 'arhiv_menu'
     end
   end
 

@@ -3,49 +3,77 @@
 </div>
 <div class="col col-9">
   <div class="shadow bg-light my-5">
-    <h5 class="card-header">Б</h5>
+    <h5 class="card-header">Банер 1920х600</h5>
     <div class="card-body">
-      <% if @profile.errors.any? %>
-        <p class="text-danger mb-3"><%= t('common.errors') %></p>
-      <% end %>
-      <% if @profile.baner_top_date_end.present? %>
-        <div>
-          Дата публикации банера 1920х600
-          <p> с:
-            <%= @profile.baner_top_date_start %>
-            по:
-            <%= @profile.baner_top_date_end %>
-          </p>
+      <li class="list-group-item border-secondary">
+        <% if @profile.errors.any? %>
+          <p class="text-danger mb-3"><%= t('common.errors') %></p>
+        <% end %>
+        <% if @profile.baner_top_date_end.present? %>
+          <div>
+            Дата публикации банера 1920х600
+            <p> с:
+              <%= @profile.baner_top_date_start %>
+              по:
+              <%= @profile.baner_top_date_end %>
+            </p>
+          </div>
+        <% end %>
+        <% if @profile.baner_top_img.present? %>
+          <div>
+            <a href="<%= @profile.baner_top_url %>" target="_blank">
+              <%= image_tag @profile.baner_top_img.url, class: "w-50" %>
+            </a>
+          </div>
+        <% end %>
+        <% unless @profile.baner_top_status == 'published' %>
+        <%= simple_form_for @profile, html: { multipart: true }  do |f| %>
+          <div class="form-group">
+            <%= f.input :baner_top_img, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.input :baner_top_url, collection: Server.where(user_id: current_user.id).pluck('urlserver'), class: 'form-control' %>
+          </div>
+          <div class="row justify-content-around form-group">
+            <%= f.submit 'Сохранить', class: 'btn btn-success w-50 mt-1' %>
+          </div>
+          <hr>
+        <% end %>
+        <% end %>
+        <div class="mb-4">
+          Статус публикации:
+          <span class="badge badge-<%= publish_color(@profile.baner_top_status) %>"><%= t("publish.#{@profile.baner_top_status}") %> </span>
         </div>
-      <% end %>
-      <% if @profile.baner_top_img.present? %>
-        <div>
-          <a href="<%= @profile.baner_top_url %>" target="_blank">
-            <%= image_tag @profile.baner_top_img.url, class: "w-50" %>
-          </a>
-        </div>
-      <% end %>
-      <%= simple_form_for @profile, html: { multipart: true }  do |f| %>
-        <div class="form-group">
-          <%= f.input :baner_top_img, class: 'form-control' %>
-        </div>
-        <div class="form-group">
-          <%= f.input :baner_top_url, collection: Server.where(user_id: current_user.id).pluck('urlserver'), class: 'form-control' %>
-        </div>
-        <div class="form-group">
-          <%= f.submit 'Сохранить', class: 'btn btn-success w-25 mt-1' %>
-        </div>
-      <% end %>
-      <% if baner_top.present? %>
-        <div class="font-weight-bold text-center text-white bg-secondary my-2">
-          <p>Банерное место 1920х600 в данный момент занято.</p>
-          Будет свободно с 
-          <%= baner_top_free_day %>
-        </div>
-      <% else %>
-        <%= link_to 'Подключить  премиум статус TOP на 30 дней за 50 LTC', top15_profiles_path(id: @profile.id), class: 'btn btn-outline-danger font-weight-bold btn-sm w-25', method: :post, data: { confirm: 'Подключить  премиум статус TOP за 50 LTC?' } %>
-  
-      <% end %>
+        <% if @profile.baner_top_status == 'published' %>
+          <%= link_to 'Снять с публикации', arhiv_top_profiles_path(id: @profile.id), class: 'btn btn-outline-danger btn-sm w-25 p-0 my-3', method: :post, data: { confirm: 'Вы уверены что хотите снять банер с публикации?' } %>
+        <% end %>
+        <% if @profile.baner_top_status == 'arhiv' %>
+          <%= link_to 'Отправить на проверку', publish_top_profiles_path(id: @profile.id), class: 'btn btn-outline-info w-25 p-0 my-3', method: :post %>
+        <% end %>
+        <% if @profile.baner_top_status == 'failed' %>
+          <div class="font-weight-bold text-center text-white bg-danger my-2">
+            Банер не соответсвует правилам. Измените банер
+            согласно требованиям перед проверкой
+          </div>
+          <%= link_to 'Отправить на проверку', publish_top_profiles_path(id: @profile.id), class: 'btn btn-outline-info w-25 p-0 my-3', method: :post %>
+        <% end %>
+        <% if baner_top_free.present? %>
+          <div class="font-weight-bold text-center text-white bg-secondary my-2">
+            <p>Банерное место 1920х600 в данный момент занято.</p>
+            Будет свободно с 
+            <%= baner_top_free_day %>
+          </div>
+        <% else %>
+          <% if @profile.baner_top_img.present? %>
+            <% unless @profile.baner_top_status == 'failed' || @profile.baner_top_status == 'unverified' %>
+              <div class="row justify-content-around my-4">
+                <%= link_to 'Включить банер 1920х600 на 15 дней за 50 LTC', top15_profiles_path(id: @profile.id), class: 'btn btn-outline-primary font-weight-bold btn-sm w-25', method: :post, data: { confirm: 'Включить банер 1920х600 на 15 дней за 50 LTC?' } %>
+                <%= link_to 'Включить банер 1920х600 на 30 дней за 100 LTC', top30_profiles_path(id: @profile.id), class: 'btn btn-outline-danger font-weight-bold btn-sm w-25', method: :post, data: { confirm: 'Включить банер 1920х600 на 30 дней за 100 LTC?' } %>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      </li>
     </div>
   </div>
 </div>
