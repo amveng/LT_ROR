@@ -147,6 +147,16 @@ ru:
         created_at: 'Добавлен'
         updated_at: 'Изменён'
         ltc: Баланс
+        baner_top_date_start: Дата начала публикации банера
+        baner_top_date_end: Дата конца публикации банера
+        baner_top_img: Банер
+        baner_top_url: Адрес рекламируемого сервера
+        baner_top_status: tt
+        baner_menu_date_star: tt
+        baner_menu_date_end: tt
+        baner_menu_img: tt
+        baner_menu_url: tt
+        baner_menu_status: tt
       ltc_billing:
         user: Пользователь
         created_at: Дата счета

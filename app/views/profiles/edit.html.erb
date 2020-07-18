@@ -5,15 +5,25 @@
   <div class="shadow bg-light my-5">
     <h5 class="card-header">Б</h5>
     <div class="card-body">
-      <% if @profile.baner_top_img.present? %>     
+      <% if @profile.errors.any? %>
+        <p class="text-danger mb-3"><%= t('common.errors') %></p>
+      <% end %>
+      <% if @profile.baner_top_date_end.present? %>
         <div>
-          <a href="<%= @profile.baner_top_url %>" target="_blank">
-            <%= image_tag @profile.baner_top_img.url, class: "d-block w-100" %>
-          </a>
+          Дата публикации банера 1920х600
+          <p> с:
+            <%= @profile.baner_top_date_start %>
+            по:
+            <%= @profile.baner_top_date_end %>
+          </p>
         </div>
       <% end %>
-      <% if @profile.errors.any? %>
-        <p class="text-danger"><%= t('common.errors') %></p>
+      <% if @profile.baner_top_img.present? %>
+        <div>
+          <a href="<%= @profile.baner_top_url %>" target="_blank">
+            <%= image_tag @profile.baner_top_img.url, class: "w-50" %>
+          </a>
+        </div>
       <% end %>
       <%= simple_form_for @profile, html: { multipart: true }  do |f| %>
         <div class="form-group">
@@ -23,14 +33,18 @@
           <%= f.input :baner_top_url, collection: Server.where(user_id: current_user.id).pluck('urlserver'), class: 'form-control' %>
         </div>
         <div class="form-group">
-          <%= f.input :baner_top_date_start, class: 'form-control' %>
+          <%= f.submit 'Сохранить', class: 'btn btn-success w-25 mt-1' %>
         </div>
-        <div class="form-group">
-          <%= f.input :baner_top_date_end, class: 'form-control' %>
+      <% end %>
+      <% if baner_top.present? %>
+        <div class="font-weight-bold text-center text-white bg-secondary my-2">
+          <p>Банерное место 1920х600 в данный момент занято.</p>
+          Будет свободно с 
+          <%= baner_top_free_day %>
         </div>
-        <div class="form-group">
-          <%= f.submit 'Сохранить', class: 'btn btn-success w-25 mt-5' %>
-        </div>
+      <% else %>
+        <%= link_to 'Подключить  премиум статус TOP на 30 дней за 50 LTC', top15_profiles_path(id: @profile.id), class: 'btn btn-outline-danger font-weight-bold btn-sm w-25', method: :post, data: { confirm: 'Подключить  премиум статус TOP за 50 LTC?' } %>
+  
       <% end %>
     </div>
   </div>

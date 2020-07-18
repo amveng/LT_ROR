@@ -51,6 +51,10 @@ module ApplicationHelper
     Profile.find_by(baner_top_date_start: ..Date.today, baner_top_date_end: Date.today..)
   end
 
+  def baner_top_free_day
+    Profile.order(baner_top_date_end: :desc).pluck('baner_top_date_end').compact.first + 1.day
+  end
+
   def all_versions_servers
     Serverversion.where(id: Server.pluck('serverversion_id').uniq).pluck('name')
   end
