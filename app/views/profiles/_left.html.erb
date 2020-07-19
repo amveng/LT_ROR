@@ -7,6 +7,7 @@
       <%= link_to "Мой сервер", servers_profiles_path, class: "btn btn-sm btn-light w-100 text-truncate text-left" %>
       <%= link_to "Баланс LTC", balance_profiles_path, class: "btn btn-sm btn-light w-100 text-truncate text-left" %>
       <%= link_to "Голосование", vote_button_profiles_path, class: "btn btn-sm btn-light w-100 text-truncate text-left" %>
+       <%= link_to "Мои банеры", edit_profile_path(current_user.profile), class: "btn btn-sm btn-light w-100 text-truncate text-left" %>
       
     </div>
   </div>

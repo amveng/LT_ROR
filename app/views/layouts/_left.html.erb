@@ -1,6 +1,6 @@
 <div class="shadow bg-light my-5">
   <h5 class="card-header">Все сервера л2</h5>
-  <div class="card-body p-0">
+  <div class="p-0">
     <br>
     <div class="text-center">
       Поиск сервера  
@@ -29,18 +29,23 @@
       <br>
       <input class="btn btn-dark w-100" type="submit" value="Подобрать">
     </form>
-    <ul class="list-unstyled">
-      <li class="media pt-1">
-        <a class="m-auto" href="#">
-          <%# <img src="/images/servers/1_240x400.jpg" class="rounded-lg" width="240", height="400"> %>
-          <%= image_tag "/images/servers/240х400.jpg" %>
+    <div class="m-1">
+      <% if baner_menu.blank? %>
+        <img src="/images/servers/240х400.jpg" class="rounded-lg w-100">
+      <% else %>
+        <a href="<%= baner_menu.baner_menu_url %>" target="_blank">
+          <%= image_tag baner_menu.baner_menu_img.url, class: "rounded-lg w-100" %>
         </a>
-      </li>
-      <li class="media pt-1">
-        <a class="m-auto" href="#">
-          <img src="/images/servers/240х120.jpg" class="rounded-lg" width="240", height=120">
-        </a>
-      </li>      
-    </ul>
+      <% end %>
+    </div>
+    <% baner_random.each do |server| %>
+      <% if server.imageserver? %>
+        <div class="m-1">
+          <a href="<%= server.urlserver %>" target="_blank">
+            <%= image_tag server.imageserver.url, class: "rounded-lg", width: "100%" %>
+          </a>
+        </div>
+      <% end %>
+    <% end %>
   </div>
 </div>

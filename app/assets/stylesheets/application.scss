@@ -1,6 +1,5 @@
 /*
- *= require bootstrap-datepicker
- *= require material_icons 
+ *= require bootstrap-datepicker 
  */
 
 @import "bootstrap";
@@ -22,6 +21,10 @@
 //     border-radius: 0.25rem;
 //     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 // }
+
+.container{
+    max-width: 1280px;
+}
 
 .btn-gradient{
  background: linear-gradient(to bottom, rgb(226, 227, 252), rgb(255, 255, 255));

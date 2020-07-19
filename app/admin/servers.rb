@@ -5,7 +5,7 @@ ActiveAdmin.register Server do
                 :status, :urlserver, :imageserver,
                 :publish, :serverversion_id,
                 :datestart, :description, :failed
-  # scope 'Неактивные', :unpublish
+  scope 'vip', :vip
   controller do
     def scoped_collection
       super.includes :user

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_15_141028) do
+ActiveRecord::Schema.define(version: 2020_07_16_134141) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,16 @@ ActiveRecord::Schema.define(version: 2020_07_15_141028) do
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "safedelete"
     t.decimal "ltc", default: "0.0"
+    t.date "baner_top_date_start"
+    t.date "baner_top_date_end"
+    t.string "baner_top_img"
+    t.string "baner_top_url"
+    t.string "baner_top_status", default: "undefined"
+    t.date "baner_menu_date_start"
+    t.date "baner_menu_date_end"
+    t.string "baner_menu_img"
+    t.string "baner_menu_url"
+    t.string "baner_menu_status", default: "undefined"
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 

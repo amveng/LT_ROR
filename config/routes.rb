@@ -34,6 +34,14 @@ Rails.application.routes.draw do
       get 'balance'
       get 'vote_button'
       post 'safedelete'
+      post 'top15'
+      post 'top30'
+      post 'publish_top'
+      post 'arhiv_top'
+      post 'menu15'
+      post 'menu30'
+      post 'publish_menu'
+      post 'arhiv_menu'
     end
   end
 
