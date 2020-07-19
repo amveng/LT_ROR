@@ -83,7 +83,7 @@ class ServersController < ApplicationController
     @server.user_id = current_user.id
     if @server.save
       redirect_to servers_profiles_path, success: 'Сервер успешно создан.
-       Проверьте данные м нажмите кнопу опубликовать'
+       Проверьте данные и нажмите кнопку опубликовать'
     else
       flash.now[:danger] = 'Сервер не создан'
       render :new
