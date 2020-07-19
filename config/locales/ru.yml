@@ -152,12 +152,13 @@ ru:
         baner_top_date_end: Дата конца публикации банера
         baner_top_img: Банер
         baner_top_url: Адрес рекламируемого сервера
-        baner_top_status: tt
-        baner_menu_date_star: tt
-        baner_menu_date_end: tt
-        baner_menu_img: tt
-        baner_menu_url: tt
-        baner_menu_status: tt
+        baner_top_status: Статус публикации
+        baner_menu_date_star: Дата начала публикации банера
+        baner_menu_date_end: Дата конца публикации банера
+        baner_menu_img: Банер
+        baner_menu_url: Адрес рекламируемого сервера
+        baner_menu_status: Статус публикации
+        profile: Профиль
       ltc_billing:
         user: Пользователь
         created_at: Дата счета

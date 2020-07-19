@@ -1,7 +1,9 @@
 class Profile < ApplicationRecord
-  belongs_to :user  
+  belongs_to :user
 
   mount_uploader :baner_top_img, BanerTopImgUploader
 
-  validates :baner_top_img, :baner_top_url, presence: true
+  mount_uploader :baner_menu_img, BanerMenuImgUploader
+
+  validates :baner_top_status, :baner_menu_status, presence: true
 end

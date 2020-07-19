@@ -30,10 +30,13 @@
       <input class="btn btn-dark w-100" type="submit" value="Подобрать">
     </form>
     <div class="m-1">
-      <a href="#">
-        <%# <img src="/images/servers/1_240x400.jpg" class="rounded-lg" width="240", height="400"> %>
-        <%= image_tag "/images/servers/240х400.jpg", class: "rounded-lg", width: "100%" %>
-      </a>
+      <% if baner_menu.blank? %>
+        <img src="/images/servers/240х400.jpg" class="rounded-lg w-100">
+      <% else %>
+        <a href="<%= baner_menu.baner_menu_url %>" target="_blank">
+          <%= image_tag baner_menu.baner_menu_img.url, class: "rounded-lg w-100" %>
+        </a>
+      <% end %>
     </div>
     <% baner_random.each do |server| %>
       <% if server.imageserver? %>

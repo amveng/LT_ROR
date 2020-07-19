@@ -5,7 +5,9 @@ ActiveAdmin.register Profile do
 
   permit_params :user_id, :ltc,
                 :baner_top_date_start, :baner_top_status,
-                :baner_top_date_end, :baner_top_img, :baner_top_url
+                :baner_top_date_end, :baner_top_img, :baner_top_url,
+                :baner_menu_date_start, :baner_menu_status,
+                :baner_menu_date_end, :baner_menu_img, :baner_menu_url
 
   controller do
     def scoped_collection
@@ -36,6 +38,11 @@ ActiveAdmin.register Profile do
       f.input :baner_top_img
       f.input :baner_top_url, as: :select, collection: Server.where(user_id: profile.user_id).pluck('urlserver')
       f.input :baner_top_status, as: :select, collection: %i[undefined unverified failed published arhiv]
+      f.input :baner_menu_date_start, as: :datepicker
+      f.input :baner_menu_date_end, as: :datepicker
+      f.input :baner_menu_img
+      f.input :baner_menu_url, as: :select, collection: Server.where(user_id: profile.user_id).pluck('urlserver')
+      f.input :baner_menu_status, as: :select, collection: %i[undefined unverified failed published arhiv]
     end
     f.actions
   end
