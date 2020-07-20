@@ -5,7 +5,7 @@ app_dir = File.expand_path('/home/veng/ltror', __dir__)
 shared_dir = "#{app_dir}/tmp"
 working_directory app_dir
 # Set unicorn options
-worker_processes 3
+worker_processes 2
 preload_app true
 timeout 30
 # Set up socket location
