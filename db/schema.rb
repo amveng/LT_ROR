@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_16_134141) do
+ActiveRecord::Schema.define(version: 2020_07_21_144116) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,10 +44,11 @@ ActiveRecord::Schema.define(version: 2020_07_16_134141) do
   create_table "contents", force: :cascade do |t|
     t.string "name"
     t.string "header"
-    t.string "subheader"
+    t.string "menu"
     t.text "body"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "menu_publish", default: false, null: false
   end
 
   create_table "ltc_billings", force: :cascade do |t|

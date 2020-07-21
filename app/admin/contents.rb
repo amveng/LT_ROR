@@ -1,10 +1,14 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register Content do
-  permit_params :name, :body, :header, :subheader
+  permit_params :name, :body, :header, :menu, :menu_publish, :id
 
   index do
+    id_column    
     column :name
     column :header
-    column :subheader
+    column :menu
+    column :menu_publish
     column :created_at
     column :updated_at
     actions
@@ -12,18 +16,20 @@ ActiveAdmin.register Content do
 
   filter :name
   filter :header
-  filter :subheader
+  filter :menu
+  filter :menu_publish
   filter :created_at
   filter :updated_at
 
   form do |f|
     f.inputs do
+      f.input :id
       f.input :name
       f.input :header
-      f.input :subheader
+      f.input :menu
+      f.input :menu_publish
       f.input :body
     end
     f.actions
   end
-
 end

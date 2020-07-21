@@ -52,7 +52,7 @@
         <% end %>
         <% if @profile.baner_top_status == 'failed' %>
           <div class="font-weight-bold text-center text-white bg-danger my-2">
-            Банер не соответсвует правилам. Измените банер
+            Банер не соответсвует <%= link_to 'правилам', placement_rules_contents_path, class: "badge badge-light"  %>. Измените банер
             согласно требованиям перед проверкой
           </div>
           <%= link_to 'Отправить на проверку', publish_top_profiles_path(id: @profile.id), class: 'btn btn-outline-info w-25 p-0 my-3', method: :post %>
@@ -127,7 +127,7 @@
         <% end %>
         <% if @profile.baner_menu_status == 'failed' %>
           <div class="font-weight-bold text-center text-white bg-danger my-2">
-            Банер не соответсвует правилам. Измените банер
+            Банер не соответсвует <%= link_to 'правилам', placement_rules_contents_path, class: "badge badge-light"  %>. Измените банер
             согласно требованиям перед проверкой
           </div>
           <%= link_to 'Отправить на проверку', publish_menu_profiles_path(id: @profile.id), class: 'btn btn-outline-info w-25 p-0 my-3', method: :post %>

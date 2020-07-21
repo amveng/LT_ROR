@@ -47,11 +47,9 @@ Rails.application.routes.draw do
 
   resources :contents do
     collection do
-      get 'about'
-      get 'advertising'
-      get 'contact'
-      get 'privacy'
-      get 'terms_of_use'
+      Content.pluck('name').each do |f|
+        get f
+      end
     end
   end
 end
