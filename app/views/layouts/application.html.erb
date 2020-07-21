@@ -11,33 +11,29 @@
     <META NAME="Keywords" CONTENT="Анонсы серверов lineage линейдж сервер л2">
     <META NAME="Description" CONTENT="Анонсы серверов lineage 2 | Рейтинг серверов lineage 2 | Мы предоставляем возможность быстро найти качественный сервер lineage 2 по вашим критериям выбора. Так же мы предлагаем вам зарегистрировать ваш сервер в нашем уникальном рейтинге."/>  </head>
   <body>
-    <% if server_not_work? %>
-      <%= render '/layouts/default' %>
+    <%# Шапка--------------------------------------------------------- %>
+    <% if baner_top.blank? %>
+      <div>
+        <img src="/images/127734.jpg" class="d-block w-100" alt="">
+      </div>
     <% else %>
-      <%# Шапка--------------------------------------------------------- %>
-      <% if baner_top.blank? %>
-        <div>
-          <img src="/images/127734.jpg" class="d-block w-100" alt="">
-        </div>
-      <% else %>
-        <div>
-          <a href="<%= baner_top.baner_top_url %>" target="_blank">
-            <%= image_tag baner_top.baner_top_img.url, class: "d-block w-100" %>
-          </a>
-        </div>
-      <% end %>
-      <%# Навбаер меню-------------------------------------------------- %>
-      <%= render '/layouts/navbar' %>
-      <div class="container">
-        <%# Флеш сообщения------------------------------------------------ %>
-        <%= render '/layouts/msg' %>
-        <%# Контент------------------------------------------------------- %>
-        <div class="row">
-          <%= yield %>
-        </div>
-        <%# Подвал-------------------------------------------------------- %>
-        <%= render '/layouts/footer' %>
+      <div>
+        <a href="<%= baner_top.baner_top_url %>" target="_blank">
+          <%= image_tag baner_top.baner_top_img.url, class: "d-block w-100" %>
+        </a>
       </div>
     <% end %>
+    <%# Навбаер меню-------------------------------------------------- %>
+    <%= render '/layouts/navbar' %>
+    <div class="container">
+      <%# Флеш сообщения------------------------------------------------ %>
+      <%= render '/layouts/msg' %>
+      <%# Контент------------------------------------------------------- %>
+      <div class="row">
+        <%= yield %>
+      </div>
+      <%# Подвал-------------------------------------------------------- %>
+      <%= render '/layouts/footer' %>
+    </div>
   </body>
 </html>

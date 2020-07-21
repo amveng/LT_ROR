@@ -137,7 +137,8 @@ ru:
       content:
         name: Ресурс
         header: Заголовок
-        subheader: Подзаголовок
+        menu: Пункт меню
+        menu_publish: Включено
         body: Текст
         created_at: 'Добавлен'
         updated_at: 'Изменён'

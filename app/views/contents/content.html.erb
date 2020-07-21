@@ -1,0 +1,24 @@
+<div class="col col-3">
+  <%= render 'left' %>
+</div>
+<div class="col col-9">
+  <% if @content.present? %>
+    <div class="shadow bg-light my-5">
+      <h5 class="card-header"><%= @content.header %></h5>
+      <div class="card-body">
+        <p class="card-text">
+          <%= @content.body.html_safe %>
+        </p>
+      </div>
+    </div>
+  <% else %>
+    <div class="shadow bg-light my-5">
+      <h5 class="card-header">Информация не найдена</h5>
+      <div class="card-body">
+        <p class="card-text">
+          <%= link_to 'Вернуться на главную', root_path, class: 'btn btn-success' %>
+        </p>
+      </div>
+    </div>
+  <% end %>
+</div>
