@@ -58,6 +58,8 @@ gem 'omniauth-vkontakte'
 
 gem 'recaptcha'
 
+gem 'geocoder'
+
 gem 'pg'
 
 gem 'activeadmin'
