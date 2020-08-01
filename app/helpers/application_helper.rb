@@ -30,11 +30,7 @@ module ApplicationHelper
     { '1': 'danger',
       '2': 'primary',
       '3': 'secondary' }[name.to_sym] || name
-  end
-
-  def server_not_work?
-    Content.find_by(name: 'index').header.blank?
-  end
+  end  
 
   def acces_new_server?
     !current_user.servers.find_by(publish: %w[create unverified])
