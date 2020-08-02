@@ -5,7 +5,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_account_update_params, only: [:update]
 
   def create
-    recaptcha_valid = verify_recaptcha(action: 'registration', minimum_score: 0.8)
+    recaptcha_valid = verify_recaptcha(action: 'registration', minimum_score: 0.7)
     if recaptcha_valid
       super
     else
