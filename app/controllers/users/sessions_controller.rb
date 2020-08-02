@@ -4,7 +4,7 @@ class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
 
   def create
-    recaptcha_valid = verify_recaptcha(action: 'session', minimum_score: 0.5)
+    recaptcha_valid = verify_recaptcha(action: 'session', minimum_score: 0.7)
     if recaptcha_valid
       super
       CountryWorker.perform_async(current_user.id)

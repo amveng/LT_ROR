@@ -2,7 +2,7 @@
 
 class Users::PasswordsController < Devise::PasswordsController
   def create
-    recaptcha_valid = verify_recaptcha(action: 'password', minimum_score: 0.8)
+    recaptcha_valid = verify_recaptcha(action: 'password', minimum_score: 0.7)
     if recaptcha_valid
       super
     else
