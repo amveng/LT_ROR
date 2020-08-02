@@ -2,7 +2,8 @@
 
 ActiveAdmin.register User do
   permit_params :email, :votetime, :confirmed_at, :locked_at, :provider,
-                :baned, :username, profile_attributes: :ltc
+                :baned, :current_sign_in_ip,
+                :username, profile_attributes: :ltc
 
   controller do
     def scoped_collection
@@ -25,6 +26,7 @@ ActiveAdmin.register User do
       row :updated_at
       row :servers
       row :profile
+      row :country
       row :last_sign_in_ip
       row :last_sign_in_at
       row :current_sign_in_ip
@@ -67,6 +69,7 @@ ActiveAdmin.register User do
       f.input :username
       f.input :locked_at, as: :datepicker
       f.input :confirmed_at, as: :datepicker
+      f.input :current_sign_in_ip, as: :string
     end
     f.inputs profile: 'Профиль', for: :profile do |profile|
       profile.input :ltc
