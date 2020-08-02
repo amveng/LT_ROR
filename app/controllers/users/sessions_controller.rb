@@ -7,6 +7,7 @@ class Users::SessionsController < Devise::SessionsController
     recaptcha_valid = verify_recaptcha(action: 'session', minimum_score: 0.5)
     if recaptcha_valid
       super
+      CountryWorker.perform_async(current_user.id)
     else
       flash.delete :recaptcha_error
       redirect_to new_user_session_path, danger: 'К сожалению гугл считает что вы бот.
