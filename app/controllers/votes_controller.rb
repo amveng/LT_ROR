@@ -8,7 +8,11 @@ class VotesController < ApplicationController
     @vote.server_id = params[:id]
     @vote.user_id = current_user.id
     @vote.date = Date.today
-    @vote.country = current_user.country || %w[ru by ua].sample
+    @vote.country = if current_user.country.blank?
+                      'Неопределено'
+                    else
+                      Country.find_by(code: current_user.country).name
+                    end
     if current_user.votetime < DateTime.now
       current_user.votetime = DateTime.now + 12.hours
       # + 12.hours
