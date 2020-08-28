@@ -4,6 +4,8 @@
 //= require bootstrap
 //= require bootstrap-datepicker
 //= require turbolinks
+//= require chartkick
+//= require highcharts
 //= require_tree .
 
 
