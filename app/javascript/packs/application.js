@@ -7,8 +7,8 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
-require("chartkick")
-require("chart.js")
+// require("chartkick")
+// require("chart.js")
 
 
 
@@ -21,6 +21,10 @@ require("chart.js")
 // const imagePath = (name) => images(name, true)
 
 import 'bootstrap'
+
+import 'chartkick'
+
+import 'chart.js'
 
 import 'bootstrap-datepicker'
 
