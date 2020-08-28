@@ -2,7 +2,7 @@
 
 ActiveAdmin.register User do
   permit_params :email, :votetime, :confirmed_at, :locked_at, :provider,
-                :baned, :current_sign_in_ip,
+                :baned, :current_sign_in_ip, :country,
                 :username, profile_attributes: :ltc
 
   controller do
@@ -65,6 +65,7 @@ ActiveAdmin.register User do
     f.inputs do
       f.input :email
       f.input :votetime, as: :string
+      f.input :country, as: :string
       f.input :baned
       f.input :username
       f.input :locked_at, as: :datepicker

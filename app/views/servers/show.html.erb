@@ -75,6 +75,12 @@
           <%= link_to 'Проголосовать', votes_path(id: @server.id), class: "btn btn-success w-25", method: :post  %>
         <% end %>
       <% end %>
+      <div>
+        <h5>Голоса за сервер за последние 30 дней</h5>
+        <%= area_chart @server.votes.month.group_by_day(:date).count, label: 'Голосов', ytitle: 'Голоса', xtitle: 'Дата', colors: ["#b00", "#666"]  %>
+        <h5>Голоса за сервер по странам</h5>
+        <%= pie_chart @server.votes.notnil.group(:country).count , label: 'Голосов', messages: {empty: "No data"}  %>
+      </div>
     </div>
   </div>
 </div>

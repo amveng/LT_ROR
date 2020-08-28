@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_01_232419) do
+ActiveRecord::Schema.define(version: 2020_08_28_024957) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,17 @@ ActiveRecord::Schema.define(version: 2020_08_01_232419) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "menu_publish", default: false, null: false
+  end
+
+  create_table "countries", id: :serial, force: :cascade do |t|
+    t.string "code", limit: 10, null: false
+    t.string "name", limit: 100, null: false
+    t.string "iso3", limit: 3, null: false
+    t.integer "numeric", null: false
+    t.boolean "eu", default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["code"], name: "index_countries_on_code", unique: true
   end
 
   create_table "ltc_billings", force: :cascade do |t|
@@ -145,6 +156,7 @@ ActiveRecord::Schema.define(version: 2020_08_01_232419) do
     t.date "date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "country"
     t.index ["server_id"], name: "index_votes_on_server_id"
     t.index ["user_id"], name: "index_votes_on_user_id"
   end
