@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 class Country < ActiveRecord::Base
-
-  scope :code, lambda { |code| where(:code => code.to_s) }
-
-  validates :code, :presence => true, :length => { :maximum => 5 }, :uniqueness => true
-  validates :name, :presence => true, :length => { :maximum => 100 }
-
+  
+  validates :code, length: { maximum: 5 }, uniqueness: true
+  validates :name, length: { maximum: 100 }
+  validates :iso3, length: { maximum: 3 }
+  validates :iso3, :name, :code, :numeric, presence: true
 end
