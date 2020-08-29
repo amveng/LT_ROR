@@ -70,6 +70,8 @@ gem 'chartkick'
 
 gem 'groupdate'
 
+gem 'validate_url'
+
 # gem 'terrarum'
 
 group :development, :test do

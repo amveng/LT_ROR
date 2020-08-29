@@ -317,8 +317,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    terrarum (0.1.2)
-      rails (>= 3.0.0)
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -330,6 +328,9 @@ GEM
     unicorn (5.5.5)
       kgio (~> 2.6)
       raindrops (~> 0.7)
+    validate_url (1.0.11)
+      activemodel (>= 3.0.0)
+      public_suffix
     warden (1.2.8)
       rack (>= 2.0.6)
     web-console (4.0.2)
@@ -390,9 +391,9 @@ DEPENDENCIES
   simple_form
   spring
   spring-watcher-listen (~> 2.0.0)
-  terrarum
   turbolinks (~> 5)
   unicorn
+  validate_url
   web-console (>= 3.3.0)
   webdrivers
   webpacker (~> 4.0)
