@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_28_024957) do
+ActiveRecord::Schema.define(version: 2020_08_28_234159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,13 @@ ActiveRecord::Schema.define(version: 2020_08_28_024957) do
     t.string "baner_menu_url"
     t.string "baner_menu_status", default: "undefined"
     t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
+  create_table "server_views", force: :cascade do |t|
+    t.bigint "server_id"
+    t.string "viewer"
+    t.date "date"
+    t.index ["server_id"], name: "index_server_views_on_server_id"
   end
 
   create_table "servers", force: :cascade do |t|

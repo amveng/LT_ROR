@@ -12,6 +12,7 @@ class ServersController < ApplicationController
 
   def show
     set_server
+    server_view
   end
 
   def arhiv
@@ -111,6 +112,16 @@ class ServersController < ApplicationController
   end
 
   private
+
+  def server_view
+    viewer = if current_user.blank?
+               request.remote_ip.to_s
+             else
+               current_user.id
+             end
+
+    ServerView.where(date: Date.today, server_id: @server.id, viewer: viewer).first_or_create
+  end
 
   def servers_update_status
     @servers_expires.each do |f|
