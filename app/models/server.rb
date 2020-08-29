@@ -11,6 +11,7 @@ class Server < ApplicationRecord
   belongs_to :user
   belongs_to :serverversion
   has_many :votes, dependent: :destroy
+  has_many :server_views, dependent: :destroy
 
   auto_strip_attributes :title, squish: true, capitalize: true
 
