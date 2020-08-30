@@ -39,11 +39,11 @@
                 <tbody>
                   <tr>
                     <th class="w-25" scope="row">ID сервера:</th>
-                    <td class="user-select-all"><%= server.id %></td>
+                    <td class="text"><%= server.id %></td>
                   </tr>
                   <tr>
                     <th class="w-25" scope="row">Ключ доступа:</th>
-                    <td class="user-select-all"><%= server.token %>
+                    <td class="text"><%= server.token %>
                     <%= link_to 'Сгенерировать', generate_token_servers_path(id: server.id), class: 'btn btn-outline-primary btn-sm py-0 ml-3', method: :post %>
                     </td>
                   </tr>

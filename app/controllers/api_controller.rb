@@ -6,7 +6,7 @@ class ApiController < ApplicationController
     key = params[:key]
     user_ip = params[:user_ip]
     user_id = params[:user_id]
-    if Server.where(id: id, token: key).blank?
+    if Server.find_by(id: id, token: key).blank?
       render json: { errors: 'Неверный ID или ключ' }, status: 403
     else
 

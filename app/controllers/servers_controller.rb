@@ -29,7 +29,7 @@ class ServersController < ApplicationController
   end
 
   def generate_token
-    token = SecureRandom.hex while Server.exists?({ token: token })
+    token = SecureRandom.hex while Server.exists?(token: token) || token.blank?
     if @server.update(token: token)
       redirect_to vote_button_profiles_path, info: 'Ключ доступа изменён'
     else
