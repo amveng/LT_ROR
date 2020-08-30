@@ -72,6 +72,8 @@ gem 'groupdate'
 
 gem 'validate_url'
 
+gem 'rack-cors'
+
 # gem 'terrarum'
 
 group :development, :test do

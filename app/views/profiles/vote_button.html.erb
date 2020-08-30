@@ -6,7 +6,7 @@
     <h5 class="card-header">Голосование</h5>
     <div class="card-body">
       <h5 class="pb-3">Настройки для голосования за ваш сервер</h5>
-      <% current_user.servers.each do |server| %>
+      <% current_user.servers.profile.each do |server| %>
         <li class="list-group-item border-secondary">
           <div class="">
             Сервер: 
@@ -33,12 +33,24 @@
                 </div>
               </div>
             </div>
-             <div class="py-3">
-          <h6>Настройки для доступа к апи</h6>
-          <p class="badge">В разработке</p>
-          </div>
+            <div class="py-3">
+              <h6>Настройки для доступа к апи</h6>              
+              <table class="table-sm">
+                <tbody>
+                  <tr>
+                    <th class="w-25" scope="row">ID сервера:</th>
+                    <td class="user-select-all"><%= server.id %></td>
+                  </tr>
+                  <tr>
+                    <th class="w-25" scope="row">Ключ доступа:</th>
+                    <td class="user-select-all"><%= server.token %>
+                    <%= link_to 'Сгенерировать', generate_token_servers_path(id: server.id), class: 'btn btn-outline-primary btn-sm py-0 ml-3', method: :post %>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </li>
-         
           <br>
         <% end %>
       </div>
