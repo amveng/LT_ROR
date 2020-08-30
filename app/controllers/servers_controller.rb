@@ -2,7 +2,7 @@
 
 class ServersController < ApplicationController
   before_action :authenticate_user!, except: %i[index show search]
-  before_action :server_belong_user, only: %i[edit update destroy publish vip top arhiv]
+  before_action :server_belong_user, only: %i[edit update destroy publish vip top arhiv generate_token]
 
   def index
     @server = Server.all.includes(:serverversion)
@@ -25,6 +25,15 @@ class ServersController < ApplicationController
       redirect_to servers_profiles_path, info: 'Заявка на публикацию принята в обработку'
     else
       redirect_to servers_profiles_path, danger: 'Ошибка при запросе публикации'
+    end
+  end
+
+  def generate_token
+    token = SecureRandom.hex while Server.exists?({ token: token })
+    if @server.update(token: token)
+      redirect_to vote_button_profiles_path, info: 'Ключ доступа изменён'
+    else
+      redirect_to servers_profiles_path, danger: 'Ошибка при изменении ключа доступа'
     end
   end
 

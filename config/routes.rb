@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     collection do
       get 'search'
       post 'publish'
+      post 'generate_token'
       post 'vip'
       post 'top'
       post 'arhiv'
