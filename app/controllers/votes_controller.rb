@@ -8,6 +8,7 @@ class VotesController < ApplicationController
     @vote.server_id = params[:id]
     @vote.user_id = current_user.id
     @vote.date = Date.today
+    @vote.user_ip = current_user.current_sign_in_ip
     if current_user.country.blank?
       @vote.country = 'Неопределено'
     else

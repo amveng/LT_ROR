@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
@@ -22,6 +23,12 @@ Rails.application.routes.draw do
 
   resources :votes, only: [:create]
 
+  resources :api do
+    collection do
+      get 'v1'
+    end
+  end
+
   resources :servers do
     collection do
       get 'search'
@@ -31,7 +38,7 @@ Rails.application.routes.draw do
       post 'top'
       post 'arhiv'
     end
-  end  
+  end
 
   resources :profiles do
     collection do
