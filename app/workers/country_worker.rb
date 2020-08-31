@@ -1,5 +1,6 @@
-class CountryWorker
+# frozen_string_literal: true
 
+class CountryWorker
   include Sidekiq::Worker
 
   def perform(user_id)

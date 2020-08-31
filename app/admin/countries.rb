@@ -4,7 +4,6 @@ ActiveAdmin.register Country do
   permit_params :name, :code, :iso3, :numeric, :eu
 
   index do
-    # id_column
     column :name
     column :code
     column :iso3

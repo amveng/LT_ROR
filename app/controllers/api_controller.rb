@@ -10,13 +10,21 @@ class ApiController < ApplicationController
       render json: { errors: 'Неверный ID или ключ' }, status: 403
     else
 
-      vote = Vote.where(user_ip: user_ip, user_id: user_id, server_id: server_id).last ||
-             Vote.where(user_ip: user_ip, server_id: server_id).last ||
-             Vote.where(user_id: user_id, server_id: server_id).last
+      vote = Vote.where(
+        user_ip: user_ip, user_id: user_id, server_id: server_id
+      ).last || Vote.where(
+        user_ip: user_ip, server_id: server_id
+      ).last || Vote.where(
+        user_id: user_id, server_id: server_id
+      ).last
       if vote.blank?
-        render json: { errors: 'Не найдено голосования' }, status: 406
+        render json: {
+          errors: 'Не найдено голосования'
+        }, status: 406
       else
-        render json: { token: vote.token, datetime: vote.created_at.strftime('%F %T') }, status: 200
+        render json: {
+          token: vote.token, datetime: vote.created_at.strftime('%F %T')
+        }, status: 200
       end
     end
   end

@@ -33,6 +33,9 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
+
+/config/sidekiq2.service
+
 /config/unicorn_init.sh
 
 /public/uploads/*

@@ -1,5 +1,6 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register Vote do
-  
   permit_params :server_id, :user_id, :date, :country
 
   index do
@@ -10,7 +11,6 @@ ActiveAdmin.register Vote do
     column :country
     actions
   end
-
 
   filter :user
   filter :server
@@ -26,5 +26,4 @@ ActiveAdmin.register Vote do
     end
     f.actions
   end
-
 end

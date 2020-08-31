@@ -1,5 +1,6 @@
-class BanerMenuImgUploader < CarrierWave::Uploader::Base
+# frozen_string_literal: true
 
+class BanerMenuImgUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   storage :file
@@ -11,7 +12,7 @@ class BanerMenuImgUploader < CarrierWave::Uploader::Base
   process resize_to_fill: [240, 400]
 
   def extension_whitelist
-    %w(jpg jpeg png)
+    %w[jpg jpeg png]
   end
 
   def filename
