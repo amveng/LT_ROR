@@ -1,3 +1,12 @@
+# == Schema Information
+#
+# Table name: server_views
+#
+#  id        :bigint           not null, primary key
+#  server_id :bigint
+#  viewer    :string
+#  date      :date
+#
 require 'rails_helper'
 
 RSpec.describe ServerView, type: :model do

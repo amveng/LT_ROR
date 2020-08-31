@@ -67,8 +67,8 @@ Rails.application.configure do
     from: 'amveng315@gmail.com'
   }
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.delivery_method = :smtp
-  # config.action_mailer.delivery_method = :letter_opener
+  # config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :letter_opener
   config.app_domain = 'localhost:3000' 
   config.action_mailer.smtp_settings = Rails.application.credentials.mail_development
 end
