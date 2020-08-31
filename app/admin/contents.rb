@@ -4,7 +4,7 @@ ActiveAdmin.register Content do
   permit_params :name, :body, :header, :menu, :menu_publish, :id
 
   index do
-    id_column    
+    id_column
     column :name
     column :header
     column :menu

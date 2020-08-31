@@ -11,11 +11,8 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :profile
 
   auto_strip_attributes :username, squish: true
-
   validates :username, :email, presence: true, length: { in: 4..42 }
 
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :confirmable,
          :validatable, :trackable, :lockable,
@@ -35,7 +32,6 @@ class User < ApplicationRecord
     end
   end
 
-  # Проверка не забанен ли пользователь
   def account_active?
     !baned?
   end

@@ -1,5 +1,6 @@
-class ImageserverUploader < CarrierWave::Uploader::Base
+# frozen_string_literal: true
 
+class ImageserverUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
@@ -41,7 +42,7 @@ class ImageserverUploader < CarrierWave::Uploader::Base
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_whitelist
-    %w(jpg jpeg png)
+    %w[jpg jpeg png]
   end
   # %w(jpg jpeg gif png)
 
@@ -54,5 +55,4 @@ class ImageserverUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
-
 end

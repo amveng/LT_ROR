@@ -12,7 +12,8 @@ class OmniauthController < ApplicationController
   def facebook; end
 
   def failure
-    flash[:error] = 'При входе произошла ошибка. Пожалуйста, зарегистрируйтесь или попробуйте войти позже.'
+    flash[:error] = 'При входе произошла ошибка.
+     Пожалуйста, зарегистрируйтесь или попробуйте войти позже.'
     redirect_to new_user_registration_url
   end
 
@@ -21,14 +22,15 @@ class OmniauthController < ApplicationController
   def all_in
     if user_signed_in?
       flash[:info] = 'Вы уже вощли в систему.'
-      return redirect_to servers_path 
+      return redirect_to servers_path
     end
     @user = User.create_from_provider_data(request.env['omniauth.auth'])
     if @user.persisted?
       CountryWorker.perform_async(@user.id)
       sign_in_and_redirect @user
     else
-      flash[:error] = 'При входе через сервис произошла ошибка. Пожалуйста, зарегистрируйтесь или попробуйте другой способ.'
+      flash[:error] = 'При входе через сервис произошла ошибка.
+       Пожалуйста, зарегистрируйтесь или попробуйте другой способ.'
       redirect_to new_user_registration_url
     end
   end

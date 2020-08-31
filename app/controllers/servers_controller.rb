@@ -1,8 +1,12 @@
 # frozen_string_literal: true
 
 class ServersController < ApplicationController
-  before_action :authenticate_user!, except: %i[index show search]
-  before_action :server_belong_user, only: %i[edit update destroy publish vip top arhiv generate_token]
+  before_action :authenticate_user!, except: %i[
+    index show search
+  ]
+  before_action :server_belong_user, only: %i[
+    edit update destroy publish vip top arhiv generate_token
+  ]
 
   def index
     @server = Server.all.includes(:serverversion)
@@ -29,7 +33,7 @@ class ServersController < ApplicationController
   end
 
   def generate_token
-    token = SecureRandom.hex while Server.exists?({ token: token })
+    token = SecureRandom.hex while Server.exists?(token: token) || token.blank?
     if @server.update(token: token)
       redirect_to vote_button_profiles_path, info: 'Ключ доступа изменён'
     else
@@ -148,11 +152,15 @@ class ServersController < ApplicationController
   end
 
   def acces_close
+    # TODO: надо сделать какой то счетчик перед тем как банить
     # current_user.update_attributes(baned: true)
     redirect_to servers_path, danger: 'Доступ запрещен !!!'
   end
 
   def server_params
-    params.require(:server).permit(:title, :rate, :description, :urlserver, :imageserver, :datestart, :serverversion_id)
+    params.require(:server).permit(
+      :title, :rate, :description, :urlserver,
+      :imageserver, :datestart, :serverversion_id
+    )
   end
 end

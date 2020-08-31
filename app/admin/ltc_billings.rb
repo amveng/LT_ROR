@@ -1,6 +1,7 @@
-ActiveAdmin.register LtcBilling do
+# frozen_string_literal: true
 
-  permit_params :server_id, :user_id, :date
+ActiveAdmin.register LtcBilling do
+  permit_params :user_id, :amount, :description, :product_name
 
   index do
     selectable_column
@@ -12,20 +13,9 @@ ActiveAdmin.register LtcBilling do
     actions
   end
 
-
   filter :user
   filter :amount
   filter :description
   filter :product_name
   filter :created_at
- 
-
-  form do |f|
-    f.inputs do
-      # f.input :user
-      # f.input :server
-      # f.input :date, as: :datepicker
-    end
-    f.actions
-  end
 end

@@ -157,13 +157,17 @@ class ProfilesController < ApplicationController
   end
 
   def check_baner_top
-    return if Profile.find_by(baner_top_date_start: ..Date.today, baner_top_date_end: Date.today..).blank?
+    if Profile.find_by(baner_top_date_start: ..Date.today, baner_top_date_end: Date.today..).blank?
+      return
+    end
 
     redirect_to edit_profile_path(@profile.id), danger: 'Неудалось опубликовать банер'
   end
 
   def check_baner_menu
-    return if Profile.find_by(baner_menu_date_start: ..Date.today, baner_menu_date_end: Date.today..).blank?
+    if Profile.find_by(baner_menu_date_start: ..Date.today, baner_menu_date_end: Date.today..).blank?
+      return
+    end
 
     redirect_to edit_profile_path(@profile.id), danger: 'Неудалось опубликовать банер'
   end

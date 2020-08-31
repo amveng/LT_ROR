@@ -22,14 +22,25 @@ class Server < ApplicationRecord
   validates :urlserver, url: { schemes: ['https'], public_suffix: true }
   validates :description, length: { maximum: 400 }
 
-  scope :published, -> { where(publish: 'published') }
-  scope :vip, -> { where(publish: 'published', status: 1..2).order(:status, datestart: :desc) }
-  scope :rating, -> { where(publish: 'published').order(rating: :desc) }
-  scope :profile, -> { order(updated_at: :desc) }
-  scope :today, -> { where(datestart: Date.today.midnight..(Date.today.midnight + 1.day)) }
-  scope :tomorrow, -> { where(datestart: (Date.today.midnight + 1.day)..(Date.today.midnight + 2.day)) }
-  scope :yesterday, -> { where(datestart: (Date.today.midnight - 1.day)..Date.today.midnight) }
-  # scope :unpublish, lambda {
-  #   where(publish: false)
-  # }
+  scope :published, lambda {
+    where(publish: 'published')
+  }
+  scope :vip, lambda {
+    where(publish: 'published', status: 1..2).order(:status, datestart: :desc)
+  }
+  scope :rating, lambda {
+    where(publish: 'published').order(rating: :desc)
+  }
+  scope :profile, lambda {
+    order(updated_at: :desc)
+  }
+  scope :today, lambda {
+    where(datestart: Date.today.midnight..(Date.today.midnight + 1.day))
+  }
+  scope :tomorrow, lambda {
+    where(datestart: (Date.today.midnight + 1.day)..(Date.today.midnight + 2.day))
+  }
+  scope :yesterday, lambda {
+    where(datestart: (Date.today.midnight - 1.day)..Date.today.midnight)
+  }
 end

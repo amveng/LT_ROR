@@ -34,12 +34,6 @@ class VotesController < ApplicationController
     end
   end
 
-  # def set_rating
-  #   unless Vote.exists?(server_id: @server.id, date: Date.today)
-  #     @rating = 1
-  #   end
-  # end
-
   private
 
   def voting_failed
