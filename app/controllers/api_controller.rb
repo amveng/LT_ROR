@@ -2,19 +2,17 @@
 
 class ApiController < ApplicationController
   def v1
-    id = params[:id]
+    server_id = params[:id]
     key = params[:key]
     user_ip = params[:user_ip]
     user_id = params[:user_id]
-    if Server.find_by(id: id, token: key).blank?
+    if Server.find_by(id: server_id, token: key).blank?
       render json: { errors: 'Неверный ID или ключ' }, status: 403
     else
 
-      vote = if user_id.present?
-               Vote.where(user_ip: user_ip, user_id: user_id).last
-             else
-               Vote.where(user_ip: user_ip).last
-             end
+      vote = Vote.where(user_ip: user_ip, user_id: user_id, server_id: server_id).last ||
+             Vote.where(user_ip: user_ip, server_id: server_id).last ||
+             Vote.where(user_id: user_id, server_id: server_id).last
       if vote.blank?
         render json: { errors: 'Не найдено голосования' }, status: 406
       else
