@@ -12,7 +12,7 @@ require 'rails_helper'
 RSpec.describe Serverversion, type: :model do
   context 'проверяем создание данных' do
     it 'Serverversion ok' do
-      serverversion = Serverversion.new(name: Faker::Ancient.titan)
+      serverversion = Serverversion.new(name: 'serverversion')
       expect(serverversion.save).to eq(true)
     end
   end

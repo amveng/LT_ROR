@@ -26,9 +26,9 @@ require 'rails_helper'
 RSpec.describe Profile, type: :model do
   before(:each) do
     @user = User.create(
-      username: Faker::Internet.username(specifier: 4..42),
-      email: Faker::Internet.email,
-      password: Devise.friendly_token[0, 6]
+      username: 'username',
+      email: 'user@email.com',
+      password: 'password'
     )
   end
 

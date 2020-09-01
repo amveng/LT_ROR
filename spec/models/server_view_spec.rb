@@ -15,20 +15,20 @@ RSpec.describe ServerView, type: :model do
   context 'проверяем создание данных' do
     it 'ServerView ok' do
       serverversion = Serverversion.create(
-        name: Faker::Ancient.titan
+        name: 'serverversion'
       )
       user = User.create(
-        username: Faker::Internet.username(specifier: 4..42),
-        email: Faker::Internet.email,
-        password: Devise.friendly_token[0, 6]
+        username: 'username',
+        email: 'user@email.com',
+        password: 'password'
       )
       server = Server.create(
-        title: Faker::Ancient.hero,
-        urlserver: Faker::Internet.url(scheme: 'https', path: ''),
+        title: 'Server',
+        urlserver: 'https://examle.com',
         user_id: user.id,
-        rate: rand(1..100),
+        rate: 1,
         publish: 'published',
-        status: rand(1..3),
+        status: 3,
         status_expires: 15.day.after,
         datestart: 10.day.after,
         serverversion_id: serverversion.id
