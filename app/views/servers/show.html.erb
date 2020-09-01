@@ -78,13 +78,13 @@
       <div>
         <br>
         <h5>Голоса за сервер за последние 30 дней</h5>
-        <%= area_chart @server.votes.month.group_by_day(:date).count, points: false, label: 'Голосов', ytitle: 'Голоса', xtitle: 'Дата', colors: ["DarkViolet"], discrete: true %>
+        <%= area_chart @server.votes.month.group_by_day(:date).count, label: 'Голосов', ytitle: 'Голоса', xtitle: 'Дата', colors: ["DarkViolet"], discrete: true %>
         <hr>
         <h5>Голоса за сервер по странам</h5>
         <%= pie_chart @server.votes.notnil.group(:country).count , label: 'Голосов', messages: {empty: "No data"}  %>
         <hr>
         <h5>Уникальные просмотры сервера за последнюю неделю</h5>
-        <%= column_chart @server.server_views.week.group_by_day(:date, format: "%B %d, %Y").count, points: false, label: 'Просмотров', ytitle: 'Просмотры', xtitle: 'Дата', colors: ["RoyalBlue"], discrete: true %>
+        <%= column_chart @server.server_views.week.group_by_day(:date, format: "%B %d, %Y").count, label: 'Просмотров', ytitle: 'Просмотры', xtitle: 'Дата', colors: ["RoyalBlue"], discrete: true %>
       </div>
     </div>
   </div>

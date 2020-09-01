@@ -1,5 +1,18 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: countries
+#
+#  id         :integer          not null, primary key
+#  code       :string(10)       not null
+#  name       :string(100)      not null
+#  iso3       :string(3)        not null
+#  numeric    :integer          not null
+#  eu         :boolean          default(FALSE), not null
+#  created_at :datetime
+#  updated_at :datetime
+#
 require 'rails_helper'
 
 RSpec.describe Country, type: :model do

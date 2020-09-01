@@ -1,19 +1,26 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: admin_users
+#
+#  id                     :bigint           not null, primary key
+#  email                  :string           default(""), not null
+#  encrypted_password     :string           default(""), not null
+#  reset_password_token   :string
+#  reset_password_sent_at :datetime
+#  remember_created_at    :datetime
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#
 require 'rails_helper'
 
 RSpec.describe AdminUser, type: :model do
-  it 'проверяем наличие админа' do
-    admin = AdminUser.first
-    expect(admin.present?).to eq(true)
-  end
-  it 'проверяем смену стандартного пароля' do
-    admin_standart = AdminUser.find_by(email: 'admin@example.com')
-    valid = if admin_standart.present?
-              admin_standart.valid_password?('password')
-            else
-              false
-            end
-    expect(valid).to eq(false)
+  it 'проверяем создание админа' do
+    admin = AdminUser.new(
+      email: 'admin@email.com',
+      password: 'password'
+    )
+    expect(admin.save).to eq(true)
   end
 end
