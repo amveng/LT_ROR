@@ -3,6 +3,11 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  namespace 'api' do
+    namespace 'v1' do
+      resources :gates, only: %i[index create]
+    end
+  end
   devise_for :users, controllers: {
     omniauth_callbacks: 'omniauth',
     registrations: 'users/registrations',
@@ -22,12 +27,6 @@ Rails.application.routes.draw do
   get '/users', to: 'servers#index'
 
   resources :votes, only: [:create]
-
-  resources :api do
-    collection do
-      get 'v1'
-    end
-  end
 
   resources :servers do
     collection do
