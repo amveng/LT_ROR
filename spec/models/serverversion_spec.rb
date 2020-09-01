@@ -10,5 +10,16 @@
 require 'rails_helper'
 
 RSpec.describe Serverversion, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context 'проверяем создание данных' do
+    it 'Serverversion ok' do
+      serverversion = Serverversion.new(name: Faker::Ancient.titan)
+      expect(serverversion.save).to eq(true)
+    end
+  end
+  context 'валидации' do
+    it 'проверка на наличие названия' do
+      serverversion = Serverversion.new
+      expect(serverversion.save).to eq(false)
+    end
+  end
 end

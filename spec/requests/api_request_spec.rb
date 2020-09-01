@@ -3,29 +3,32 @@
 require 'rails_helper'
 
 RSpec.describe ApiController, type: :controller do
-  before(:all) do
-    date = Date.today
+  before(:each) do
     @serverversion = Serverversion.create(
-      name: 'serverversion'
+      name: Faker::Ancient.titan
     )
     @user = User.create(
-      username: 'user', email: 'user@email.com', password: '123123'
+      username: Faker::Internet.username(specifier: 4..42),
+      email: Faker::Internet.email,
+      password: Devise.friendly_token[0, 6]
     )
     @server = Server.create(
-      title: 'Serv', urlserver: 'https://server.ru', user_id: @user.id,
-      rate: 1, publish: 'create', status: 3, status_expires: date,
-      datestart: date, serverversion_id: @serverversion.id
+      title: Faker::Ancient.hero,
+      urlserver: Faker::Internet.url(scheme: 'https', path: ''),
+      user_id: @user.id,
+      rate: rand(1..100),
+      publish: 'published',
+      status: rand(1..3),
+      status_expires: 15.day.after,
+      datestart: 10.day.after,
+      serverversion_id: @serverversion.id
     )
     @vote = Vote.create(
-      user_id: @user.id, server_id: @server.id, date: date, user_ip: '8.8.8.8'
+      user_id: @user.id,
+      server_id: @server.id,
+      date: Date.today,
+      user_ip: Faker::Internet.ip_v4_address
     )
-  end
-
-  after(:all) do
-    @vote.destroy
-    @server.destroy
-    @user.destroy
-    @serverversion.destroy
   end
 
   context 'проверяем создание данных' do

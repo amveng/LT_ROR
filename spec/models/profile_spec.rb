@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: profiles
@@ -22,5 +24,23 @@
 require 'rails_helper'
 
 RSpec.describe Profile, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before(:each) do
+    @user = User.create(
+      username: Faker::Internet.username(specifier: 4..42),
+      email: Faker::Internet.email,
+      password: Devise.friendly_token[0, 6]
+    )
+  end
+
+  context 'проверяем создание данных' do
+    it 'User ок' do
+      user = User.exists?(id: @user.id)
+      expect(user).to eq(true)
+    end
+
+    it 'Profile автосоздание ок' do
+      profile = Profile.exists?(user_id: @user.id)
+      expect(profile).to eq(true)
+    end
+  end
 end

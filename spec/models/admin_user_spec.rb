@@ -17,7 +17,10 @@ require 'rails_helper'
 
 RSpec.describe AdminUser, type: :model do
   it 'проверяем создание админа' do
-    admin = AdminUser.new(email: 'admin@email.com', password: '123123')
+    admin = AdminUser.new(
+      email: Faker::Internet.email,
+      password: Devise.friendly_token[0, 6]
+    )
     expect(admin.save).to eq(true)
   end
 end

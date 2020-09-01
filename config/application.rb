@@ -22,7 +22,7 @@ module LineageTop
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
     config.time_zone = 'Moscow'
-    config.i18n.available_locales = :ru
+    config.i18n.available_locales = %i[en ru]
     config.i18n.default_locale = :ru
   end
 end
