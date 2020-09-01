@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Vote do
-  permit_params :server_id, :user_id, :date, :country
+  permit_params :server_id, :user_id, :date, :country, :confirmation
 
   index do
     selectable_column
@@ -23,6 +23,7 @@ ActiveAdmin.register Vote do
       f.input :server
       f.input :country, as: :string
       f.input :date, as: :datepicker
+      f.input :confirmation
     end
     f.actions
   end

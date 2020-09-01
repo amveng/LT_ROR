@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_30_091344) do
+ActiveRecord::Schema.define(version: 2020_09_01_114330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -167,6 +167,7 @@ ActiveRecord::Schema.define(version: 2020_08_30_091344) do
     t.string "country"
     t.string "token"
     t.string "user_ip"
+    t.boolean "confirmation", default: false, null: false
     t.index ["server_id"], name: "index_votes_on_server_id"
     t.index ["user_id"], name: "index_votes_on_user_id"
   end
