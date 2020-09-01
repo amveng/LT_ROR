@@ -41,7 +41,8 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :profile
 
   auto_strip_attributes :username, squish: true
-  validates :username, :email, presence: true, length: { in: 4..42 }
+  validates :username, :email, length: { in: 4..42 }
+  validates :votetime, presence: true
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :confirmable,

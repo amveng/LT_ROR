@@ -30,12 +30,6 @@ RSpec.describe ApiController, type: :controller do
       user_ip: '8.8.8.8'
     )
   end
-  after(:each) do
-    @vote.destroy
-    @server.destroy
-    @user.destroy
-    @serverversion.destroy
-  end
 
   context 'проверяем создание данных' do
     it 'Server ок' do

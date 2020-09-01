@@ -41,8 +41,7 @@ class Server < ApplicationRecord
 
   auto_strip_attributes :title, squish: true, capitalize: true
 
-  validates :status_expires, :datestart, :status, :publish,
-            :rate, :title, presence: true
+  validates :status_expires, :datestart, :status, :publish, presence: true
   validates :rate, numericality: { only_integer: true }
   validates :title, uniqueness: true, length: { in: 4..42 }
   validates :urlserver, url: { schemes: ['https'], public_suffix: true }
