@@ -47,15 +47,18 @@ RSpec.describe Country, type: :model do
       expect(country.save).to eq(false)
     end
 
+    it 'проверка на уникальность кода страны' do
+      Country.create(id: 1, name: 'name', code: 'code', iso3: '123', numeric: 2)
+      country = Country.new(id: 2, name: 'name', code: 'code', iso3: 'iso', numeric: 1)
+      expect(country.save).to eq(false)
+    end
+
     it 'проверка на максимальную длину кода iso3' do
       country = Country.new(name: 'name', code: 'code', iso3: '1234', numeric: 1)
       expect(country.save).to eq(false)
     end
 
-    it 'проверка на уникальность кода страны' do
-      Country.create(name: 'name', code: 'code', iso3: '123', numeric: 2)
-      country = Country.new(name: 'name2', code: 'code', iso3: 'iso', numeric: 1)
-      expect(country.save).to eq(false)
-    end
+
+    
   end
 end
