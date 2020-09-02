@@ -9,6 +9,7 @@ ActiveAdmin.register Vote do
     column :server
     column :date
     column :country
+    column :confirmation
     actions
   end
 

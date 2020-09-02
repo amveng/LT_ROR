@@ -70,6 +70,13 @@
               <%= ((current_user.votetime - date_time_now)).to_i - tm * 60 if tm == 0 %>
               секунд          
             <% end %>
+            <% if current_user.profile.ltc >= 1 %>
+              <%= link_to "Сбросить задержку голосования за 1 LTC (в наличии #{current_user.profile.ltc} LTC)",
+               reset_delay_profiles_path(id: @server.id), 
+              class: 'btn btn-outline-primary btn-sm py-0 ml-3',
+               method: :post, data: { confirm: "Сбросить задержку голосования за 1 LTC (в наличии #{current_user.profile.ltc} LTC)" }
+                %>
+            <% end %>
           </div>
         <% else %>
           <%= link_to 'Проголосовать', votes_path(id: @server.id), class: "btn btn-success w-25", method: :post  %>
