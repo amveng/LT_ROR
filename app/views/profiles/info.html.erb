@@ -32,6 +32,10 @@
             <th scope="row">Дата регистрации:</th>
             <td><%= current_user.created_at.strftime("%d-%m-%Y в %H-%M") %></td>
           </tr>
+          <tr>
+            <th scope="row">ID пользователя:</th>
+            <td><%= current_user.id %></td>
+          </tr>
         </tbody>
       </table>
     </div>

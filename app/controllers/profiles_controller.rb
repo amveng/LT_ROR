@@ -141,6 +141,22 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def reset_delay
+    if current_user.profile.ltc >= 1
+      current_user.profile.update(ltc: current_user.profile.ltc - 1)
+      current_user.update(votetime: DateTime.now)
+      LtcBilling.create(
+        user_id: current_user.id,
+        amount: -1,
+        description: 'Сброс задержки голосования'
+      )
+      redirect_to server_path(params[:id]), success: "Задержка голосования
+       сброшена. Остаток на счете #{current_user.profile.ltc} LTC"
+    else
+      redirect_to balance_profiles_path, danger: 'Недостаточно средств на счете'
+    end
+  end
+
   private
 
   def set_profile

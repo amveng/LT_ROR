@@ -54,6 +54,7 @@ Rails.application.routes.draw do
       post 'menu30'
       post 'publish_menu'
       post 'arhiv_menu'
+      post 'reset_delay'
     end
   end
 
