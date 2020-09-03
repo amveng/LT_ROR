@@ -38,6 +38,7 @@ class User < ApplicationRecord
   has_one :profile, dependent: :destroy
 
   before_create :build_profile
+  # before_create skip_confirmation!
   accepts_nested_attributes_for :profile
 
   auto_strip_attributes :username, squish: true
