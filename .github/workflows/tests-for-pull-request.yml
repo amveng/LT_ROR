@@ -27,6 +27,8 @@ jobs:
         ruby-version: 2.7.0
     - name: Install dependencies
       run: bundle install
+    - name: check yarn 
+      run: yarn install --check-files
     - name: create test DB SQLite
       run: rake db:test:prepare
     - name: Run tests
