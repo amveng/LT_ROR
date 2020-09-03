@@ -29,7 +29,5 @@ jobs:
       run: bundle install
     - name: check yarn 
       run: yarn install --check-files
-    - name: create test DB SQLite
-      run: rake db:test:prepare
     - name: Run tests
       run: bundle exec rake
