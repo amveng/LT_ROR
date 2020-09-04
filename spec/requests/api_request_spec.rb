@@ -62,6 +62,12 @@ module Api
           expect(response.status).to eq(406)
         end
 
+        it 'на ID и token unpublish - 403' do
+          @server.update(publish: 'create')
+          get :index, params: { id: @server.id, key: @server.token }
+          expect(response.status).to eq(403)
+        end
+
         it 'на user_IP - 200' do
           get :index, params: {
             id: @server.id, key: @server.token,

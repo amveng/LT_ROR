@@ -41,6 +41,7 @@
           </tr>
         </tbody>
       </table>
+      <%= link_to 'Редактировать', edit_server_path(@server), class: 'btn btn-outline-primary btn-sm w-25' if user_signed_in? && @server.in?(current_user.servers) %>
       <hr>
       <h5>Проголосовать за сервер</h5>
       <p>
