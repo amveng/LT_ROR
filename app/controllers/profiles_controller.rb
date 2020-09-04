@@ -47,17 +47,11 @@ class ProfilesController < ApplicationController
 
   def top15
     if current_user.profile.ltc >= 50
-      current_user.profile.update(ltc: current_user.profile.ltc - 50)
+      ltc_update(-50, @profile.baner_top_url, 'Покупка банера 1920x600 на 15 дней')
       @profile.update(
         baner_top_date_start: Date.today,
         baner_top_date_end: Date.today + 15.days,
         baner_top_status: 'published'
-      )
-      LtcBilling.create(
-        user_id: current_user.id,
-        amount: -50,
-        description: 'Покупка банера 1920x600 на 15 дней',
-        product_name: @profile.baner_top_url
       )
       redirect_to balance_profiles_path, success: 'Банер опубликован'
     else
@@ -67,17 +61,11 @@ class ProfilesController < ApplicationController
 
   def top30
     if current_user.profile.ltc >= 100
-      current_user.profile.update(ltc: current_user.profile.ltc - 100)
+      ltc_update(-100, @profile.baner_top_url, 'Покупка банера 1920x600 на 30 дней')
       @profile.update(
         baner_top_date_start: Date.today,
         baner_top_date_end: Date.today + 30.days,
         baner_top_status: 'published'
-      )
-      LtcBilling.create(
-        user_id: current_user.id,
-        amount: -100,
-        description: 'Покупка банера 1920x600 на 30 дней',
-        product_name: @profile.baner_top_url
       )
       redirect_to balance_profiles_path, success: 'Банер опубликован'
     else
@@ -103,17 +91,11 @@ class ProfilesController < ApplicationController
 
   def menu15
     if current_user.profile.ltc >= 30
-      current_user.profile.update(ltc: current_user.profile.ltc - 30)
+      ltc_update(-30, @profile.baner_menu_url, 'Покупка банера 240x400 на 15 дней')
       @profile.update(
         baner_menu_date_start: Date.today,
         baner_menu_date_end: Date.today + 15.days,
         baner_menu_status: 'published'
-      )
-      LtcBilling.create(
-        user_id: current_user.id,
-        amount: -30,
-        description: 'Покупка банера 240x400 на 15 дней',
-        product_name: @profile.baner_menu_url
       )
       redirect_to balance_profiles_path, success: 'Банер опубликован'
     else
@@ -123,17 +105,11 @@ class ProfilesController < ApplicationController
 
   def menu30
     if current_user.profile.ltc >= 50
-      current_user.profile.update(ltc: current_user.profile.ltc - 50)
+      ltc_update(-50, @profile.baner_menu_url, 'Покупка банера 240x400 на 30 дней')
       @profile.update(
         baner_menu_date_start: Date.today,
         baner_menu_date_end: Date.today + 30.days,
         baner_menu_status: 'published'
-      )
-      LtcBilling.create(
-        user_id: current_user.id,
-        amount: -50,
-        description: 'Покупка банера 240x400 на 30 дней',
-        product_name: @profile.baner_menu_url
       )
       redirect_to balance_profiles_path, success: 'Банер опубликован'
     else
@@ -143,13 +119,8 @@ class ProfilesController < ApplicationController
 
   def reset_delay
     if current_user.profile.ltc >= 1
-      current_user.profile.update(ltc: current_user.profile.ltc - 1)
       current_user.update(votetime: DateTime.now)
-      LtcBilling.create(
-        user_id: current_user.id,
-        amount: -1,
-        description: 'Сброс задержки голосования'
-      )
+      ltc_update(-1, current_user.username, 'Сброс задержки голосования')
       redirect_to server_path(params[:id]), success: "Задержка голосования
        сброшена. Остаток на счете #{current_user.profile.ltc} LTC"
     else
@@ -158,6 +129,14 @@ class ProfilesController < ApplicationController
   end
 
   private
+
+  def ltc_update(ltc, prod, info)
+    current_user.profile.update(
+      ltc: current_user.profile.ltc + ltc,
+      last_product: prod,
+      last_description: info
+    )
+  end
 
   def set_profile
     @profile = Profile.find(params[:id])

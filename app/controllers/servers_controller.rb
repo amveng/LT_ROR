@@ -43,14 +43,8 @@ class ServersController < ApplicationController
 
   def vip
     if current_user.profile.ltc >= 20
-      current_user.profile.update(ltc: (current_user.profile.ltc - 20))
+      ltc_update(-20, @server.title, 'Покупка премиум на сервер')
       @server.update(status: 2, status_expires: (Date.today + 30.days), publish: 'published')
-      LtcBilling.create(
-        user_id: current_user.id,
-        amount: -20,
-        description: 'Покупка премиум на сервер',
-        product_name: @server.title
-      )
       redirect_to servers_profiles_path, success: 'Премиум активирован'
     else
       redirect_to servers_profiles_path, danger: 'Недостаточно средств на счете'
@@ -59,14 +53,8 @@ class ServersController < ApplicationController
 
   def top
     if current_user.profile.ltc >= 50
-      current_user.profile.update(ltc: (current_user.profile.ltc - 50))
+      ltc_update(-50, @server.title, 'Покупка премиум ТОП на сервер')
       @server.update(status: 1, status_expires: (Date.today + 30.days), publish: 'published')
-      LtcBilling.create(
-        user_id: current_user.id,
-        amount: -50,
-        description: 'Покупка премиум ТОП на сервер',
-        product_name: @server.title
-      )
       redirect_to servers_profiles_path, success: 'Премиум ТОП активирован'
     else
       redirect_to servers_profiles_path, danger: 'Недостаточно средств на счете'
@@ -125,6 +113,14 @@ class ServersController < ApplicationController
   end
 
   private
+
+  def ltc_update(ltc, prod, info)
+    current_user.profile.update(
+      ltc: current_user.profile.ltc + ltc,
+      last_product: prod,
+      last_description: info
+    )
+  end
 
   def server_view
     viewer = if current_user.blank?
