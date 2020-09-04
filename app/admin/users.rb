@@ -72,9 +72,6 @@ ActiveAdmin.register User do
       f.input :confirmed_at, as: :datepicker
       f.input :current_sign_in_ip, as: :string
     end
-    f.inputs profile: 'Профиль', for: :profile do |profile|
-      profile.input :ltc
-    end
     f.actions
   end
 end

@@ -24,9 +24,18 @@
 class Profile < ApplicationRecord
   belongs_to :user
 
+  before_save :check_update
+
   mount_uploader :baner_top_img, BanerTopImgUploader
 
   mount_uploader :baner_menu_img, BanerMenuImgUploader
 
   validates :baner_top_status, :baner_menu_status, presence: true
+
+  def check_update
+    p 'AAAAAAAAAAAAAAAAAA'
+    p self.ltc_changed?
+    p self.ltc_was
+    p self.ltc_change
+  end
 end

@@ -10,7 +10,7 @@ module Api
         key = params[:key]
         user_ip = params[:user_ip]
         user_id = params[:user_id]
-        if Server.find_by(id: server_id, token: key).blank?
+        if Server.find_by(id: server_id, token: key, publish: 'published').blank?
           render json: { errors: 'Неверный ID или ключ' }, status: 403
         else
           vote = Vote.where(
@@ -36,7 +36,7 @@ module Api
         server_id = params[:id]
         key = params[:key]
         token = params[:token]
-        if Server.find_by(id: server_id, token: key).blank?
+        if Server.find_by(id: server_id, token: key, publish: 'published').blank?
           render json: { errors: 'Неверный ID или ключ' }, status: 403
         else
           vote = Vote.where(confirmation: false, token: token)
