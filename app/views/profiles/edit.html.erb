@@ -2,6 +2,18 @@
   <%= render '/profiles/left' %>
 </div>
 <div class="col col-9">
+      <% if current_user.servers.blank? %>
+      <div class="shadow bg-light my-5">
+      <div class="card-body">
+                <div class="alert alert-secondary font-weight-bold text-center">
+          Добавить банер возможно только при наличии зарегистрированного сервера.
+          <br>
+          <%= link_to 'Добавить сервер', new_server_path, class: "badge badge-primary mt-3" %>
+        </div>
+        </div>
+        </div>
+        <% else %>
+     
   <div class="shadow bg-light my-5">
     <h5 class="card-header">Банер 1920х600</h5>
     <div class="card-body">
@@ -151,4 +163,5 @@
       </li>
     </div>
   </div>
+   <% end %>
 </div>
