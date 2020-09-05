@@ -6,6 +6,13 @@
     <h5 class="card-header">Голосование</h5>
     <div class="card-body">
       <h5 class="pb-3">Настройки для голосования за ваш сервер</h5>
+      <% if current_user.servers.blank? %>
+        <div class="alert alert-secondary font-weight-bold text-center">
+          У вас не зарегистрировано не одного сервера.
+          <br>
+          <%= link_to 'Добавить сервер', new_server_path, class: "badge badge-primary mt-3" %>
+        </div>
+      <% end %>
       <% current_user.servers.profile.each do |server| %>
         <li class="list-group-item border-secondary">
           <div class="">
