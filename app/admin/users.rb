@@ -5,6 +5,8 @@ ActiveAdmin.register User do
                 :baned, :current_sign_in_ip, :country,
                 :username, profile_attributes: :ltc
 
+  scope 'Только настоящие', :nofaker
+
   controller do
     def scoped_collection
       super.includes :servers, :profile
