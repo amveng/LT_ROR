@@ -391,6 +391,7 @@ DEPENDENCIES
   letter_opener
   listen (~> 3.2)
   mini_magick
+  nokogiri
   omniauth
   omniauth-facebook
   omniauth-github

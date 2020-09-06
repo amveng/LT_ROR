@@ -5,6 +5,8 @@ ActiveAdmin.register User do
                 :baned, :current_sign_in_ip, :country,
                 :username, profile_attributes: :ltc
 
+  scope 'Только настоящие', :nofaker
+
   controller do
     def scoped_collection
       super.includes :servers, :profile
@@ -48,6 +50,13 @@ ActiveAdmin.register User do
     end
     column :username
     column :provider
+    column 'Страна' do |user|
+      if Country.exists?(code: user.country)
+        Country.find_by(code: user.country).name
+      else
+        'Неопределено'
+      end
+    end
     column :servers
 
     actions
