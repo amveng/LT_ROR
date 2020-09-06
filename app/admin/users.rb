@@ -50,6 +50,13 @@ ActiveAdmin.register User do
     end
     column :username
     column :provider
+    column 'Страна' do |user|
+      if Country.exists?(code: user.country)
+        Country.find_by(code: user.country).name
+      else
+        'Неопределено'
+      end
+    end
     column :servers
 
     actions

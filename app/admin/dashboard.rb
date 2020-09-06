@@ -31,6 +31,34 @@ ActiveAdmin.register_page 'Dashboard' do
       end
     end
 
+    unless User.where(created_at: 7.day.ago..).blank?
+      panel 'Новые пользователи за последюю неделю' do
+        table_for User.where(created_at: 7.day.ago..).limit(10) do
+          column :username do |user|
+            link_to user.username, adm315_user_path(user)
+          end
+          column :country do |user|
+            if Country.exists?(code: user.country)
+              Country.find_by(code: user.country).name
+            else
+              'Неопределено'
+            end
+          end
+          column :created_at do |user|
+            case user.created_at
+            when 1.days.ago...0.days.ago
+              'Сегодня'
+            when 2.days.ago..1.days.ago
+              'Вчера'
+            else
+              user.created_at
+            end
+          end
+        end
+        strong { link_to 'Весь список серверов', adm315_users_path }
+      end
+    end
+
     unless Profile.where(baner_top_status: 'unverified').blank?
       panel 'Банеры 1920x600 ждущие проверки' do
         table_for Profile.where(baner_top_status: 'unverified').limit(10) do
