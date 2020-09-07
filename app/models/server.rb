@@ -43,7 +43,7 @@ class Server < ApplicationRecord
 
   validates :status_expires, :datestart, :status, :publish, presence: true
   validates :rate, numericality: { only_integer: true }
-  validates :title, uniqueness: true, length: { in: 4..42 }
+  validates :title, :urlserver, uniqueness: true, length: { in: 4..42 }
   validates :urlserver, url: { schemes: ['https'], public_suffix: true }
   validates :description, length: { maximum: 400 }
 
