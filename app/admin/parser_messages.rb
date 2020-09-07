@@ -14,6 +14,7 @@ ActiveAdmin.register ParserMessage do
 
   filter :name
   filter :typemsg
+  filter :body
   filter :created_at
 
   form do |f|

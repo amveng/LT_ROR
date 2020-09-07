@@ -35,7 +35,7 @@ ActiveAdmin.register Server do
     f.inputs do
       f.input :title
       f.input :urlserver
-      f.input :datestart
+      f.input :datestart, as: :datepicker
       f.input :user
       f.input :publish, as: :select, collection: %i[
         create unverified failed published arhiv

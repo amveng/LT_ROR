@@ -19,21 +19,30 @@ ActiveAdmin.register_page 'Dashboard' do
 
     unless Server.where(created_at: 7.day.ago..).blank?
       panel 'Новые сервера за последюю неделю' do
-        table_for Server.where(created_at: 7.day.ago..).limit(10) do
+        table_for Server.where(created_at: 7.day.ago..).limit(20) do
           column :title do |server|
             link_to server.title, adm315_server_path(server)
           end
-          column :created_at
+          column :created_at do |server|
+            case server.created_at
+            when 1.days.ago...0.days.ago
+              'Сегодня'
+            when 2.days.ago..1.days.ago
+              'Вчера'
+            else
+              server.created_at
+            end
+          end
           column :publish
           column :user
         end
-        strong { link_to 'Весь список серверов', adm315_servers_path }
+        strong { link_to 'Весь список серверов', adm315_servers_path, style: 'font-size: 16px;' }
       end
     end
 
     unless User.where(created_at: 7.day.ago..).blank?
       panel 'Новые пользователи за последюю неделю' do
-        table_for User.where(created_at: 7.day.ago..).limit(10) do
+        table_for User.where(created_at: 7.day.ago..).limit(20) do
           column :username do |user|
             link_to user.username, adm315_user_path(user)
           end
@@ -55,7 +64,7 @@ ActiveAdmin.register_page 'Dashboard' do
             end
           end
         end
-        strong { link_to 'Весь список серверов', adm315_users_path }
+        strong { link_to 'Весь список пользователей', adm315_users_path, style: 'font-size: 16px;' }
       end
     end
 
