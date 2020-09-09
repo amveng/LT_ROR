@@ -12,8 +12,8 @@ ActiveAdmin.register ParserMessage do
     actions
   end
 
-  filter :name
-  filter :typemsg
+  filter :name, as: :select, collection: ParserMessage.pluck('name').uniq
+  filter :typemsg, as: :select, collection: ParserMessage.pluck('typemsg').uniq
   filter :body
   filter :created_at
 
