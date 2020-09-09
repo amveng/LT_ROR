@@ -23,7 +23,8 @@ class VotesController < ApplicationController
     if current_user.votetime < DateTime.now
       current_user.votetime = DateTime.now + 12.hours
       # + 12.hours
-      VoteWorker.perform_async(params[:id])
+      force = Vote.find_by(date: Date.today).blank?
+      VoteWorker.perform_async(params[:id], force)
       if @vote.save && current_user.save
         redirect_to server_path(params[:id]), success: 'Вы проголосовали'
       else

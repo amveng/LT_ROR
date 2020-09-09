@@ -7,7 +7,7 @@ ActiveAdmin.register Vote do
     selectable_column
     column :user
     column :server
-    column :date
+    column :created_at
     column :country
     column :confirmation
     actions
@@ -15,7 +15,7 @@ ActiveAdmin.register Vote do
 
   filter :user
   filter :server
-  filter :date
+  filter :created_at
   filter :country
 
   form do |f|

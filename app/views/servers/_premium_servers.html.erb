@@ -1,9 +1,7 @@
-<div class="shadow bg-light my-5">
-  <h5 class="card-header">Премиум сервера</h5>
-  <div class="card-body">
-    <% if @server.vip.blank?  %>
-    На данный момент нет вип серверов
-    <% else %>
+  <% if @server.vip.present?  %>
+  <div class="shadow bg-light my-5">
+    <h5 class="card-header">Премиум сервера</h5>
+    <div class="card-body">
       <table class="table table-hover table-sm">
         <tbody>
           <% @server.vip.each do |server| %>
@@ -18,6 +16,6 @@
           <% end %>
         </tbody>
       </table>
-    <% end %>
+    </div>
   </div>
-</div>
+<% end %>

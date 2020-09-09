@@ -196,4 +196,41 @@ namespace :parser do
 
     maindef
   end
+
+  task vote: :environment do
+    p 'start'
+    count_vote = 1000
+    while count_vote.positive?
+
+      koef = 1
+      user = User.faker.sample
+      server = Server.published.sample
+      koef += server.rating
+      if server.datestart > 7.days.ago && server.datestart < 7.days.after
+        koef += 3
+      end
+      if koef > rand(1000)/100.0
+        code = Country.find_by(code: user.country)
+        country = if code.blank?
+                    'Неопределено'
+                  else
+                    code.name
+                  end
+        Vote.create(
+          server_id: server.id,
+          user_id: user.id,
+          date: rand(7).days.ago,
+          country: country
+        )
+        count_vote -= 1
+      end
+      ServerView.create(
+        server_id: server.id,
+        viewer: 'faker',
+        date: rand(7).days.ago
+      )
+
+    end
+    VoteWorker.perform_async(server.id, 1)
+  end
 end
