@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 2020_09_07_062118) do
     t.string "name"
     t.string "typemsg"
     t.string "body"
+    t.date "date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

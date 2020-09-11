@@ -4,6 +4,7 @@ class CreateParserMessages < ActiveRecord::Migration[6.0]
       t.string :name
       t.string :typemsg
       t.string :body
+      t.date :date
 
       t.timestamps
     end
