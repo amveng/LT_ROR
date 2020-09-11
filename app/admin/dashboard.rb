@@ -4,6 +4,16 @@ ActiveAdmin.register_page 'Dashboard' do
   menu priority: 1, label: proc { I18n.t('active_admin.dashboard') }
 
   content title: proc { I18n.t('active_admin.dashboard') } do
+    columns do
+      column do
+        panel 'Ручной запуск воркеров' do
+          div do
+            render('/admin/worker_panel')
+          end
+        end
+      end
+    end
+
     unless Server.where(publish: 'unverified').blank?
       panel 'Сервера ждущие проверки' do
         table_for Server.where(publish: 'unverified').limit(10) do

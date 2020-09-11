@@ -5,7 +5,7 @@ ActiveAdmin.register Server do
                 :status, :urlserver, :imageserver,
                 :publish, :serverversion_id,
                 :datestart, :description, :failed
-  scope 'vip', :vip
+  scope 'premium', :premium
   controller do
     def scoped_collection
       super.includes :user

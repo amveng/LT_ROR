@@ -1,0 +1,20 @@
+<%= link_to 'Воркер main',
+ main_workers_path, class: 'table_tools_button', method: :post, 
+ data: { confirm: 'Запустить воркер?' }
+  %>
+<%= link_to 'Воркер fake vote',
+ vote_fake_workers_path, class: 'table_tools_button', method: :post, 
+ data: { confirm: 'Запустить воркер?' }
+  %>
+<%= link_to 'Воркер fake users',
+ fake_user_workers_path, class: 'table_tools_button', method: :post, 
+ data: { confirm: 'Запустить воркер?' }
+  %>
+<%= link_to 'Воркер parser servers',
+ parser_servers_workers_path, class: 'table_tools_button', method: :post, 
+ data: { confirm: 'Запустить воркер?' }
+  %>
+<%= link_to 'Воркер server status',
+ server_status_workers_path, class: 'table_tools_button', method: :post, 
+ data: { confirm: 'Запустить воркер?' }
+  %>

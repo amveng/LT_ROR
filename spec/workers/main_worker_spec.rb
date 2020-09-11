@@ -1,4 +1,3 @@
 require 'rails_helper'
-RSpec.describe MainWorker, type: :worker do
-  pending "add some examples to (or delete) #{__FILE__}"
+RSpec.describe MainWorker, type: :worker do  
 end

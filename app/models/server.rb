@@ -59,8 +59,14 @@ class Server < ApplicationRecord
   scope :open_soon, lambda {
     where(datestart: 0.days.after..7.days.after).order(:status, datestart: :asc)
   }
+  scope :top, lambda {
+    where(publish: 'published', status: 1).order(:status).shuffle
+  }
   scope :vip, lambda {
-    where(publish: 'published', status: 1..2).order(:status, datestart: :desc)
+    where(publish: 'published', status: 2).order(:status).shuffle
+  }
+  scope :premium, lambda {
+    where(publish: 'published', status: 1..2)
   }
   scope :novip, lambda {
     where(publish: 'published', status: 3)

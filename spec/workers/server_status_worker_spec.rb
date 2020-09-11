@@ -1,4 +1,3 @@
 require 'rails_helper'
-RSpec.describe ServerStatusWorker, type: :worker do
-  pending "add some examples to (or delete) #{__FILE__}"
+RSpec.describe ServerStatusWorker, type: :worker do  
 end

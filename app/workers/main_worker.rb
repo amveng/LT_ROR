@@ -4,7 +4,7 @@ class MainWorker
   include Sidekiq::Worker
 
   def perform
-    (0..2).each do |s|
+    (1..3).each do |s|
       next if ParserMessage.exists?(
         name: 'Main',
         typemsg: 'task',
