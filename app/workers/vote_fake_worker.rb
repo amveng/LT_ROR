@@ -11,8 +11,11 @@ class VoteFakeWorker
       user = User.faker.sample
       server = Server.published.sample
       koef += server.rating
-      if server.datestart > 7.days.ago && server.datestart < 7.days.after
-        koef += 3
+      if server.datestart > 0.days.ago && server.datestart < 7.days.after
+        koef += 4
+      end
+      if server.datestart > 7.days.ago && server.datestart < 0.days.after
+        koef += 2
       end
       if koef > rand(1000) / 100.0
         code = Country.find_by(code: user.country)

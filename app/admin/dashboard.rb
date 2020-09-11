@@ -33,7 +33,24 @@ ActiveAdmin.register_page 'Dashboard' do
               server.created_at
             end
           end
-          column :publish
+          column :publish do |server|
+            color = case server.publish
+                    when 'published'
+                      'green'
+                    when 'create'
+                      'blue'
+                    when 'unverified'
+                      'yellow'
+                    when 'failed'
+                      'red'
+                    when 'arhiv'
+                      'dark'
+                    else
+                      'dark'
+                    end
+
+            status_tag(server.publish, style: "font-weight: bold; color: #{color}")
+          end
           column :user
         end
         strong { link_to 'Весь список серверов', adm315_servers_path, style: 'font-size: 16px;' }

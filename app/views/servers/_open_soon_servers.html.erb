@@ -1,10 +1,10 @@
-  <% if @server.vip.present?  %>
+  <% if @server.open_soon.present?  %>
   <div class="shadow bg-light my-5">
-    <h5 class="card-header">Премиум сервера</h5>
+    <h5 class="card-header">Скоро откроются</h5>
     <div class="card-body">
       <table class="table table-hover table-sm">
         <tbody>
-          <% @server.vip.each do |server| %>
+          <% @server.open_soon.each do |server| %>
             <tr>
               <td class="text-<%= status_color(server.status.to_s) %> p-0 m-0" style="font-size:20px"> <%= status_icon(server.status.to_s) %> </td>
               <td><%= link_to truncate(server.title.html_safe, length:20), server.urlserver, class: "link-#{server.status}", target: "_blank" %></td>
