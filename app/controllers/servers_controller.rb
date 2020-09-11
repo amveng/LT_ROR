@@ -10,8 +10,6 @@ class ServersController < ApplicationController
 
   def index
     @server = Server.all.includes(:serverversion)
-    @servers_expires = Server.where(status_expires: ..Date.yesterday, status: 1..2)
-    servers_update_status if @servers_expires.present?
   end
 
   def show
@@ -130,12 +128,6 @@ class ServersController < ApplicationController
              end
 
     ServerView.where(date: Date.today, server_id: @server.id, viewer: viewer).first_or_create
-  end
-
-  def servers_update_status
-    @servers_expires.each do |f|
-      f.update(status: 3)
-    end
   end
 
   def server_belong_user

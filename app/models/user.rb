@@ -32,13 +32,13 @@
 #  country                :string
 #
 class User < ApplicationRecord
-  has_many :servers
-  has_many :votes
+  has_many :servers, dependent: :destroy
+  has_many :votes, dependent: :destroy
   has_many :ltc_billing
   has_one :profile, dependent: :destroy
 
   before_create :build_profile
-  
+
   accepts_nested_attributes_for :profile
 
   auto_strip_attributes :username, squish: true
@@ -51,9 +51,12 @@ class User < ApplicationRecord
          :omniauthable, :async,
          omniauth_providers: %i[vkontakte github google_oauth2 facebook email faker]
 
-
   scope :nofaker, lambda {
     where.not(provider: 'faker')
+  }
+
+  scope :faker, lambda {
+    where(provider: 'faker')
   }
 
   def self.create_from_provider_data(provider_data)

@@ -40,12 +40,7 @@ class Profile < ApplicationRecord
     profile = self
     return unless profile.ltc_changed?
 
-    p 'AAAAAAAAAAAAAAAAAAAAAAAAAA'    
-
     profile.last_product = 'Admin' if profile.last_product.blank?
-
-
-
     LtcBilling.create(
       amount: profile.ltc_change.reduce(:-) * -1,
       user_id: profile.user_id,

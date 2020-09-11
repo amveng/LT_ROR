@@ -58,6 +58,16 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :workers do
+    collection do
+      post 'main'
+      post 'vote_fake'
+      post 'fake_user'
+      post 'parser_servers'
+      post 'server_status'
+    end
+  end
+
   resources :contents do
     collection do
       Content.pluck('name').each do |f|

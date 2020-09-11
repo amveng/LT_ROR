@@ -5,7 +5,7 @@ ActiveAdmin.register Server do
                 :status, :urlserver, :imageserver,
                 :publish, :serverversion_id,
                 :datestart, :description, :failed
-  scope 'vip', :vip
+  scope 'premium', :premium
   controller do
     def scoped_collection
       super.includes :user
@@ -35,7 +35,7 @@ ActiveAdmin.register Server do
     f.inputs do
       f.input :title
       f.input :urlserver
-      f.input :datestart
+      f.input :datestart, as: :datepicker
       f.input :user
       f.input :publish, as: :select, collection: %i[
         create unverified failed published arhiv

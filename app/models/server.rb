@@ -43,15 +43,33 @@ class Server < ApplicationRecord
 
   validates :status_expires, :datestart, :status, :publish, presence: true
   validates :rate, numericality: { only_integer: true }
-  validates :title, uniqueness: true, length: { in: 4..42 }
+  validates :title, :urlserver, uniqueness: true, length: { in: 4..42 }
   validates :urlserver, url: { schemes: ['https'], public_suffix: true }
   validates :description, length: { maximum: 400 }
 
   scope :published, lambda {
     where(publish: 'published')
   }
+  scope :premiere, lambda {
+    where(datestart: 7.days.ago..7.days.after)
+  }
+  scope :already_opened, lambda {
+    where(datestart: 7.days.ago..0.days.after).order(:status, datestart: :desc)
+  }
+  scope :open_soon, lambda {
+    where(datestart: 0.days.after..7.days.after).order(:status, datestart: :asc)
+  }
+  scope :top, lambda {
+    where(publish: 'published', status: 1).order(:status).shuffle
+  }
   scope :vip, lambda {
-    where(publish: 'published', status: 1..2).order(:status, datestart: :desc)
+    where(publish: 'published', status: 2).order(:status).shuffle
+  }
+  scope :premium, lambda {
+    where(publish: 'published', status: 1..2)
+  }
+  scope :novip, lambda {
+    where(publish: 'published', status: 3)
   }
   scope :rating, lambda {
     where(publish: 'published').order(rating: :desc)
