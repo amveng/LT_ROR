@@ -4,7 +4,7 @@ class VoteFakeWorker
   include Sidekiq::Worker
 
   def perform(count_vote = 100)
-    count_vote = 0 if Vote.where(date: Date.today).count > 2300
+    count_vote = 0 if Vote.where(date: Date.today).count > 1500
     while count_vote.positive?
 
       koef = 1
@@ -32,13 +32,15 @@ class VoteFakeWorker
         )
         count_vote -= 1
       end
-      ServerView.create(
-        server_id: server.id,
-        viewer: 'faker',
-        date: Date.today
-      )
+      if koef > rand(700) / 100.0
+        ServerView.create(
+          server_id: server.id,
+          viewer: 'faker',
+          date: Date.today
+        )
+      end
 
     end
-    VoteWorker.perform_async(server.id, true)
+    VoteWorker.perform_async(nil, true)
   end
 end
