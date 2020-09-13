@@ -7,7 +7,7 @@
           <% @server.top.each do |server| %>
             <tr>
               <td class="text-<%= status_color(server.status.to_s) %> p-0 m-0" style="font-size:20px"> <%= status_icon(server.status.to_s) %> </td>
-              <td><%= link_to truncate(server.title.html_safe, length:20), server.urlserver, class: "link-#{server.status}", target: "_blank" %></td>
+              <td><%= link_to truncate(server.title.html_safe, length:20), server.urlserver, class: "link-#{server.status}", title: server.description , target: "_blank" %></td>
               <td><%= server.serverversion.name %></td>
               <td>x<%= server.rate %></td>
               <td><%= server.datestart.strftime("%d.%m.%Y") %></td>
@@ -17,7 +17,7 @@
           <% @server.vip.each do |server| %>
             <tr>
               <td class="text-<%= status_color(server.status.to_s) %> p-0 m-0" style="font-size:20px"> <%= status_icon(server.status.to_s) %> </td>
-              <td><%= link_to truncate(server.title.html_safe, length:20), server.urlserver, class: "link-#{server.status}", target: "_blank" %></td>
+              <td><%= link_to truncate(server.title.html_safe, length:20), server.urlserver, class: "link-#{server.status}", title: server.description , target: "_blank" %></td>
               <td><%= server.serverversion.name %></td>
               <td>x<%= server.rate %></td>
               <td><%= server.datestart.strftime("%d.%m.%Y") %></td>

@@ -209,7 +209,7 @@ namespace :parser do
       if server.datestart > 7.days.ago && server.datestart < 7.days.after
         koef += 3
       end
-      if koef > rand(1000)/100.0
+      if koef > rand(1000) / 100.0
         code = Country.find_by(code: user.country)
         country = if code.blank?
                     'Неопределено'
@@ -232,5 +232,65 @@ namespace :parser do
 
     end
     VoteWorker.perform_async(server.id, 1)
+  end
+
+  task check: :environment do
+    def servers_check
+      servers = Server.where(urlserver: 'http://127.0.0.1:300')
+      servers.each do |server|
+        @url_server = server.urlserver
+        begin
+          @uri = URI.open(@url_server)
+        rescue StandardError
+          p 'urierror'
+          if server.failed_checks > 1
+            server.publish = 'failed'
+            server.failed = 'сервер недоступен'
+          end
+          server.failed_checks += 1
+        else
+          @doc = Nokogiri::HTML(@uri)
+          title = @doc.title
+          p title
+          p baner_check?
+          if server.description.blank?
+            server.description = title if title.length < 400
+          end
+
+          server.failed_checks = 0 if server.failed_checks.positive?
+          if server.publish == 'failed' && server.failed == 'сервер недоступен'
+            server.publish = 'published'
+            server.failed = ''
+          end
+
+          if server.status > 2 && baner_check?
+            unless LtcBilling.exists?(product_name: server.title, description: 'Акция премиум за банер')
+              server.status_expires = Date.today + 10.days
+              server.status = 2 
+              LtcBilling.create(
+                product_name: server.title,
+                description: 'Акция премиум за банер',
+                amount: 0.0,
+                user_id: server.user.id
+              )
+            end
+          end
+
+
+        end
+        p server.save
+      end
+    end
+
+    def baner_check?
+      @doc.css('a').each do |a|
+        if a.values.to_s.include?('https://lineagetop.com') && a.children.to_s.include?('https://lineagetop.com')
+          return true
+        end
+      end
+      false
+    end
+
+    servers_check
   end
 end

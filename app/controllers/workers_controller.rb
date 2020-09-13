@@ -27,4 +27,9 @@ class WorkersController < ApplicationController
     ServerStatusWorker.perform_async
     redirect_to adm315_root_path, notice: 'Воркер запущен'
   end
+
+  def server_check
+    ServerCheckWorker.perform_async
+    redirect_to adm315_root_path, notice: 'Воркер запущен'
+  end
 end

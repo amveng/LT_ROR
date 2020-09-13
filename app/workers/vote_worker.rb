@@ -3,7 +3,7 @@
 class VoteWorker
   include Sidekiq::Worker
 
-  def perform(server_id, force = false)
+  def perform(server_id = nil, force = false)
     list_id = if force
                 Server.ids
               else

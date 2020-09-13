@@ -64,6 +64,7 @@ ActiveAdmin.register User do
 
   filter :email
   filter :username
+  filter :country, as: :select, collection: User.pluck('country').uniq
   filter :created_at
   filter :updated_at
   filter :votetime

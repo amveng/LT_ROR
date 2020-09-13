@@ -6,6 +6,7 @@ ActiveAdmin.register Server do
                 :publish, :serverversion_id,
                 :datestart, :description, :failed
   scope 'premium', :premium
+  scope 'not_working', :not_working
   controller do
     def scoped_collection
       super.includes :user
