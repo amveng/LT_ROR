@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_07_062118) do
+ActiveRecord::Schema.define(version: 2020_09_12_145450) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -126,6 +126,7 @@ ActiveRecord::Schema.define(version: 2020_09_07_062118) do
     t.date "status_expires", default: "2020-01-01", null: false
     t.text "failed"
     t.string "token"
+    t.integer "failed_checks", default: 0, null: false
     t.index ["serverversion_id"], name: "index_servers_on_serverversion_id"
     t.index ["title"], name: "index_servers_on_title", unique: true
     t.index ["user_id"], name: "index_servers_on_user_id"

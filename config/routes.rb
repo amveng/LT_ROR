@@ -65,6 +65,7 @@ Rails.application.routes.draw do
       post 'fake_user'
       post 'parser_servers'
       post 'server_status'
+      post 'server_check'
     end
   end
 

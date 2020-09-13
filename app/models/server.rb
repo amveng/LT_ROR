@@ -21,6 +21,7 @@
 #  status_expires   :date             default(Wed, 01 Jan 2020), not null
 #  failed           :text
 #  token            :string
+#  failed_checks    :integer          default: 0, not null
 #
 AutoStripAttributes::Config.setup do
   set_filter(capitalize: false) do |value|
@@ -50,14 +51,17 @@ class Server < ApplicationRecord
   scope :published, lambda {
     where(publish: 'published')
   }
+  scope :not_working, lambda {
+    where(failed_checks: 1..)
+  }
   scope :premiere, lambda {
-    where(datestart: 7.days.ago..7.days.after)
+    where(publish: 'published', datestart: 7.days.ago..7.days.after)
   }
   scope :already_opened, lambda {
-    where(datestart: 7.days.ago..0.days.after).order(:status, datestart: :desc)
+    where(publish: 'published', datestart: 7.days.ago..0.days.after).order(:status, datestart: :desc)
   }
   scope :open_soon, lambda {
-    where(datestart: 0.days.after..7.days.after).order(:status, datestart: :asc)
+    where(publish: 'published', datestart: 0.days.after..7.days.after).order(:status, datestart: :asc)
   }
   scope :top, lambda {
     where(publish: 'published', status: 1).order(:status).shuffle
