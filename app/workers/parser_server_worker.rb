@@ -54,7 +54,6 @@ class ParserServerWorker
         typemsg: 'create',
         body: "#{@url} - #{@version} - #{@rate} - #{@date}"
       ).first_or_create
-      @server.update(publish: 'published')
     else
       # p @server
       ParserMessage.where(

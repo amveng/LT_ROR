@@ -30,6 +30,8 @@ class ServerCheckWorker
           server.publish = 'published'
           server.failed = ''
         end
+        server.publish = 'published' if server.publish == 'create'
+
 
         if server.status > 2 && baner_check?
           unless LtcBilling.exists?(product_name: server.title, description: 'Акция премиум за банер')
