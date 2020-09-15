@@ -29,15 +29,15 @@ ActiveAdmin.register_page 'Dashboard' do
 
     unless Server.where(created_at: 7.day.ago..).blank?
       panel 'Новые сервера за последюю неделю' do
-        table_for Server.where(created_at: 7.day.ago..).limit(20) do
+        table_for Server.where(created_at: 7.day.ago..).order(created_at: :desc).limit(20) do
           column :title do |server|
             link_to server.title, adm315_server_path(server)
           end
           column :created_at do |server|
             case server.created_at
-            when 1.days.ago...0.days.ago
+            when Date.today..Date.tomorrow
               'Сегодня'
-            when 2.days.ago..1.days.ago
+            when Date.yesterday..Date.today
               'Вчера'
             else
               server.created_at

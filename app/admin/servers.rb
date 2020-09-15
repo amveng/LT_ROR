@@ -3,7 +3,7 @@
 ActiveAdmin.register Server do
   permit_params :title, :user_id, :status_expires,
                 :status, :urlserver, :imageserver,
-                :publish, :serverversion_id,
+                :publish, :serverversion_id, :failed_checks,
                 :datestart, :description, :failed
   scope 'premium', :premium
   scope 'not_working', :not_working
@@ -41,6 +41,7 @@ ActiveAdmin.register Server do
       f.input :publish, as: :select, collection: %i[
         create unverified failed published arhiv
       ]
+      f.input :failed_checks
       f.input :failed
       f.input :status, as: :select, collection: { TOP: 1, VIP: 2, normal: 3 }
       f.input :status_expires, as: :datepicker
