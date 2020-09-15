@@ -236,11 +236,16 @@ namespace :parser do
 
   task check: :environment do
     def servers_check
-      servers = Server.where(urlserver: 'http://127.0.0.1:300')
+      servers = Server.where(urlserver: 'https://la2dream.com')
       servers.each do |server|
-        @url_server = server.urlserver
+        @url_server = 'https://mist.su' #server.urlserver
         begin
           @uri = URI.open(@url_server)
+        rescue OpenURI::HTTPError
+          http_code = Net::HTTP.get_response(URI.parse(@url_server)).code
+          p 'urirgzdfgzdgerror'
+          server_ok(server) if %w[307 503].include?(http_code)
+          p http_code
         rescue StandardError
           p 'urierror'
           if server.failed_checks > 1
@@ -249,36 +254,36 @@ namespace :parser do
           end
           server.failed_checks += 1
         else
-          @doc = Nokogiri::HTML(@uri)
-          title = @doc.title
-          p title
-          p baner_check?
-          if server.description.blank?
-            server.description = title if title.length < 400
-          end
+          server_ok(server)
+          # @doc = Nokogiri::HTML(@uri)
+          # title = @doc.title
+          # p title
+          # p baner_check?
+          # if server.description.blank?
+          #   server.description = title if title.length < 400
+          # end
 
-          server.failed_checks = 0 if server.failed_checks.positive?
-          if server.publish == 'failed' && server.failed == 'сервер недоступен'
-            server.publish = 'published'
-            server.failed = ''
-          end
+          # server.failed_checks = 0 if server.failed_checks.positive?
+          # if server.publish == 'failed' && server.failed == 'сервер недоступен'
+          #   server.publish = 'published'
+          #   server.failed = ''
+          # end
 
-          if server.status > 2 && baner_check?
-            unless LtcBilling.exists?(product_name: server.title, description: 'Акция премиум за банер')
-              server.status_expires = Date.today + 10.days
-              server.status = 2 
-              LtcBilling.create(
-                product_name: server.title,
-                description: 'Акция премиум за банер',
-                amount: 0.0,
-                user_id: server.user.id
-              )
-            end
-          end
-
-
+          # if server.status > 2 && baner_check?
+          #   unless LtcBilling.exists?(product_name: server.title, description: 'Акция премиум за банер')
+          #     server.status_expires = Date.today + 10.days
+          #     server.status = 2
+          #     LtcBilling.create(
+          #       product_name: server.title,
+          #       description: 'Акция премиум за банер',
+          #       amount: 0.0,
+          #       user_id: server.user.id
+          #     )
+          #   end
+          # end
         end
-        p server.save
+        # p server.save
+        p server.failed_checks
       end
     end
 
@@ -289,6 +294,38 @@ namespace :parser do
         end
       end
       false
+    end
+
+    def server_ok(server)
+      @doc = Nokogiri::HTML(@uri)
+      title = @doc.title
+      p title
+      p baner_check?
+      if server.description.blank?
+        server.description = title[0..399] if title.present?
+      end
+
+      server.failed_checks = 0 if server.failed_checks.positive?
+      if server.publish == 'failed' && server.failed == 'сервер недоступен'
+        server.publish = 'published'
+        server.failed = ''
+      end
+
+      # if server.status > 2 && baner_check?
+      #   unless LtcBilling.exists?(product_name: server.title, description: 'Акция премиум за банер')
+      #     server.status_expires = Date.today + 10.days
+      #     server.status = 2
+      #     LtcBilling.create(
+      #       product_name: server.title,
+      #       description: 'Акция премиум за банер',
+      #       amount: 0.0,
+      #       user_id: server.user.id
+      #     )
+      #   end
+      # end
+      p 'ready'
+
+      server
     end
 
     servers_check

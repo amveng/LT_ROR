@@ -21,7 +21,9 @@ ActiveAdmin.register_page 'Dashboard' do
             link_to server.title, adm315_server_path(server)
           end
           column :updated_at
-          column :publish
+          column :publish do |server|
+            status_tag(server.publish, style: 'font-weight: bold; background-color: Coral')
+          end
           column :user
         end
       end
@@ -29,15 +31,15 @@ ActiveAdmin.register_page 'Dashboard' do
 
     unless Server.where(created_at: 7.day.ago..).blank?
       panel 'Новые сервера за последюю неделю' do
-        table_for Server.where(created_at: 7.day.ago..).limit(20) do
+        table_for Server.where(created_at: 7.day.ago..).order(created_at: :desc).limit(20) do
           column :title do |server|
             link_to server.title, adm315_server_path(server)
           end
           column :created_at do |server|
             case server.created_at
-            when 1.days.ago...0.days.ago
+            when Date.today..Date.tomorrow
               'Сегодня'
-            when 2.days.ago..1.days.ago
+            when Date.yesterday..Date.today
               'Вчера'
             else
               server.created_at
@@ -46,20 +48,20 @@ ActiveAdmin.register_page 'Dashboard' do
           column :publish do |server|
             color = case server.publish
                     when 'published'
-                      'green'
+                      'ForestGreen'
                     when 'create'
-                      'blue'
+                      'RoyalBlue'
                     when 'unverified'
-                      'yellow'
+                      'Coral'
                     when 'failed'
-                      'red'
+                      'Firebrick'
                     when 'arhiv'
-                      'dark'
+                      'SlateGrey'
                     else
                       'dark'
                     end
 
-            status_tag(server.publish, style: "font-weight: bold; color: #{color}")
+            status_tag(server.publish, style: "font-weight: bold; background-color: #{color}")
           end
           column :user
         end

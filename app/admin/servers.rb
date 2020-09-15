@@ -3,7 +3,7 @@
 ActiveAdmin.register Server do
   permit_params :title, :user_id, :status_expires,
                 :status, :urlserver, :imageserver,
-                :publish, :serverversion_id,
+                :publish, :serverversion_id, :failed_checks,
                 :datestart, :description, :failed
   scope 'premium', :premium
   scope 'not_working', :not_working
@@ -16,8 +16,29 @@ ActiveAdmin.register Server do
   index do
     selectable_column
     column :title
+    column :urlserver do |server|
+      link_to server.urlserver, server.urlserver, target: '_blank'
+    end
     column :datestart
-    column :publish
+    column :created_at
+    column :publish do |server|
+      color = case server.publish
+              when 'published'
+                'ForestGreen'
+              when 'create'
+                'RoyalBlue'
+              when 'unverified'
+                'Coral'
+              when 'failed'
+                'Firebrick'
+              when 'arhiv'
+                'SlateGrey'
+              else
+                'dark'
+              end
+
+      status_tag(server.publish, style: "font-weight: bold; background-color: #{color}" )
+    end
     column :user
     column :rating
     actions
@@ -41,6 +62,7 @@ ActiveAdmin.register Server do
       f.input :publish, as: :select, collection: %i[
         create unverified failed published arhiv
       ]
+      f.input :failed_checks
       f.input :failed
       f.input :status, as: :select, collection: { TOP: 1, VIP: 2, normal: 3 }
       f.input :status_expires, as: :datepicker

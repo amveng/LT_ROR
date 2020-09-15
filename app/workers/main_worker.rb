@@ -28,7 +28,7 @@ class MainWorker
     ServerCheckWorker.perform_at(10.minutes.after)
     ServerCheckWorker.perform_at(12.hour.after)
 
-    (1..(5 + rand(11))).each do |s|
+    (1..(rand(5..15))).each do |s|
       VoteFakeWorker.perform_at(s.hour.after)
     end
 

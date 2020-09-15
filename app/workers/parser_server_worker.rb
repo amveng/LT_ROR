@@ -54,15 +54,13 @@ class ParserServerWorker
         typemsg: 'create',
         body: "#{@url} - #{@version} - #{@rate} - #{@date}"
       ).first_or_create
-    else
-      # p @server
+    else      
       ParserMessage.where(
         name: @nameserver,
         typemsg: 'error',
         body: "#{@url} - #{@version} - #{@rate} - #{@date}"
       ).first_or_create
-    end
-    # p "#{@url} - #{@version} - #{@rate} - #{@date}"
+    end    
   end
 
   def urierror
