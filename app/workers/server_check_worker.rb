@@ -41,7 +41,7 @@ class ServerCheckWorker
   end
 
   def server_ok(server)
-    @doc = Nokogiri::HTML(@uri) # @doc = Nokogiri::HTML(URI.open('https://valhalla-age.net'))
+    @doc = Nokogiri::HTML(@uri)
     title = @doc.title
     if server.description.blank?
       server.description = title[0..399] if title.present?

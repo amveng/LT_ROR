@@ -16,8 +16,29 @@ ActiveAdmin.register Server do
   index do
     selectable_column
     column :title
+    column :urlserver do |server|
+      link_to server.urlserver, server.urlserver, target: '_blank'
+    end
     column :datestart
-    column :publish
+    column :created_at
+    column :publish do |server|
+      color = case server.publish
+              when 'published'
+                'ForestGreen'
+              when 'create'
+                'RoyalBlue'
+              when 'unverified'
+                'Coral'
+              when 'failed'
+                'Firebrick'
+              when 'arhiv'
+                'SlateGrey'
+              else
+                'dark'
+              end
+
+      status_tag(server.publish, style: "font-weight: bold; background-color: #{color}" )
+    end
     column :user
     column :rating
     actions

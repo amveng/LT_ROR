@@ -21,7 +21,9 @@ ActiveAdmin.register_page 'Dashboard' do
             link_to server.title, adm315_server_path(server)
           end
           column :updated_at
-          column :publish
+          column :publish do |server|
+            status_tag(server.publish, style: 'font-weight: bold; background-color: Coral')
+          end
           column :user
         end
       end
@@ -46,20 +48,20 @@ ActiveAdmin.register_page 'Dashboard' do
           column :publish do |server|
             color = case server.publish
                     when 'published'
-                      'green'
+                      'ForestGreen'
                     when 'create'
-                      'blue'
+                      'RoyalBlue'
                     when 'unverified'
-                      'yellow'
+                      'Coral'
                     when 'failed'
-                      'red'
+                      'Firebrick'
                     when 'arhiv'
-                      'dark'
+                      'SlateGrey'
                     else
                       'dark'
                     end
 
-            status_tag(server.publish, style: "font-weight: bold; color: #{color}")
+            status_tag(server.publish, style: "font-weight: bold; background-color: #{color}")
           end
           column :user
         end

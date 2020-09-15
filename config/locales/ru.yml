@@ -224,7 +224,7 @@ ru:
       server:
         title: 'Название сервера'
         urlserver: 'Адрес сервера'
-        datestart: 'Дата и время старта'        
+        datestart: 'Дата  старта'        
         rating: 'Рейтинг'
         rate: Рейты сервера
         user: Пользователь
