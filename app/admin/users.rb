@@ -13,6 +13,13 @@ ActiveAdmin.register User do
     end
   end
 
+  batch_action 'Забанить' do |ids|
+    batch_action_collection.find(ids).each do |user|
+      user.update(baned: true)
+    end
+    redirect_to collection_path, alert: "The posts have been flagged."
+  end
+
   show do
     attributes_table do
       row :username
@@ -69,7 +76,7 @@ ActiveAdmin.register User do
   filter :updated_at
   filter :votetime
   filter :baned
-  filter :provider, as: :select, collection: User.omniauth_providers
+  filter :provider, as: :check_boxes, collection: User.omniauth_providers
 
   form do |f|
     f.inputs do

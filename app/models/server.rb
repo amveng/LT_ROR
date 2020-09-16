@@ -51,6 +51,9 @@ class Server < ApplicationRecord
   scope :published, lambda {
     where(publish: 'published')
   }
+  scope :active, lambda {
+    where.not(publish: 'arhiv')
+  }
   scope :not_working, lambda {
     where(failed_checks: 1..)
   }

@@ -159,6 +159,9 @@ ru:
         last: Последняя
   active_admin:  
     details: "%{model} Details"
+    create_another: Создать еще
+    pagination:
+      per_page: на страницу
 
 
   activerecord:

@@ -238,7 +238,7 @@ namespace :parser do
     def servers_check
       servers = Server.where(urlserver: 'https://la2dream.com')
       servers.each do |server|
-        @url_server = 'https://mist.su' #server.urlserver
+        @url_server = 'https://melcosoft.club' #server.urlserver
         begin
           @uri = URI.open(@url_server)
         rescue OpenURI::HTTPError
