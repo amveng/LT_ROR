@@ -1,0 +1,34 @@
+<div class="col col-3">
+  <%= render 'left' %>
+</div>
+
+<h1>Petitions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Topic</th>
+      <th>Body</th>
+      <th>Target</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @petitions.each do |petition| %>
+      <tr>
+        <td><%= petition.topic %></td>
+        <td><%= petition.body %></td>
+        <td><%= petition.target %></td>
+        <td><%= petition.user_id %></td>
+        <td><%= link_to 'Show', petition %></td>   
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Petition', new_petition_path %>

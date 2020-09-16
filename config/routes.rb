@@ -28,6 +28,8 @@ Rails.application.routes.draw do
 
   resources :votes, only: [:create]
 
+  resources :petitions, except: %i[destroy edit update]
+
   resources :servers do
     collection do
       get 'search'
