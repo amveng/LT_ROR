@@ -28,7 +28,12 @@ Rails.application.routes.draw do
 
   resources :votes, only: [:create]
 
-  resources :petitions, except: %i[destroy edit update]
+  resources :petitions, except: %i[destroy edit update] do
+    collection do
+      get 'server_rights_new'
+      post 'server_rights_create'
+    end
+  end
 
   resources :servers do
     collection do

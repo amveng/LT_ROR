@@ -5,6 +5,11 @@ ru:
     create: 'Создать'
     edit: 'Изменить'
     status_expires: 'Действителен до:'
+  petition:
+    create: Отправлена
+    rejected: Отклонена
+    review: На рассмотрнии
+    closed: Закрыта
   publish:
     create: Сервер создан но не опубликован
     published: Опубликовано

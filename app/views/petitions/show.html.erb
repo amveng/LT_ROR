@@ -1,23 +1,26 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Topic:</strong>
-  <%= @petition.topic %>
-</p>
-
-<p>
-  <strong>Body:</strong>
-  <%= @petition.body %>
-</p>
-
-<p>
-  <strong>Target:</strong>
-  <%= @petition.target %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @petition.user_id %>
-</p>
-
-<%= link_to 'Back', petitions_path %>
+<div class="col col-3">
+  <%= render 'left' %>
+</div>
+<div class="col col-9">
+  <div class="shadow bg-light my-5">
+    <h5 class="card-header">Заявка № <%= @petition.id %></h5>
+    <div class="card-body">
+      <p>
+        <strong>Topic:</strong>
+        <%= @petition.topic %>
+      </p>
+      <p>
+        <strong>Body:</strong>
+        <%= @petition.body %>
+      </p>
+      <p>
+        <strong>Target:</strong>
+        <%= @petition.target %>
+      </p>
+      <p>
+        <strong>User:</strong>
+        <%= @petition.user_id %>
+      </p>
+    </div>
+  </div>
+</div>

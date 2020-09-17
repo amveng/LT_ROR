@@ -2,28 +2,63 @@
 
 class PetitionsController < InheritedResources::Base
   before_action :authenticate_user!
+  before_action :all_form, only: %i[
+    new server_rights_new
+  ]
+  before_action :all_create, only: %i[
+    create server_rights_create
+  ]
 
   def index
     @petitions = current_user.petitions
   end
 
-  def new
-    @petition = Petition.new
+  # def new
+  #   @petition = Petition.new
+  # end
+
+  # def server_rights_new
+  #   @petition = Petition.new
+  # end
+
+  def show
+    @petition = Petition.find(params[:id])
+    acces_close unless @petition.user_id == current_user.id
   end
 
   def create
-    @petition = Petition.new(petition_params)
-    @petition.user_id = current_user.id
+    @petition.status = 'create'
     if @petition.save
       redirect_to petitions_path, success: 'Заявка создана.'
     else
-      flash.now[:danger] = 'Заявка не создана'
       render :new
     end
+  end
 
+  def server_rights_create
+    if @petition.save
+      redirect_to petitions_path, success: 'Заявка создана.'
+    else
+      render :server_rights_new
+    end
   end
 
   private
+
+  def all_form
+    @petition = Petition.new
+  end
+
+  def all_create
+    @petition = Petition.new(petition_params)
+    @petition.user_id = current_user.id
+  end
+
+  def acces_close
+    # TODO: надо сделать какой то счетчик перед тем как банить
+    # current_user.update_attributes(baned: true)
+    redirect_to petitions_path, danger: 'Доступ запрещен !!!'
+  end
 
   def petition_params
     params.require(:petition).permit(:topic, :body, :target, :user_id)
