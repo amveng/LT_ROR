@@ -1,5 +1,5 @@
 module PetitionsHelper
-  def status_color(name)
+  def status_petition_color(name)
     { create: 'primary',
       rejected: 'danger',
       review: 'warning',

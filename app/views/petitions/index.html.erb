@@ -21,7 +21,7 @@
               <th scope="row">№ <%= petition.id %></th>
               <td><%= petition.topic %></td>
               <td class="text-center"><%= petition.updated_at.strftime("%d-%m-%Y # %H:%M ") %></td>
-              <td class="text-center"> <span class="badge badge-<%= status_color(petition.status) %>"><%= t("petition.#{petition.status}") %> </span></td>
+              <td class="text-center"> <span class="badge badge-<%= status_petition_color(petition.status) %>"><%= t("petition.#{petition.status}") %> </span></td>
               <td><%= link_to 'Посмотреть', petition, class: 'btn btn-sm btn-info p-0' %></td>
             </tr>
           <% end %>

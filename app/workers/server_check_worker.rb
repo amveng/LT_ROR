@@ -24,6 +24,11 @@ class ServerCheckWorker
       else
         server_ok(server)
       end
+      begin
+        server.ip = Resolv.getaddress server.urlserver[8..]
+      rescue StandardError
+        server.ip = 'n/a'
+      end
       server.save
     end
   end

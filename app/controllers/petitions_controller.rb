@@ -17,9 +17,9 @@ class PetitionsController < InheritedResources::Base
   #   @petition = Petition.new
   # end
 
-  # def server_rights_new
-  #   @petition = Petition.new
-  # end
+  def server_rights_new
+    @servers = Server.pluck('urlserver').sort
+  end
 
   def show
     @petition = Petition.find(params[:id])
@@ -36,6 +36,8 @@ class PetitionsController < InheritedResources::Base
   end
 
   def server_rights_create
+    @petition.status = 'create'
+    @petition.topic = 'Заявка на прикрепление сервера к учетной записи'
     if @petition.save
       redirect_to petitions_path, success: 'Заявка создана.'
     else

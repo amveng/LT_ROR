@@ -5,7 +5,11 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
   namespace 'api' do
     namespace 'v1' do
-      resources :gates, only: %i[index create]
+      resources :gates, only: %i[index create] do
+        collection do
+          get 'server_rights'
+        end
+      end
     end
   end
   devise_for :users, controllers: {

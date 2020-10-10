@@ -48,6 +48,13 @@ module Api
           end
         end
       end
+
+      def server_rights
+        p 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
+        p request.remote_ip
+        # Resolv.getaddress 'steephare.ru'
+        render json: { server: 'server' }, status: 200
+      end
     end
   end
 end

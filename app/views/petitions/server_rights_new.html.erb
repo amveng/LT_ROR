@@ -3,14 +3,14 @@
 </div>
 <div class="col col-9">
   <div class="shadow bg-light my-5">
-    <h5 class="card-header">qweqweqweqwe для админа</h5>
+    <h5 class="card-header">Заявка на прикрепление сервера к учетной записи</h5>
     <div class="card-body">
       <% if @petition.errors.any? %>
         <p class="text-danger"><%= t('common.errors') %></p>
       <% end %>
       <%= simple_form_for @petition, url: server_rights_create_petitions_path, html: { multipart: true }  do |f| %>
         <div class="form-group">
-          <%= f.input :topic, label: 'Тема сообщения',  class: 'form-control' %>
+          <%= f.input :target, collection: @servers, label: 'Выберете сервер',  class: 'form-control' %>
         </div>
         <div class="form-group">
           <%= f.input :body, as: :text, label: 'Сообщение', class: 'form-control' %>
