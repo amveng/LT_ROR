@@ -4,7 +4,7 @@ ActiveAdmin.register Server do
   permit_params :title, :user_id, :status_expires,
                 :status, :urlserver, :imageserver,
                 :publish, :serverversion_id, :failed_checks,
-                :datestart, :description, :failed
+                :datestart, :description, :failed, :ip
 
   config.sort_order = 'created_at_desc'
   config.per_page = [20, 30, 50, 100]
@@ -99,6 +99,7 @@ ActiveAdmin.register Server do
       f.input :serverversion
       f.input :imageserver
       f.input :description
+      f.input :ip
     end
     f.actions
   end

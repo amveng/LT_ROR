@@ -48,7 +48,11 @@ class PetitionsController < InheritedResources::Base
   private
 
   def all_form
-    @petition = Petition.new
+    if  Petition.where(user_id: current_user, status: 'create').count > 5
+      redirect_to petitions_path, danger: 'Лимит для новых заявок исчерпан. Дождитесь проверки существующих заявок'
+    else
+      @petition = Petition.new
+    end
   end
 
   def all_create

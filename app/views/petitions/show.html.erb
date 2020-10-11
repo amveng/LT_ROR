@@ -6,21 +6,21 @@
     <h5 class="card-header">Заявка № <%= @petition.id %></h5>
     <div class="card-body">
       <p>
-        <strong>Topic:</strong>
+        <strong>Тема:</strong>
         <%= @petition.topic %>
       </p>
-      <p>
-        <strong>Body:</strong>
-        <%= @petition.body %>
-      </p>
-      <p>
-        <strong>Target:</strong>
-        <%= @petition.target %>
-      </p>
-      <p>
-        <strong>User:</strong>
-        <%= @petition.user_id %>
-      </p>
+      <% if @petition.body.present? %>
+        <p>
+          <strong>Сообщение:</strong>
+          <%= @petition.body %>
+        </p>
+      <% end %>
+      <% if @petition.target.present? %>
+        <p>
+          <strong>Предмет заявки</strong>
+          <%= @petition.target %>
+        </p>
+      <% end %>
     </div>
   </div>
 </div>

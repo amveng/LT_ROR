@@ -14,25 +14,9 @@ RSpec.describe PetitionsController, type: :routing do
       expect(get: "/petitions/1").to route_to("petitions#show", id: "1")
     end
 
-    it "routes to #edit" do
-      expect(get: "/petitions/1/edit").to route_to("petitions#edit", id: "1")
-    end
-
-
     it "routes to #create" do
       expect(post: "/petitions").to route_to("petitions#create")
     end
 
-    it "routes to #update via PUT" do
-      expect(put: "/petitions/1").to route_to("petitions#update", id: "1")
-    end
-
-    it "routes to #update via PATCH" do
-      expect(patch: "/petitions/1").to route_to("petitions#update", id: "1")
-    end
-
-    it "routes to #destroy" do
-      expect(delete: "/petitions/1").to route_to("petitions#destroy", id: "1")
-    end
   end
 end

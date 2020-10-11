@@ -6,6 +6,6 @@ class Petition < ApplicationRecord
   validates :topic, presence: true
 
   scope :last_update, lambda {
-    order(updated_at: :asc)
+    order(updated_at: :desc)
   }
 end

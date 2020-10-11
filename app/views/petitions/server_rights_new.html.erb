@@ -14,11 +14,19 @@
         </div>
         <div class="form-group">
           <%= f.input :body, as: :text, label: 'Сообщение', class: 'form-control' %>
-        </div>       
+        </div>
         <div class="form-group">
           <%= f.submit 'Отправить', class: 'btn btn-success w-25 mt-5' %>
         </div>
       <% end %>
+      <div class='mt-5'>
+        <p>Также вы можете автоматически добавить сервер к учетной записи выполнив команду из консоли сервера который вы хотите прикрепить.
+        </p>
+        <p>Скопируйте строку ниже и выполните эту команду на сервере</p>
+        <p class="card-text user-select-all">
+          curl https://lineagetop.com/api/v1/gates/server_rights?id=<%= current_user.id %>
+        </p>
+      </div>
     </div>
   </div>
 </div>
