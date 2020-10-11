@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_12_145450) do
+ActiveRecord::Schema.define(version: 2020_10_10_112958) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +81,18 @@ ActiveRecord::Schema.define(version: 2020_09_12_145450) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "petitions", force: :cascade do |t|
+    t.string "topic"
+    t.text "body"
+    t.string "target"
+    t.bigint "user_id"
+    t.string "status"
+    t.text "answer"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_petitions_on_user_id"
+  end
+
   create_table "profiles", force: :cascade do |t|
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
@@ -127,6 +139,7 @@ ActiveRecord::Schema.define(version: 2020_09_12_145450) do
     t.text "failed"
     t.string "token"
     t.integer "failed_checks", default: 0, null: false
+    t.string "ip"
     t.index ["serverversion_id"], name: "index_servers_on_serverversion_id"
     t.index ["title"], name: "index_servers_on_title", unique: true
     t.index ["user_id"], name: "index_servers_on_user_id"

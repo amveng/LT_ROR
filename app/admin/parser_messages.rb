@@ -14,7 +14,7 @@ ActiveAdmin.register ParserMessage do
   end
 
   filter :name, as: :select, collection: ParserMessage.pluck('name').uniq
-  filter :typemsg, as: :select, collection: ParserMessage.pluck('typemsg').uniq
+  filter :typemsg, as: :check_boxes, collection: ParserMessage.pluck('typemsg').uniq
   filter :body
   filter :date
   filter :created_at

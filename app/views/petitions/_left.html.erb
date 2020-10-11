@@ -1,0 +1,15 @@
+<div class="sticky-menu">
+  <div class="shadow bg-light my-5">
+    <h5 class="card-header  text-truncate">Заявки</h5>
+    <div class="card-body px-0">
+      <%= link_to "Мои заявки", petitions_path, class: "btn btn-sm btn-light w-100 text-truncate text-left" %>
+      <div class="p-2">Оформить заявку на:</div>
+      <ul>
+        <li>
+          <%= link_to "права на сервер", server_rights_new_petitions_path, class: "btn btn-sm btn-light w-100 text-truncate text-left" %>
+        </li>
+      </ul>
+      <%= link_to "Написать админу", new_petition_path, class: "btn btn-sm btn-light w-100 text-truncate text-left" %>
+    </div>
+  </div>
+</div>

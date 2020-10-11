@@ -4,9 +4,8 @@ class ServerCheckWorker
   include Sidekiq::Worker
 
   def perform
-    servers = Server.all
+    servers = Server.active
     servers.each do |server|
-      next if server.failed_checks > 30
       next if server.failed_checks.negative?
 
       @url_server = server.urlserver
@@ -19,11 +18,16 @@ class ServerCheckWorker
         if server.failed_checks > 1
           server.publish = 'failed'
           server.failed = 'сервер недоступен'
-          server.publish = 'arhiv' if server.failed_checks > 29
+          server.publish = 'arhiv' if server.failed_checks > 15
         end
         server.failed_checks += 1
       else
         server_ok(server)
+      end
+      begin
+        server.ip = Resolv.getaddress server.urlserver[8..]
+      rescue StandardError
+        server.ip = 'n/a'
       end
       server.save
     end

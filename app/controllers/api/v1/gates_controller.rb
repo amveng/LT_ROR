@@ -48,6 +48,21 @@ module Api
           end
         end
       end
+
+      def server_rights
+        user = User.where(id: params[:id]).first
+        server = Server.where(ip: request.remote_ip).first
+        if server.present? && user.present?
+          if server.user_id == user.id
+            render json: { server: 'Сервер уже был добавлен в профиль пользователя' }, status: 200
+          else
+          server.update(user_id: user.id)
+          render json: { server: 'Сервер добавлен в профиль пользователя' }, status: 200
+          end
+        else
+          render json: { errors: 'Ошибка добавления сервера' }, status: 406
+        end
+      end
     end
   end
 end

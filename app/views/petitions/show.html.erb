@@ -1,0 +1,26 @@
+<div class="col col-3">
+  <%= render 'left' %>
+</div>
+<div class="col col-9">
+  <div class="shadow bg-light my-5">
+    <h5 class="card-header">Заявка № <%= @petition.id %></h5>
+    <div class="card-body">
+      <p>
+        <strong>Тема:</strong>
+        <%= @petition.topic %>
+      </p>
+      <% if @petition.body.present? %>
+        <p>
+          <strong>Сообщение:</strong>
+          <%= @petition.body %>
+        </p>
+      <% end %>
+      <% if @petition.target.present? %>
+        <p>
+          <strong>Предмет заявки</strong>
+          <%= @petition.target %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+</div>
