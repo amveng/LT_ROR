@@ -82,6 +82,7 @@ class ServersController < ApplicationController
     @server = Server.new(server_params)
     @server.user_id = current_user.id
     if @server.save
+      ServerCreateMailer.server_created(@server).deliver_later
       redirect_to servers_profiles_path, success: 'Сервер успешно создан.
        Проверьте данные и нажмите кнопку опубликовать'
     else
