@@ -28,6 +28,10 @@ class MainWorker
     ServerCheckWorker.perform_at(10.minutes.after)
     ServerCheckWorker.perform_at(12.hour.after)
 
+    PruningVoteWorker.perform_at(20.minutes.after)
+
+    PruningServerViewWorker.perform_at(30.minutes.after)
+
     (1..(rand(5..15))).each do |s|
       VoteFakeWorker.perform_at(s.hour.after)
     end
