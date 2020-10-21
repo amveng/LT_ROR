@@ -11,6 +11,7 @@ ActiveAdmin.register Server do
   scope 'premium', :premium
   scope 'not_working', :not_working
   scope 'active', :active
+  scope 'published', :published
   controller do
     def scoped_collection
       super.includes :user
