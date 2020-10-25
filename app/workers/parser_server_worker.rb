@@ -41,7 +41,7 @@ class ParserServerWorker
   def create_server
     @server = Server.new
     @user = User.where(provider: 'faker').sample
-    @serverversion = Serverversion.find_by(name: @version)
+    @serverversion = Serverversion.where(name: @version).first_or_create
     @server.urlserver = "https://#{@url.downcase}"
     @server.title = @url
     @server.user_id = @user.id
