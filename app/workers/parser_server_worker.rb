@@ -39,12 +39,17 @@ class ParserServerWorker
 
 
   def create_server
-    registered_server = Server.find_by(urlserver: "https://#{@url.downcase}")
+    registered_server = Server.where(urlserver: "https://#{@url.downcase}").first
     if registered_server.present?
-      @server = registered_server if registered_server.datestart != @date
+      if registered_server.datestart.to_date == @date.to_date
+        return
+      else
+        @server = registered_server 
+      end
     else
       @server = Server.new
     end
+    # return if registered_server.datestart.to_date == @date.to_date
     @user = User.where(provider: 'faker').sample
     @serverversion = Serverversion.where(name: @version).first_or_create
     @server.urlserver = "https://#{@url.downcase}"
@@ -113,7 +118,7 @@ class ParserServerWorker
       @date = @ll[n + 2].strip
       @url = @ll[n + 3].strip
       striper
-      next if Server.exists?(urlserver: "https://#{@url.downcase}")
+      
 
       create_server
     end
@@ -137,7 +142,7 @@ class ParserServerWorker
       next if @rate.length > 10
       next if @version.length > 33
       next if @date.length > 16
-      next if Server.exists?(urlserver: "https://#{@url.downcase}")
+      
 
       create_server
     end
@@ -162,7 +167,7 @@ class ParserServerWorker
       next if @rate.length > 10
       next if @version.length > 33
       next if @date.length > 16
-      next if Server.exists?(urlserver: "https://#{@url.downcase}")
+      
 
       create_server
     end
@@ -186,7 +191,7 @@ class ParserServerWorker
       next if @rate.length > 10
       next if @version.length > 33
       next if @date.length > 16
-      next if Server.exists?(urlserver: "https://#{@url.downcase}")
+      
 
       create_server
     end
