@@ -39,13 +39,19 @@ class ParserServerWorker
 
 
   def create_server
-    @server = Server.new
+    registered_server = Server.find_by(urlserver: "https://#{@url.downcase}")
+    if registered_server.present?
+      @server = registered_server if registered_server.datestart != @date
+    else
+      @server = Server.new
+    end
     @user = User.where(provider: 'faker').sample
     @serverversion = Serverversion.where(name: @version).first_or_create
     @server.urlserver = "https://#{@url.downcase}"
     @server.title = @url
     @server.user_id = @user.id
     @server.datestart = @date
+    @server.publish = 'create'
     @server.serverversion_id = @serverversion.id if @serverversion.present?
     @server.rate = (@rate.delete '^0-9').to_i
     if @server.save
