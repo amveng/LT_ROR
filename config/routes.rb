@@ -80,11 +80,5 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :contents do
-    collection do
-      Content.pluck('name').each do |f|
-        get f
-      end
-    end
-  end
+  resources :contents, only: [:show]
 end

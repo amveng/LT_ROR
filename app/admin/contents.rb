@@ -1,7 +1,17 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Content do
-  permit_params :name, :body, :header, :menu, :menu_publish, :id
+  permit_params :name, :body, :header, :menu, :menu_publish, :id, :navbar_publish
+
+  controller do
+    def find_resource
+      begin
+        scoped_collection.where(slug: params[:id]).first!
+      rescue ActiveRecord::RecordNotFound
+        scoped_collection.find(params[:id])
+      end
+    end
+  end
 
   index do
     id_column
@@ -9,6 +19,7 @@ ActiveAdmin.register Content do
     column :header
     column :menu
     column :menu_publish
+    column :navbar_publish
     column :created_at
     column :updated_at
     actions
@@ -28,6 +39,7 @@ ActiveAdmin.register Content do
       f.input :header
       f.input :menu
       f.input :menu_publish
+      f.input :navbar_publish
       f.input :body
     end
     f.actions

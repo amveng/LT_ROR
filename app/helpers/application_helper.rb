@@ -36,8 +36,12 @@ module ApplicationHelper
     !current_user.servers.find_by(publish: %w[create unverified])
   end
 
-  def content(name)
+  def footer_content(name)
     Content.find_by(name: name)
+  end
+
+  def navbar_content
+    Content.where(navbar_publish: true).order(id: :asc)
   end
 
   def baner_random

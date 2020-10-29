@@ -1,17 +1,8 @@
 # frozen_string_literal: true
 
 class ContentsController < ApplicationController
-  before_action :all
-
-  def respond_to_missing?(*_args)
-    true
-  end
-
-  private
-
-  def all
+  def show
     @menu = Content.where(menu_publish: true).order(id: :asc)
-    @content = Content.find_by(name: params[:action])
-    render 'contents/content'
+    @content = Content.friendly.find(params[:id])
   end
 end
