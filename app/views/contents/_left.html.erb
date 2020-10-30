@@ -3,7 +3,7 @@
     <h5 class="card-header  text-truncate">Информация</h5>    
     <div class="card-body px-0">
     <% @menu.each do |menu| %>
-    <%= link_to menu.menu, menu.name, class: "btn btn-sm btn-light w-100 text-truncate text-left" %>
+    <%= link_to menu.menu, menu.slug, class: "btn btn-sm btn-light w-100 text-truncate text-left" %>
     <% end %>
     </div>
   </div>

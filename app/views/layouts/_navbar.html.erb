@@ -10,12 +10,11 @@
           <li class="nav-item">
             <%= link_to 'На главную', servers_path, class: "nav-link" %>
           </li>
-          <li class="nav-item">
-            <%= link_to 'Реклама', advertising_contents_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Информация', about_contents_path, class: "nav-link" %>
-          </li>
+          <% navbar_content.each do |menu| %>
+            <li class="nav-item">
+              <%= link_to menu.menu, content_path(menu.slug), class: "nav-link" %>
+            </li>
+          <% end %>
           <li class="nav-item">
             <%= link_to 'Добавить сервер', new_server_path, class: "btn btn-outline-info" %>
           </li>
