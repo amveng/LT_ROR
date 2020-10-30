@@ -1,10 +1,10 @@
-<% content = content('footer') %>
-<% if content.present? %>
+<% footer_content = footer_content('footer') %>
+<% if footer_content.present? %>
 <div class="shadow bg-light my-5">
-  <h5 class="card-header"><%= content.header %></h5>
+  <h5 class="card-header"><%= footer_content.header %></h5>
   <div class="card-body">    
     <p class="card-text">
-      <%= content.body.html_safe %>
+      <%= footer_content.body.html_safe %>
     </p>
   </div>
 </div>

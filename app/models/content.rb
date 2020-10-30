@@ -14,5 +14,9 @@
 #  menu_publish :boolean          default(FALSE), not null
 #
 class Content < ApplicationRecord
-  auto_strip_attributes :name, delete_whitespaces: true
+  extend FriendlyId
+
+  validates :menu, presence: true
+
+  friendly_id :name, use: :slugged
 end
