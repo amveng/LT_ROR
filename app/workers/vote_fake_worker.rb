@@ -4,7 +4,7 @@ class VoteFakeWorker
   include Sidekiq::Worker
 
   def perform(count_vote = 100)
-    count_vote = 0 if Vote.where(date: Date.today).count > 1500
+    count_vote = 0 if Vote.where(date: Date.today).count > rand(2400)
     while count_vote.positive?
 
       koef = 1
