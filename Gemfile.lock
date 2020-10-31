@@ -116,6 +116,8 @@ GEM
     concurrent-ruby (1.1.6)
     connection_pool (2.2.3)
     crass (1.0.6)
+    data_migrate (6.5.0)
+      rails (>= 5.0)
     devise (4.7.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -405,6 +407,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   carrierwave (>= 1.0.0.beta, < 2.0)
   chartkick
+  data_migrate (~> 6.5)
   devise
   devise-async
   faker!
