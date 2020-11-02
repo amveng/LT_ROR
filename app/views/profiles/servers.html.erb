@@ -82,14 +82,14 @@
           <div>
             <% if server.status == 3 %>
               <%= link_to 'Подключить  премиум на 30 дней за 20 LTC ', vip_servers_path(id: server.id), class: 'btn btn-outline-primary btn-sm w-25', method: :post, data: { confirm: 'Подключить  премиум за 20 LTC?' } %>
-              <%= link_to "Узнать больше о премиум статусе", advertising_contents_path, class: "ml-3" %>
+              <%= link_to "Узнать больше о премиум статусе", content_path('advertising'), class: "ml-3" %>
             <% end %>
           </div>
           <p>
             <% if server.status > 1 %>
               <div>
                 <%= link_to 'Подключить  премиум статус TOP на 30 дней за 50 LTC', top_servers_path(id: server.id), class: 'btn btn-outline-danger font-weight-bold btn-sm w-25', method: :post, data: { confirm: 'Подключить  премиум статус TOP за 50 LTC?' } %>
-                <%= link_to "Узнать больше о премиум статусе TOP", advertising_contents_path, class: "ml-3" %>
+                <%= link_to "Узнать больше о премиум статусе TOP", content_path('advertising'), class: "ml-3" %>
               </div>
               <hr>
             <% end %>
