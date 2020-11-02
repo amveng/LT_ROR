@@ -41,10 +41,4 @@
     queue: default
     class: PruningServerViewWorker
     description: "This task removes views older than one week."
-  
-  
-
-
-
-  
-  
+    

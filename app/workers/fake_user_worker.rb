@@ -12,29 +12,29 @@ class FakeUserWorker
       user.provider = 'faker'
       user.country = case rand(300)
                      when 1..146
-                       'RU'
+                       'Russia'
                      when 146..149
-                       'AM'
+                       'Armenia'
                      when 149..159
-                       'AZ'
+                       'Azerbaijan'
                      when 159..169
-                       'BY'
+                       'Belarus'
                      when 169..186
-                       'KZ'
+                       'Kazakhstan'
                      when 186..192
-                       'KG'
+                       'Kyrgyzstan'
                      when 192..196
-                       'MD'
+                       'Moldova'
                      when 196..204
-                       'TJ'
+                       'Tajikistan'
                      when 204..210
-                       'TM'
+                       'Turkmenistan'
                      when 210..252
-                       'UA'
+                       'Ukraine'
                      when 252..286
-                       'UZ'
+                       'Uzbekistan'
                      else
-                       Country.where(eu: true).pluck('code').sample
+                       'Russia'
                      end
 
       user.skip_confirmation!
