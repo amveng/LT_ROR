@@ -75,13 +75,7 @@ ActiveAdmin.register_page 'Dashboard' do
           column :username do |user|
             link_to user.username, adm315_user_path(user)
           end
-          column :country do |user|
-            if Country.exists?(code: user.country)
-              Country.find_by(code: user.country).name
-            else
-              'Неопределено'
-            end
-          end
+          column :country      
           column :created_at do |user|
             case user.created_at
             when 1.days.ago...0.days.ago

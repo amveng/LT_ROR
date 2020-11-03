@@ -2,3 +2,43 @@
 :queues:
   - default
   - [mailers, 2]
+
+:schedule:
+  Generating fake voting:
+    interval: ['1h', first_in: '1m']
+    enabled: true
+    queue: default
+    class: VoteFakeWorker
+    description: "By default, this task generates 100 votes from fake users in accordance with the algorithm for distributing votes across servers."
+    args: 100
+  Parser servers info:
+    cron: "0 4 * * *"
+    enabled: true
+    queue: default
+    class: ParserServerWorker
+    description: "This task collects information from other sites that publish information about servers."
+  Servers checks:
+    cron: "1 4,16 * * *"
+    enabled: true
+    queue: default
+    class: ServerCheckWorker
+    description: "This task checks the health of the published servers."
+  Servers status checks:
+    cron: "0 0 * * *"
+    enabled: true
+    queue: default
+    class: ServerStatusWorker
+    description: "This task checks and updates the status of published servers."
+  Deleting old voices:
+    cron: "1 0 * * *"
+    enabled: true
+    queue: default
+    class: PruningVoteWorker
+    description: "This task removes voices older than one month."
+  Deleting old views:
+    cron: "2 0 * * *"
+    enabled: true
+    queue: default
+    class: PruningServerViewWorker
+    description: "This task removes views older than one week."
+    

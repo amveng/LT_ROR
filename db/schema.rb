@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_29_023934) do
+ActiveRecord::Schema.define(version: 2020_11_03_112704) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,15 +54,7 @@ ActiveRecord::Schema.define(version: 2020_10_29_023934) do
     t.index ["slug"], name: "index_contents_on_slug", unique: true
   end
 
-  create_table "countries", id: :serial, force: :cascade do |t|
-    t.string "code", limit: 10, null: false
-    t.string "name", limit: 100, null: false
-    t.string "iso3", limit: 3, null: false
-    t.integer "numeric", null: false
-    t.boolean "eu", default: false, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["code"], name: "index_countries_on_code", unique: true
+  create_table "data_migrations", primary_key: "version", id: :string, force: :cascade do |t|
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -189,7 +181,7 @@ ActiveRecord::Schema.define(version: 2020_10_29_023934) do
     t.string "provider", limit: 50, default: "email", null: false
     t.string "uid", limit: 200, default: "", null: false
     t.string "username", limit: 50, default: "", null: false
-    t.datetime "votetime", default: "2020-01-01 00:00:00", null: false
+    t.datetime "next_votetime", default: "2020-01-01 00:00:00", null: false
     t.string "country"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true

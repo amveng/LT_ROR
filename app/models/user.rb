@@ -28,7 +28,7 @@
 #  provider               :string(50)       default("email"), not null
 #  uid                    :string(200)      default(""), not null
 #  username               :string(50)       default(""), not null
-#  votetime               :datetime         default(Wed, 01 Jan 2020 03:00:00 MSK +03:00), not null
+#  next_votetime               :datetime         default(Wed, 01 Jan 2020 03:00:00 MSK +03:00), not null
 #  country                :string
 #
 class User < ApplicationRecord
@@ -44,7 +44,7 @@ class User < ApplicationRecord
 
   auto_strip_attributes :username, squish: true
   validates :username, :email, length: { in: 4..42 }
-  validates :votetime, presence: true
+  validates :next_votetime, presence: true
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :confirmable,
@@ -95,4 +95,13 @@ class User < ApplicationRecord
     end
     update_attributes(params)
   end
+
+  class UserCantVoteYet < StandardError; end
+  
+  def set_next_votetime!
+    raise UserCantVoteYet if self.next_votetime >= DateTime.current
+  
+    self.next_votetime = DateTime.current + 12.hours
+  end
+  
 end

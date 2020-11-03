@@ -60,3 +60,7 @@ group :test do
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
+
+gem 'sidekiq-scheduler', '~> 3.0'
+
+gem 'data_migrate', '~> 6.5'
