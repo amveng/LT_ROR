@@ -38,7 +38,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'проверка на наличие времени голосования' do
-      @user.votetime = nil
+      @user.next_votetime = nil
       expect(@user.save).to eq(false)
     end
   end

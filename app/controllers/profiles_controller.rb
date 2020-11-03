@@ -119,7 +119,7 @@ class ProfilesController < ApplicationController
 
   def reset_delay
     if current_user.profile.ltc >= 1
-      current_user.update(votetime: DateTime.now)
+      current_user.update(next_votetime: DateTime.now)
       ltc_update(-1, current_user.username, 'Сброс задержки голосования')
       redirect_to server_path(params[:id]), success: "Задержка голосования
        сброшена. Остаток на счете #{current_user.profile.ltc} LTC"

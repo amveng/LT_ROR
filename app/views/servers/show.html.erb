@@ -54,10 +54,10 @@
           Необходимо <%= link_to "Войти", new_user_session_path, class: "alert-link" %> для голосования
         </div>
       <% else %>
-        <% if current_user.votetime > date_time_now = DateTime.now %>
+        <% if current_user.next_votetime > date_time_now = DateTime.now %>
           <div class="alert alert-info">
           До следующего голосования осталось:
-          <%= time_ago_in_words(current_user.votetime, include_seconds: true) %>           
+          <%= time_ago_in_words(current_user.next_votetime, include_seconds: true) %>           
             <% if current_user.profile.ltc >= 1 %>
               <%= link_to "Сбросить задержку голосования за 1 LTC (в наличии #{current_user.profile.ltc} LTC)",
                reset_delay_profiles_path(id: @server.id), 
