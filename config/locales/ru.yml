@@ -206,7 +206,7 @@ ru:
         current_sign_in_ip: IP текущего входа
         email: Email
         username: Имя
-        votetime: Время голосования
+        next_votetime: Время следующего голосования
         baned: Забанен
         uid: идентификатор в соц сети
         provider: Провайдер

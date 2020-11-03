@@ -18,17 +18,11 @@ class VoteFakeWorker
         koef += 2
       end
       if koef > rand(1000) / 100.0
-        code = Country.find_by(code: user.country)
-        country = if code.blank?
-                    'Неопределено'
-                  else
-                    code.name
-                  end
         Vote.create(
           server_id: server.id,
           user_id: user.id,
           date: Date.today,
-          country: country
+          country: user.country
         )
         count_vote -= 1
       end
