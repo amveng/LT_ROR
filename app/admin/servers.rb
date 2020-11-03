@@ -8,7 +8,7 @@ ActiveAdmin.register Server do
 
   config.sort_order = 'created_at_desc'
   config.per_page = [20, 30, 50, 100]
-  scope 'premium', :premium
+  scope 'premium', :not_normal
   scope 'not_working', :not_working
   scope 'active', :active
   scope 'published', :published
@@ -59,24 +59,20 @@ ActiveAdmin.register Server do
       status_tag(server.publish, style: "font-weight: bold; background-color: #{color}")
     end
     column :user
+    color = {
+      top: 'Firebrick',
+      vip: 'RoyalBlue',
+      normal: 'SlateGrey'
+    }
     column :status do |server|
-      status = case server.status
-               when 1
-                 %w[TOP Firebrick]
-               when 2
-                 %w[VIP RoyalBlue]
-               when 3
-                 %w[poor LightGray]
-               end
-
-      status_tag(status[0], style: "font-weight: bold; background-color: #{status[1]}")
+      status_tag(server.status, style: "font-weight: bold; background-color: #{color[server.status.to_sym]}")
     end
     actions
   end
 
   filter :title
 
-  filter :status, as: :select, collection: { TOP: 1, VIP: 2, normal: 3 }
+  filter :status, as: :select
   filter :datestart
   filter :user
   filter :serverversion
@@ -95,7 +91,7 @@ ActiveAdmin.register Server do
       ]
       f.input :failed_checks
       f.input :failed
-      f.input :status, as: :select, collection: { TOP: 1, VIP: 2, normal: 3 }
+      f.input :status, as: :select
       f.input :status_expires, as: :datepicker
       f.input :serverversion
       f.input :imageserver
