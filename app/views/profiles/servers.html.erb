@@ -51,7 +51,7 @@
               <tr>
                 <th class="w-25" scope="row">Премиум статус:</th>
                 <td> <span class="badge badge-<%= status_color(server.status.to_s) %>"><%= t("status.#{server.status.to_s}") %></span>
-                  <% if server.status < 3  %>
+                  <% unless server.normal? %>
                     <span class="ml-3"><%= t("common.status_expires") %> <%=  server.status_expires %></span>
                   <% end %>
                 </td>
@@ -80,13 +80,13 @@
           <% end %>
           <hr>
           <div>
-            <% if server.status == 3 %>
+            <% if server.normal? %>
               <%= link_to 'Подключить  премиум на 30 дней за 20 LTC ', vip_servers_path(id: server.id), class: 'btn btn-outline-primary btn-sm w-25', method: :post, data: { confirm: 'Подключить  премиум за 20 LTC?' } %>
               <%= link_to "Узнать больше о премиум статусе", content_path('advertising'), class: "ml-3" %>
             <% end %>
           </div>
           <p>
-            <% if server.status > 1 %>
+            <% unless server.top? %>
               <div>
                 <%= link_to 'Подключить  премиум статус TOP на 30 дней за 50 LTC', top_servers_path(id: server.id), class: 'btn btn-outline-danger font-weight-bold btn-sm w-25', method: :post, data: { confirm: 'Подключить  премиум статус TOP за 50 LTC?' } %>
                 <%= link_to "Узнать больше о премиум статусе TOP", content_path('advertising'), class: "ml-3" %>

@@ -4,7 +4,7 @@
     <div class="card-body">
       <table class="table table-hover table-sm">
         <tbody>
-          <% @server.top.each do |server| %>
+          <% @server.top.shuffle.each do |server| %>
             <tr>
               <td class="text-<%= status_color(server.status.to_s) %> p-0 m-0" style="font-size:20px"> <%= status_icon(server.status.to_s) %> </td>
               <td><%= link_to truncate(server.title.html_safe, length:20), server.urlserver, class: "link-#{server.status}", title: server.description , target: "_blank" %></td>
@@ -14,7 +14,7 @@
               <td><%= link_to ' Info', server_path(server), class: 'btn btn-sm btn-info p-0 w-100' %></td>
             </tr>
           <% end %>
-          <% @server.vip.each do |server| %>
+          <% @server.vip.shuffle.each do |server| %>
             <tr>
               <td class="text-<%= status_color(server.status.to_s) %> p-0 m-0" style="font-size:20px"> <%= status_icon(server.status.to_s) %> </td>
               <td><%= link_to truncate(server.title.html_safe, length:20), server.urlserver, class: "link-#{server.status}", title: server.description , target: "_blank" %></td>

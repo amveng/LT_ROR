@@ -36,6 +36,8 @@ class Server < ApplicationRecord
   has_many :votes, dependent: :destroy
   has_many :server_views, dependent: :destroy
 
+  enum status: { top: 1, vip: 2, normal: 3 }
+
   before_create lambda {
     self.token = generate_token
   }
@@ -65,18 +67,6 @@ class Server < ApplicationRecord
   }
   scope :open_soon, lambda {
     where(publish: 'published', datestart: 0.days.after..7.days.after).order(:status, datestart: :asc)
-  }
-  scope :top, lambda {
-    where(publish: 'published', status: 1).order(:status).shuffle
-  }
-  scope :vip, lambda {
-    where(publish: 'published', status: 2).order(:status).shuffle
-  }
-  scope :premium, lambda {
-    where(publish: 'published', status: 1..2)
-  }
-  scope :novip, lambda {
-    where(publish: 'published', status: 3)
   }
   scope :rating, lambda {
     where(publish: 'published').order(rating: :desc)
