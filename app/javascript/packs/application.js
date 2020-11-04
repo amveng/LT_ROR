@@ -10,7 +10,9 @@ require("channels")
 // require("chartkick")
 // require("chart.js")
 
-
+require("moment/locale/ru")
+require("tempusdominus-bootstrap-4")
+import '../stylesheets/application'
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -26,6 +28,12 @@ import 'chartkick'
 
 import 'chart.js'
 
-import 'bootstrap-datepicker'
 
 
+
+// $(document).on("turbolinks:load", function(){
+//     $('.datetimepicker').datetimepicker({
+//         language: "ru",
+//     });
+//     console.log('datepiker load')
+// });
