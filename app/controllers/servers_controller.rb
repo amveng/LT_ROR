@@ -60,16 +60,23 @@ class ServersController < ApplicationController
   end
 
   def search
+    #--------bad code
+    
     @server = Server.all
-    if params[:serverversion] != 'Хроники'
-      @server = @server.includes(:serverversion).where(
-        serverversions: { name: params[:serverversion] }
-      )
+    if params[:serverversion].present?
+      @server = @server.includes(:serverversion).where(serverversions: { name: params[:serverversion] })
     end
-    @server = @server.where(rate: params[:rate]) if params[:rate] != 'Рейты'
-    @server = @server.today if params[:datestart] == 'today'
-    @server = @server.tomorrow if params[:datestart] == 'tomorrow'
-    @server = @server.yesterday if params[:datestart] == 'yesterday'
+    @server = @server.where(rate: params[:rate]) if params[:rate].present?
+    @server = @server.where(datestart: params[:datestart_begin].to_date..params[:datestart_end].to_date)
+
+    #---------------------------------------------
+
+    # @server = Server.includes(:serverversion).where(
+    #   rate: search_params[:rate],
+    #   datestart: search_params[:datestart_begin].to_date..search_params[:datestart_end].to_date,
+    #   serverversions: { name: search_params[:serverversion] }
+    # )
+
     render :index
   end
 
@@ -144,6 +151,10 @@ class ServersController < ApplicationController
     # TODO: надо сделать какой то счетчик перед тем как банить
     # current_user.update_attributes(baned: true)
     redirect_to servers_path, danger: 'Доступ запрещен !!!'
+  end
+
+  def search_params
+    params.permit %i[rate serverversion datestart_begin datestart_end]
   end
 
   def server_params

@@ -8,7 +8,7 @@ gem 'activeadmin'
 gem 'auto_strip_attributes', '~> 2.6'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'bootstrap', '~> 4.5.0'
-# gem 'bootstrap-datepicker-rails'
+gem 'bootstrap-datepicker-rails'
 gem 'carrierwave', '>= 1.0.0.beta', '< 2.0'
 gem 'chartkick'
 gem 'devise'

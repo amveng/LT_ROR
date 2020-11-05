@@ -3,6 +3,7 @@
 //= require popper
 //= require bootstrap
 //= require turbolinks
+//= require bootstrap-datepicker
 //= require chartkick
 //= require Chart.bundle
 //= require_tree .
