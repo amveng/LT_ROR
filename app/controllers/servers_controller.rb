@@ -66,7 +66,6 @@ class ServersController < ApplicationController
 
   def new
     @server = Server.new
-    @server.datestart = Date.today + 7.day
   end
 
   def create

@@ -3,4 +3,4 @@
 Web sait for [LineageTop](https://lineagetop.com)
 
 Status of Last Testing:<br>
-![tests-stage](https://github.com/amveng/LT_ROR/workflows/tests-stage/badge.svg?branch=stage)
+![tests-stage](https://github.com/amveng/LT_ROR/workflows/tests-stage/badge.svg)

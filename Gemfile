@@ -64,3 +64,5 @@ end
 gem 'sidekiq-scheduler', '~> 3.0'
 
 gem 'data_migrate', '~> 6.5'
+
+gem "font-awesome-rails"
