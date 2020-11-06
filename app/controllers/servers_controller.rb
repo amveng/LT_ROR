@@ -9,7 +9,7 @@ class ServersController < ApplicationController
   ]
 
   def index
-    @server = Server.all.includes(:serverversion)
+    @server = Server.published.includes(:serverversion)
   end
 
   def show
@@ -60,23 +60,7 @@ class ServersController < ApplicationController
   end
 
   def search
-    #--------bad code
-    
-    @server = Server.all
-    if params[:serverversion].present?
-      @server = @server.includes(:serverversion).where(serverversions: { name: params[:serverversion] })
-    end
-    @server = @server.where(rate: params[:rate]) if params[:rate].present?
-    @server = @server.where(datestart: params[:datestart_begin].to_date..params[:datestart_end].to_date)
-
-    #---------------------------------------------
-
-    # @server = Server.includes(:serverversion).where(
-    #   rate: search_params[:rate],
-    #   datestart: search_params[:datestart_begin].to_date..search_params[:datestart_end].to_date,
-    #   serverversions: { name: search_params[:serverversion] }
-    # )
-
+    @server = Server.published.includes(:serverversion).where(search_params)
     render :index
   end
 
@@ -154,7 +138,15 @@ class ServersController < ApplicationController
   end
 
   def search_params
-    params.permit %i[rate serverversion datestart_begin datestart_end]
+    client_timezone = params[:client_timezone].to_i.hours
+    datestart_begin = params[:datestart_begin].to_datetime - client_timezone if params[:datestart_begin].present?
+    datestart_end = params[:datestart_end].to_datetime.end_of_day - client_timezone if params[:datestart_end].present?
+    search_params = {}
+    search_params.tap do |hash|
+      hash[:rate] = params[:rate] if params[:rate].present?
+      hash[:serverversions] = { name: params[:serverversion] } if params[:serverversion].present?
+      hash[:datestart] = datestart_begin..datestart_end
+    end
   end
 
   def server_params
