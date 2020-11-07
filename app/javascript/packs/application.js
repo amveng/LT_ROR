@@ -29,11 +29,13 @@ import 'chartkick'
 import 'chart.js'
 
 
-$(function () {
-    $('#datetimepicker').datetimepicker({
-      defaultDate: "<%= Date.today.to_s %> 20:00",
+$(document).on("turbolinks:load", function () {
+    var today = new Date(); 
+    today.setHours(20, 0, 0, 0);
+    $('#datetimepicker').datetimepicker({      
+      defaultDate: today,
       locale: 'ru'
-    });
+    });   
 });
 
 $(function () {
