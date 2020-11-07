@@ -38,6 +38,8 @@ class Server < ApplicationRecord
 
   enum status: { top: 1, vip: 2, normal: 3 }
 
+  enum publish: { created: 0, unverified: 1, failed: 2, published: 3, arhiv: 4 }
+
   before_create lambda {
     self.token = generate_token
   }
@@ -50,12 +52,6 @@ class Server < ApplicationRecord
   validates :urlserver, url: { schemes: ['https'], public_suffix: true }
   validates :description, length: { maximum: 400 }
 
-  scope :published, lambda {
-    where(publish: 'published')
-  }
-  scope :active, lambda {
-    where.not(publish: 'arhiv')
-  }
   scope :not_working, lambda {
     where(failed_checks: 1..)
   }
@@ -72,15 +68,6 @@ class Server < ApplicationRecord
   }
   scope :profile, lambda {
     order(updated_at: :desc)
-  }
-  scope :today, lambda {
-    where(datestart: Date.today.midnight..(Date.today.midnight + 1.day))
-  }
-  scope :tomorrow, lambda {
-    where(datestart: (Date.today.midnight + 1.day)..(Date.today.midnight + 2.day))
-  }
-  scope :yesterday, lambda {
-    where(datestart: (Date.today.midnight - 1.day)..Date.today.midnight)
   }
 
   private

@@ -45,7 +45,7 @@ module ApplicationHelper
   end
 
   def baner_random
-    Server.where(publish: 'published', status: 1).shuffle
+    Server.publish.top.shuffle
   end
 
   def baner_top
