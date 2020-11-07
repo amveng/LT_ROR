@@ -31,7 +31,7 @@ end
 
 class Server < ApplicationRecord
   mount_uploader :imageserver, ImageserverUploader
-  belongs_to :user
+  belongs_to :user, optional: true
   belongs_to :serverversion
   has_many :votes, dependent: :destroy
   has_many :server_views, dependent: :destroy
