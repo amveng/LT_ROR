@@ -140,8 +140,7 @@ class ServersController < ApplicationController
     client_timezone = params[:client_timezone].to_i.hours
     datestart_begin = params[:datestart_begin].to_datetime - client_timezone if params[:datestart_begin].present?
     datestart_end = params[:datestart_end].to_datetime.end_of_day - client_timezone if params[:datestart_end].present?
-    search_params = {}
-    search_params.tap do |hash|
+    {}.tap do |hash|
       hash[:rate] = params[:rate] if params[:rate].present?
       hash[:serverversions] = { name: params[:serverversion] } if params[:serverversion].present?
       hash[:datestart] = datestart_begin..datestart_end

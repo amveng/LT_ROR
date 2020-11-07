@@ -29,11 +29,28 @@ import 'chartkick'
 import 'chart.js'
 
 
+$(function () {
+    $('#datetimepicker').datetimepicker({
+      defaultDate: "<%= Date.today.to_s %> 20:00",
+      locale: 'ru'
+    });
+});
 
+$(function () {
+    $('#datetimepicker1').datetimepicker({
+        locale: 'ru',
+        format: 'L'
+    });
+});
 
-// $(document).on("turbolinks:load", function(){
-//     $('.datetimepicker').datetimepicker({
-//         language: "ru",
-//     });
-//     console.log('datepiker load')
-// });
+  $(function () {
+    $('#datetimepicker2').datetimepicker({
+        locale: 'ru',
+        format: 'L'
+    });
+});
+$(document).ready(function(){
+  var current_date = new Date();
+  const client_offset = parseInt(-current_date.getTimezoneOffset() / 60);
+  $('input[name="client_timezone"]').val(client_offset);  
+})
