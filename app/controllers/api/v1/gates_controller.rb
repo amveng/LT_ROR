@@ -23,11 +23,13 @@ module Api
           if vote.blank?
             render json: {
               errors: 'Не найдено голосования'
-            }, status: 406
+            },
+                   status: 406
           else
             render json: {
               token: vote.token, datetime: vote.created_at.strftime('%F %T')
-            }, status: 200
+            },
+                   status: 200
           end
         end
       end
@@ -56,8 +58,8 @@ module Api
           if server.user_id == user.id
             render json: { server: 'Сервер уже был добавлен в профиль пользователя' }, status: 200
           else
-          server.update(user_id: user.id)
-          render json: { server: 'Сервер добавлен в профиль пользователя' }, status: 200
+            server.update(user_id: user.id)
+            render json: { server: 'Сервер добавлен в профиль пользователя' }, status: 200
           end
         else
           render json: { errors: 'Ошибка добавления сервера' }, status: 406

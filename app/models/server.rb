@@ -1,28 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: servers
-#
-#  id               :bigint           not null, primary key
-#  rating           :decimal(3, 2)    default(1.0)
-#  publish          :string           default("create"), not null
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#  title            :string(42)
-#  urlserver        :string
-#  datestart        :datetime
-#  user_id          :bigint
-#  rate             :integer          default(1), not null
-#  serverversion_id :bigint           default(1), not null
-#  status           :integer          default(3), not null
-#  imageserver      :string
-#  description      :text
-#  status_expires   :date             default(Wed, 01 Jan 2020), not null
-#  failed           :text
-#  token            :string
-#  failed_checks    :integer          default: 0, not null
-#
 AutoStripAttributes::Config.setup do
   set_filter(capitalize: false) do |value|
     !value.blank? && value.respond_to?(:capitalize) ? value.capitalize : value
@@ -52,23 +29,30 @@ class Server < ApplicationRecord
   validates :urlserver, url: { schemes: ['https'], public_suffix: true }
   validates :description, length: { maximum: 400 }
 
-  scope :not_working, lambda {
-    where(failed_checks: 1..)
-  }
-  scope :premiere, lambda {
-    where(datestart: 7.days.ago..7.days.after)
-  }
-  scope :already_opened, lambda {
-    where(datestart: 7.days.ago..0.days.after).order(:status, datestart: :desc)
-  }
-  scope :open_soon, lambda {
-    where(datestart: 0.days.after..7.days.after).order(:status, datestart: :asc)
-  }
-  scope :rating, lambda { order(rating: :desc)
-  }
-  scope :profile, lambda {
-    order(updated_at: :desc)
-  }
+  scope :not_working,
+        lambda {
+          where(failed_checks: 1..)
+        }
+  scope :premiere,
+        lambda {
+          where(datestart: 7.days.ago..7.days.after)
+        }
+  scope :already_opened,
+        lambda {
+          where(datestart: 7.days.ago..0.days.after).order(:status, datestart: :desc)
+        }
+  scope :open_soon,
+        lambda {
+          where(datestart: 0.days.after..7.days.after).order(:status, datestart: :asc)
+        }
+  scope :rating,
+        lambda {
+          order(rating: :desc)
+        }
+  scope :profile,
+        lambda {
+          order(updated_at: :desc)
+        }
 
   private
 

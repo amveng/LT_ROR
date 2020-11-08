@@ -6,7 +6,6 @@ class VotesController < ApplicationController
   def create
     vote = Vote.new(vote_params)
 
-    
     ActiveRecord::Base.transaction do
       current_user.set_next_votetime!
       current_user.save!
@@ -15,8 +14,8 @@ class VotesController < ApplicationController
     force = Vote.find_by(date: Date.today).blank?
     VoteWorker.perform_async(params[:id], force)
     redirect_to server_path(params[:id]), success: 'Вы проголосовали'
-    rescue StandardError
-    voting_failed    
+  rescue StandardError
+    voting_failed
   end
 
   private

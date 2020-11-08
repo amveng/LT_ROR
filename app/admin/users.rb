@@ -1,9 +1,16 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register User do
-  permit_params :email, :next_votetime, :confirmed_at, :locked_at, :provider,
-                :baned, :current_sign_in_ip, :country,
-                :username, profile_attributes: :ltc
+  permit_params :email,
+                :next_votetime,
+                :confirmed_at,
+                :locked_at,
+                :provider,
+                :baned,
+                :current_sign_in_ip,
+                :country,
+                :username,
+                profile_attributes: :ltc
 
   scope 'Только настоящие', :nofaker
 
@@ -17,7 +24,7 @@ ActiveAdmin.register User do
     batch_action_collection.find(ids).each do |user|
       user.update(baned: true)
     end
-    redirect_to collection_path, alert: "The posts have been flagged."
+    redirect_to collection_path, alert: 'The posts have been flagged.'
   end
 
   show do

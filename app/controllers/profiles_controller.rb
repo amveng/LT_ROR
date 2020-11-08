@@ -2,10 +2,19 @@
 
 class ProfilesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_profile, only: %i[
-    edit update top15 top30 publish_top arhiv_top
-    menu15 menu30 publish_menu arhiv_menu
-  ]
+  before_action :set_profile,
+                only: %i[
+                  edit
+                  update
+                  top15
+                  top30
+                  publish_top
+                  arhiv_top
+                  menu15
+                  menu30
+                  publish_menu
+                  arhiv_menu
+                ]
   before_action :check_baner_top, only: %i[top15 top30]
   before_action :check_baner_menu, only: %i[menu15 menu30]
 
@@ -121,7 +130,8 @@ class ProfilesController < ApplicationController
     if current_user.profile.ltc >= 1
       current_user.update(next_votetime: DateTime.now)
       ltc_update(-1, current_user.username, 'Сброс задержки голосования')
-      redirect_to server_path(params[:id]), success: "Задержка голосования
+      redirect_to server_path(params[:id]),
+                  success: "Задержка голосования
        сброшена. Остаток на счете #{current_user.profile.ltc} LTC"
     else
       redirect_to balance_profiles_path, danger: 'Недостаточно средств на счете'
@@ -145,24 +155,27 @@ class ProfilesController < ApplicationController
 
   def profile_params
     params.require(:profile).permit(
-      :baner_top_date_start, :baner_top_date_end, :baner_top_img, :baner_top_url,
-      :baner_top_status, :baner_menu_date_start, :baner_menu_date_end,
-      :baner_menu_url, :baner_menu_status, :baner_menu_img
+      :baner_top_date_start,
+      :baner_top_date_end,
+      :baner_top_img,
+      :baner_top_url,
+      :baner_top_status,
+      :baner_menu_date_start,
+      :baner_menu_date_end,
+      :baner_menu_url,
+      :baner_menu_status,
+      :baner_menu_img
     )
   end
 
   def check_baner_top
-    if Profile.find_by(baner_top_date_start: ..Date.today, baner_top_date_end: Date.today..).blank?
-      return
-    end
+    return if Profile.find_by(baner_top_date_start: ..Date.today, baner_top_date_end: Date.today..).blank?
 
     redirect_to edit_profile_path(@profile.id), danger: 'Неудалось опубликовать банер'
   end
 
   def check_baner_menu
-    if Profile.find_by(baner_menu_date_start: ..Date.today, baner_menu_date_end: Date.today..).blank?
-      return
-    end
+    return if Profile.find_by(baner_menu_date_start: ..Date.today, baner_menu_date_end: Date.today..).blank?
 
     redirect_to edit_profile_path(@profile.id), danger: 'Неудалось опубликовать банер'
   end
