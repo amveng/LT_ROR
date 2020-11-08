@@ -17,7 +17,7 @@ module ApplicationHelper
       unverified: 'info',
       arhiv: 'secondary',
       undefined: 'dark',
-      create: 'primary' }[name.to_sym] || name
+      created: 'primary' }[name.to_sym] || name
   end
 
   def status_icon(name)
@@ -33,7 +33,7 @@ module ApplicationHelper
   end
 
   def acces_new_server?
-    !current_user.servers.find_by(publish: %w[create unverified])
+    !current_user.servers.find_by(publish: %w[created unverified])
   end
 
   def footer_content(name)
@@ -45,7 +45,7 @@ module ApplicationHelper
   end
 
   def baner_random
-    Server.publish.top.shuffle
+    Server.published.top.shuffle
   end
 
   def baner_top

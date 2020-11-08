@@ -56,7 +56,7 @@ class ParserServerWorker
     @server.title = @url
     @server.user_id = @user.id
     @server.datestart = @date
-    @server.publish = 'create'
+    @server.publish = 'created'
     @server.serverversion_id = @serverversion.id if @serverversion.present?
     @server.rate = (@rate.delete '^0-9').to_i
     if @server.save

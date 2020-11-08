@@ -20,7 +20,7 @@ class VoteWorker
       long_day = ((server.created_at - DateTime.now) / (60 * 60 * 24 * 356)).abs
       votes_weekly_average = 100 if votes_weekly_average > 100
       long_day = 0.99 if long_day > 0.99
-      rating = 4 - server.status + long_day + votes_weekly_average / 50
+      rating = 4 - server.status_before_type_cast + long_day + votes_weekly_average / 50
       votes_weekly_average = 10 if votes_weekly_average > 10
       rating += votes_weekly_average / 10
       votes_weekly_count = 100 if votes_weekly_count > 100
