@@ -10,7 +10,9 @@ require("channels")
 // require("chartkick")
 // require("chart.js")
 
-
+require("moment/locale/ru")
+require("tempusdominus-bootstrap-4")
+import '../stylesheets/application'
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -26,6 +28,31 @@ import 'chartkick'
 
 import 'chart.js'
 
-import 'bootstrap-datepicker'
 
+$(document).on("turbolinks:load", function () {
+    var today = new Date(); 
+    today.setHours(20, 0, 0, 0);
+    $('#datetimepicker').datetimepicker({      
+      defaultDate: today,
+      locale: 'ru'
+    });   
+});
 
+$(function () {
+    $('#datetimepicker1').datetimepicker({
+        locale: 'ru',
+        format: 'L'
+    });
+});
+
+  $(function () {
+    $('#datetimepicker2').datetimepicker({
+        locale: 'ru',
+        format: 'L'
+    });
+});
+$(document).ready(function(){
+  var current_date = new Date();
+  const client_offset = parseInt(-current_date.getTimezoneOffset() / 60);
+  $('input[name="client_timezone"]').val(client_offset);  
+})

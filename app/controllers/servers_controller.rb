@@ -9,7 +9,7 @@ class ServersController < ApplicationController
   ]
 
   def index
-    @server = Server.all.includes(:serverversion)
+    @server = Server.published.includes(:serverversion)
   end
 
   def show
@@ -60,22 +60,12 @@ class ServersController < ApplicationController
   end
 
   def search
-    @server = Server.all
-    if params[:serverversion] != 'Хроники'
-      @server = @server.includes(:serverversion).where(
-        serverversions: { name: params[:serverversion] }
-      )
-    end
-    @server = @server.where(rate: params[:rate]) if params[:rate] != 'Рейты'
-    @server = @server.today if params[:datestart] == 'today'
-    @server = @server.tomorrow if params[:datestart] == 'tomorrow'
-    @server = @server.yesterday if params[:datestart] == 'yesterday'
+    @server = Server.published.includes(:serverversion).where(search_params)
     render :index
   end
 
   def new
     @server = Server.new
-    @server.datestart = Date.today + 7.day
   end
 
   def create
@@ -144,6 +134,17 @@ class ServersController < ApplicationController
     # TODO: надо сделать какой то счетчик перед тем как банить
     # current_user.update_attributes(baned: true)
     redirect_to servers_path, danger: 'Доступ запрещен !!!'
+  end
+
+  def search_params
+    client_timezone = params[:client_timezone].to_i.hours
+    datestart_begin = params[:datestart_begin].to_datetime - client_timezone if params[:datestart_begin].present?
+    datestart_end = params[:datestart_end].to_datetime.end_of_day - client_timezone if params[:datestart_end].present?
+    {}.tap do |hash|
+      hash[:rate] = params[:rate] if params[:rate].present?
+      hash[:serverversions] = { name: params[:serverversion] } if params[:serverversion].present?
+      hash[:datestart] = datestart_begin..datestart_end
+    end
   end
 
   def server_params

@@ -31,7 +31,7 @@ end
 
 class Server < ApplicationRecord
   mount_uploader :imageserver, ImageserverUploader
-  belongs_to :user
+  belongs_to :user, optional: true
   belongs_to :serverversion
   has_many :votes, dependent: :destroy
   has_many :server_views, dependent: :destroy
@@ -60,16 +60,15 @@ class Server < ApplicationRecord
     where(failed_checks: 1..)
   }
   scope :premiere, lambda {
-    where(publish: 'published', datestart: 7.days.ago..7.days.after)
+    where(datestart: 7.days.ago..7.days.after)
   }
   scope :already_opened, lambda {
-    where(publish: 'published', datestart: 7.days.ago..0.days.after).order(:status, datestart: :desc)
+    where(datestart: 7.days.ago..0.days.after).order(:status, datestart: :desc)
   }
   scope :open_soon, lambda {
-    where(publish: 'published', datestart: 0.days.after..7.days.after).order(:status, datestart: :asc)
+    where(datestart: 0.days.after..7.days.after).order(:status, datestart: :asc)
   }
-  scope :rating, lambda {
-    where(publish: 'published').order(rating: :desc)
+  scope :rating, lambda { order(rating: :desc)
   }
   scope :profile, lambda {
     order(updated_at: :desc)
