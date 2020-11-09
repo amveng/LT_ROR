@@ -1,37 +1,57 @@
 # frozen_string_literal: true
 
+class Numeric
+  def max_value(max)
+    if self > max
+      max
+    else
+      self
+    end
+  end
+end
+
 class VoteWorker
   include Sidekiq::Worker
+  MAX_COUNTED_VOTES_PER_DAY = 300
+  MAX_COUNTED_VOTES_PER_WEEK = 100
+  MAX_COUNTED_VOTES_PER_MONTH = 1000
+  SECONDS_IN_YEAR = (60 * 60 * 24 * 356)
 
   def perform(server_id = nil, force = false)
-    list_id =
-      if force
-        Server.ids
-      else
-        [server_id]
-      end
-    list_id.each do |f|
-      server = Server.find(f)
-      time_range = Time.now.yesterday..Time.now
-      date_range = 7.days.ago..0.days.ago
-      votes_weekly_count = Vote.where(server_id: f, date: date_range).count
-      votes_days_count = Vote.where(server_id: f, created_at: time_range).count
-      votes_month_count = Vote.where(server_id: f, date: 30.days.ago..0.days.ago).count
-      votes_weekly_average = Float(votes_weekly_count) / 7
-      long_day = ((server.created_at - Time.now) / (60 * 60 * 24 * 356)).abs
-      votes_weekly_average = 100 if votes_weekly_average > 100
-      long_day = 0.99 if long_day > 0.99
-      rating = 4 - server.status_before_type_cast + long_day + votes_weekly_average / 50
-      votes_weekly_average = 10 if votes_weekly_average > 10
-      rating += votes_weekly_average / 10
-      votes_weekly_count = 100 if votes_weekly_count > 100
-      rating += votes_weekly_count / 100
-      votes_days_count = 300 if votes_days_count > 300
-      rating += votes_days_count / 300
-      votes_month_count = 1000 if votes_month_count > 1000
-      rating += votes_month_count / 1000
-      rating = rating.round(2)
-      server.update_attributes(rating: rating)
+    list_id = force ? Server.ids : [server_id]
+    list_id.each do |server_id|
+      @server = Server.find(server_id)
+      @server.update(rating: calculate_rating_for_server(server_id))
     end
+  end
+
+  private
+
+  def calculate_rating_for_server(server_id)
+    votes_for_this_server = Vote.where(server_id: server_id)
+    rating = [4]
+    rating << ((@server.created_at - Time.now) / SECONDS_IN_YEAR).abs.max_value(0.99) - @server.status_before_type_cast
+    rating << calculate_average_votes_per_day_for_last_week(calculate_votes_for_last_week(votes_for_this_server)) / 50
+    rating << calculate_average_votes_per_day_for_last_week(calculate_votes_for_last_week(votes_for_this_server)).max_value(10) / 10
+    rating << calculate_votes_for_last_day(votes_for_this_server) / MAX_COUNTED_VOTES_PER_DAY
+    rating << calculate_votes_for_last_week(votes_for_this_server) / MAX_COUNTED_VOTES_PER_WEEK
+    rating << calculate_votes_for_last_month(votes_for_this_server) / MAX_COUNTED_VOTES_PER_MONTH
+    rating.reduce(:+).round(2)
+  end
+
+  def calculate_votes_for_last_day(votes_for_this_server)
+    votes_for_this_server.where(created_at: Time.now.yesterday..Time.now).count.max_value(MAX_COUNTED_VOTES_PER_DAY)
+  end
+
+  def calculate_votes_for_last_week(votes_for_this_server)
+    votes_for_this_server.where(date: 7.days.ago..0.days.ago).count.max_value(MAX_COUNTED_VOTES_PER_WEEK)
+  end
+
+  def calculate_average_votes_per_day_for_last_week(votes_weekly_count)
+    (Float(votes_weekly_count) / 7).max_value(MAX_COUNTED_VOTES_PER_WEEK)
+  end
+
+  def calculate_votes_for_last_month(votes_for_this_server)
+    votes_for_this_server.where(date: 30.days.ago..0.days.ago).count.max_value(MAX_COUNTED_VOTES_PER_MONTH)
   end
 end
