@@ -14,9 +14,9 @@ ActiveAdmin.register_page 'Dashboard' do
       end
     end
 
-    unless Server.where(publish: 'unverified').blank?
+    if Server.unverified
       panel 'Сервера ждущие проверки' do
-        table_for Server.where(publish: 'unverified').limit(10) do
+        table_for Server.unverified.limit(10) do
           column :title do |server|
             link_to server.title, adm315_server_path(server)
           end
@@ -29,7 +29,7 @@ ActiveAdmin.register_page 'Dashboard' do
       end
     end
 
-    unless Server.where(created_at: 7.day.ago..).blank?
+    if Server.exists?(created_at: 7.day.ago..)
       panel 'Новые сервера за последюю неделю' do
         table_for Server.where(created_at: 7.day.ago..).order(created_at: :desc).limit(20) do
           column :title do |server|
@@ -45,23 +45,15 @@ ActiveAdmin.register_page 'Dashboard' do
               server.created_at
             end
           end
+          color_publish = {
+            published: 'ForestGreen',
+            created: 'RoyalBlue',
+            unverified: 'Coral',
+            failed: 'Firebrick',
+            arhiv: 'SlateGrey'
+          }
           column :publish do |server|
-            color = case server.publish
-                    when 'published'
-                      'ForestGreen'
-                    when 'create'
-                      'RoyalBlue'
-                    when 'unverified'
-                      'Coral'
-                    when 'failed'
-                      'Firebrick'
-                    when 'arhiv'
-                      'SlateGrey'
-                    else
-                      'dark'
-                    end
-
-            status_tag(server.publish, style: "font-weight: bold; background-color: #{color}")
+            status_tag(server.publish, style: "font-weight: bold; background-color: #{color_publish[server.publish.to_sym]}")
           end
           column :user
         end
@@ -75,7 +67,7 @@ ActiveAdmin.register_page 'Dashboard' do
           column :username do |user|
             link_to user.username, adm315_user_path(user)
           end
-          column :country      
+          column :country
           column :created_at do |user|
             case user.created_at
             when 1.days.ago...0.days.ago

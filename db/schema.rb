@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_03_112704) do
+ActiveRecord::Schema.define(version: 2020_11_07_150016) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -129,7 +129,6 @@ ActiveRecord::Schema.define(version: 2020_11_03_112704) do
 
   create_table "servers", force: :cascade do |t|
     t.decimal "rating", precision: 3, scale: 2, default: "1.0"
-    t.string "publish", default: "create", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "title", limit: 42
@@ -146,6 +145,7 @@ ActiveRecord::Schema.define(version: 2020_11_03_112704) do
     t.string "token"
     t.integer "failed_checks", default: 0, null: false
     t.string "ip"
+    t.integer "publish", default: 0, null: false
     t.index ["serverversion_id"], name: "index_servers_on_serverversion_id"
     t.index ["title"], name: "index_servers_on_title", unique: true
     t.index ["user_id"], name: "index_servers_on_user_id"

@@ -4,7 +4,7 @@ class ServerCheckWorker
   include Sidekiq::Worker
 
   def perform
-    servers = Server.active
+    servers = Server.not_arhiv
     servers.each do |server|
       next if server.failed_checks.negative?
 
@@ -56,9 +56,9 @@ class ServerCheckWorker
       server.publish = 'published'
       server.failed = ''
     end
-    server.publish = 'published' if server.publish == 'create'
+    server.publish = 'published' if server.created?
 
-    if server.status > 2 && baner_check?
+    if server.normal? && baner_check?
       unless LtcBilling.exists?(product_name: server.title, description: 'Акция премиум за банер')
         server.status_expires = Date.today + 10.days
         server.status = 2
