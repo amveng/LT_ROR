@@ -2,34 +2,42 @@
 
 module ApplicationHelper
   def bootstrap_class_for(name)
-    { success: 'alert-success',
+    {
+      success: 'alert-success',
       error: 'alert-danger',
       info: 'alert-info',
       danger: 'alert-danger',
       warning: 'alert-warning',
       alert: 'alert-danger',
-      notice: 'alert-primary' }[name.to_sym] || name
+      notice: 'alert-primary'
+    }[name.to_sym] || name
   end
 
   def publish_color(name)
-    { published: 'success',
+    {
+      published: 'success',
       failed: 'danger',
       unverified: 'info',
       arhiv: 'secondary',
       undefined: 'dark',
-      created: 'primary' }[name.to_sym] || name
+      created: 'primary'
+    }[name.to_sym] || name
   end
 
   def status_icon(name)
-    { 'top': '★',
+    {
+      'top': '★',
       'vip': '☆',
-      'normal': '–' }[name.to_sym] || name
+      'normal': '–'
+    }[name.to_sym] || name
   end
 
   def status_color(name)
-    { 'top': 'danger',
+    {
+      'top': 'danger',
       'vip': 'primary',
-      'normal': 'secondary' }[name.to_sym] || name
+      'normal': 'secondary'
+    }[name.to_sym] || name
   end
 
   def acces_new_server?

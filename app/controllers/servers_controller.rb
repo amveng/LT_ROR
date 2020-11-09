@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
 class ServersController < ApplicationController
-  before_action :authenticate_user!, except: %i[
-    index show search
-  ]
-  before_action :server_belong_user, only: %i[
-    edit update destroy publish vip top arhiv generate_token
-  ]
+  before_action :authenticate_user!,
+                except: %i[
+                  index show search
+                ]
+  before_action :server_belong_user,
+                only: %i[
+                  edit update destroy publish vip top arhiv generate_token
+                ]
 
   def index
     @server = Server.published.includes(:serverversion)
@@ -73,7 +75,8 @@ class ServersController < ApplicationController
     @server.user_id = current_user.id
     if @server.save
       ServerCreateMailer.server_created(@server).deliver_later
-      redirect_to servers_profiles_path, success: 'Сервер успешно создан.
+      redirect_to servers_profiles_path,
+                  success: 'Сервер успешно создан.
        Проверьте данные и нажмите кнопку опубликовать'
     else
       flash.now[:danger] = 'Сервер не создан'
@@ -112,11 +115,12 @@ class ServersController < ApplicationController
   end
 
   def server_view
-    viewer = if current_user.blank?
-               request.remote_ip.to_s
-             else
-               current_user.id
-             end
+    viewer =
+      if current_user.blank?
+        request.remote_ip.to_s
+      else
+        current_user.id
+      end
 
     ServerView.where(date: Date.today, server_id: @server.id, viewer: viewer).first_or_create
   end
@@ -137,7 +141,7 @@ class ServersController < ApplicationController
   end
 
   def search_params
-    client_timezone = params[:client_timezone].to_i.hours
+    client_timezone = Integer(params[:client_timezone], 10).hours
     datestart_begin = params[:datestart_begin].to_datetime - client_timezone if params[:datestart_begin].present?
     datestart_end = params[:datestart_end].to_datetime.end_of_day - client_timezone if params[:datestart_end].present?
     {}.tap do |hash|
@@ -149,8 +153,13 @@ class ServersController < ApplicationController
 
   def server_params
     params.require(:server).permit(
-      :title, :rate, :description, :urlserver,
-      :imageserver, :datestart, :serverversion_id
+      :title,
+      :rate,
+      :description,
+      :urlserver,
+      :imageserver,
+      :datestart,
+      :serverversion_id
     )
   end
 end

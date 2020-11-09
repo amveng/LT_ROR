@@ -10,8 +10,9 @@ class Users::SessionsController < Devise::SessionsController
       CountryWorker.perform_async(current_user.id)
     else
       flash.delete :recaptcha_error
-      redirect_to new_user_session_path, danger: 'К сожалению гугл считает что вы бот.
-       Пожалуйста, попробуйте еще раз.'
+      redirect_to new_user_session_path,
+                  danger: 'К сожалению гугл считает что вы бот.
+                   Пожалуйста, попробуйте еще раз.'
     end
   end
 

@@ -1,10 +1,19 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Server do
-  permit_params :title, :user_id, :status_expires,
-                :status, :urlserver, :imageserver,
-                :publish, :serverversion_id, :failed_checks,
-                :datestart, :description, :failed, :ip
+  permit_params :title,
+                :user_id,
+                :status_expires,
+                :status,
+                :urlserver,
+                :imageserver,
+                :publish,
+                :serverversion_id,
+                :failed_checks,
+                :datestart,
+                :description,
+                :failed,
+                :ip
 
   config.sort_order = 'created_at_desc'
   config.per_page = [20, 30, 50, 100]
