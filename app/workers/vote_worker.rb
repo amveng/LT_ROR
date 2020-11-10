@@ -1,5 +1,15 @@
 # frozen_string_literal: true
 
+# ----------------------------------------------------------------------------
+# Dear developer:
+
+# As soon as you stop trying to optimize this code and 
+# understand what mistake you made in taking on this business,
+# please increment the number on the counter below for the following developer:
+
+# number_of_hours_wasted_here = 42
+# ----------------------------------------------------------------------------
+
 class Numeric
   def max_value(max)
     if self > max
