@@ -88,8 +88,8 @@ class ServersController < ApplicationController
 
   def update
     ActiveRecord::Base.transaction do
+      verificate_server
       @server.update!(server_params)
-      check_and_set_params!
     end
     redirect_to servers_profiles_path, success: 'Сервер успешно изменён'
   rescue StandardError
@@ -104,11 +104,13 @@ class ServersController < ApplicationController
 
   private
 
-  def check_and_set_params!
-    if @server.normal? || @server.failed?
-      @server.failure_message = nil
-      @server.unverified!
-    end
+  def verificate_server
+    revoke_publication if @server.normal? || @server.failed?
+  end
+
+  def revoke_publication
+    @server.failure_message = nil
+    @server.unverified!
   end
 
   def ltc_update(ltc, prod, info)
