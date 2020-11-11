@@ -15,9 +15,7 @@ module LineageTop
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
 
-    if Rails.env.production? || Rails.env.development?
-      config.active_job.queue_adapter = :sidekiq
-    end
+    config.active_job.queue_adapter = :sidekiq if Rails.env.production? || Rails.env.development?
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
@@ -26,5 +24,7 @@ module LineageTop
     config.time_zone = 'Moscow'
     config.i18n.available_locales = %i[en ru]
     config.i18n.default_locale = :ru
+
+    config.autoload_paths += %W[#{config.root}/lib]
   end
 end
