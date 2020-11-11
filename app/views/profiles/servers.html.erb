@@ -67,14 +67,14 @@
             </tbody>
           </table>
           <% if server.publish == 'failed' %>
-            <% if server.failed.blank? %>
+            <% if server.failure_message.blank? %>
               <div class="font-weight-bold text-center text-white bg-danger my-2">
                 Cервер не прошел проверку. Проверьте правильнось заполнения и измените данные
                 согласно требованиям перед повторной проверкой
               </div>
             <% else %>
               <div class="font-weight-bold text-center text-white bg-danger my-2">
-                <%= server.failed %>
+                <%= server.failure_message %>
               </div>
             <% end %>
           <% end %>

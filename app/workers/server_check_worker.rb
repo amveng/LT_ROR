@@ -17,7 +17,7 @@ class ServerCheckWorker
       rescue StandardError
         if server.failed_checks > 1
           server.publish = 'failed'
-          server.failed = 'сервер недоступен'
+          server.failure_message = 'сервер недоступен'
           server.publish = 'arhiv' if server.failed_checks > 15
         end
         server.failed_checks += 1
@@ -52,9 +52,9 @@ class ServerCheckWorker
     end
 
     server.failed_checks = 0 if server.failed_checks.positive?
-    if server.publish == 'failed' && server.failed == 'сервер недоступен'
+    if server.publish == 'failed' && server.failure_message == 'сервер недоступен'
       server.publish = 'published'
-      server.failed = ''
+      server.failure_message = ''
     end
     server.publish = 'published' if server.created?
 

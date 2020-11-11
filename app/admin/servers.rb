@@ -12,7 +12,7 @@ ActiveAdmin.register Server do
                 :failed_checks,
                 :datestart,
                 :description,
-                :failed,
+                :failure_message,
                 :ip
 
   config.sort_order = 'created_at_desc'
@@ -86,7 +86,7 @@ ActiveAdmin.register Server do
       f.input :user
       f.input :publish, as: :select
       f.input :failed_checks
-      f.input :failed
+      f.input :failure_message
       f.input :status, as: :select
       f.input :status_expires, as: :datepicker
       f.input :serverversion

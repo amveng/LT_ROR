@@ -87,16 +87,14 @@ class ServersController < ApplicationController
   def edit; end
 
   def update
-    if @server.status == 3 || @server.publish == 'failed'
-      @server.publish = 'unverified'
-      @server.failed = ''
+    ActiveRecord::Base.transaction do
+      verificate_server
+      @server.update!(server_params)
     end
-    if @server.update(server_params)
-      redirect_to servers_profiles_path, success: 'Сервер успешно изменён'
-    else
-      flash.now[:danger] = 'Сервер не изменён'
-      render :edit
-    end
+    redirect_to servers_profiles_path, success: 'Сервер успешно изменён'
+  rescue StandardError
+    flash.now[:danger] = 'Сервер не изменён'
+    render :edit
   end
 
   def destroy
@@ -105,6 +103,15 @@ class ServersController < ApplicationController
   end
 
   private
+
+  def verificate_server
+    revoke_publication if @server.normal? || @server.failed?
+  end
+
+  def revoke_publication
+    @server.failure_message = nil
+    @server.unverified!
+  end
 
   def ltc_update(ltc, prod, info)
     current_user.profile.update(
