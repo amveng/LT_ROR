@@ -2,38 +2,46 @@
 
 module ApplicationHelper
   def bootstrap_class_for(name)
-    { success: 'alert-success',
+    {
+      success: 'alert-success',
       error: 'alert-danger',
       info: 'alert-info',
       danger: 'alert-danger',
       warning: 'alert-warning',
       alert: 'alert-danger',
-      notice: 'alert-primary' }[name.to_sym] || name
+      notice: 'alert-primary'
+    }[name.to_sym] || name
   end
 
   def publish_color(name)
-    { published: 'success',
+    {
+      published: 'success',
       failed: 'danger',
       unverified: 'info',
       arhiv: 'secondary',
       undefined: 'dark',
-      create: 'primary' }[name.to_sym] || name
+      created: 'primary'
+    }[name.to_sym] || name
   end
 
   def status_icon(name)
-    { '1': '★',
-      '2': '☆',
-      '3': '–' }[name.to_sym] || name
+    {
+      'top': '★',
+      'vip': '☆',
+      'normal': '–'
+    }[name.to_sym] || name
   end
 
   def status_color(name)
-    { '1': 'danger',
-      '2': 'primary',
-      '3': 'secondary' }[name.to_sym] || name
+    {
+      'top': 'danger',
+      'vip': 'primary',
+      'normal': 'secondary'
+    }[name.to_sym] || name
   end
 
   def acces_new_server?
-    !current_user.servers.find_by(publish: %w[create unverified])
+    !current_user.servers.find_by(publish: %w[created unverified])
   end
 
   def footer_content(name)
@@ -45,7 +53,7 @@ module ApplicationHelper
   end
 
   def baner_random
-    Server.where(publish: 'published', status: 1).shuffle
+    Server.published.top.shuffle
   end
 
   def baner_top

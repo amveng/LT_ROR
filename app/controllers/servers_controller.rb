@@ -1,15 +1,17 @@
 # frozen_string_literal: true
 
 class ServersController < ApplicationController
-  before_action :authenticate_user!, except: %i[
-    index show search
-  ]
-  before_action :server_belong_user, only: %i[
-    edit update destroy publish vip top arhiv generate_token
-  ]
+  before_action :authenticate_user!,
+                except: %i[
+                  index show search
+                ]
+  before_action :server_belong_user,
+                only: %i[
+                  edit update destroy publish vip top arhiv generate_token
+                ]
 
   def index
-    @server = Server.all.includes(:serverversion)
+    @server = Server.published.includes(:serverversion)
   end
 
   def show
@@ -60,22 +62,12 @@ class ServersController < ApplicationController
   end
 
   def search
-    @server = Server.all
-    if params[:serverversion] != 'Хроники'
-      @server = @server.includes(:serverversion).where(
-        serverversions: { name: params[:serverversion] }
-      )
-    end
-    @server = @server.where(rate: params[:rate]) if params[:rate] != 'Рейты'
-    @server = @server.today if params[:datestart] == 'today'
-    @server = @server.tomorrow if params[:datestart] == 'tomorrow'
-    @server = @server.yesterday if params[:datestart] == 'yesterday'
+    @server = Server.published.includes(:serverversion).where(search_params)
     render :index
   end
 
   def new
     @server = Server.new
-    @server.datestart = Date.today + 7.day
   end
 
   def create
@@ -83,7 +75,8 @@ class ServersController < ApplicationController
     @server.user_id = current_user.id
     if @server.save
       ServerCreateMailer.server_created(@server).deliver_later
-      redirect_to servers_profiles_path, success: 'Сервер успешно создан.
+      redirect_to servers_profiles_path,
+                  success: 'Сервер успешно создан.
        Проверьте данные и нажмите кнопку опубликовать'
     else
       flash.now[:danger] = 'Сервер не создан'
@@ -94,16 +87,14 @@ class ServersController < ApplicationController
   def edit; end
 
   def update
-    if @server.status == 3 || @server.publish == 'failed'
-      @server.publish = 'unverified'
-      @server.failed = ''
+    ActiveRecord::Base.transaction do
+      verificate_server
+      @server.update!(server_params)
     end
-    if @server.update(server_params)
-      redirect_to servers_profiles_path, success: 'Сервер успешно изменён'
-    else
-      flash.now[:danger] = 'Сервер не изменён'
-      render :edit
-    end
+    redirect_to servers_profiles_path, success: 'Сервер успешно изменён'
+  rescue StandardError
+    flash.now[:danger] = 'Сервер не изменён'
+    render :edit
   end
 
   def destroy
@@ -112,6 +103,15 @@ class ServersController < ApplicationController
   end
 
   private
+
+  def verificate_server
+    revoke_publication if @server.normal? || @server.failed?
+  end
+
+  def revoke_publication
+    @server.failure_message = nil
+    @server.unverified!
+  end
 
   def ltc_update(ltc, prod, info)
     current_user.profile.update(
@@ -122,11 +122,12 @@ class ServersController < ApplicationController
   end
 
   def server_view
-    viewer = if current_user.blank?
-               request.remote_ip.to_s
-             else
-               current_user.id
-             end
+    viewer =
+      if current_user.blank?
+        request.remote_ip.to_s
+      else
+        current_user.id
+      end
 
     ServerView.where(date: Date.today, server_id: @server.id, viewer: viewer).first_or_create
   end
@@ -146,10 +147,26 @@ class ServersController < ApplicationController
     redirect_to servers_path, danger: 'Доступ запрещен !!!'
   end
 
+  def search_params
+    client_timezone = Integer(params[:client_timezone], 10).hours
+    datestart_begin = params[:datestart_begin].to_datetime - client_timezone if params[:datestart_begin].present?
+    datestart_end = params[:datestart_end].to_datetime.end_of_day - client_timezone if params[:datestart_end].present?
+    {}.tap do |hash|
+      hash[:rate] = params[:rate] if params[:rate].present?
+      hash[:serverversions] = { name: params[:serverversion] } if params[:serverversion].present?
+      hash[:datestart] = datestart_begin..datestart_end
+    end
+  end
+
   def server_params
     params.require(:server).permit(
-      :title, :rate, :description, :urlserver,
-      :imageserver, :datestart, :serverversion_id
+      :title,
+      :rate,
+      :description,
+      :urlserver,
+      :imageserver,
+      :datestart,
+      :serverversion_id
     )
   end
 end

@@ -4,7 +4,7 @@ class ServerCheckWorker
   include Sidekiq::Worker
 
   def perform
-    servers = Server.active
+    servers = Server.not_arhiv
     servers.each do |server|
       next if server.failed_checks.negative?
 
@@ -17,7 +17,7 @@ class ServerCheckWorker
       rescue StandardError
         if server.failed_checks > 1
           server.publish = 'failed'
-          server.failed = 'сервер недоступен'
+          server.failure_message = 'сервер недоступен'
           server.publish = 'arhiv' if server.failed_checks > 15
         end
         server.failed_checks += 1
@@ -52,13 +52,13 @@ class ServerCheckWorker
     end
 
     server.failed_checks = 0 if server.failed_checks.positive?
-    if server.publish == 'failed' && server.failed == 'сервер недоступен'
+    if server.publish == 'failed' && server.failure_message == 'сервер недоступен'
       server.publish = 'published'
-      server.failed = ''
+      server.failure_message = ''
     end
-    server.publish = 'published' if server.publish == 'create'
+    server.publish = 'published' if server.created?
 
-    if server.status > 2 && baner_check?
+    if server.normal? && baner_check?
       unless LtcBilling.exists?(product_name: server.title, description: 'Акция премиум за банер')
         server.status_expires = Date.today + 10.days
         server.status = 2

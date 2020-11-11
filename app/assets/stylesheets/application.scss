@@ -1,10 +1,8 @@
-/*
- *= require bootstrap-datepicker 
- */
 
 @import "bootstrap";
 
-@import "bootstrap-datepicker";
+@import "font-awesome";
+
 
 // select {
 //     display: block;
@@ -62,7 +60,7 @@ background-color: #f9f9f9;
     top: 4em;        
 }
 
-a.link-1 {
+a.link-top {
     display: block;     
     font: 1.3em sans-serif;
     font-weight: bold;   
@@ -70,22 +68,22 @@ a.link-1 {
     color: #d00;    
 }
 
-a.link-1:hover {
+a.link-top:hover {
     color: #d00;            
 }
 
-a.link-2 {
+a.link-vip {
     display: block;    
     text-decoration: none;
     color: #007bff;
     background-color: transparent;
 }
 
-a.link-2:hover {
+a.link-vip:hover {
     color: #0c50b6;        
 }
 
-a.link-3 {
+a.link-normal {
     display: block;
     font-size: small;    
     text-decoration: none;
@@ -93,7 +91,7 @@ a.link-3 {
     background-color: transparent;
 }
 
-a.link-3:hover {
+a.link-normal:hover {
     color: #495057;       
 }
 
@@ -102,10 +100,6 @@ a.link-3:hover {
     vertical-align: middle;
     border-top: 1px solid #dee2e6;
 }
-
-.vip1 { color: #d00; }
-.vip2 { color: #007bff; }
-.vip3 { color: #495057; }
 
 textarea.form-control {
     max-height: 7rem;

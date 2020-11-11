@@ -1,8 +1,12 @@
+# frozen_string_literal: true
+
 module PetitionsHelper
   def status_petition_color(name)
-    { create: 'primary',
+    {
+      create: 'primary',
       rejected: 'danger',
       review: 'warning',
-      closed: 'secondary' }[name.to_sym] || name
+      closed: 'secondary'
+    }[name.to_sym] || name
   end
 end

@@ -7,8 +7,9 @@ class Users::PasswordsController < Devise::PasswordsController
       super
     else
       flash.delete :recaptcha_error
-      redirect_to new_user_password_path, danger: 'К сожалению гугл считает что вы бот.
-       Пожалуйста, попробуйте еще раз.'
+      redirect_to new_user_password_path,
+                  danger: 'К сожалению гугл считает что вы бот.
+                  Пожалуйста, попробуйте еще раз.'
     end
   end
   # GET /resource/password/new

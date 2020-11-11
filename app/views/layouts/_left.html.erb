@@ -5,47 +5,61 @@
     <div class="text-center">
       Поиск сервера  
     </div>
+    <hr>
     <form class="form-group p-3" action="/servers/search" method="GET">
+      <label>По хроникам</label>
       <select  class="form-control" type="text" name="serverversion">
-        <option>Хроники</option>
+        <option><%= nil %></option>
         <% all_versions_servers.each do |name| %>
           <option><%= name %></option>
         <% end %>
       </select>
       <br>
+      <label>По рейтам</label>
       <select  class="form-control" type="text" name="rate">
-        <option>Рейты</option>
+        <option><%= nil %></option>
         <% all_rates_servers.each do |rate| %>
           <option><%= rate %></option>
         <% end %>
       </select>
       <br>
-      <select  class="form-control" type="date_field" name="datestart">
-        <option>Дата старта</option>
-        <option value="<%= 'today' %>">Сегодня</option>
-        <option value="<%= 'tomorrow' %>">Завтра</option>
-        <option value="<%= 'yesterday' %>">Вчера</option>
-      </select>
-      <br>
-      <input class="btn btn-dark w-100" type="submit" value="Подобрать">
-    </form>
-    <div class="m-1">
-      <% if baner_menu.blank? %>
-        <img src="/images/servers/240х400.jpg" class="rounded-lg w-100">
-      <% else %>
-        <a href="<%= baner_menu.baner_menu_url %>" target="_blank">
-          <%= image_tag baner_menu.baner_menu_img.url, class: "rounded-lg w-100" %>
-        </a>
-      <% end %>
-    </div>
-    <% baner_random.each do |server| %>
-      <% if server.imageserver? %>
-        <div class="m-1">
-          <a href="<%= server.urlserver %>" target="_blank">
-            <%= image_tag server.imageserver.url, class: "rounded-lg", width: "100%" %>
-          </a>
+      <label>По дате старта</label>
+      <div class="input-group date mb-3" id="datetimepicker1" data-target-input="nearest">
+        <input type="text" name="datestart_begin" class="form-control datetimepicker-input" data-target="#datetimepicker1"/>
+        <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+          <div class="input-group-text">От</div>
         </div>
-      <% end %>
+      </div>
+      <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
+        <input type="text" name="datestart_end" class="form-control datetimepicker-input" data-target="#datetimepicker2"/>
+        <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
+          <div class="input-group-text">До</div>
+      </div>
+    </div>
+    <input type="text" name="client_timezone" class="d-none">
+    <br>
+    <input class="btn btn-dark w-100" type="submit" value="Подобрать">
+  </form>
+  <div class="m-1">
+    <% if baner_menu.blank? %>
+      <img src="/images/servers/240х400.jpg" class="rounded-lg w-100">
+    <% else %>
+      <a href="<%= baner_menu.baner_menu_url %>" target="_blank">
+        <%= image_tag baner_menu.baner_menu_img.url, class: "rounded-lg w-100" %>
+      </a>
     <% end %>
   </div>
+  <% baner_random.each do |server| %>
+    <% if server.imageserver? %>
+      <div class="m-1">
+        <a href="<%= server.urlserver %>" target="_blank">
+          <%= image_tag server.imageserver.url, class: "rounded-lg", width: "100%" %>
+        </a>
+      </div>
+    <% end %>
+  <% end %>
 </div>
+</div>
+<script type="text/javascript">
+
+</script>

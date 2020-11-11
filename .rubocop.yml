@@ -1,0 +1,12 @@
+AllCops:
+  EnabledByDefault: true
+Layout/LineLength:
+  Max: 120
+Style/Documentation:
+  Enabled: false
+Metrics/MethodLength:
+    Max: 20
+Style/DocumentationMethod:
+  Enabled: false
+Style/MethodCallWithArgsParentheses:
+  Enabled: false
