@@ -71,12 +71,12 @@ ActiveAdmin.register User do
 
   filter :email
   filter :username
-  # filter :country, as: :select, collection: User.distinct.pluck(:country).sort
+  filter :country, as: :select
   filter :created_at
   filter :updated_at
   filter :next_votetime
   filter :baned
-  # filter :provider, as: :check_boxes, collection: User.omniauth_providers
+  filter :provider, as: :select
 
   form do |f|
     f.inputs do
