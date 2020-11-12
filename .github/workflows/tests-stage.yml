@@ -28,5 +28,7 @@ jobs:
       run: bundle install
     - name: check yarn 
       run: yarn install --check-files
+    - name: base sqlite3 setup
+      run: bundle exec rails db:test:prepare    
     - name: Run tests
       run: bundle exec rake
