@@ -13,8 +13,8 @@
 class VoteWorker
   include Sidekiq::Worker
 
-  def perform(server_id = nil, force = false)
-    list_id = force ? Server.ids : [server_id]
+  def perform(id = nil, force = false)
+    list_id = force ? Server.ids : [id]
     list_id.each do |server_id|
       server = Server.find(server_id)
       server.update(rating: calculate_rating_for_server(server))
@@ -32,7 +32,7 @@ class VoteWorker
     rating_components << rating_calulator_for_weekly_votes_per_day.calculate_achivement_max_step
     rating_components << Services::RatingCalculators::ForDailyVotes.new(votes_for_this_server).calculate
     rating_components << Services::RatingCalculators::ForWeeklyVotes.new(votes_for_this_server).calculate
-    rating_components << Services::RatingCalculators::ForMonthlyVotes.new(votes_for_this_server).calculate    
+    rating_components << Services::RatingCalculators::ForMonthlyVotes.new(votes_for_this_server).calculate
     rating_components.sum.round(2)
   end
 end
