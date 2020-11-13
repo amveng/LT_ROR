@@ -41,6 +41,7 @@ gem 'webpacker', '~> 4.0'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'factory_bot_rails'
   gem 'rspec-rails'
   gem 'sqlite3', '~> 1.4'
 end
@@ -65,4 +66,4 @@ gem 'sidekiq-scheduler', '~> 3.0'
 
 gem 'data_migrate', '~> 6.5'
 
-gem "font-awesome-rails"
+gem 'font-awesome-rails' 
