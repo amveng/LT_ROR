@@ -47,4 +47,4 @@ jobs:
           gem install bundler
           bundle install
           bundle exec rails db:test:prepare
-          bundle exec rails test
+          bundle exec rake
