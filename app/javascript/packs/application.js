@@ -3,17 +3,15 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-require("@rails/ujs").start()
-require("turbolinks").start()
-require("@rails/activestorage").start()
-require("channels")
+require("@rails/ujs").start();
+require("@rails/activestorage").start();
+require("channels");
 // require("chartkick")
 // require("chart.js")
 
-require("moment/locale/ru")
-require("tempusdominus-bootstrap-4")
-import '../stylesheets/application'
-
+require("moment/locale/ru");
+require("tempusdominus-bootstrap-4");
+import "../stylesheets/application";
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
@@ -22,37 +20,29 @@ import '../stylesheets/application'
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-import 'bootstrap'
+import "bootstrap";
 
-import 'chartkick'
+import "chartkick";
 
-import 'chart.js'
+import "chart.js";
 
 
-$(document).on("turbolinks:load", function () {
-    var today = new Date(); 
-    today.setHours(20, 0, 0, 0);
-    $('#datetimepicker').datetimepicker({      
-      defaultDate: today,
-      locale: 'ru'
-    });   
+
+$(function () {
+  $("#datetimepicker1").datetimepicker({
+    locale: "ru",
+    format: "L",
+  });
 });
 
 $(function () {
-    $('#datetimepicker1').datetimepicker({
-        locale: 'ru',
-        format: 'L'
-    });
+  $("#datetimepicker2").datetimepicker({
+    locale: "ru",
+    format: "L",
+  });
 });
-
-  $(function () {
-    $('#datetimepicker2').datetimepicker({
-        locale: 'ru',
-        format: 'L'
-    });
-});
-$(document).ready(function(){
+$(document).on(function () {
   var current_date = new Date();
   const client_offset = parseInt(-current_date.getTimezoneOffset() / 60);
-  $('input[name="client_timezone"]').val(client_offset);  
-})
+  $('input[name="client_timezone"]').val(client_offset);
+});

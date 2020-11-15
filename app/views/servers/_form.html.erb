@@ -40,4 +40,26 @@
     <%= f.submit 'Сохранить', class: 'btn btn-success w-25 mt-5' %>
   </div>
 <% end %>
-
+<% if @server.datestart %>
+  <script type="text/javascript">
+    $(document).on(function () {       
+      $("#datetimepicker").datetimepicker({ 
+        inline: true,
+        sideBySide: true,
+        defaultDate: '<%= @server.datestart.strftime("%d-%m-%Y %H:%M").to_s %>',       
+        locale: "ru",
+      });
+    });
+  </script>
+<% else %>
+  <script type="text/javascript">
+    $(function () {
+      var today = new Date();       
+      today.setHours(20, 0, 0, 0);
+      $("#datetimepicker").datetimepicker({       
+        defaultDate: today,
+        locale: "ru",
+      });
+    });
+  </script>
+<% end %>

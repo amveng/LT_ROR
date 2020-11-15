@@ -13,7 +13,6 @@ gem 'carrierwave', '>= 1.0.0.beta', '< 2.0'
 gem 'chartkick'
 gem 'devise'
 gem 'devise-async'
-gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
 gem 'friendly_id', '~> 5.4.0'
 gem 'geocoder'
 gem 'groupdate'
@@ -34,7 +33,6 @@ gem 'recaptcha'
 gem 'sass-rails', '>= 6'
 gem 'sidekiq'
 gem 'simple_form'
-gem 'turbolinks', '~> 5'
 gem 'unicorn'
 gem 'validate_url'
 gem 'webpacker', '~> 4.0'
@@ -43,7 +41,7 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
   gem 'rspec-rails'
-  gem 'sqlite3', '~> 1.4'
+  gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'  
 end
 
 group :development do
