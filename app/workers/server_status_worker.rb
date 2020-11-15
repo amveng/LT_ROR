@@ -9,15 +9,15 @@ class ServerStatusWorker
       f.normal!
     end
 
-    while Server.top.count < 2
-      server = Server.premiere.normal.sample
+    while Server.published.top.count < 2
+      server = Server.published.premiere.normal.sample
       break if server.blank?
 
       server.update(status: 1, status_expires: rand(3).days.after)
     end
 
-    while Server.vip.count < 5
-      server = Server.premiere.normal.sample
+    while Server.published.vip.count < 5
+      server = Server.published.premiere.normal.sample
       break if server.blank?
 
       server.update(status: 2, status_expires: rand(3).days.after)
