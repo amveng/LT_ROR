@@ -20,9 +20,9 @@ RSpec.describe Services::RatingCalculators::ForWeeklyVotes do
     end
 
     it 'limiting the maximum' do
-      vote = create(:vote)
-      300.times { vote = create(:vote, server: vote.server) }
-      votes_for_this_server = Vote.where(server_id: vote.server.id)
+      server = create(:server)
+      301.times { create(:vote, server: server) }
+      votes_for_this_server = Vote.where(server_id: server.id)
       result = Services::RatingCalculators::ForWeeklyVotes.new(votes_for_this_server).calculate
       expect(result.round(3)).to eq(1)
     end
