@@ -133,6 +133,11 @@ GEM
     et-orbi (1.2.4)
       tzinfo
     execjs (2.7.0)
+    factory_bot (6.1.0)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.1.0)
+      factory_bot (~> 6.1.0)
+      railties (>= 5.0.0)
     faraday (1.0.1)
       multipart-post (>= 1.2, < 3)
     ffi (1.12.2)
@@ -412,6 +417,7 @@ DEPENDENCIES
   data_migrate (~> 6.5)
   devise
   devise-async
+  factory_bot_rails
   faker!
   font-awesome-rails
   friendly_id (~> 5.4.0)
@@ -454,4 +460,4 @@ RUBY VERSION
    ruby 2.7.0p0
 
 BUNDLED WITH
-   2.1.2
+   2.1.4
