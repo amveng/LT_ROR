@@ -35,17 +35,17 @@ RSpec.describe Services::RatingCalculators::ForWeeklyVotesPerDay do
     end
 
     it 'limiting the maximum for min step' do
-      vote = create(:vote)      
-      70.times { vote = create(:vote, server: vote.server) }
-      votes_for_this_server = Vote.where(server_id: vote.server.id)
+      server = create(:server)
+      71.times { create(:vote, server: server) }
+      votes_for_this_server = Vote.where(server_id: server.id)
       result = Services::RatingCalculators::ForWeeklyVotesPerDay.new(votes_for_this_server).calculate_achivement_min_step
       expect(result.round(3)).to eq(1)
     end
 
     it 'limiting the maximum for max step' do
-      vote = create(:vote)
-      700.times { vote = create(:vote, server: vote.server) }
-      votes_for_this_server = Vote.where(server_id: vote.server.id)
+      server = create(:server)
+      701.times { create(:vote, server: server) }
+      votes_for_this_server = Vote.where(server_id: server.id)
       result = Services::RatingCalculators::ForWeeklyVotesPerDay.new(votes_for_this_server).calculate_achivement_max_step
       expect(result.round(4)).to eq(2)
     end
