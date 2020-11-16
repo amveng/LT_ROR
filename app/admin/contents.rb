@@ -3,14 +3,6 @@
 ActiveAdmin.register Content do
   permit_params :name, :body, :header, :menu, :menu_publish, :id, :navbar_publish
 
-  controller do
-    def find_resource
-      scoped_collection.where(slug: params[:id]).first!
-    rescue ActiveRecord::RecordNotFound
-      scoped_collection.find(params[:id])
-    end
-  end
-
   index do
     id_column
     column :name
