@@ -1,38 +1,48 @@
-class ParserServerWorker
+class ParserSiteWorker
   include Sidekiq::Worker
 
   def perform
-    # Do something
-    @count_complite = 0
-    @servlist = %w[
-      https://new-lineage.ru
-      https://l2-pick.ru
-      https://l2oops.com
-      https://l2-top.ru
-    ]
+    sites = ParserSite.where(enabled: true)
+    sites.each do |site|
+      p site.url
 
-    0.step(3, 1) do |s|
-      @nameserver = @servlist[s]
-      begin
-        @uri = URI.open(@nameserver)
-      rescue StandardError
-        urierror
-      else
-        case s
-        when 0
-          parsserver0
-        when 1
-          parsserver1
-        when 2
-          parsserver2
-        when 3
-          parsserver3
-        end
-        @count_complite += 1
-      end
     end
-    complite
   end
+
+
+
+
+    # # Do something
+    # @count_complite = 0
+    # @servlist = %w[
+    #   https://new-lineage.ru
+    #   https://l2-pick.ru
+    #   https://l2oops.com
+    #   https://l2-top.ru
+    # ]
+
+    # 0.step(3, 1) do |s|
+    #   @nameserver = @servlist[s]
+    #   begin
+    #     @uri = URI.open(@nameserver)
+    #   rescue StandardError
+    #     urierror
+    #   else
+    #     case s
+    #     when 0
+    #       parsserver0
+    #     when 1
+    #       parsserver1
+    #     when 2
+    #       parsserver2
+    #     when 3
+    #       parsserver3
+    #     end
+    #     @count_complite += 1
+    #   end
+    # end
+    # complite
+ 
 
 
   private
