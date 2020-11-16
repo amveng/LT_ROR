@@ -37,7 +37,7 @@ db/test.sqlite3
 
 /config/sidekiq2.service
 
-/config/unicorn_init.sh
+
 
 /public/uploads/*
 /public/packs
