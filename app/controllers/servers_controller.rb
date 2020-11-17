@@ -148,7 +148,7 @@ class ServersController < ApplicationController
   end
 
   def search_params
-    client_timezone = Integer(params[:client_timezone], 10).hours
+    client_timezone = params[:client_timezone].to_i.hours
     datestart_begin = params[:datestart_begin].to_datetime - client_timezone if params[:datestart_begin].present?
     datestart_end = params[:datestart_end].to_datetime.end_of_day - client_timezone if params[:datestart_end].present?
     {}.tap do |hash|
