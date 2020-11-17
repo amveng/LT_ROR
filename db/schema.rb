@@ -88,7 +88,11 @@ ActiveRecord::Schema.define(version: 2020_11_16_182451) do
   end
 
   create_table "parser_sites", force: :cascade do |t|
-    t.string "url"
+    t.string "url", null: false
+    t.string "css_selector", null: false
+    t.integer "number_name", default: 0, null: false
+    t.integer "number_date", default: 0, null: false
+    t.integer "number_rate", default: 0, null: false
     t.boolean "enabled", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

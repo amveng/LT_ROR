@@ -1,209 +1,83 @@
+# frozen_string_literal: true
+
 class ParserSiteWorker
   include Sidekiq::Worker
 
   def perform
+    search_data = Serverversion.pluck(:name)
     sites = ParserSite.where(enabled: true)
     sites.each do |site|
-      p site.url
-
+      document = data_site(site.url)
+      content = parsing(document, site.css_selector)
+      field_numbers = data_analysis(content, search_data)
+      servers = data_validation(field_numbers, content, site)
+      p servers
+      create_servers(servers)
     end
   end
 
-
-
-
-    # # Do something
-    # @count_complite = 0
-    # @servlist = %w[
-    #   https://new-lineage.ru
-    #   https://l2-pick.ru
-    #   https://l2oops.com
-    #   https://l2-top.ru
-    # ]
-
-    # 0.step(3, 1) do |s|
-    #   @nameserver = @servlist[s]
-    #   begin
-    #     @uri = URI.open(@nameserver)
-    #   rescue StandardError
-    #     urierror
-    #   else
-    #     case s
-    #     when 0
-    #       parsserver0
-    #     when 1
-    #       parsserver1
-    #     when 2
-    #       parsserver2
-    #     when 3
-    #       parsserver3
-    #     end
-    #     @count_complite += 1
-    #   end
-    # end
-    # complite
- 
-
-
-  private
-
-
-  def create_server
-    registered_server = Server.where(urlserver: "https://#{@url.downcase}").first
-    if registered_server.present?
-      if registered_server.datestart.to_date == @date.to_date
-        return
-      else
-        @server = registered_server 
-      end
-    else
-      @server = Server.new
-    end
-    # return if registered_server.datestart.to_date == @date.to_date
-    @user = User.where(provider: 'faker').sample
-    @serverversion = Serverversion.where(name: @version).first_or_create
-    @server.urlserver = "https://#{@url.downcase}"
-    @server.title = @url
-    @server.user_id = @user.id
-    @server.datestart = @date
-    @server.publish = 'created'
-    @server.serverversion_id = @serverversion.id if @serverversion.present?
-    @server.rate = (@rate.delete '^0-9').to_i
-    if @server.save
-      ParserMessage.where(
-        name: @nameserver,
-        typemsg: 'create',
-        body: "#{@url} - #{@version} - #{@rate} - #{@date}"
-      ).first_or_create
-    else      
-      ParserMessage.where(
-        name: @nameserver,
-        typemsg: 'error',
-        body: "#{@url} - #{@version} - #{@rate} - #{@date}"
-      ).first_or_create
-    end    
-  end
-
-  def urierror
+  def data_site(url)
+    Nokogiri::HTML(URI.open(url))
+  rescue StandardError
     ParserMessage.create(
-      name: @nameserver,
+      name: url,
       typemsg: 'no server',
       body: 'Сервер недоступен'
     )
   end
 
-  def complite
-    ParserMessage.create(
-      name: 'Парсинг',
-      typemsg: 'complite',
-      body: "Серверов обработано - #{@count_complite}"
-    )
+  def parsing(document, css_selector)
+    content = []
+    document.css(css_selector).each do |selector|
+      content << selector.content.strip
+    end
+    content
   end
 
-  def striper
-    @date = Date.tomorrow.to_s if @date.upcase == 'ЗАВТРА'
-    @date = Date.today.to_s if @date.upcase == 'СЕГОДНЯ'
-    @date = Date.yesterday.to_s if @date.upcase == 'ВЧЕРА'
-    @date = "#{@date[0, 6]}20#{@date[6, 2]}" if @date.length == 8
-    @version = 'Interlude +' if @version == 'Interlude+'
-    @version = 'High Five +' if @version == 'High Five+'
+  def data_analysis(content, search_data)
+    found_field_numbers = []
+    content.each_with_index do |data, index|
+      found_field_numbers << index if search_data.include? data
+    end
+    found_field_numbers
   end
 
-  def parsserver0
-    doc = Nokogiri::HTML(@uri)
-    tt = 1
-    @ll = []
-    doc.css('li').each do |a|
-      if a.content == 'Квест на ушки'
-        tt = 0
-        next
-      end
-      next if tt > 0
-
-      @ll << a.content
+  def data_validation(field_numbers, content, site)
+    servers = []
+    field_numbers.each do |index|
+      serverversion = normalized_serverversion(content[index])
+      rate = normalized_rate(content[index + site.number_rate])
+      date = normalized_date(content[index + site.number_date])
+      title = content[index + site.number_name]
+      server = Server.new(
+        serverversion: Serverversion.find_by(name: serverversion),
+        rate: rate,
+        datestart: date,
+        title: title,
+        urlserver: "https://#{title}"
+      )
+      servers << server if server.valid?
     end
-    0.step(@ll.count - 1, 4) do |n|
-      @version = @ll[n].strip
-      @rate = @ll[n + 1].strip
-      @date = @ll[n + 2].strip
-      @url = @ll[n + 3].strip
-      striper
-      
-
-      create_server
-    end
+    servers
   end
 
-  def parsserver1
-    doc = Nokogiri::HTML(@uri)
-    @ll = []
-    doc.css('div').each do |a|
-      @ll << a.content
-    end
-    0.step(@ll.count - 5, 1) do |n|
-      next unless @ll[n] == ''
-
-      @url = @ll[n + 1].strip
-      @rate = @ll[n + 2].strip
-      @version = @ll[n + 3].strip
-      @date = @ll[n + 4].strip
-      striper
-      next if @url.length > 42
-      next if @rate.length > 10
-      next if @version.length > 33
-      next if @date.length > 16
-      
-
-      create_server
-    end
+  def normalized_date(date)
+    date = "#{date[0, 6]}20#{date[6, 2]}" if date.length == 8
+    date
   end
 
-  def parsserver2
-    doc = Nokogiri::HTML(@uri)
-
-    @ll = []
-    doc.css('li').each do |a|
-      next if a == ''
-
-      @ll << a.content
-    end
-    0.step(@ll.count - 15, 9) do |n|
-      @url = @ll[n + 2].strip
-      @rate = @ll[n + 3].strip
-      @version = @ll[n + 4].strip
-      @date = @ll[n].strip
-      striper
-      next if @url.length > 42
-      next if @rate.length > 10
-      next if @version.length > 33
-      next if @date.length > 16
-      
-
-      create_server
-    end
+  def normalized_rate(rate)
+    rate = rate.delete '^0-9'
+    rate.blank? ? 0 : Integer(rate, 10)
   end
 
-  def parsserver3
-    doc = Nokogiri::HTML(@uri)
-    @ll = []
-    doc.css('div').each do |a|
-      @ll << a.content
-    end
-    0.step(@ll.count - 8, 1) do |n|
-      next unless @ll[n] == '•'
+  def normalized_serverversion(version)
+    version = 'Interlude +' if version == 'Interlude+'
+    version = 'High Five +' if version == 'High Five+'
+    version
+  end
 
-      @url = @ll[n + 1].strip
-      @rate = @ll[n + 3].strip
-      @version = @ll[n + 4].strip
-      @date = @ll[n + 5].strip
-      striper
-      next if @url.length > 42
-      next if @rate.length > 10
-      next if @version.length > 33
-      next if @date.length > 16
-      
-
-      create_server
-    end
+  def create_servers(servers)
+    servers.each(&:save)
   end
 end
