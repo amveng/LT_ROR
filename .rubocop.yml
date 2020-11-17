@@ -5,8 +5,10 @@ Layout/LineLength:
 Style/Documentation:
   Enabled: false
 Metrics/MethodLength:
-    Max: 20
+  Max: 20
 Style/DocumentationMethod:
   Enabled: false
 Style/MethodCallWithArgsParentheses:
+  Enabled: false
+Lint/NumberConversion:
   Enabled: false
