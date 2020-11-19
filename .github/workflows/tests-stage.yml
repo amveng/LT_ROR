@@ -28,8 +28,7 @@ jobs:
         options: --entrypoint redis-server          
 
     steps:
-      - uses: actions/checkout@v1
-      - name: Setup Ruby
+      - uses: actions/checkout@v1      
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.7.0
@@ -44,7 +43,8 @@ jobs:
           RAILS_ENV: test
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
         run: |
-          sudo apt-get -yqq install libpq-dev          
+          sudo apt-get -yqq install libpq-dev
+          gem install bundler
           bundle install
           bundle exec rails db:test:prepare
           bundle exec rake
