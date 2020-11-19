@@ -33,6 +33,7 @@ jobs:
         with:
           ruby-version: 2.7.0
           bundler-cache: true
+      - name: Install dependencies
         run: bundle install        
       - uses: borales/actions-yarn@v2.0.0
         with:
