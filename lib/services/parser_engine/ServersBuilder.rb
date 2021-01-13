@@ -2,7 +2,7 @@
 
 module Services
   module ParserEngine
-    class MakingServersFromData
+    class ServersBuilder
       attr_reader :array_of_match_numbers, :selected_data, :site
 
       def initialize(array_of_match_numbers, selected_data, site)

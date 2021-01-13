@@ -2,7 +2,7 @@
 
 module Services
   module ParserEngine
-    class GettingDataSite
+    class SiteGraber
       attr_reader :url
 
       def initialize(url)
