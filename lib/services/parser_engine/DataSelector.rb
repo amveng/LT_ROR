@@ -2,7 +2,7 @@
 
 module Services
   module ParserEngine
-    class DataPreparation
+    class DataSelector
       attr_reader :document, :css_selector
 
       def initialize(document, css_selector)

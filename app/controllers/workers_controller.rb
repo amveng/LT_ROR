@@ -19,7 +19,7 @@ class WorkersController < ApplicationController
   end
 
   def parser_servers
-    ParserServerWorker.perform_async
+    ParserSiteWorker.perform_async
     redirect_to adm315_root_path, notice: 'Воркер запущен'
   end
 
