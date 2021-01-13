@@ -2,7 +2,7 @@
 
 module Services
   module ParserEngine
-    class SaveServersAndCreateReport
+    class SaveServers
       attr_reader :array_of_new_servers, :url
 
       def initialize(array_of_new_servers, url)
