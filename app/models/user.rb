@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :servers
   has_many :petitions
   has_many :votes, dependent: :destroy
+  has_many :banners, dependent: :destroy
   has_many :ltc_billing
   has_one :profile, dependent: :destroy
 

@@ -11,6 +11,7 @@ class Server < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :serverversion
   has_many :votes, dependent: :destroy
+  has_many :banners, dependent: :destroy
   has_many :server_views, dependent: :destroy
 
   enum status: { top: 1, vip: 2, normal: 3 }
