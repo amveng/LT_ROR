@@ -13,6 +13,15 @@ module ApplicationHelper
     }[name.to_sym] || name
   end
 
+  def banners_position
+    {
+      top: 'Верхний баннер 1920х600',
+      menu: 'Контент баннер 240х400',
+      left: 'Левый баннер 160х600',
+      right: 'Правый баннер 160х600'
+    }
+  end
+
   def publish_color(name)
     {
       published: 'success',

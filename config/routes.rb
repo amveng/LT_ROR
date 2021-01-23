@@ -14,12 +14,13 @@ Rails.application.routes.draw do
       end
     end
   end
-  devise_for :users, controllers: {
-    omniauth_callbacks: 'omniauth',
-    registrations: 'users/registrations',
-    sessions: 'users/sessions',
-    passwords: 'users/passwords'
-  }
+  devise_for :users,
+             controllers: {
+               omniauth_callbacks: 'omniauth',
+               registrations: 'users/registrations',
+               sessions: 'users/sessions',
+               passwords: 'users/passwords'
+             }
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -83,4 +84,6 @@ Rails.application.routes.draw do
   end
 
   resources :contents, only: [:show]
+
+  resources :banners
 end

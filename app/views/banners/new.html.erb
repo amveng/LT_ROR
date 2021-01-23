@@ -1,0 +1,33 @@
+<div class="col col-3">
+  <%= render '/profiles/left' %>
+</div>
+<div class="col col-9">
+  <div class="shadow bg-light my-5">
+    <h5 class="card-header">Заказ нового баннера</h5>
+    <div class="card-body">
+      <% if @banner.errors.any? %>
+        <p class="text-danger"><%= t('common.errors') %></p>
+      <% end %>
+      <%= simple_form_for @banner, html: { multipart: true }  do |f| %>
+        <div class="form-group">
+          <%= f.input :position, as: :radio_buttons, collection: banners_position, label_method: :second, value_method: :first, label: 'Расположение банера', class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.input :banner_image, label: 'Выберете изображение в формате jpeg, jpg или png',  class: 'form-control' %>
+        </div>
+         <div class="form-group">
+          <%= f.input :server_id, collection: current_user.servers, label: 'сервер',  class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.input :date_start, label: 'Показывать баннер с',  class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.input :date_end, label: 'Показывать баннер до',  class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.submit 'Сохранить', class: 'btn btn-success w-25 mt-5' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

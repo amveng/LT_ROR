@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2021_01_19_203627) do
   create_table "banners", force: :cascade do |t|
     t.integer "position", default: 0, null: false
     t.integer "publish", default: 0, null: false
-    t.string "image", null: false
+    t.string "banner_image", null: false
     t.date "date_start", null: false
     t.date "date_end", null: false
     t.bigint "server_id"
