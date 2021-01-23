@@ -5,7 +5,7 @@ class BannersController < ApplicationController
   before_action :banner_belong_user, only: %i[edit update destroy show]
 
   def index
-    @banners = current_user.banners.includes(:server)
+    @banners = current_user.banners.includes(:server).order(updated_at: :desc)
   end
 
   def show
@@ -16,6 +16,9 @@ class BannersController < ApplicationController
   end
 
   def new
+    if current_user.banners.created.count > 3
+      redirect_to banners_path, danger: 'Вы достигли лимита неопубликованных баннеров'
+    end
     @banner = Banner.new
   end
 

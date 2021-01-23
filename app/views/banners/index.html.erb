@@ -33,7 +33,7 @@
             <tbody>
               <tr>
                 <th class="w-25" scope="row">Расположение банера:</th>
-                <td class="w-50"><%= banner.position %></td>
+                <td class="w-50"><%= banners_position[banner.position.to_sym] %></td>
               </tr>
               <tr>
                 <th class="w-25" scope="row">Адрес сервера:</th>
@@ -42,6 +42,10 @@
               <tr>
                 <th class="w-25" scope="row">Показ баннера:</th>
                 <td class="w-50">c <%= banner.date_start %> до <%= banner.date_end %></td>
+              </tr>
+              <tr>
+                <th class="w-25" scope="row">Статус публикации баннера:</th>
+                <td class="w-50"><%= banner_publication_status(banner.publish)  %></td>
               </tr>
             </tbody>
           </table>
