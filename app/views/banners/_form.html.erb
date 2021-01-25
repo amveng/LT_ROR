@@ -13,7 +13,7 @@
           <%= f.input :server_id, collection: current_user.servers, label: 'сервер',  class: 'form-control' %>
         </div>
         <div class="form-group">
-          <%= f.input :date_start, label: 'Показывать баннер с',  class: 'form-control' %>
+          <%= f.input :date_start, as: :string, label: 'Показывать баннер с',  class: 'datepicker form-control' %>
         </div>
         <div class="form-group">
           <%= f.input :date_end, label: 'Показывать баннер до',  class: 'form-control' %>

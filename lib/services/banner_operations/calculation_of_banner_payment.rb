@@ -18,7 +18,7 @@ module Services::BannerOperations
     end
 
     def calculate
-      (date_end - date_start).to_i * (PAYMENT_PER_DAY[position.to_sym] || 0)
+      (date_end - date_start + 1).to_i * (PAYMENT_PER_DAY[position.to_sym] || 0)
     end
   end
 end

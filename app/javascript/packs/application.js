@@ -26,7 +26,7 @@ import "chartkick";
 
 import "chart.js";
 
-
+import "bootstrap-datepicker";
 
 $(function () {
   $("#datetimepicker1").datetimepicker({
@@ -46,3 +46,8 @@ $(document).on(function () {
   const client_offset = parseInt(-current_date.getTimezoneOffset() / 60);
   $('input[name="client_timezone"]').val(client_offset);
 });
+
+
+  // $(function(){
+  //   $('.datepicker').datepicker();
+  // });
