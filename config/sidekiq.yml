@@ -11,11 +11,11 @@
     class: VoteFakeWorker
     description: "By default, this task generates 100 votes from fake users in accordance with the algorithm for distributing votes across servers."
     args: 100
-  Parser servers info:
+  Parser site info:
     cron: "0 4 * * *"
     enabled: true
     queue: default
-    class: ParserServerWorker
+    class: ParserSiteWorker
     description: "This task collects information from other sites that publish information about servers."
   Servers checks:
     cron: "1 4,16 * * *"
