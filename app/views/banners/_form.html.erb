@@ -13,10 +13,10 @@
           <%= f.input :server_id, collection: current_user.servers, label: 'сервер',  class: 'form-control' %>
         </div>
         <div class="form-group">
-          <%= f.input :date_start, as: :string, label: 'Показывать баннер с',  class: 'datepicker form-control' %>
+          <%= f.input :date_start, as: :string, input_html: { class: "datepicker" }, label: 'Показывать баннер с',  class: 'form-control' %>
         </div>
         <div class="form-group">
-          <%= f.input :date_end, label: 'Показывать баннер до',  class: 'form-control' %>
+          <%= f.input :date_end, as: :string, input_html: { class: "datepicker" }, label: 'Показывать баннер до',  class: 'form-control' %>
         </div>
         <div class="form-group">
           <%= f.submit 'Сохранить', class: 'btn btn-success w-25 mt-5' %>

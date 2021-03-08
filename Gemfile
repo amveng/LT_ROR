@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.0'
+ruby '2.7.2'
 gem 'activeadmin'
 gem 'auto_strip_attributes', '~> 2.6'
 gem 'bootsnap', '>= 1.4.2', require: false
@@ -40,8 +40,8 @@ gem 'webpacker', '~> 4.0'
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
+  gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
   gem 'rspec-rails'
-  gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'  
 end
 
 group :development do
@@ -64,4 +64,4 @@ gem 'sidekiq-scheduler', '~> 3.0'
 
 gem 'data_migrate', '~> 6.5'
 
-gem 'font-awesome-rails' 
+gem 'font-awesome-rails'

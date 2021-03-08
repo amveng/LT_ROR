@@ -1,6 +1,7 @@
 AllCops:
   EnabledByDefault: true
 Layout/LineLength:
+  AutoCorrect: true
   Max: 120
 Style/Documentation:
   Enabled: false
@@ -12,3 +13,17 @@ Style/MethodCallWithArgsParentheses:
   Enabled: false
 Lint/NumberConversion:
   Enabled: false
+Style/Copyright:
+  Description: 'Include a copyright notice in each file before any code.'
+  Enabled: false
+  VersionAdded: '0.30'
+  Notice: '^Copyright (\(c\) )?2[0-9]{3} .+'
+  AutocorrectNotice: ''
+Lint/ConstantResolution:
+  Description: 'Check that constants are fully qualified with `::`.'
+  Enabled: false
+  VersionAdded: '0.86'
+  # Restrict this cop to only looking at certain names
+  Only: []
+  # Restrict this cop from only looking at certain names
+  Ignore: []

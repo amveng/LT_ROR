@@ -28,26 +28,49 @@ import "chart.js";
 
 import "bootstrap-datepicker";
 
-$(function () {
-  $("#datetimepicker1").datetimepicker({
-    locale: "ru",
-    format: "L",
-  });
-});
+// $(function () {
+//   $("#datetimepicker1").datetimepicker({
+//     locale: "ru",
+//     format: "L",
+//     autoclose: true,
+//   });
+// });
 
-$(function () {
-  $("#datetimepicker2").datetimepicker({
-    locale: "ru",
-    format: "L",
-  });
-});
-$(document).on(function () {
-  var current_date = new Date();
-  const client_offset = parseInt(-current_date.getTimezoneOffset() / 60);
-  $('input[name="client_timezone"]').val(client_offset);
-});
+// $(function () {
+//   $("#datetimepicker2").datetimepicker({
+//     locale: "ru",
+//     format: "L",
+//   });
+// });
+// $(document).on(function () {
+//   var current_date = new Date();
+//   const client_offset = parseInt(-current_date.getTimezoneOffset() / 60);
+//   $('input[name="client_timezone"]').val(client_offset);
+// });
 
 
   // $(function(){
   //   $('.datepicker').datepicker();
   // });
+
+import 'jquery'
+
+import * as $ from 'jquery';
+
+$(function(){
+  $('.datepicker').datepicker({              
+      todayBtn: "linked",
+      format: "yyyy-mm-dd",
+      startDate: "2021-01-23",        
+      todayHighlight: true,       
+      autoclose: true,
+      language: "ru",
+  });
+  console.log('datepiker load')
+});
+
+
+// $(document).on(function(){
+//   $('.datepicker').datepicker();
+//   console.log('datepiker load')
+// });
