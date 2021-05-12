@@ -10,7 +10,7 @@
     "@rails/webpacker": "4.2.2",
     "bootstrap": "^4.5.3",
     "bootstrap-datepicker": "^1.9.0",
-    "chart.js": "^2.9.3",
+    "chart.js": "^2.9.4",
     "chartkick": "^3.2.1",
     "flatpickr": "^4.6.3",
     "highcharts": "^8.2.0",
